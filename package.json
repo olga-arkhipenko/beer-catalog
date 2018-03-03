@@ -1,0 +1,49 @@
+{
+    "name": "beer-catalog",
+    "version": "1.0.0",
+    "description": "Beer catalog based on Vue.js",
+    "main": "index.js",
+    "scripts": {
+        "dev": "webpack-dev-server --mode development --hot --open",
+        "build": "webpack --progress --hide-modules --env.production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/olga-arkhipenko/beer-catalog.git"
+    },
+    "author": "Olga Arkhipenko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/olga-arkhipenko/beer-catalog/issues"
+    },
+    "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
+    "dependencies": {
+        "vue": "^2.5.13"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^8.2.2",
+        "babel-loader": "^7.1.3",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-stage-3": "^6.24.1",
+        "cross-env": "^5.1.3",
+        "css-loader": "^0.28.10",
+        "eslint": "^4.18.2",
+        "eslint-config-standard": "^11.0.0",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-loader": "^2.0.0",
+        "eslint-plugin-html": "^4.0.2",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-node": "^6.0.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "file-loader": "^1.1.11",
+        "url-loader": "^1.0.1",
+        "vue-loader": "^14.1.1",
+        "vue-style-loader": "^4.0.2",
+        "vue-template-compiler": "^2.5.13",
+        "webpack": "^4.0.1",
+        "webpack-cli": "^2.0.10",
+        "webpack-dev-server": "^3.1.0"
+    }
+}
