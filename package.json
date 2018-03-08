@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "webpack-dev-server --mode development --hot --open",
-        "build": "webpack --progress --hide-modules --env.production"
+        "build": "webpack --progress --hide-modules --mode production --env.production"
     },
     "repository": {
         "type": "git",
