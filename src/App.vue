@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <HeaderNavigation/>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -16,4 +17,8 @@ export default {
 </script>
 
 <style>
+    .link {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>

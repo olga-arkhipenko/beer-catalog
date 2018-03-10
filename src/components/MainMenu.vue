@@ -5,16 +5,16 @@
             <button class="main-menu__close-button" @click='hideMainMenu'>&#215;</button>
             <ul class="main-menu__list">
                 <li class="main-menu__item">
-                    <a href="#" class="link">
+                    <router-link to="/" class="link">
                         <span class="main-menu__item-icon">&#x2616;</span>
                         <span class="main-menu__item-name">Home</span>
-                    </a>
+                    </router-link>
                 </li>
                 <li class="main-menu__item">
-                    <a href="#" class="link">
+                    <router-link to="/favorites" class="link">
                         <span class="main-menu__item-icon">&#x2606;</span>
                         <span class="main-menu__item-name">Favorites</span>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </nav>
@@ -79,11 +79,6 @@ export default {
 
     .slide-enter, .slide-leave-to {
         transform: translateX(-250px);
-    }
-
-    .link {
-        text-decoration: none;
-        color: inherit;
     }
 
     .main-menu__item {

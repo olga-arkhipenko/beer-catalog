@@ -1,8 +1,10 @@
 <template>
     <div class="logo">
-        <span class="logo__name">
-            {{logoName}}
-        </span>
+        <router-link to="/" href="/" class="link">
+            <span class="logo__name">
+                {{logoName}}
+            </span>
+        </router-link>
     </div>
 </template>
 
