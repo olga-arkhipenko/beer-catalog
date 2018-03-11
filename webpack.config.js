@@ -24,15 +24,15 @@ module.exports = env => {
                 'css-loader'
             ],
             },
-            {
-            enforce: "pre",
-            test: /\.(js|vue)$/,
-            exclude: /node_modules/,
-            loader: "eslint-loader",
-            options: {
-                formatter: require('eslint-friendly-formatter')
-            }
-            },
+            // {
+            // enforce: "pre",
+            // test: /\.(js|vue)$/,
+            // exclude: /node_modules/,
+            // loader: "eslint-loader",
+            // options: {
+            //     formatter: require('eslint-friendly-formatter')
+            // }
+            // },
             {
             test: /\.js$/,
             loader: 'babel-loader',
