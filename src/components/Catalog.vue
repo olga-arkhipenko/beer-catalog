@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         loadBeers(){
-            this.$store.dispatch('getBeerPage', this.currentPage);
+            this.$store.dispatch('getBeerPage', this.currentPage, this.$store.state.beersPerPage);
             this.currentPage++;
         },
         touchBottom(){

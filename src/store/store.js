@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        beers: []
+        beers: [],
+        beersPerPage: 9
     },
     getters: {
         getBeersForCatalog(state) {
