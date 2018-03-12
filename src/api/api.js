@@ -5,7 +5,7 @@ export default {
     get(page, beersPerPage) {
         return new Promise(function(resolve, reject){
             const xhr = new XMLHttpRequest();
-            page = page || '';
+            page = page || 1;
             beersPerPage = beersPerPage || 9;
             xhr.open('GET', `${url}/?page=${page}&per_page=${beersPerPage}`, true);
             xhr.onload = function () {

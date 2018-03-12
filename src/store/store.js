@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import api from '/Users/arkhipenko.o/Documents/dev/js/iTechArt/beer-catalog/src/api/api.js'
+import api from '../api/api.js'
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
         beers: [],
-        beersPerPage: 9
+        beersPerPage: 9,
+        catalogPageNumber: 1
     },
     getters: {
         getBeersForCatalog(state) {
@@ -17,6 +18,9 @@ export const store = new Vuex.Store({
     mutations: {
         SET_BEERS(state, beers){
             state.beers.push(...beers);
+        },
+        INCREMET_CATALOG_PAGE_NUMBER(state){
+            this.catalogPageNumber++;
         }
     },
     actions: {

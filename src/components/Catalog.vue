@@ -10,28 +10,20 @@
 
 <script>
 export default {
-    data() {
-        return {
-            currentPage: 1,
-        }
-    },
-    beforeMount() {
-        if(this.currentPage > 1) {
-            return;
-        }
-        this.loadBeers(this.currentPage);
-    },
     computed:{
         beers() {
+            if(this.$store.state.beers.length === 0){
+                this.$store.dispatch('getBeerPage', this.$store.state.catalogPageNumber, this.$store.state.beersPerPage);
+            }
             return this.$store.getters.getBeersForCatalog;
         }
     },
     methods: {
         loadBeers(){
-            this.$store.dispatch('getBeerPage', this.currentPage, this.$store.state.beersPerPage);
-            this.currentPage++;
+            this.$store.dispatch('getBeerPage', this.$store.state.catalogPageNumber, this.$store.state.beersPerPage);
+            this.$store.commit('INCREMET_CATALOG_PAGE_NUMBER');
         },
-        touchBottom(){
+        isBottom(){
             const scrollY = window.scrollY
             const visible = document.documentElement.clientHeight
             const pageHeight = document.documentElement.scrollHeight
