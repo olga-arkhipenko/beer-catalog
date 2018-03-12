@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import api from '../api/api.js'
+import api from '../api/api'
+import UrlCreator from '../api/utilities/UrlCreator'
 
 Vue.use(Vuex);
 
@@ -16,16 +17,22 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        SET_BEERS(state, beers){
-            state.beers.push(...beers);
+        SET_BEERS(state, beers) {
+            state.beers.push(...JSON.parse(beers));
         },
-        INCREMET_CATALOG_PAGE_NUMBER(state){
-            this.catalogPageNumber++;
+        INCREMET_CATALOG_PAGE_NUMBER(state) {
+            state.catalogPageNumber++;
         }
     },
     actions: {
-        getBeerPage({commit}, page, perPage) {
-            api.get(page, perPage).then(beers => commit('SET_BEERS', JSON.parse(beers)));
+        getBeerPage({commit, state}) {
+            const url = UrlCreator.create({page: state.catalogPageNumber, per_page: state.beersPerPage});
+            api.get(url).then(beers => commit('SET_BEERS', beers));
+        },
+        getFoundBeers({commit, state}, beerName) {
+            const url = UrlCreator.create({beer_name: beerName});
+            console.log(url);
+            api.get(url).then(foundBeers => commit('SET_BEERS', foundBeers));
         }
     }
 })

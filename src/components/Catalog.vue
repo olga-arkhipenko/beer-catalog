@@ -1,26 +1,42 @@
 <template>
-    <section class="catalog">
+    <article>
+        <search-panel></search-panel>
+        <section class="catalog">
         <div v-for="beer in beers">
             <img :src="beer.image" alt="Beer pic" width="50px">
             <h2>{{beer.name}}</h2>
             <h3>{{beer.tagline}}</h3>
         </div>
     </section>
+    </article>
 </template>
 
 <script>
+import SearchPanel from './SearchPanel';
+
 export default {
-    computed:{
+    components: {
+        'search-panel': SearchPanel
+    },
+    created() {
+        window.addEventListener('scroll', () => {
+            if(this.isBottom()){
+                this.loadBeers();
+            }
+        })
+    },
+    computed: {
         beers() {
             if(this.$store.state.beers.length === 0){
-                this.$store.dispatch('getBeerPage', this.$store.state.catalogPageNumber, this.$store.state.beersPerPage);
+                this.loadBeers();
             }
             return this.$store.getters.getBeersForCatalog;
         }
     },
     methods: {
         loadBeers(){
-            this.$store.dispatch('getBeerPage', this.$store.state.catalogPageNumber, this.$store.state.beersPerPage);
+            console.log(this.$store.state.beersPerPage);
+            this.$store.dispatch('getBeerPage');
             this.$store.commit('INCREMET_CATALOG_PAGE_NUMBER');
         },
         isBottom(){
