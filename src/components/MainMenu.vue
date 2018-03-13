@@ -28,9 +28,10 @@ export default {
     components: {
         'primary-logo': Logo
     },
-    methods: {
-        hideMainMenu() {
-            this.$emit('hideMainMenu');
+    props: {
+        hideMainMenu: {
+            type: Function,
+            require: true
         }
     }
 }
