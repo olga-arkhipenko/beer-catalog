@@ -38,7 +38,6 @@ export default {
     },
     methods: {
         loadBeers(){
-            console.log(this.$store.state.beersPerPage);
             console.log(this.$store.state.catalogPageNumber);
             this.$store.dispatch('getBeerPage');
             this.$store.commit('INCREMET_CATALOG_PAGE_NUMBER');
