@@ -1,6 +1,8 @@
 <template>
     <article class="search-panel">
         <input type="text" v-model.trim="inputBeerName" @keyup.enter="submitSearch">
+        <button @click="cleanSearch">x</button>
+        <button @click="submitSearch">Search</button>
     </article>
 </template>
 
@@ -20,7 +22,14 @@ export default {
     methods: {
         submitSearch() {
             console.log(this.searchBeerName);
-            this.$store.dispatch('getFoundBeers', this.searchBeerName);
+            if(this.searchBeerName) {
+                this.$store.dispatch('getFoundBeers', this.searchBeerName);
+            }
+        },
+        cleanSearch() {
+            this.inputBeerName = '';
+            this.$store.commit('RESET_CATALOG_PAGE_NUMBER');
+            this.$store.commit('CLEAN_BEERS');
         }
     }
 }

@@ -17,22 +17,34 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        SET_BEERS(state, beers) {
+        SET_CATALOG_BEERS(state, beers) {
             state.beers.push(...JSON.parse(beers));
+        },
+        SET_FOUND_BEERS(state, foundBeers) {
+            state.beers.push(...JSON.parse(foundBeers));
+        },
+        CLEAN_BEERS(state){
+            state.beers = [];
         },
         INCREMET_CATALOG_PAGE_NUMBER(state) {
             state.catalogPageNumber++;
+        },
+        RESET_CATALOG_PAGE_NUMBER(state) {
+            state.catalogPageNumber = 1;
         }
     },
     actions: {
         getBeerPage({commit, state}) {
             const url = UrlCreator.create({page: state.catalogPageNumber, per_page: state.beersPerPage});
-            api.get(url).then(beers => commit('SET_BEERS', beers));
+            api.get(url).then(beers => commit('SET_CATALOG_BEERS', beers));
         },
         getFoundBeers({commit, state}, beerName) {
             const url = UrlCreator.create({beer_name: beerName});
             console.log(url);
-            api.get(url).then(foundBeers => commit('SET_BEERS', foundBeers));
+            api.get(url).then(foundBeers => {
+                commit('CLEAN_BEERS');
+                commit('SET_FOUND_BEERS', foundBeers);
+            });
         }
     }
 })
