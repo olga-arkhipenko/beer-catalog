@@ -3,16 +3,22 @@
         <input type="text" v-model.trim="inputBeerName" @keyup.enter="submitSearch">
         <button @click="cleanSearch">x</button>
         <button @click="submitSearch">Search</button>
+        <adavanced-search-panel></adavanced-search-panel>
     </article>
 </template>
 
 <script>
-import UrlCreator from '../api/utilities/UrlCreator.js';
+import UrlCreator from '../api/utilities/UrlCreator';
+import AdvancedSearchPanel from './AdvancedSearchPanel';
+
 export default {
     data() {
         return {
             inputBeerName: ''
         }
+    },
+    components: {
+        'adavanced-search-panel': AdvancedSearchPanel
     },
     computed: {
         searchBeerName(){
