@@ -3,7 +3,9 @@
         <search-panel></search-panel>
         <section class="catalog">
         <div v-for="beer in beers">
-            <img :src="beer.image" alt="Beer pic" width="50px">
+            <div class="beerCard__image">
+                <img :src="beer.image" alt="Beer pic" width="50px">
+            </div>
             <h2>{{beer.name}}</h2>
             <h3>{{beer.tagline}}</h3>
         </div>
@@ -15,39 +17,44 @@
 import SearchPanel from './SearchPanel';
 
 export default {
+    data() {
+        return {
+            pageNumber: 1
+        }
+    },
     components: {
         'search-panel': SearchPanel
     },
-    beforeMount(){
-
-    },
     created() {
+        if(this.$store.state.beers.length === 0) {
+            this.loadBeers();
+        }
         window.addEventListener('scroll', () => {
-            if(this.isBottom()){
+            if(this.isBottom()) {
+                this.incrementPageNumber();
                 this.loadBeers();
             }
         })
     },
     computed: {
         beers() {
-            if(this.$store.state.beers.length === 0){
-                this.loadBeers();
-            }
             return this.$store.getters.getBeersForCatalog;
         }
     },
     methods: {
         loadBeers(){
-            console.log(this.$store.state.catalogPageNumber);
-            this.$store.dispatch('getBeerPage');
-            this.$store.commit('INCREMET_CATALOG_PAGE_NUMBER');
+            console.log('page'+this.pageNumber);
+            this.$store.dispatch('getBeerPage', {page: this.pageNumber});
+        },
+        incrementPageNumber() {
+            this.pageNumber++;
         },
         isBottom(){
             const scrollY = window.scrollY
-            const visible = document.documentElement.clientHeight
+            const visibleContent = document.documentElement.clientHeight
             const pageHeight = document.documentElement.scrollHeight
-            const pageBottom = visible + scrollY >= pageHeight
-            return pageBottom || pageHeight < visible
+            const pageBottom = visibleContent + scrollY >= pageHeight
+            return pageBottom || pageHeight < visibleContent
         }
     }
   
@@ -55,12 +62,16 @@ export default {
 </script>
 
 <style>
-    .catalog{
+    .catalog {
         width: 1024px;
         margin: 40px auto;
         display: grid;
         grid-template-columns: 33.333% 33.333% 33.333%;
         grid-column-gap: 20px;
+    }
+
+    .beerCard__image {
+        height: 200px;
     }
 </style>
 

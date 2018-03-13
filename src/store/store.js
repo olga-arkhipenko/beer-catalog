@@ -34,8 +34,9 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        getBeerPage({commit, state}) {
-            const url = UrlCreator.create({page: state.catalogPageNumber, per_page: state.beersPerPage});
+        getBeerPage({commit, state}, payload) {
+            const url = UrlCreator.create({page: payload.page, per_page: state.beersPerPage});
+            console.log(url);
             api.get(url).then(beers => commit('SET_CATALOG_BEERS', beers));
         },
         getFoundBeers({commit, state}, beerName) {
