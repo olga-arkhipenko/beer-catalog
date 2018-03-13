@@ -8,8 +8,11 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
-        // beersPerPage: 9,
-        // catalogPageNumber: 1
+        urlParams: {
+            page: 1,
+            per_page: 9,
+        },
+        searchParams: {}
     },
     getters: {
         getBeersForCatalog(state) {
@@ -20,13 +23,22 @@ export const store = new Vuex.Store({
         SET_BEERS(state, beers) {
             state.beers.push(...JSON.parse(beers));
         },
-        RESET_BEERS(state){
+        RESET_BEERS(state) {
             state.beers = [];
+        },
+        INCREMENT_CATALOG_PAGE(state) {
+            state.urlParams.page++;
+        },
+        RESET_CATALOG_PAGE(state) {
+            state.urlParams.page = 1;
+        },
+        SET_SEARCH_PARAMS(state, searchParams) {
+            state.searchParams = {...searchParams};
         }
     },
     actions: {
-        getBeerPage({commit, state}, urlParams) {
-            const url = UrlCreator.create(urlParams);
+        getBeerPage({commit, state}) {
+            const url = UrlCreator.create({...state.urlParams, ...state.searchParams});
             console.log(url);
             api.get(url).then(beers => commit('SET_BEERS', beers));
         },

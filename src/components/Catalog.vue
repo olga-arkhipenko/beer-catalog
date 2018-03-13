@@ -1,6 +1,6 @@
 <template>
     <article>
-        <search-panel></search-panel>
+        <search-panel v-on:loadBeers="loadBeers"></search-panel>
         <section class="catalog">
         <div v-for="beer in beers">
             <div class="beerCard__image">
@@ -19,19 +19,24 @@ import SearchPanel from './SearchPanel';
 export default {
     data() {
         return {
-            pageNumber: 1
+            // urlParams: {
+            //     page: 1,
+            //     per_page: 9
+            // }
         }
     },
     components: {
         'search-panel': SearchPanel
     },
-    created() {
-        if(this.$store.state.beers.length === 0) {
+    mounted() {
+        // if(this.$store.state.beers.length === 0 && this.$store.state.urlParams.page === 1) {
             this.loadBeers();
-        }
+        // }
+    },
+    created() {
         window.addEventListener('scroll', () => {
             if(this.isBottom()) {
-                this.incrementPageNumber();
+                this.$store.commit('INCREMENT_CATALOG_PAGE');
                 this.loadBeers();
             }
         })
@@ -42,13 +47,15 @@ export default {
         }
     },
     methods: {
-        loadBeers(){
-            console.log('page'+this.pageNumber);
-            this.$store.dispatch('getBeerPage', {page: this.pageNumber});
+        loadBeers(searchParams){
+            console.log('page '+this.$store.state.urlParams.page);
+            console.log('searchParams '+searchParams);
+            this.$store.commit('SET_SEARCH_PARAMS', searchParams)
+            this.$store.dispatch('getBeerPage');
         },
-        incrementPageNumber() {
-            this.pageNumber++;
-        },
+        // incrementPageNumber() {
+        //     this.urlParams.page++;
+        // },
         isBottom(){
             const scrollY = window.scrollY
             const visibleContent = document.documentElement.clientHeight
@@ -57,7 +64,6 @@ export default {
             return pageBottom || pageHeight < visibleContent
         }
     }
-  
 }
 </script>
 
