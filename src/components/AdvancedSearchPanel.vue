@@ -21,20 +21,26 @@
     export default {
         data() {
             return {
-                abvRange: 8,
-                ibuRange: 61,
-                ebcRange: 42
+                abvRange: 0,
+                ibuRange: 0,
+                ebcRange: 0
             }
         },
         watch: {
             abvRange() {
                 console.log(this.abvRange);
+                this.$store.commit('SET_SEARCH_PARAMS', {abv_gt: this.abvRange});
+                this.$emit('submitSearch');
             },
             ibuRange() {
                 console.log(this.ibuRange);
+                this.$store.commit('SET_SEARCH_PARAMS', {ibu_gt: this.ibuRange});
+                this.$emit('submitSearch');
             },
             ebcRange() {
                 console.log(this.ebcRange);
+                this.$store.commit('SET_SEARCH_PARAMS', {ebc_gt: this.ebcRange});
+                this.$emit('submitSearch');
             }
         }
     }

@@ -38,7 +38,7 @@ export const store = new Vuex.Store({
             state.catalogParams.page = 1;
         },
         SET_SEARCH_PARAMS(state, searchParams) {
-            state.searchParams = {...searchParams};
+            state.searchParams = {...state.searchParams,...searchParams};
         },
         RESET_SEARCH_PARAMS(state) {
             state.searchParams = {};
@@ -46,6 +46,7 @@ export const store = new Vuex.Store({
     },
     actions: {
         getBeerPage({commit, state}) {
+            console.log("loading with searchparams " + Array.from(state.searchParams));
             const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
             console.log(url);
             api.get(url).then(beers => commit('SET_BEERS', beers));
