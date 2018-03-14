@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
-        urlParams: {
+        catalogParams: {
             page: 1,
             per_page: 9,
         },
@@ -16,7 +16,12 @@ export const store = new Vuex.Store({
     },
     getters: {
         getBeersForCatalog(state) {
-            return state.beers.map(beer => ({id: beer.id, name: beer.name, image: beer.image_url, tagline: beer.tagline}));
+            return state.beers.map(beer => ({
+                id: beer.id, 
+                name: beer.name, 
+                image: beer.image_url, 
+                tagline: beer.tagline
+            }));
         }
     },
     mutations: {
@@ -27,10 +32,10 @@ export const store = new Vuex.Store({
             state.beers = [];
         },
         INCREMENT_CATALOG_PAGE(state) {
-            state.urlParams.page++;
+            state.catalogParams.page++;
         },
         RESET_CATALOG_PAGE(state) {
-            state.urlParams.page = 1;
+            state.catalogParams.page = 1;
         },
         SET_SEARCH_PARAMS(state, searchParams) {
             state.searchParams = {...searchParams};
@@ -38,17 +43,9 @@ export const store = new Vuex.Store({
     },
     actions: {
         getBeerPage({commit, state}) {
-            const url = UrlCreator.create({...state.urlParams, ...state.searchParams});
+            const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
             console.log(url);
             api.get(url).then(beers => commit('SET_BEERS', beers));
-        },
-        // getFoundBeers({commit, state}, beerName) {
-        //     const url = UrlCreator.create({beer_name: beerName});
-        //     console.log(url);
-        //     api.get(url).then(foundBeers => {
-        //         commit('CLEAN_BEERS');
-        //         commit('SET_FOUND_BEERS', foundBeers);
-        //     });
-        // }
+        }
     }
 })

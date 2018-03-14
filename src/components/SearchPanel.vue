@@ -17,12 +17,6 @@ export default {
             inputBeerName: ''
         }
     },
-    // props: {
-    //     loadBeers: {
-    //         type: Function,
-    //         required: true
-    //     }
-    // },
     components: {
         'adavanced-search-panel': AdvancedSearchPanel
     },
@@ -34,12 +28,10 @@ export default {
     methods: {
         submitSearch() {
             console.log(this.searchingBeerName);
-            // if(this.searchingBeerName) {
-                // this.$store.dispatch('getFoundBeers', this.searchingBeerName);
-                this.$store.commit('RESET_BEERS');
-                this.$store.commit('RESET_CATALOG_PAGE');
-                this.$emit('loadBeers', {beer_name: this.searchingBeerName})
-            // }
+            this.$store.commit('RESET_BEERS');
+            this.$store.commit('RESET_CATALOG_PAGE');
+            this.$store.commit('SET_SEARCH_PARAMS', {beer_name: this.searchingBeerName});
+            this.$emit('loadBeers');
         },
         // cleanSearch() {
         //     this.inputBeerName = '';
