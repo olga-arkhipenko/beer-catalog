@@ -38,16 +38,18 @@ export default {
     },
     methods: {
         loadBeers(){
+
+            this.$store.dispatch('getBeerPage');
+
             console.log('page '+this.$store.state.catalogParams.page);
             console.log('searchParams '+this.$store.state.searchParams);
-            this.$store.dispatch('getBeerPage');
         },
         isBottom(){
-            const scrollY = window.scrollY
-            const visibleContent = document.documentElement.clientHeight
-            const pageHeight = document.documentElement.scrollHeight
-            const pageBottom = visibleContent + scrollY >= pageHeight
-            return pageBottom || pageHeight < visibleContent
+            const scrollY = window.scrollY;
+            const visibleContent = document.documentElement.clientHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+            const pageBottom = visibleContent + scrollY >= pageHeight;
+            return pageBottom || pageHeight < visibleContent;
         }
     }
 }

@@ -2,13 +2,8 @@
     <article class="search-panel">
         <input type="text" v-model.trim="inputBeerName" v-on:keyup.enter="submitSearch">
         <button @click="cleanSearch">x</button>
-<<<<<<< HEAD
-        <button @click="submitSearch">Search</button>
-        <adavanced-search-panel></adavanced-search-panel>
-=======
         <button v-on:click="submitSearch">Search</button>
-        <adavanced-search-panel v-on:submitSearch="submitSearch"></adavanced-search-panel>
->>>>>>> 81e5fe9c21c6f7c0852e361d3ea8edd57202aecc
+        <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"></adavanced-search-panel>
     </article>
 </template>
 
@@ -19,7 +14,8 @@ import AdvancedSearchPanel from './AdvancedSearchPanel';
 export default {
     data() {
         return {
-            inputBeerName: ''
+            inputBeerName: '',
+            isAdvancedSearchPanelShown: false
         }
     },
     components: {
@@ -32,17 +28,29 @@ export default {
     },
     methods: {
         submitSearch() {
-            console.log(this.searchingBeerName);
-            this.$store.commit('RESET_BEERS');
-            this.$store.commit('RESET_CATALOG_PAGE');
-            this.$store.commit('SET_SEARCH_PARAMS', {beer_name: this.searchingBeerName});
-            this.$emit('loadBeers');
+            if(this.searchingBeerName) {
+                this.$store.commit('RESET_BEERS');
+                this.$store.commit('RESET_CATALOG_PAGE');
+                this.$store.commit('SET_SEARCH_PARAMS', {beer_name: this.searchingBeerName});
+                this.$emit('loadBeers');
+                console.log('длина '+this.$store.state.beers.length)
+                // if(this.$store.state.beers.length > 0) {
+                    this.showAdvancedSearchPanel();
+                // }
+            }
+        },
+        showAdvancedSearchPanel() {
+            this.isAdvancedSearchPanelShown = true;
+        },
+        hideAdvancedSearchPanel() {
+            this.isAdvancedSearchPanelShown = false;
         },
         cleanSearch() {
             this.inputBeerName = '';
             this.$store.commit('RESET_BEERS');
             this.$store.commit('RESET_CATALOG_PAGE');
             this.$store.commit('RESET_SEARCH_PARAMS');
+            this.hideAdvancedSearchPanel();
             this.$emit('loadBeers');
         }
     }

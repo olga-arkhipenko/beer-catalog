@@ -26,6 +26,7 @@ export const store = new Vuex.Store({
     },
     mutations: {
         SET_BEERS(state, beers) {
+            console.log(state.beers)
             state.beers.push(...JSON.parse(beers));
         },
         RESET_BEERS(state) {
@@ -46,7 +47,6 @@ export const store = new Vuex.Store({
     },
     actions: {
         getBeerPage({commit, state}) {
-            console.log("loading with searchparams " + Array.from(state.searchParams));
             const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
             console.log(url);
             api.get(url).then(beers => commit('SET_BEERS', beers));
