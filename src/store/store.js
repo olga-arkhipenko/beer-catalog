@@ -39,6 +39,9 @@ export const store = new Vuex.Store({
         },
         SET_SEARCH_PARAMS(state, searchParams) {
             state.searchParams = {...searchParams};
+        },
+        RESET_SEARCH_PARAMS(state) {
+            state.searchParams = {};
         }
     },
     actions: {

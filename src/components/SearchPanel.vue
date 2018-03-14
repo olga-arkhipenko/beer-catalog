@@ -1,7 +1,7 @@
 <template>
     <article class="search-panel">
         <input type="text" v-model.trim="inputBeerName" v-on:keyup.enter="submitSearch">
-        <!-- <button @click="cleanSearch">x</button> -->
+        <button @click="cleanSearch">x</button>
         <button v-on:click="submitSearch">Search</button>
         <adavanced-search-panel></adavanced-search-panel>
     </article>
@@ -33,11 +33,13 @@ export default {
             this.$store.commit('SET_SEARCH_PARAMS', {beer_name: this.searchingBeerName});
             this.$emit('loadBeers');
         },
-        // cleanSearch() {
-        //     this.inputBeerName = '';
-        //     this.$store.commit('RESET_CATALOG_PAGE_NUMBER');
-        //     this.$store.commit('CLEAN_BEERS');
-        // }
+        cleanSearch() {
+            this.inputBeerName = '';
+            this.$store.commit('RESET_BEERS');
+            this.$store.commit('RESET_CATALOG_PAGE');
+            this.$store.commit('RESET_SEARCH_PARAMS');
+            this.$emit('loadBeers');
+        }
     }
 }
 </script>
