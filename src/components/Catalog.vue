@@ -20,12 +20,14 @@
             <button class="" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
         </div>
     </section>
+    <catalog-spinner v-if="isLoading"/>
     </article>
 </template>
 
 <script>
 import SearchPanel from './SearchPanel';
 import BeerCard from './BeerCard';
+import Spinner from './Spinner';
 
 export default {
     data() {
@@ -35,7 +37,8 @@ export default {
     },
     components: {
         'beer-card': BeerCard,
-        'search-panel': SearchPanel
+        'search-panel': SearchPanel,
+        'catalog-spinner': Spinner
     },
     mounted() {
         this.loadBeers();
@@ -51,6 +54,9 @@ export default {
     computed: {
         beers() {
             return this.$store.getters.getBeersForCatalog;
+        },
+        isLoading() {
+            return this.$store.state.isLoading;
         }
     },
     methods: {

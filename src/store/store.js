@@ -56,23 +56,28 @@ export const store = new Vuex.Store({
         },
         RESET_FECTHED(state) {
             state.isFetched = false;
+        },
+        SET_LOADING(state) {
+            state.isLoading = true;
+        },
+        RESET_LOADING(state) {
+            state.isLoading = false;
         }
     },
     actions: {
         getBeerPage({commit, state}) {
             if(!state.isFetched) {
-                // state.isLoading = true;
-                // console.log('isLoading '+state.isLoading);
+                commit('SET_LOADING');
                 const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
                 api.get(url).then(beers => {
                     if(JSON.parse(beers).length === 0) {
+                        commit('RESET_LOADING');
                         commit('SET_FETCHED');
                         return;
                     }
                     else {
+                        commit('RESET_LOADING');
                         commit('SET_BEERS', beers);
-                        // state.isLoading = false;
-                        // console.log('isLoading '+state.isLoading);
                     }
                 });
             }
