@@ -3,7 +3,7 @@
         <input type="text" v-model.trim="inputBeerName" v-on:keyup.enter="submitSearch">
         <button @click="cleanSearch">x</button>
         <button v-on:click="submitSearch">Search</button>
-        <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"></adavanced-search-panel>
+        <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"/>
     </article>
 </template>
 

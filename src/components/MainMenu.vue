@@ -1,7 +1,7 @@
 <template>
     <transition name="slide">
         <nav class="main-menu">
-            <primary-logo class="main-menu__title"></primary-logo>
+            <primary-logo class="main-menu__title"/>
             <button class="main-menu__close-button" @click='hideMainMenu'>&#215;</button>
             <ul class="main-menu__list">
                 <li class="main-menu__item">

@@ -1,8 +1,8 @@
 <template>
     <header class="header-navigation">
         <button class="header-navigation__menu-button" @click="showMainMenu"> &#9776; </button>
-        <main-menu :hideMainMenu="hideMainMenu" v-if="isMainMenuShown"></main-menu>
-        <primary-logo class="header-navigation__logo"></primary-logo>
+        <main-menu :hideMainMenu="hideMainMenu" v-if="isMainMenuShown"/>
+        <primary-logo class="header-navigation__logo"/>
     </header>
 </template>
 

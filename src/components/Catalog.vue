@@ -1,8 +1,16 @@
 <template>
     <article>
-        <search-panel v-on:loadBeers="loadBeers"></search-panel>
+        <search-panel v-on:loadBeers="loadBeers"/>
         <section class="catalog">
-        <div v-for="beer in beers">
+            <beer-card 
+                v-for="beer in beers"
+                :id="beer.id"
+                :image="beer.image"
+                :name="beer.name"
+                :tagLine="beer.tagLine"
+                :key="beer.id"
+            />
+        <!-- <div v-for="beer in beers">
             <div class="beerCard__image">
                 <img :src="beer.image" alt="Beer pic" width="50px">
             </div>
@@ -10,13 +18,14 @@
             <h3>{{beer.tagline}}</h3>
             <button class="">open</button>
             <button class="" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-        </div>
+        </div> -->
     </section>
     </article>
 </template>
 
 <script>
 import SearchPanel from './SearchPanel';
+import BeerCard from './BeerCard';
 
 export default {
     data() {
@@ -25,6 +34,7 @@ export default {
         }
     },
     components: {
+        'beer-card': BeerCard,
         'search-panel': SearchPanel
     },
     mounted() {
@@ -45,9 +55,7 @@ export default {
     },
     methods: {
         loadBeers(){
-
             this.$store.dispatch('getBeerPage');
-
             console.log('page '+this.$store.state.catalogParams.page);
             console.log('searchParams '+this.$store.state.searchParams);
         },
@@ -77,10 +85,6 @@ export default {
         grid-template-columns: 33.333% 33.333% 33.333%;
         grid-column-gap: 20px;
         grid-row-gap: 20px;
-    }
-
-    .beerCard__image {
-        height: 200px;
     }
 </style>
 
