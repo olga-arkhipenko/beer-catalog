@@ -8,6 +8,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
+        isFetched: false,
+        isLoading: false,
         catalogParams: {
             page: 1,
             per_page: 9,
@@ -48,13 +50,32 @@ export const store = new Vuex.Store({
         ADD_FAVORITE(state, favoriteBeerId) {
             state.favorites.push(favoriteBeerId);
             localStorage.setItem('favorites', JSON.stringify(state.favorites));
+        },
+        SET_FETCHED(state) {
+            state.isFetched = true;
+        },
+        RESET_FECTHED(state) {
+            state.isFetched = false;
         }
     },
     actions: {
         getBeerPage({commit, state}) {
-            const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
-            console.log(url);
-            api.get(url).then(beers => commit('SET_BEERS', beers));
+            if(!state.isFetched) {
+                // state.isLoading = true;
+                // console.log('isLoading '+state.isLoading);
+                const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
+                api.get(url).then(beers => {
+                    if(JSON.parse(beers).length === 0) {
+                        commit('SET_FETCHED');
+                        return;
+                    }
+                    else {
+                        commit('SET_BEERS', beers);
+                        // state.isLoading = false;
+                        // console.log('isLoading '+state.isLoading);
+                    }
+                });
+            }
         }
     }
 })
