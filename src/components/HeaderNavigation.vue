@@ -1,7 +1,7 @@
 <template>
     <header class="header-navigation">
-        <button class="header-navigation__menu-button" @click="isMainMenuShown = true"> &#9776; </button>
-        <main-menu v-on:hideMainMenu="isMainMenuShown = false" v-if="isMainMenuShown"></main-menu>
+        <button class="header-navigation__menu-button" @click="showMainMenu"> &#9776; </button>
+        <main-menu :hideMainMenu="hideMainMenu" v-if="isMainMenuShown"></main-menu>
         <primary-logo class="header-navigation__logo"></primary-logo>
     </header>
 </template>
@@ -19,6 +19,14 @@ export default {
         'primary-logo': Logo,
         'main-menu': MainMenu
     },
+    methods: {
+        showMainMenu() {
+            this.isMainMenuShown = true;
+        },
+        hideMainMenu() {
+            this.isMainMenuShown = false;
+        }
+    }
 }
 </script>
 

@@ -8,43 +8,48 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
-        beersPerPage: 9,
-        catalogPageNumber: 1
+        catalogParams: {
+            page: 1,
+            per_page: 9,
+        },
+        searchParams: {}
     },
     getters: {
         getBeersForCatalog(state) {
-            return state.beers.map(beer => ({id: beer.id, name: beer.name, image: beer.image_url, tagline: beer.tagline}));
+            return state.beers.map(beer => ({
+                id: beer.id, 
+                name: beer.name, 
+                image: beer.image_url, 
+                tagline: beer.tagline
+            }));
         }
     },
     mutations: {
-        SET_CATALOG_BEERS(state, beers) {
+        SET_BEERS(state, beers) {
             state.beers.push(...JSON.parse(beers));
         },
-        SET_FOUND_BEERS(state, foundBeers) {
-            state.beers.push(...JSON.parse(foundBeers));
-        },
-        CLEAN_BEERS(state){
+        RESET_BEERS(state) {
             state.beers = [];
         },
-        INCREMET_CATALOG_PAGE_NUMBER(state) {
-            state.catalogPageNumber++;
+        INCREMENT_CATALOG_PAGE(state) {
+            state.catalogParams.page++;
         },
-        RESET_CATALOG_PAGE_NUMBER(state) {
-            state.catalogPageNumber = 1;
+        RESET_CATALOG_PAGE(state) {
+            state.catalogParams.page = 1;
+        },
+        SET_SEARCH_PARAMS(state, searchParams) {
+            state.searchParams = {...state.searchParams,...searchParams};
+        },
+        RESET_SEARCH_PARAMS(state) {
+            state.searchParams = {};
         }
     },
     actions: {
         getBeerPage({commit, state}) {
-            const url = UrlCreator.create({page: state.catalogPageNumber, per_page: state.beersPerPage});
-            api.get(url).then(beers => commit('SET_CATALOG_BEERS', beers));
-        },
-        getFoundBeers({commit, state}, beerName) {
-            const url = UrlCreator.create({beer_name: beerName});
+            console.log("loading with searchparams " + Array.from(state.searchParams));
+            const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
             console.log(url);
-            api.get(url).then(foundBeers => {
-                commit('CLEAN_BEERS');
-                commit('SET_FOUND_BEERS', foundBeers);
-            });
+            api.get(url).then(beers => commit('SET_BEERS', beers));
         }
     }
 })
