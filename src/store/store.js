@@ -12,7 +12,8 @@ export const store = new Vuex.Store({
             page: 1,
             per_page: 9,
         },
-        searchParams: {}
+        searchParams: {},
+        favorites: []
     },
     getters: {
         getBeersForCatalog(state) {
@@ -43,6 +44,10 @@ export const store = new Vuex.Store({
         },
         RESET_SEARCH_PARAMS(state) {
             state.searchParams = {};
+        },
+        ADD_FAVORITE(state, favoriteBeerId) {
+            state.favorites.push(favoriteBeerId);
+            localStorage.setItem('favorites', JSON.stringify(state.favorites));
         }
     },
     actions: {

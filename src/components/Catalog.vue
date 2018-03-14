@@ -8,6 +8,8 @@
             </div>
             <h2>{{beer.name}}</h2>
             <h3>{{beer.tagline}}</h3>
+            <button class="">open</button>
+            <button class="" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
         </div>
     </section>
     </article>
@@ -17,6 +19,11 @@
 import SearchPanel from './SearchPanel';
 
 export default {
+    data() {
+        return {
+            isAddFavoriteButtonShown: true
+        }
+    },
     components: {
         'search-panel': SearchPanel
     },
@@ -50,6 +57,13 @@ export default {
             const pageHeight = document.documentElement.scrollHeight;
             const pageBottom = visibleContent + scrollY >= pageHeight;
             return pageBottom || pageHeight < visibleContent;
+        },
+        hideAddFavoriteButton() {
+            this.isAddFavoriteButtonShown = false;
+        },
+        addFavoriteBeer(event, beerId) {
+            this.$store.commit('ADD_FAVORITE', beerId);
+            this.hideAddFavoriteButton();
         }
     }
 }
@@ -62,6 +76,7 @@ export default {
         display: grid;
         grid-template-columns: 33.333% 33.333% 33.333%;
         grid-column-gap: 20px;
+        grid-row-gap: 20px;
     }
 
     .beerCard__image {
