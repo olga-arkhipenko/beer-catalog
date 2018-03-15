@@ -1,7 +1,7 @@
 <template>
     <div class="beer-card">
         <img :src="beer.image" alt="Beer pic" class="beer-card__image">
-        <div class="beer-card__description">
+        <div class="beer-card__info">
             <h3 class="beer-card__name">{{beer.name}}</h3>
             <p class="beer-card__tagLine">{{beer.tagLine}}</p>
             <div class="toggle-bar">
@@ -53,7 +53,7 @@ export default {
         height: 300px;
         vertical-align: bottom;
     }
-    .beer-card__description {
+    .beer-card__info {
         display: grid;
         min-height: 180px;
         padding: 5px 20px;
