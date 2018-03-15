@@ -1,24 +1,14 @@
 <template>
     <article>
-        <search-panel v-on:loadBeers="loadBeers"/>
+        <search-panel @loadBeers="loadBeers"/>
         <section class="catalog">
-            <!-- <beer-card 
-                v-for="beer in beers"
-                :id="beer.id"
-                :image="beer.image"
-                :name="beer.name"
-                :tagLine="beer.tagLine"
-                :key="beer.id"
-            /> -->
-        <div v-for="beer in beers">
-            <div class="beerCard__image">
-                <img :src="beer.image" alt="Beer pic" width="50px">
-            </div>
-            <h2>{{beer.name}}</h2>
-            <h3>{{beer.tagline}}</h3>
-            <button class="">open</button>
-            <button class="" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-        </div>
+            <beer-card 
+                v-for="(beer, index) in beers"
+                :beer="beer"
+
+                :key="index"
+                @addFavoriteBeer="addFavoriteBeer"
+            />
     </section>
     <catalog-spinner v-if="isLoading"/>
     </article>
@@ -30,11 +20,6 @@ import BeerCard from './BeerCard';
 import Spinner from './Spinner';
 
 export default {
-    data() {
-        return {
-            isAddFavoriteButtonShown: true
-        }
-    },
     components: {
         'beer-card': BeerCard,
         'search-panel': SearchPanel,
@@ -53,7 +38,7 @@ export default {
     },
     computed: {
         beers() {
-            return this.$store.getters.getBeersForCatalog;
+            return this.$store.getters.getFormattedBeers;
         },
         isLoading() {
             return this.$store.state.isLoading;
@@ -72,13 +57,13 @@ export default {
             const pageBottom = visibleContent + scrollY >= pageHeight;
             return pageBottom || pageHeight < visibleContent;
         },
-        hideAddFavoriteButton() {
-            this.isAddFavoriteButtonShown = false;
+        addFavoriteBeer(favoriteBeer) {
+            console.log(favoriteBeer.id);
+            this.$store.commit('ADD_FAVORITE', favoriteBeer.id);
         },
-        addFavoriteBeer(event, beerId) {
-            this.$store.commit('ADD_FAVORITE', beerId);
-            this.hideAddFavoriteButton();
-        }
+        // removeFavoriteBeer() {
+
+        // }
     }
 }
 </script>

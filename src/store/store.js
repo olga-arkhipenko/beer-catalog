@@ -15,15 +15,16 @@ export const store = new Vuex.Store({
             per_page: 9,
         },
         searchParams: {},
-        favorites: []
+        favoriteBeersIds: []
     },
     getters: {
-        getBeersForCatalog(state) {
+        getFormattedBeers(state) {
             return state.beers.map(beer => ({
                 id: beer.id, 
                 name: beer.name, 
                 image: beer.image_url, 
-                tagline: beer.tagline
+                tagline: beer.tagline,
+                description: beer.description
             }));
         }
     },
@@ -48,9 +49,16 @@ export const store = new Vuex.Store({
             state.searchParams = {};
         },
         ADD_FAVORITE(state, favoriteBeerId) {
-            state.favorites.push(favoriteBeerId);
-            localStorage.setItem('favorites', JSON.stringify(state.favorites));
+            let localStoredData = JSON.parse(window.localStorage.getItem('favoriteBeers'));
+            if(!localStoredData) {
+                localStoredData = [];
+            }
+            localStoredData.push(favoriteBeerId);
+            window.localStorage.setItem('favoriteBeers', JSON.stringify(localStoredData));
         },
+        // REMOVE_FAVORITE(state, favoriteBeerId) {
+
+        // },
         SET_FETCHED(state) {
             state.isFetched = true;
         },
