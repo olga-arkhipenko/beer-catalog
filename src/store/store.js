@@ -23,7 +23,7 @@ export const store = new Vuex.Store({
                 id: beer.id, 
                 name: beer.name, 
                 image: beer.image_url, 
-                tagline: beer.tagline,
+                tagLine: beer.tagline,
                 description: beer.description
             }));
         }

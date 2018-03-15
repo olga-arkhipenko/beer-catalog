@@ -70,12 +70,12 @@ export default {
 
 <style>
     .catalog {
-        width: 1024px;
-        margin: 40px auto;
         display: grid;
-        grid-template-columns: 33.333% 33.333% 33.333%;
+        grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 20px;
         grid-row-gap: 20px;
+        width: 1240px;
+        margin: 40px auto;
     }
 </style>
 

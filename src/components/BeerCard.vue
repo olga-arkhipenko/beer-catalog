@@ -1,13 +1,15 @@
 <template>
     <div class="beer-card">
-        <div class="beerCard__image">
-            <img :src="beer.image" alt="Beer pic" width="50px">
+        <img :src="beer.image" alt="Beer pic" class="beer-card__image">
+        <div class="beer-card__description">
+            <h3 class="beer-card__name">{{beer.name}}</h3>
+            <p class="beer-card__tagLine">{{beer.tagLine}}</p>
+            <div class="toggle-bar">
+                <button class="toggle-bar__button">open</button>
+                <button class="toggle-bar__button" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
+                <button class="toggle-bar__button" v-if="isRemoveFavoriteButtonShown">remove favorite</button>
+            </div>
         </div>
-        <h2>{{beer.name}}</h2>
-        <h3>{{beer.tagLine}}</h3>
-        <button class="">open</button>
-        <button class="" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-        <button class="" v-if="isRemoveFavoriteButtonShown">remove favorite</button>
     </div>
 </template>
 
@@ -43,7 +45,39 @@ export default {
 </script>
 
 <style>
-    .beerCard__image {
-        height: 200px;
+    .beer-card {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 1rem;
+        text-align: center;
+        background-color: #f3f9ff;
+        color: #ffffff;
     }
+    .beer-card__image {
+        margin: 30px 0;
+        height: 300px;
+        vertical-align: bottom;
+    }
+    .beer-card__description {
+        min-height: 165px;
+        padding: 5px 20px;
+        background-color: #36495d;
+        text-align: left;
+    }
+    .toggle-bar {
+        background-color: #36495d;
+        display: flex;
+        justify-content: space-between;
+        margin: 30px 20px;
+        font-size: 1.2rem;
+    }
+    .toggle-bar__button {
+        background-color: transparent;
+        border: none;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .toggle-bar__button:hover {
+        color: #6284a8;
+    }
+    
 </style>

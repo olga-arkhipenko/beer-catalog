@@ -1,8 +1,13 @@
 <template>
     <article class="search-panel">
-        <input type="text" v-model.trim="inputBeerName" v-on:keyup.enter="submitSearch">
-        <button @click="cleanSearch">x</button>
-        <button v-on:click="submitSearch">Search</button>
+        <input type=search 
+            v-model.trim="inputBeerName" 
+            v-on:keyup.enter="submitSearch" 
+            class="search-panel__input" 
+            placeholder="What are you looking for?"
+        >
+        <button class="search-panel__button search-panel__button--cansel" @click="cleanSearch">Cansel</button>
+        <button class="search-panel__button" v-on:click="submitSearch">Search</button>
         <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"/>
     </article>
 </template>
@@ -15,7 +20,7 @@ export default {
     data() {
         return {
             inputBeerName: '',
-            isAdvancedSearchPanelShown: false
+            isAdvancedSearchPanelShown: true
         }
     },
     components: {
@@ -61,7 +66,24 @@ export default {
     .search-panel {
         width: 100%;
         margin-top: 40px;
+        font-family: 'Helvetica', sans-serif;
         text-align: center;
+    }
+    .search-panel__input {
+        width: 20rem;
+        padding: 5px;
+        border: none;
+        border-bottom: 1px solid #c6d4e2;
+        color: #36495d;
+    }
+    .search-panel__button {
+        background-color: transparent;
+        border: none;
+        color: #36495d;
+        cursor: pointer;
+    }
+    .search-panel__button--cansel {
+        color: #ff4383;
     }
 </style>
 
