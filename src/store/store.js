@@ -18,19 +18,27 @@ export const store = new Vuex.Store({
         favoriteBeers: []
     },
     getters: {
-        getFormattedBeers(state) {
+        getCatalogBeersInfo(state) {
             return state.beers.map(beer => ({
                 id: beer.id, 
                 name: beer.name, 
                 image: beer.image_url, 
-                tagLine: beer.tagline,
-                description: beer.description
+                tagLine: beer.tagline
             }));
-        }
+        },
+        // getFavoriteBeersInfo(state) {
+        //     return state.beers.map(beer => ({
+        //         id: beer.id, 
+        //         name: beer.name, 
+        //         image: beer.image_url, 
+        //         tagLine: beer.tagline,
+        //         description: beer.description
+        //     }));
+        // }
     },
     mutations: {
         SET_BEERS(state, beers) {
-            state.beers.push(...JSON.parse(beers));
+            state.beers.push(...beers);
         },
         RESET_BEERS(state) {
             state.beers = [];
@@ -62,48 +70,45 @@ export const store = new Vuex.Store({
         SET_FAVORITE_BEERS(state, favoriteBeers) {
             state.favoriteBeers.push(favoriteBeers);
             console.log('favorits' + state.favoriteBeers);
-        },
-        REMOVE_FAVORITE_BEER(state, favoriteBeer) {
-            
         }
     },
     actions: {
-        getBeerPage({commit, state}) {
+        fetchBeerPage({commit, state}, catalogParams) {
             if(!state.isFetched) {
                 commit('SET_LOADING');
-                const url = UrlCreator.create({...state.catalogParams, ...state.searchParams});
+                const url = UrlCreator.create({...catalogParams, ...state.searchParams});
                 api.get(url).then(beers => {
-                    if(JSON.parse(beers).length === 0) {
-                        commit('RESET_LOADING');
+                    const parsedBeers = JSON.parse(beers);
+                    commit('RESET_LOADING');
+                    if(parsedBeers.length === 0) {
                         commit('SET_FETCHED');
                         return;
                     }
                     else {
-                        commit('RESET_LOADING');
-                        commit('SET_BEERS', beers);
+                        commit('SET_BEERS', parsedBeers);
                     }
                 });
             }
         },
-        getFavoriteBeers({commit, state}) {
-            const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers'));
-            console.log(favoriteBeers);
-            if(favoriteBeers) {
-                commit('SET_FAVORITE_BEERS', favoriteBeers);
-            }
-        },
-        addFavoriteBeer({commit, state}, favoriteBeer) {
-            if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
-                console.log('favorite add  ' + JSON.stringify(favoriteBeer))
-                commit('SET_FAVORITE_BEERS', favoriteBeer);
-                console.log('favorite add ' + JSON.stringify(state.favoriteBeers))
-                window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
+        // fetchFavoriteBeers({commit, state}) {
+        //     const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers'));
+        //     console.log(favoriteBeers);
+        //     if(favoriteBeers) {
+        //         commit('SET_FAVORITE_BEERS', favoriteBeers);
+        //     }
+        // },
+        // addFavoriteBeer({commit, state}, favoriteBeer) {
+        //     if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
+        //         console.log('favorite add  ' + JSON.stringify(favoriteBeer))
+        //         commit('SET_FAVORITE_BEERS', favoriteBeer);
+        //         console.log('favorite add ' + JSON.stringify(state.favoriteBeers))
+        //         window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
                 
-            }
-        },
-        removeFavoriteBeer({commit, state}, favoriteBeer) {
-            state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
-            window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
-        }
+        //     }
+        // },
+        // removeFavoriteBeer({commit, state}, favoriteBeer) {
+        //     state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
+        //     window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
+        // }
     }
 })

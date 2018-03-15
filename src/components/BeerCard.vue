@@ -55,10 +55,16 @@ export default {
     }
     .beer-card__info {
         display: grid;
-        min-height: 180px;
+        min-height: 200px;
         padding: 5px 20px;
         background-color: #36495d;
         text-align: left;
+    }
+    .beer-card__name {
+        color: #fff1c5;
+    }
+    .beer-card__tagLine {
+        color: #abc0d8;
     }
     .toggle-bar {
         background-color: #36495d;
@@ -68,13 +74,14 @@ export default {
         font-size: 1.2rem;
     }
     .toggle-bar__button {
+        color: #e4fffd;
         background-color: transparent;
         border: none;
         text-transform: uppercase;
         cursor: pointer;
     }
     .toggle-bar__button:hover {
-        color: #6284a8;
+        color: #ffe696;
     }
     
 </style>

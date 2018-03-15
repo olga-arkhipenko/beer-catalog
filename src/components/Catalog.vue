@@ -1,6 +1,6 @@
 <template>
     <article>
-        <search-panel @loadBeers="loadBeers"/>
+        <search-panel @loadBeerPage="loadBeerPage"/>
         <section class="catalog">
             <beer-card 
                 v-for="(beer, index) in beers"
@@ -18,34 +18,47 @@ import BeerCard from './BeerCard';
 import Spinner from './Spinner';
 
 export default {
+    data() {
+        return {
+            catalogParams: {
+                page: 1,
+                per_page: 9
+            }
+        }
+    },
     components: {
         'beer-card': BeerCard,
         'search-panel': SearchPanel,
         'catalog-spinner': Spinner
     },
     mounted() {
-        this.loadBeers();
-        this.$store.dispatch('getFavoriteBeers');
+        this.loadBeerPage(this.catalogParams);
+        // this.$store.dispatch('getFavoriteBeers');
     },
     created() {
         window.addEventListener('scroll', () => {
             if(this.isBottom()) {
-                this.$store.commit('INCREMENT_CATALOG_PAGE');
-                this.loadBeers();
+                this.incrementPage();
+                console.log(this.catalogParams.page);
+                // this.$store.commit('INCREMENT_CATALOG_PAGE');
+                this.loadBeerPage(this.catalogParams);
             }
         })
     },
     computed: {
         beers() {
-            return this.$store.getters.getFormattedBeers;
+            return this.$store.getters.getCatalogBeersInfo;
         },
         isLoading() {
             return this.$store.state.isLoading;
         }
     },
     methods: {
-        loadBeers(){
-            this.$store.dispatch('getBeerPage');
+        incrementPage() {
+            this.catalogParams.page++;
+        },
+        loadBeerPage(catalogParams){
+            this.$store.dispatch('fetchBeerPage', catalogParams);
         },
         isBottom(){
             const scrollY = window.scrollY;
