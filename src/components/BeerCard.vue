@@ -58,7 +58,8 @@ export default {
         vertical-align: bottom;
     }
     .beer-card__description {
-        min-height: 165px;
+        display: grid;
+        min-height: 180px;
         padding: 5px 20px;
         background-color: #36495d;
         text-align: left;
@@ -67,7 +68,7 @@ export default {
         background-color: #36495d;
         display: flex;
         justify-content: space-between;
-        margin: 30px 20px;
+        margin: 15px 20px;
         font-size: 1.2rem;
     }
     .toggle-bar__button {

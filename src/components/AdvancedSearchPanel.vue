@@ -1,19 +1,19 @@
 <template>
-    <section class="adavanced-search-panel">
-        <label>
-            <span>Alcohol by volume</span>
-            <input type="range" v-model.number="abvRange" min="2" max="14" @change="addSearchParams">
-        </label>
-        <br>
-        <label>
-            <span>International Bitterness Units</span>
-            <input type="range" v-model.number="ibuRange" min="0" max="120" @change="addSearchParams">
-        </label>
-        <br>
-        <label>
-            <span>Color by EBC</span>
-            <input type="range" v-model.number="ebcRange" min="4" max="80" @change="addSearchParams">
-        </label>
+    <section class="advanced-search-panel">
+        <div class="advanced-search-panel__inner">
+            <label>
+                <span>Alcohol by volume</span>
+                <input type="range"  class="advanced-search-panel__range" v-model.number="abvRange" min="2" max="14" @change="addSearchParams">
+            </label>
+            <label>
+                <span>International Bitterness Units</span>
+                <input type="range"  class="advanced-search-panel__range" v-model.number="ibuRange" min="0" max="120" @change="addSearchParams">
+            </label>
+            <label>
+                <span>Color by EBC</span>
+                <input type="range"  class="advanced-search-panel__range" v-model.number="ebcRange" min="4" max="80" @change="addSearchParams">
+            </label>
+        </div>
     </section>
 </template>
 
@@ -36,8 +36,16 @@
 </script>
 
 <style>
-    .adavanced-search-panel {
+    .advanced-search-panel {
         margin-top: 40px;
+    }
+    .advanced-search-panel__inner {
+        display: inline-grid;
+        grid-row-gap: 20px;
+        text-align: left;
+    }
+    .advanced-search-panel__range {
+        cursor: pointer;
     }
 </style>
 

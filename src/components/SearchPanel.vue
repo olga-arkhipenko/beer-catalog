@@ -3,7 +3,7 @@
         <input type=search 
             v-model.trim="inputBeerName" 
             v-on:keyup.enter="submitSearch" 
-            class="search-panel__input" 
+            class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
         <button class="search-panel__button search-panel__button--cansel" @click="cleanSearch">Cansel</button>
@@ -20,7 +20,7 @@ export default {
     data() {
         return {
             inputBeerName: '',
-            isAdvancedSearchPanelShown: true
+            isAdvancedSearchPanelShown: false
         }
     },
     components: {
@@ -69,7 +69,7 @@ export default {
         font-family: 'Helvetica', sans-serif;
         text-align: center;
     }
-    .search-panel__input {
+    .search-panel__search-line {
         width: 20rem;
         padding: 5px;
         border: none;
