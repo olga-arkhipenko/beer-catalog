@@ -64,8 +64,7 @@ export const store = new Vuex.Store({
             console.log('favorits' + state.favoriteBeers);
         },
         REMOVE_FAVORITE_BEER(state, favoriteBeer) {
-            state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
-            window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
+            
         }
     },
     actions: {
@@ -87,9 +86,11 @@ export const store = new Vuex.Store({
             }
         },
         getFavoriteBeers({commit, state}) {
-            const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers')) || [];
+            const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers'));
             console.log(favoriteBeers);
-            commit('SET_FAVORITE_BEERS', favoriteBeers);
+            if(favoriteBeers) {
+                commit('SET_FAVORITE_BEERS', favoriteBeers);
+            }
         },
         addFavoriteBeer({commit, state}, favoriteBeer) {
             if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
@@ -99,6 +100,10 @@ export const store = new Vuex.Store({
                 window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
                 
             }
+        },
+        removeFavoriteBeer({commit, state}, favoriteBeer) {
+            state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
+            window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
         }
     }
 })

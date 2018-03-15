@@ -21,7 +21,7 @@ export default {
     methods: {
         removeFavoriteBeer(event, favoriteBeer) {
             console.log('removing card');
-            this.$store.commit('REMOVE_FAVORITE_BEER', favoriteBeer);
+            this.$store.commit('removefavoriteBeer', favoriteBeer);
         }
     }
 }
