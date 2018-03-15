@@ -6,11 +6,13 @@
             :beer=beer
             :key=index
         />
+        <favorites-pagination/>
     </article>
 </template>
 
 <script>
 import FavoriteBeerCard from './FavoriteBeerCard';
+import Pagination from './Pagination';
 
 export default {
     computed: {
@@ -19,7 +21,8 @@ export default {
         }
     },
     components: {
-        'favorite-beer-card': FavoriteBeerCard
+        'favorite-beer-card': FavoriteBeerCard,
+        'favorites-pagination': Pagination
     }
 }
 </script>
