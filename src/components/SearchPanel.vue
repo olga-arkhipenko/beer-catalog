@@ -2,13 +2,17 @@
     <article class="search-panel">
         <input type=search 
             v-model.trim="inputBeerName" 
-            v-on:keyup.enter="submitSearch" 
+            @keyup.enter="submitSearch" 
             class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
-        <button class="search-panel__button search-panel__button--cancel" @click="cleanSearch">Cancel</button>
-        <button class="search-panel__button" v-on:click="submitSearch">Search</button>
-        <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"/>
+        <button class="search-panel__button search-panel__button" @click="cleanSearch">&#10006;</button>
+        <button class="search-panel__button" @click="submitSearch">&#128269;</button>
+        <adavanced-search-panel 
+            @submitSearch="submitSearch"
+            @addSearchingParams="addSearchingParams"
+            v-if="isAdvancedSearchPanelShown"
+        />
     </article>
 </template>
 
@@ -20,7 +24,8 @@ export default {
     data() {
         return {
             inputBeerName: '',
-            isAdvancedSearchPanelShown: false
+            isAdvancedSearchPanelShown: false,
+            searchingParams: {}
         }
     },
     components: {
@@ -35,14 +40,21 @@ export default {
         submitSearch() {
             if(this.searchingBeerName) {
                 this.$store.commit('RESET_BEERS');
-                this.$store.commit('RESET_CATALOG_PAGE');
-                this.$store.commit('SET_SEARCH_PARAMS', {beer_name: this.searchingBeerName});
-                this.$emit('loadBeers');
-                console.log('длина '+this.$store.state.beers.length)
+                this.$store.commit('RESET_FECTHED');
+                this.$emit('resetPage');
+                this.addSearchingParams({beer_name: this.searchingBeerName});
+                this.$emit('loadBeerPage', this.searchingParams);
+                console.log('isFetched '+this.$store.state.isFetched)
                 // if(this.$store.state.beers.length > 0) {
                     this.showAdvancedSearchPanel();
                 // }
             }
+        },
+        addSearchingParams(additionalParams) {
+            this.searchingParams = {...this.searchingParams, ...additionalParams} || {};
+        },
+        resetSearchingParams(){
+            this.searchParams = {};
         },
         showAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = true;
@@ -53,10 +65,11 @@ export default {
         cleanSearch() {
             this.inputBeerName = '';
             this.$store.commit('RESET_BEERS');
-            this.$store.commit('RESET_CATALOG_PAGE');
-            this.$store.commit('RESET_SEARCH_PARAMS');
+            this.$store.commit('RESET_FECTHED');
+            this.$emit('resetPage');
+            this.resetSearchingParams();
             this.hideAdvancedSearchPanel();
-            this.$emit('loadBeers');
+            this.$emit('loadBeerPage');
         }
     }
 }
@@ -77,13 +90,11 @@ export default {
         color: #36495d;
     }
     .search-panel__button {
+        font-size: 1.2rem;
         background-color: transparent;
         border: none;
         color: #36495d;
         cursor: pointer;
-    }
-    .search-panel__button--cancel {
-        color: #ff4383;
     }
 </style>
 

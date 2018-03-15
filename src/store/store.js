@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import api from '../api/api'
+import PunkAPI from '../api/PunkAPI'
 import UrlCreator from '../api/utilities/UrlCreator'
 
 Vue.use(Vuex);
@@ -8,14 +8,10 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
+        foundBeers: [],
         isFetched: false,
         isLoading: false,
-        catalogParams: {
-            page: 1,
-            per_page: 9,
-        },
-        searchParams: {},
-        favoriteBeers: []
+        // favoriteBeers: []
     },
     getters: {
         getCatalogBeersInfo(state) {
@@ -43,18 +39,18 @@ export const store = new Vuex.Store({
         RESET_BEERS(state) {
             state.beers = [];
         },
-        INCREMENT_CATALOG_PAGE(state) {
-            state.catalogParams.page++;
-        },
-        RESET_CATALOG_PAGE(state) {
-            state.catalogParams.page = 1;
-        },
-        SET_SEARCH_PARAMS(state, searchParams) {
-            state.searchParams = {...state.searchParams,...searchParams};
-        },
-        RESET_SEARCH_PARAMS(state) {
-            state.searchParams = {};
-        },
+        // INCREMENT_CATALOG_PAGE(state) {
+        //     state.catalogParams.page++;
+        // },
+        // RESET_CATALOG_PAGE(state) {
+        //     state.catalogParams.page = 1;
+        // },
+        // SET_SEARCH_PARAMS(state, searchParams) {
+        //     state.searchParams = {...state.searchParams,...searchParams};
+        // },
+        // RESET_SEARCH_PARAMS(state) {
+        //     state.searchParams = {};
+        // },
         SET_FETCHED(state) {
             state.isFetched = true;
         },
@@ -66,18 +62,19 @@ export const store = new Vuex.Store({
         },
         RESET_LOADING(state) {
             state.isLoading = false;
-        },
-        SET_FAVORITE_BEERS(state, favoriteBeers) {
-            state.favoriteBeers.push(favoriteBeers);
-            console.log('favorits' + state.favoriteBeers);
         }
+        // SET_FAVORITE_BEERS(state, favoriteBeers) {
+        //     state.favoriteBeers.push(favoriteBeers);
+        //     console.log('favorits' + state.favoriteBeers);
+        // }
     },
     actions: {
-        fetchBeerPage({commit, state}, catalogParams) {
+        fetchBeerPage({commit, state}, urlParams) {
             if(!state.isFetched) {
                 commit('SET_LOADING');
-                const url = UrlCreator.create({...catalogParams, ...state.searchParams});
-                api.get(url).then(beers => {
+                const url = UrlCreator.create(urlParams);
+                console.log(url)
+                PunkAPI.get(url).then(beers => {
                     const parsedBeers = JSON.parse(beers);
                     commit('RESET_LOADING');
                     if(parsedBeers.length === 0) {
@@ -88,7 +85,7 @@ export const store = new Vuex.Store({
                         commit('SET_BEERS', parsedBeers);
                     }
                 });
-            }
+            } 
         },
         // fetchFavoriteBeers({commit, state}) {
         //     const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers'));

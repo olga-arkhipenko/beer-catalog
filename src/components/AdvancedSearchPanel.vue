@@ -3,15 +3,15 @@
         <div class="advanced-search-panel__inner">
             <label>
                 <span>Alcohol by volume</span>
-                <input type="range"  class="advanced-search-panel__range" v-model.number="abvRange" min="2" max="14" @change="addSearchParams">
+                <input type="range" class="advanced-search-panel__range" v-model.number="advancedParams.abv_gt" min="2" max="14" @change="submitSearch">
             </label>
             <label>
                 <span>International Bitterness Units</span>
-                <input type="range"  class="advanced-search-panel__range" v-model.number="ibuRange" min="0" max="120" @change="addSearchParams">
+                <input type="range"  class="advanced-search-panel__range" v-model.number="advancedParams.ibu_gt" min="0" max="120" @change="submitSearch">
             </label>
             <label>
                 <span>Color by EBC</span>
-                <input type="range"  class="advanced-search-panel__range" v-model.number="ebcRange" min="4" max="80" @change="addSearchParams">
+                <input type="range"  class="advanced-search-panel__range" v-model.number="advancedParams.ebc_gt" min="4" max="80" @change="submitSearch">
             </label>
         </div>
     </section>
@@ -21,15 +21,20 @@
     export default {
         data() {
             return {
-                abvRange: 0,
-                ibuRange: 0,
-                ebcRange: 0
+                advancedParams: {
+                    abv_gt: 0,
+                    ibu_gt: 0,
+                    ebc_gt: 0
+                }
             }
         },
         methods: {
-            addSearchParams(){
-                this.$store.commit('SET_SEARCH_PARAMS', {abv_gt: this.abvRange, ibu_gt: this.ibuRange, ebc_gt: this.ebcRange});
+            submitSearch() {
+                this.addAdvancedParams();
                 this.$emit('submitSearch');
+            },
+            addAdvancedParams(){
+                this.$emit('addSearchingParams', this.advancedParams);
             }
         }
     }

@@ -1,13 +1,17 @@
 <template>
     <article>
-        <search-panel @loadBeerPage="loadBeerPage"/>
+        <search-panel
+        ref="searchPanel"
+        @loadBeerPage="loadBeerPage"
+        @resetPage="resetPage"
+        />
         <section class="catalog">
             <beer-card 
                 v-for="(beer, index) in beers"
                 :beer=beer
                 :key=index
             />
-    </section>
+        </section>
     <catalog-spinner v-if="isLoading"/>
     </article>
 </template>
@@ -32,16 +36,16 @@ export default {
         'catalog-spinner': Spinner
     },
     mounted() {
-        this.loadBeerPage(this.catalogParams);
+        this.loadBeerPage();
         // this.$store.dispatch('getFavoriteBeers');
     },
     created() {
         window.addEventListener('scroll', () => {
             if(this.isBottom()) {
                 this.incrementPage();
-                console.log(this.catalogParams.page);
+                console.log('from parent '+JSON.stringify(this.$refs.searchPanel.searchingParams));
                 // this.$store.commit('INCREMENT_CATALOG_PAGE');
-                this.loadBeerPage(this.catalogParams);
+                this.loadBeerPage(this.$refs.searchPanel.searchingParams);
             }
         })
     },
@@ -57,8 +61,13 @@ export default {
         incrementPage() {
             this.catalogParams.page++;
         },
-        loadBeerPage(catalogParams){
-            this.$store.dispatch('fetchBeerPage', catalogParams);
+        loadBeerPage(searchingParams) {
+            console.log('where my '+ JSON.stringify(this.catalogParams))
+            this.$store.dispatch('fetchBeerPage', {...this.catalogParams, ...searchingParams});
+            console.log('isFetched  '+ this.$store.state.isFetched)
+        },
+        resetPage() {
+            this.catalogParams.page = 1;
         },
         isBottom(){
             const scrollY = window.scrollY;
