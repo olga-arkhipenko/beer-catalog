@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
             per_page: 9,
         },
         searchParams: {},
-        favoriteBeersIds: []
+        favoriteBeers: []
     },
     getters: {
         getFormattedBeers(state) {
@@ -30,7 +30,6 @@ export const store = new Vuex.Store({
     },
     mutations: {
         SET_BEERS(state, beers) {
-            console.log(state.beers)
             state.beers.push(...JSON.parse(beers));
         },
         RESET_BEERS(state) {
@@ -48,17 +47,6 @@ export const store = new Vuex.Store({
         RESET_SEARCH_PARAMS(state) {
             state.searchParams = {};
         },
-        ADD_FAVORITE(state, favoriteBeerId) {
-            let localStoredData = JSON.parse(window.localStorage.getItem('favoriteBeers'));
-            if(!localStoredData) {
-                localStoredData = [];
-            }
-            localStoredData.push(favoriteBeerId);
-            window.localStorage.setItem('favoriteBeers', JSON.stringify(localStoredData));
-        },
-        // REMOVE_FAVORITE(state, favoriteBeerId) {
-
-        // },
         SET_FETCHED(state) {
             state.isFetched = true;
         },
@@ -70,6 +58,19 @@ export const store = new Vuex.Store({
         },
         RESET_LOADING(state) {
             state.isLoading = false;
+        },
+        SET_FAVORITE_BEERS(state) {
+            state.favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers')) || [];
+        },
+        ADD_FAVORITE_BEER(state, favoriteBeer) {
+            if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
+                state.favoriteBeers.push(favoriteBeer);
+                window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
+            }
+        },
+        REMOVE_FAVORITE_BEER(state, favoriteBeer) {
+            state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
+            window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
         }
     },
     actions: {

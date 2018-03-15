@@ -6,39 +6,35 @@
             <p class="beer-card__tagLine">{{beer.tagLine}}</p>
             <div class="toggle-bar">
                 <button class="toggle-bar__button">open</button>
-                <button class="toggle-bar__button" @click="addFavoriteBeer($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-                <button class="toggle-bar__button" v-if="isRemoveFavoriteButtonShown">remove favorite</button>
+                <button class="toggle-bar__button" @click="addFavoriteBeer($event, beer)" v-if="isAddFavoriteButtonShown">add to favorite</button>
+                <button class="toggle-bar__button" @click="removeFavoriteBeer($event, beer)" v-else>remove favorite</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
-    data() {
-        return {
-            isAddFavoriteButtonShown: true,
-            isRemoveFavoriteButtonShown: false
+    props: {
+        beer: {
+            type: Object
         }
     },
-    props: ['beer'],
+    computed: {
+        isAddFavoriteButtonShown() {
+            console.log(this.$store.state.favoriteBeers);
+            return !(this.$store.state.favoriteBeers.find(beer => beer.id === this.beer.id));
+        }
+    },
     methods: {
-        hideAddFavoriteButton() {
-            this.isAddFavoriteButtonShown = false;
+        addFavoriteBeer(event, favoriteBeer) {
+            console.log('adding card')
+            this.$store.commit('ADD_FAVORITE_BEER', favoriteBeer);
         },
-        showAddFavoriteButton() {
-            this.isAddFavoriteButtonShown = true;
-        },
-        hideRemoveFavoriteButtonShown() {
-            this.isRemoveFavoriteButtonShown = false;
-        },
-        showRemoveFavoriteButtonShown() {
-            this.isRemoveFavoriteButtonShown = true;
-        },
-        addFavoriteBeer(event, favoriteBeerId) {
-            this.hideAddFavoriteButton();
-            this.$emit('addFavoriteBeer', {id: favoriteBeerId});
-            this.showRemoveFavoriteButtonShown();
+        removeFavoriteBeer(event, favoriteBeer) {
+            console.log('removing card');
+            this.$store.commit('REMOVE_FAVORITE_BEER', favoriteBeer);
         }
     }
 }

@@ -4,10 +4,8 @@
         <section class="catalog">
             <beer-card 
                 v-for="(beer, index) in beers"
-                :beer="beer"
-
-                :key="index"
-                @addFavoriteBeer="addFavoriteBeer"
+                :beer=beer
+                :key=index
             />
     </section>
     <catalog-spinner v-if="isLoading"/>
@@ -27,6 +25,7 @@ export default {
     },
     mounted() {
         this.loadBeers();
+        this.$store.commit('SET_FAVORITE_BEERS');
     },
     created() {
         window.addEventListener('scroll', () => {
@@ -47,8 +46,6 @@ export default {
     methods: {
         loadBeers(){
             this.$store.dispatch('getBeerPage');
-            console.log('page '+this.$store.state.catalogParams.page);
-            console.log('searchParams '+this.$store.state.searchParams);
         },
         isBottom(){
             const scrollY = window.scrollY;
@@ -56,14 +53,7 @@ export default {
             const pageHeight = document.documentElement.scrollHeight;
             const pageBottom = visibleContent + scrollY >= pageHeight;
             return pageBottom || pageHeight < visibleContent;
-        },
-        addFavoriteBeer(favoriteBeer) {
-            console.log(favoriteBeer.id);
-            this.$store.commit('ADD_FAVORITE', favoriteBeer.id);
-        },
-        // removeFavoriteBeer() {
-
-        // }
+        }
     }
 }
 </script>
