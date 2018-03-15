@@ -6,7 +6,7 @@
             class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
-        <button class="search-panel__button search-panel__button--cansel" @click="cleanSearch">Cansel</button>
+        <button class="search-panel__button search-panel__button--cancel" @click="cleanSearch">Cancel</button>
         <button class="search-panel__button" v-on:click="submitSearch">Search</button>
         <adavanced-search-panel v-on:submitSearch="submitSearch" v-if="isAdvancedSearchPanelShown"/>
     </article>
@@ -82,7 +82,7 @@ export default {
         color: #36495d;
         cursor: pointer;
     }
-    .search-panel__button--cansel {
+    .search-panel__button--cancel {
         color: #ff4383;
     }
 </style>
