@@ -30,7 +30,7 @@ export default {
     methods: {
         addFavoriteBeer(event, favoriteBeer) {
             console.log('adding card')
-            this.$store.commit('ADD_FAVORITE_BEER', favoriteBeer);
+            this.$store.dispatch('addFavoriteBeer', favoriteBeer);
         },
         removeFavoriteBeer(event, favoriteBeer) {
             console.log('removing card');

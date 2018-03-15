@@ -59,14 +59,9 @@ export const store = new Vuex.Store({
         RESET_LOADING(state) {
             state.isLoading = false;
         },
-        SET_FAVORITE_BEERS(state) {
-            state.favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers')) || [];
-        },
-        ADD_FAVORITE_BEER(state, favoriteBeer) {
-            if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
-                state.favoriteBeers.push(favoriteBeer);
-                window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
-            }
+        SET_FAVORITE_BEERS(state, favoriteBeers) {
+            state.favoriteBeers.push(favoriteBeers);
+            console.log('favorits' + state.favoriteBeers);
         },
         REMOVE_FAVORITE_BEER(state, favoriteBeer) {
             state.favoriteBeers = state.favoriteBeers.filter(beer => beer.id !== favoriteBeer.id);
@@ -89,6 +84,20 @@ export const store = new Vuex.Store({
                         commit('SET_BEERS', beers);
                     }
                 });
+            }
+        },
+        getFavoriteBeers({commit, state}) {
+            const favoriteBeers = JSON.parse(window.localStorage.getItem('favoriteBeers')) || [];
+            console.log(favoriteBeers);
+            commit('SET_FAVORITE_BEERS', favoriteBeers);
+        },
+        addFavoriteBeer({commit, state}, favoriteBeer) {
+            if(state.favoriteBeers.every(beer => beer.id !== favoriteBeer.id)) {
+                console.log('favorite add  ' + JSON.stringify(favoriteBeer))
+                commit('SET_FAVORITE_BEERS', favoriteBeer);
+                console.log('favorite add ' + JSON.stringify(state.favoriteBeers))
+                window.localStorage.setItem('favoriteBeers', JSON.stringify(state.favoriteBeers));
+                
             }
         }
     }

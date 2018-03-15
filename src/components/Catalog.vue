@@ -25,7 +25,7 @@ export default {
     },
     mounted() {
         this.loadBeers();
-        this.$store.commit('SET_FAVORITE_BEERS');
+        this.$store.dispatch('getFavoriteBeers');
     },
     created() {
         window.addEventListener('scroll', () => {
