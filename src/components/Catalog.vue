@@ -8,8 +8,11 @@
         <section class="catalog">
             <beer-card 
                 v-for="(beer, index) in beers"
+                :favoriteBeerIds="favoriteBeerIds"
                 :beer=beer
                 :key=index
+                @addFavoriteBeerId="addFavoriteBeerId"
+                @removeFavoriteBeerId="removeFavoriteBeerId"
             />
         </section>
     <catalog-spinner v-if="isLoading"/>
@@ -27,7 +30,7 @@ export default {
             catalogParams: {
                 page: 1,
                 per_page: 9
-            }
+            }   
         }
     },
     components: {
@@ -37,14 +40,12 @@ export default {
     },
     mounted() {
         this.loadBeerPage();
-        // this.$store.dispatch('getFavoriteBeers');
+        this.$store.dispatch('fetchFavoriteBeers');
     },
     created() {
         window.addEventListener('scroll', () => {
             if(this.isBottom()) {
                 this.incrementPage();
-                console.log('from parent '+JSON.stringify(this.$refs.searchPanel.searchingParams));
-                // this.$store.commit('INCREMENT_CATALOG_PAGE');
                 this.loadBeerPage(this.$refs.searchPanel.searchingParams);
             }
         })
@@ -55,6 +56,9 @@ export default {
         },
         isLoading() {
             return this.$store.state.isLoading;
+        },
+        favoriteBeerIds() {
+            return this.$store.state.favoriteBeerIds;
         }
     },
     methods: {
@@ -62,9 +66,7 @@ export default {
             this.catalogParams.page++;
         },
         loadBeerPage(searchingParams) {
-            console.log('where my '+ JSON.stringify(this.catalogParams))
             this.$store.dispatch('fetchBeerPage', {...this.catalogParams, ...searchingParams});
-            console.log('isFetched  '+ this.$store.state.isFetched)
         },
         resetPage() {
             this.catalogParams.page = 1;
@@ -75,6 +77,12 @@ export default {
             const pageHeight = document.documentElement.scrollHeight;
             const pageBottom = visibleContent + scrollY >= pageHeight;
             return pageBottom || pageHeight < visibleContent;
+        },
+        addFavoriteBeerId(favoriteBeerId) {
+            this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
+        },
+        removeFavoriteBeerId(favoriteBeerId) {
+            this.$store.dispatch('removeFavoriteBeerId', favoriteBeerId)
         }
     }
 }
