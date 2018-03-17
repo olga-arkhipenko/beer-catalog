@@ -6,7 +6,7 @@
             class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
-        <button class="search-panel__button search-panel__button" @click="cleanSearch">&#10006;</button>
+        <button class="search-panel__button search-panel__button" @click="submitCleanSearch">&#10006;</button>
         <button class="search-panel__button" @click="submitSearch">&#128269;</button>
         <adavanced-search-panel 
             @submitSearch="submitSearch"
@@ -28,6 +28,9 @@ export default {
             searchingParams: {}
         }
     },
+    beforeDestroy() {
+        this.cleanSearch();
+    },
     components: {
         'adavanced-search-panel': AdvancedSearchPanel
     },
@@ -43,18 +46,13 @@ export default {
                 this.$store.commit('RESET_FECTHED');
                 this.$emit('resetPage');
                 this.addSearchingParams({beer_name: this.searchingBeerName});
-                this.$emit('loadBeerPage', this.searchingParams);
-                console.log('isFetched '+this.$store.state.isFetched)
-                // if(this.$store.state.beers.length > 0) {
-                    this.showAdvancedSearchPanel();
-                // }
+                this.$store.commit('ADD_URL_PARAMS', this.searchingParams);
+                this.$emit('loadBeers');
+                this.showAdvancedSearchPanel();
             }
         },
         addSearchingParams(additionalParams) {
-            this.searchingParams = {...this.searchingParams, ...additionalParams} || {};
-        },
-        resetSearchingParams(){
-            this.searchParams = {};
+            this.searchingParams = {...this.searchingParams, ...additionalParams};
         },
         showAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = true;
@@ -66,10 +64,12 @@ export default {
             this.inputBeerName = '';
             this.$store.commit('RESET_BEERS');
             this.$store.commit('RESET_FECTHED');
-            this.$emit('resetPage');
-            this.resetSearchingParams();
+            this.$store.commit('RESET_URL_PARAMS');
             this.hideAdvancedSearchPanel();
-            this.$emit('loadBeerPage');
+        },
+        submitCleanSearch() {
+            this.cleanSearch();
+            this.$emit('loadBeers');
         }
     }
 }

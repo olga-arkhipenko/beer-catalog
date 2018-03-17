@@ -2,7 +2,7 @@
     <article>
         <search-panel
         ref="searchPanel"
-        @loadBeerPage="loadBeerPage"
+        @loadBeers="loadBeers"
         @resetPage="resetPage"
         />
         <section class="catalog">
@@ -39,14 +39,14 @@ export default {
         'catalog-spinner': Spinner
     },
     mounted() {
-        this.loadBeerPage();
-        this.$store.dispatch('fetchFavoriteBeers');
+        this.loadBeers();
+        // this.$store.dispatch('fetchFavoriteBeerIds');
     },
     created() {
         window.addEventListener('scroll', () => {
             if(this.isBottom()) {
                 this.incrementPage();
-                this.loadBeerPage(this.$refs.searchPanel.searchingParams);
+                this.loadBeers();
             }
         })
     },
@@ -62,11 +62,12 @@ export default {
         }
     },
     methods: {
+        loadBeers() {
+            this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
+            this.$store.dispatch('fetchBeers');
+        },
         incrementPage() {
             this.catalogParams.page++;
-        },
-        loadBeerPage(searchingParams) {
-            this.$store.dispatch('fetchBeerPage', {...this.catalogParams, ...searchingParams});
         },
         resetPage() {
             this.catalogParams.page = 1;

@@ -30,11 +30,8 @@
         },
         methods: {
             submitSearch() {
-                this.addAdvancedParams();
-                this.$emit('submitSearch');
-            },
-            addAdvancedParams(){
                 this.$emit('addSearchingParams', this.advancedParams);
+                this.$emit('submitSearch');
             }
         }
     }

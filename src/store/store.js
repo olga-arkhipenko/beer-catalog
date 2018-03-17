@@ -10,10 +10,10 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
-        foundBeers: [],
+        urlParams: {},
         isFetched: false,
         isLoading: false,
-        favoriteBeerIds: []
+        favoriteBeerIds: [],
     },
     getters: {
         getCatalogBeersInfo(state) {
@@ -25,7 +25,7 @@ export const store = new Vuex.Store({
             }));
         },
         // getFavoriteBeersInfo(state) {
-        //     return state.beers.map(beer => ({
+        //     return state.favoriteBeers.map(beer => ({
         //         id: beer.id, 
         //         name: beer.name, 
         //         image: beer.image_url, 
@@ -40,6 +40,12 @@ export const store = new Vuex.Store({
         },
         RESET_BEERS(state) {
             state.beers = [];
+        },
+        ADD_URL_PARAMS(state, urlParams) {
+            state.urlParams = {...state.urlParams, ...urlParams};
+        },
+        RESET_URL_PARAMS(state) {
+            state.urlParams = [];
         },
         SET_FETCHED(state) {
             state.isFetched = true;
@@ -62,24 +68,36 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        fetchBeerPage({commit, state}, urlParams) {
-            if(!state.isFetched) {
+        fetchBeers({commit, state}) {
+            if(!state.isFetched && !state.isLoading) {
                 commit('SET_LOADING');
-                const url = UrlCreator.create(urlParams);
+                console.log('parararams ' + JSON.stringify(state.urlParams));
+                const url = UrlCreator.create(state.urlParams);
+                console.log(url)
                 PunkAPI.get(url).then(beers => {
                     const parsedBeers = JSON.parse(beers);
                     commit('RESET_LOADING');
-                    if(parsedBeers.length === 0) {
+                    if(parsedBeers.length < state.urlParams.per_page) {
+                        commit('SET_BEERS', parsedBeers);
                         commit('SET_FETCHED');
-                        return;
                     }
                     else {
                         commit('SET_BEERS', parsedBeers);
                     }
                 });
-            } 
+            } else return;
         },
-        fetchFavoriteBeers({commit, state}) {
+        // fetchBeersByIds(beerIds) {
+        //     commit('SET_LOADING');
+        //     const url = UrlCreator.createIds(beerIds);
+            
+        //     PunkAPI.get(url).then(beers  => {
+        //         const parsedBeers = JSON.parse(beers);
+        //         commit('RESET_LOADING');
+        //         commit('SET_BEERS', parsedBeers);
+        //     })
+        // },
+        fetchFavoriteBeerIds({commit, state}) {
             commit('SET_FAVORITE_BEER_IDS', LocalStorageAPI.fetchFavoriteBeerIds());
         },
         addFavoriteBeerId({commit, state}, favoriteBeerId) {
