@@ -5,7 +5,8 @@
             <p class="favorite-beer-card__tagLine">{{beer.tagLine}}</p>
             <p class="favorite-beer-card__description">{{beer.description}}</p>
             <button class="toggle-bar__button">open</button>
-            <button class="toggle-bar__button" @click="removeFavoriteBeer($event, beer)">remove favorite</button>
+            <button class="toggle-bar__button" @click="addFavoriteBeerId($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
+            <button class="toggle-bar__button" @click="removeFavoriteBeerId($event, beer.id)" v-else>remove favorite</button>
         </div>
         <img :src="beer.image" alt="Beer pic" class="favorite-beer-card__image">
     </div>
@@ -16,12 +17,25 @@ export default {
     props: {
         beer: {
             type: Object
+        },
+        favoriteBeerIds: {
+            type: Array
+        }
+    },
+    computed: {
+        isAddFavoriteButtonShown() {
+            console.log(this.favoriteBeerIds)
+            return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
     methods: {
-        removeFavoriteBeer(event, favoriteBeer) {
-            console.log('removing card');
-            this.$store.commit('removefavoriteBeer', favoriteBeer);
+        addFavoriteBeerId(event, favoriteBeerId) {
+            console.log('adding card')
+            this.$emit('addFavoriteBeerId', favoriteBeerId);
+        },
+        removeFavoriteBeerId(event, favoriteBeerId) {
+            console.log('removing card')
+            this.$emit('removeFavoriteBeerId', favoriteBeerId);
         }
     }
 }

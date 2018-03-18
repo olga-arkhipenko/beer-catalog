@@ -39,15 +39,23 @@ export default {
         'catalog-spinner': Spinner
     },
     mounted() {
+        window.addEventListener('scroll', this.loadNextBeerPage);
         this.$store.dispatch('fetchFavoriteBeerIds');
         this.loadBeers();
     },
-    beforeDestroy() {
-        this.saveFavorites();
-    },
+    // beforeDestroy() {
+    //     this.saveFavorites();
+    // },
     created() {
-        window.addEventListener('beforeunload', this.saveFavorites);
-        window.addEventListener('scroll', this.loadNextBeerPage);
+        // window.addEventListener('beforeunload', this.saveFavorites);
+
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.loadNextBeerPage);
+        this.$store.commit('RESET_BEERS');
+        this.$store.commit('RESET_FECTHED');
+        this.$store.commit('RESET_URL_PARAMS');
+        this.resetPage();
     },
     computed: {
         beers() {
@@ -90,9 +98,9 @@ export default {
         removeFavoriteBeerId(favoriteBeerId) {
             this.$store.dispatch('removeFavoriteBeerId', favoriteBeerId)
         },
-        saveFavorites() {
-            this.$store.dispatch('updateFavoriteBeerIds');
-        }
+        // saveFavorites() {
+        //     this.$store.dispatch('updateFavoriteBeerIds');
+        // }
     }
 }
 </script>

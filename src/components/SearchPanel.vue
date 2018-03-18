@@ -28,9 +28,6 @@ export default {
             searchingParams: {}
         }
     },
-    beforeDestroy() {
-        this.cleanSearch();
-    },
     components: {
         'adavanced-search-panel': AdvancedSearchPanel
     },
