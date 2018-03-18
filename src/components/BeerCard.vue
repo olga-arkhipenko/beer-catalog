@@ -45,7 +45,7 @@ export default {
 
 <style>
     .beer-card {
-        font-family: 'Helvetica', sans-serif;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 1rem;
         text-align: center;
         background-color: #f3f9ff;

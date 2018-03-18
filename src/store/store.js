@@ -60,8 +60,7 @@ export const store = new Vuex.Store({
             state.isLoading = false;
         },
         SET_FAVORITE_BEER_IDS(state, favoriteBeerIds) {
-            state.favoriteBeerIds = [];
-            state.favoriteBeerIds.push(...favoriteBeerIds);
+            state.favoriteBeerIds = favoriteBeerIds;
         },
         ADD_FAVORITE_BEER_ID(state, favoriteBeerId) {
             state.favoriteBeerIds.push(favoriteBeerId);
@@ -87,28 +86,20 @@ export const store = new Vuex.Store({
                 });
             } else return;
         },
-        // fetchBeersByIds(beerIds) {
-        //     commit('SET_LOADING');
-        //     const url = UrlCreator.createIds(beerIds);
-            
-        //     PunkAPI.get(url).then(beers  => {
-        //         const parsedBeers = JSON.parse(beers);
-        //         commit('RESET_LOADING');
-        //         commit('SET_BEERS', parsedBeers);
-        //     })
-        // },
         fetchFavoriteBeerIds({commit, state}) {
-            commit('SET_FAVORITE_BEER_IDS', LocalStorageAPI.fetchFavoriteBeerIds());
+            const favoriteBeerIds = LocalStorageAPI.fetchFavoriteBeerIds();
+            commit('SET_FAVORITE_BEER_IDS', favoriteBeerIds);
         },
         addFavoriteBeerId({commit, state}, favoriteBeerId) {
             if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
                 commit('ADD_FAVORITE_BEER_ID', favoriteBeerId);
             }
-            LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
         },
         removeFavoriteBeerId({commit, state}, favoriteBeerId) {
             const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
             commit('SET_FAVORITE_BEER_IDS', filteredIds);
+        },
+        updateFavoriteBeerIds({commit, state}) {
             LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
         }
     }

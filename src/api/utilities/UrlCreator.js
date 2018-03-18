@@ -8,5 +8,10 @@ export default {
                     ? acc.concat(`${cur}=${urlParams[cur]}`)
                     : acc.concat(`${cur}=${urlParams[cur]}&`);
             }, '?'); 
-    }
+    },
+    // createIds(beerIds) {
+    //     if(beerIds) {
+    //         return `${url}?ids=${beerIds.join('|')}`
+    //     } else return url;
+    // }
 }

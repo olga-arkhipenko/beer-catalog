@@ -40,15 +40,14 @@ export default {
     },
     mounted() {
         this.loadBeers();
-        // this.$store.dispatch('fetchFavoriteBeerIds');
+        this.$store.dispatch('fetchFavoriteBeerIds');
+    },
+    beforeDestroy() {
+        this.saveFavorites();
     },
     created() {
-        window.addEventListener('scroll', () => {
-            if(this.isBottom()) {
-                this.incrementPage();
-                this.loadBeers();
-            }
-        })
+        window.addEventListener('beforeunload', this.saveFavorites);
+        window.addEventListener('scroll', this.loadNextBeerPage);
     },
     computed: {
         beers() {
@@ -65,6 +64,12 @@ export default {
         loadBeers() {
             this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
             this.$store.dispatch('fetchBeers');
+        },
+        loadNextBeerPage() {
+            if(this.isBottom()) {
+                this.incrementPage();
+                this.loadBeers();
+            }
         },
         incrementPage() {
             this.catalogParams.page++;
@@ -84,6 +89,9 @@ export default {
         },
         removeFavoriteBeerId(favoriteBeerId) {
             this.$store.dispatch('removeFavoriteBeerId', favoriteBeerId)
+        },
+        saveFavorites() {
+            this.$store.dispatch('updateFavoriteBeerIds');
         }
     }
 }
