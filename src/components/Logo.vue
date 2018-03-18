@@ -20,7 +20,8 @@ export default {
 
 <style>
     .logo {
-        font-family: 'Helvetica', sans-serif;
+        /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+        font-family: 'Courier New', Courier, monospace;
         font-size: 1.5rem;
     }
 </style>

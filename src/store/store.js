@@ -22,17 +22,20 @@ export const store = new Vuex.Store({
                 name: beer.name, 
                 image: beer.image_url, 
                 tagLine: beer.tagline
-            }));
+                }));
         },
-        // getFavoriteBeersInfo(state) {
-        //     return state.favoriteBeers.map(beer => ({
-        //         id: beer.id, 
-        //         name: beer.name, 
-        //         image: beer.image_url, 
-        //         tagLine: beer.tagline,
-        //         description: beer.description
-        //     }));
-        // }
+        getFavoriteBeersInfo(state) {
+            return state.beers.map(beer => ({
+                id: beer.id, 
+                name: beer.name, 
+                image: beer.image_url, 
+                tagLine: beer.tagline,
+                description: beer.description
+                }));
+        },
+        getFavoriteBeerIdsUrlParams(state) {
+            return {ids: state.favoriteBeerIds.join('|')}
+        }
     },
     mutations: {
         SET_BEERS(state, beers) {
@@ -42,6 +45,9 @@ export const store = new Vuex.Store({
             state.beers = [];
         },
         ADD_URL_PARAMS(state, urlParams) {
+            // console.log(JSON.stringify(urlParams));
+            // const reducedUrlParams = urlParams.reduce((acc, cur) => {return {...acc, ...cur}} , {});
+            // console.log('reducdes'+ JSON.stringify(reducedUrlParams));
             state.urlParams = {...state.urlParams, ...urlParams};
         },
         RESET_URL_PARAMS(state) {

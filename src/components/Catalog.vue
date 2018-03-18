@@ -39,8 +39,8 @@ export default {
         'catalog-spinner': Spinner
     },
     mounted() {
-        this.loadBeers();
         this.$store.dispatch('fetchFavoriteBeerIds');
+        this.loadBeers();
     },
     beforeDestroy() {
         this.saveFavorites();
