@@ -3,15 +3,18 @@
         <div class="advanced-search-panel__inner">
             <label>
                 <span>Alcohol by volume</span>
-                <input type="range" class="advanced-search-panel__range" v-model.number="advancedParams.abv_gt" min="2" max="14" @change="submitSearch">
+                <input type="range" min="2" max="14" class="advanced-search-panel__range" v-model.number="advancedParams.abv_gt" @change="submitSearch">
+                <span v-cloak>more than {{advancedParams.abv_gt}}</span>
             </label>
             <label>
                 <span>International Bitterness Units</span>
-                <input type="range"  class="advanced-search-panel__range" v-model.number="advancedParams.ibu_gt" min="0" max="120" @change="submitSearch">
+                <input type="range" min="0" max="120" class="advanced-search-panel__range" v-model.number="advancedParams.ibu_gt" @change="submitSearch">
+                <span v-cloak>more than {{advancedParams.ibu_gt}}</span>
             </label>
             <label>
                 <span>Color by EBC</span>
-                <input type="range"  class="advanced-search-panel__range" v-model.number="advancedParams.ebc_gt" min="4" max="80" @change="submitSearch">
+                <input type="range" min="4" max="80" class="advanced-search-panel__range" v-model.number="advancedParams.ebc_gt" @change="submitSearch">
+                <span v-cloak>more than {{advancedParams.ebc_gt}}</span>
             </label>
         </div>
     </section>
@@ -22,9 +25,9 @@
         data() {
             return {
                 advancedParams: {
-                    abv_gt: 0,
+                    abv_gt: 2,
                     ibu_gt: 0,
-                    ebc_gt: 0
+                    ebc_gt: 4
                 }
             }
         },
