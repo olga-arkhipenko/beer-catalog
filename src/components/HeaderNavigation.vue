@@ -1,6 +1,6 @@
 <template>
     <header class="header-navigation">
-        <button class="header-navigation__menu-button" @click="showMainMenu"> &#9776; </button>
+        <button class="header-navigation__menu-button" @click="showMainMenu"></button>
         <main-menu @hideMainMenu="hideMainMenu" v-if="isMainMenuShown"/>
         <primary-logo class="header-navigation__logo"/>
     </header>
@@ -32,6 +32,9 @@ export default {
 
 <style>
     .header-navigation {
+        position: fixed;
+        top: 0;
+        width: 100%;
         display: flex;
         align-items: center;
         padding: 10px;
@@ -40,10 +43,9 @@ export default {
     }
 
     .header-navigation__menu-button {
-        padding: 5px;
-        background: transparent;
-        color: #ffffff;
-        font-size: 1.5rem;
+        padding: 20px;
+        background: url(../assets/pixel-burger.png);
+        background-size: contain;
         border: none;
         cursor: pointer;
     }

@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="page-content">
         <search-panel
         ref="searchPanel"
         @loadBeers="loadBeers"
@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style>
+    .page-content {
+        margin: 100px 0 0;
+    }
     .catalog {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
