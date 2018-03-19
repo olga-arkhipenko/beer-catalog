@@ -43,13 +43,6 @@ export default {
         this.$store.dispatch('fetchFavoriteBeerIds');
         this.loadBeers();
     },
-    // beforeDestroy() {
-    //     this.saveFavorites();
-    // },
-    created() {
-        // window.addEventListener('beforeunload', this.saveFavorites);
-
-    },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
         this.$store.commit('RESET_BEERS');

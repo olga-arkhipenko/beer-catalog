@@ -8,12 +8,12 @@
             :key=index
             @removeFavoriteBeer="removeFavoriteBeer"
         />
-        <!-- <favorites-pagination
+        <favorites-pagination
             :current-page="favoritesParams.page"
-            :total-items="favoriteBeers.length"
-            :items-per-page="favoritesParams.per_page"
-            @change-page="changePage"
-        /> -->
+            :total-beers="favoriteBeerIds.length"
+            :beers-per-page="favoritesParams.per_page"
+            @changePage="changePage"
+        />
     </article>
 </template>
 
@@ -43,7 +43,6 @@ export default {
         }
     },
     beforeDestroy() {
-        this.$store.commit('RESET_BEERS');
         this.$store.commit('RESET_FECTHED');
         this.$store.commit('RESET_URL_PARAMS');
         this.favoritesParams.page = 1;
@@ -65,10 +64,10 @@ export default {
         addFavoriteBeerId(favoriteBeerId) {
             this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
         },
-        // changePage(pageNumber) {
-        //     this.favoritesParams.page = pageNumber;
-        //     this.loadFavoriteBeers();
-        // }
+        changePage(pageNumber) {
+            this.favoritesParams.page = pageNumber;
+            this.loadFavoriteBeers();
+        }
     }
 }
 </script>
