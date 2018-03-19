@@ -100,8 +100,9 @@ export default {
 
 <style>
     .page-content {
-        margin: 100px 0 0;
+        margin: 150px 0 0;
     }
+    
     .catalog {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

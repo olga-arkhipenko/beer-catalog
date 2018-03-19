@@ -2,17 +2,15 @@
     <transition name="slide">
         <nav class="main-menu">
             <primary-logo class="main-menu__title"/>
-            <button class="main-menu__close-button" @click='hideMainMenu'>&#215;</button>
+            <button class="close-sign action-button main-menu__close-button" @click='hideMainMenu'>&#215;</button>
             <ul class="main-menu__list">
                 <li class="main-menu__item">
                     <router-link to="/" class="link">
-                        <span class="main-menu__item-icon">&#x2616;</span>
                         <span class="main-menu__item-name">Home</span>
                     </router-link>
                 </li>
                 <li class="main-menu__item">
                     <router-link to="/favorites" class="link">
-                        <span class="main-menu__item-icon">&#x2606;</span>
                         <span class="main-menu__item-name">Favorites</span>
                     </router-link>
                 </li>
@@ -43,25 +41,18 @@ export default {
         left: 0;
         width: 250px;
         height: 100%;
-        background: #ffffff;
+        background: #31374c;
         border-right: 1px solid #ffffff; 
     }
 
     .main-menu__title {
-        padding: 40px 20px;
-        background-color: #36495d; 
+        margin: 30px; 
     }
 
     .main-menu__close-button {
         position: absolute;
         top: 5px;
         right: 10px;
-        padding: 5px;
-        background: transparent;
-        color: #ffffff;
-        font-size: 2rem;
-        border: none;
-        cursor: pointer;
     }
 
     .main-menu__list {
@@ -83,11 +74,8 @@ export default {
 
     .main-menu__item {
         padding: 10px 0;
-        font-family: 'Helvetica', sans-serif;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 1.3rem;
-    }
-
-    .main-menu__item-icon {
-        font-size: 1rem;
+        color: #31a39f;
     }
 </style>

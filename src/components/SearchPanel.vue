@@ -6,8 +6,8 @@
             class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
-        <button class="search-panel__button search-panel__button" @click="submitCleanSearch">&#10006;</button>
-        <button class="search-panel__button" @click="submitSearch">&#128269;</button>
+        <button class="close-sign action-button search-panel__button" @click="submitCleanSearch">&#215;</button>
+        <button class="action-button search-panel__button" @click="submitSearch">&#128269;</button>
         <adavanced-search-panel 
             @submitSearch="submitSearch"
             @addSearchingParams="addSearchingParams"
@@ -75,23 +75,21 @@ export default {
 <style>
     .search-panel {
         width: 100%;
-        margin-top: 40px;
-        font-family: 'Helvetica', sans-serif;
+        margin: 0 0 60px;
+        font-family: 'Courier New', Courier, monospace;
         text-align: center;
     }
+
     .search-panel__search-line {
         width: 20rem;
         padding: 5px;
         border: none;
-        border-bottom: 1px solid #c6d4e2;
+        border-bottom: 2px solid #c6d4e2;
         color: #36495d;
     }
+    
     .search-panel__button {
-        font-size: 1.2rem;
-        background-color: transparent;
-        border: none;
-        color: #36495d;
-        cursor: pointer;
+        font-size: 1.5rem;
     }
 </style>
 

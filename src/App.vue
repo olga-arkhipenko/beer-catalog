@@ -15,10 +15,3 @@ export default {
     },
 };
 </script>
-
-<style>
-    .link {
-        text-decoration: none;
-        color: inherit;
-    }
-</style>

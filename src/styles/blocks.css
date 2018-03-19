@@ -1,0 +1,17 @@
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.action-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.close-sign {
+    padding: 5px;
+    color: #bf4a50;
+    font-size: 2rem;
+
+}

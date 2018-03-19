@@ -51,40 +51,46 @@ export default {
         background-color: #f3f9ff;
         color: #ffffff;
     }
+
     .beer-card__image {
         margin: 30px 0;
         height: 300px;
         vertical-align: bottom;
     }
+
     .beer-card__info {
         display: grid;
-        min-height: 200px;
+        min-height: 220px;
         padding: 5px 20px;
-        background-color: #36495d;
+        background-color: #31374c;
         text-align: left;
     }
+
     .beer-card__name {
-        color: #fff1c5;
+        color: #56a558;
     }
+
     .beer-card__tagLine {
         color: #abc0d8;
     }
+
     .toggle-bar {
-        background-color: #36495d;
         display: flex;
         justify-content: space-between;
         margin: 15px 20px;
         font-size: 1.2rem;
     }
+
     .toggle-bar__button {
-        color: #e4fffd;
+        color: #ffe696;
         background-color: transparent;
         border: none;
         text-transform: uppercase;
         cursor: pointer;
     }
+    
     .toggle-bar__button:hover {
-        color: #ffe696;
+        color: #dd44a3;
     }
     
 </style>

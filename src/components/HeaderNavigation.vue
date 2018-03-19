@@ -35,22 +35,21 @@ export default {
         position: fixed;
         top: 0;
         width: 100%;
+        display: flex;
+        align-items: center;
+        z-index: 1;
         color: #ffffff;
         background-color: #31364c;
-        text-align: center;
+        border-bottom: 1px solid #ffffff;
     }
 
     .header-navigation__menu-button {
-        float: left;
         margin: 20px;
         padding: 20px;
         background: url(../assets/menu-burger.png);
         background-size: contain;
         border: none;
         cursor: pointer;
-    }
-    .header-navigation__logo {
-        margin: 10px 0 0;
     }
 </style>
 

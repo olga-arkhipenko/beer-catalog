@@ -76,11 +76,11 @@ export default {
 <style>
     .favorites {
         width: 1024px;
-        margin: 0 auto;
+        margin: 140px auto;
     }
     .favorites__heading {
         margin: 30px 0;
-        font-family: 'Helvetica', sans-serif;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 2rem;
         text-align: center;
     }
