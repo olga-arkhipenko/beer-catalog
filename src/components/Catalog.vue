@@ -90,10 +90,7 @@ export default {
         },
         removeFavoriteBeer(favoriteBeerId) {
             this.$store.dispatch('removeFavoriteBeer', favoriteBeerId)
-        },
-        // saveFavorites() {
-        //     this.$store.dispatch('updateFavoriteBeerIds');
-        // }
+        }
     }
 }
 </script>

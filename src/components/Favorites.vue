@@ -53,7 +53,6 @@ export default {
     },
     methods: {
         loadFavoriteBeers() {
-            console.log('loading params '+JSON.stringify({ids: this.$store.state.favoriteBeerIds.join('|')}))
             this.$store.commit('ADD_URL_PARAMS', { ...this.favoritesParams, ids: this.$store.state.favoriteBeerIds.join('|')});
             this.$store.dispatch('fetchFavoriteBeers');
         },
@@ -65,7 +64,6 @@ export default {
             this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
         },
         changePage(pageNumber) {
-            console.log('on page ' + pageNumber);
             this.favoritesParams.page = pageNumber;
             this.loadFavoriteBeers();
         }

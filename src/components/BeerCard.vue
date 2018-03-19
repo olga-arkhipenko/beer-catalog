@@ -26,17 +26,14 @@ export default {
     },
     computed: {
         isAddFavoriteButtonShown() {
-            console.log(this.favoriteBeerIds)
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
     methods: {
         addFavoriteBeerId(event, favoriteBeerId) {
-            console.log('adding card')
             this.$emit('addFavoriteBeerId', favoriteBeerId);
         },
         removeFavoriteBeer(event, favoriteBeerId) {
-            console.log('removing card')
             this.$emit('removeFavoriteBeer', favoriteBeerId);
         }
     }

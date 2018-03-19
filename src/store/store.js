@@ -33,10 +33,7 @@ export const store = new Vuex.Store({
                 tagLine: beer.tagline,
                 description: beer.description
                 }));
-        },
-        // getFavoriteBeerIdsUrlParams(state) {
-        //     return {ids: state.favoriteBeerIds.join('|')}
-        // }
+        }
     },
     mutations: {
         SET_BEERS(state, beers) {
@@ -47,7 +44,6 @@ export const store = new Vuex.Store({
         },
         SET_FAVORITE_BEERS(state, favoriteBeers) {
             state.favoriteBeers = favoriteBeers;
-            console.log(state.favoriteBeers);
         },
         RESET_FAVORITE_BEERS(state) {
             state.favoriteBeers = [];
@@ -80,16 +76,12 @@ export const store = new Vuex.Store({
     actions: {
         fetchBeers({commit, state}) {
             if(!state.isFetched) {
-                // console.log('not fetched')
                 commit('SET_LOADING');
-                // console.log('parararams ' + JSON.stringify(state.urlParams));
                 const url = UrlCreator.create(state.urlParams);
-                console.log(url)
                 PunkAPI.get(url).then(beers => {
                     const parsedBeers = JSON.parse(beers);
                     commit('RESET_LOADING');
                     if(parsedBeers.length < state.urlParams.per_page) {
-                        // console.log('hello from setting fetched')
                         commit('SET_BEERS', parsedBeers);
                         commit('SET_FETCHED');
                     }
@@ -102,7 +94,6 @@ export const store = new Vuex.Store({
         fetchFavoriteBeers({commit, state}) {
             commit('SET_LOADING');
             const url = UrlCreator.create(state.urlParams);
-            console.log('from favorite fetching ' + url);
             PunkAPI.get(url).then(beers => {
                 const parsedBeers = JSON.parse(beers);
                 commit('RESET_LOADING');
