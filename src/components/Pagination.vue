@@ -1,15 +1,15 @@
 <template>
     <ul class="pagination">
         <li v-if="hasPrev">
-            <a href="#" @click.prevent="changePage($event, prevPage)">
+            <a href="#" class="link pagination__page" @click.prevent="changePage($event, prevPage)">
                 <span>&laquo;</span>
             </a>
         </li>
         <li v-for="(page, index) in totalPages" :key=index>
-            <a href="#" @click.prevent="changePage($event, page)" :class="isActive(page)">{{page}}</a>
+            <a href="#" class="link pagination__page" @click.prevent="changePage($event, page)" :class="isActive(page)">{{page}}</a>
         </li>
         <li v-if="hasNext">
-            <a href="#" @click.prevent="changePage($event, nextPage)">
+            <a href="#" class="link pagination__page" @click.prevent="changePage($event, nextPage)">
             <span>&raquo;</span>
             </a>
         </li>
@@ -83,8 +83,25 @@ export default {
 </script>
 
 <style>
+    .pagination {
+        display: inline-flex;
+        flex-direction: row;
+        list-style: none;
+    }
+    .pagination__page {
+        display: block;
+        padding: 15px 20px;
+        font-family: 'Courier New', Courier, monospace;
+        color: #ffffff;
+        background-color: #31364c;
+    }
+
+    .pagination__page:hover {
+        background-color: #464568;
+    }
+
     .active {
-        color: green;
+        background-color: #6d6c97;
     }
 </style>
 
