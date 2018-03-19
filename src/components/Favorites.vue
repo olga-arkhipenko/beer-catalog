@@ -65,6 +65,7 @@ export default {
             this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
         },
         changePage(pageNumber) {
+            console.log('on page ' + pageNumber);
             this.favoritesParams.page = pageNumber;
             this.loadFavoriteBeers();
         }
