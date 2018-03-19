@@ -10,10 +10,11 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         beers: [],
+        favoriteBeers: [],
+        favoriteBeerIds: [],
         urlParams: {},
         isFetched: false,
-        isLoading: false,
-        favoriteBeerIds: [],
+        isLoading: false
     },
     getters: {
         getCatalogBeersInfo(state) {
@@ -25,7 +26,7 @@ export const store = new Vuex.Store({
                 }));
         },
         getFavoriteBeersInfo(state) {
-            return state.beers.map(beer => ({
+            return state.favoriteBeers.map(beer => ({
                 id: beer.id, 
                 name: beer.name, 
                 image: beer.image_url, 
@@ -44,14 +45,18 @@ export const store = new Vuex.Store({
         RESET_BEERS(state) {
             state.beers = [];
         },
+        SET_FAVORITE_BEERS(state, favoriteBeers) {
+            state.favoriteBeers = favoriteBeers;
+            console.log(state.favoriteBeers);
+        },
+        RESET_FAVORITE_BEERS(state) {
+            state.favoriteBeers = [];
+        },
         ADD_URL_PARAMS(state, urlParams) {
-            // console.log(JSON.stringify(urlParams));
-            // const reducedUrlParams = urlParams.reduce((acc, cur) => {return {...acc, ...cur}} , {});
-            // console.log('reducdes'+ JSON.stringify(reducedUrlParams));
             state.urlParams = {...state.urlParams, ...urlParams};
         },
         RESET_URL_PARAMS(state) {
-            state.urlParams = [];
+            state.urlParams = {};
         },
         SET_FETCHED(state) {
             state.isFetched = true;
@@ -75,16 +80,16 @@ export const store = new Vuex.Store({
     actions: {
         fetchBeers({commit, state}) {
             if(!state.isFetched) {
-                console.log('not fetched')
+                // console.log('not fetched')
                 commit('SET_LOADING');
-                console.log('parararams ' + JSON.stringify(state.urlParams));
+                // console.log('parararams ' + JSON.stringify(state.urlParams));
                 const url = UrlCreator.create(state.urlParams);
                 console.log(url)
                 PunkAPI.get(url).then(beers => {
                     const parsedBeers = JSON.parse(beers);
                     commit('RESET_LOADING');
                     if(parsedBeers.length < state.urlParams.per_page) {
-                        console.log('hello from setting fetched')
+                        // console.log('hello from setting fetched')
                         commit('SET_BEERS', parsedBeers);
                         commit('SET_FETCHED');
                     }
@@ -92,7 +97,23 @@ export const store = new Vuex.Store({
                         commit('SET_BEERS', parsedBeers);
                     }
                 });
-            } else console.log('fetched');
+            }
+        },
+        fetchFavoriteBeers({commit, state}) {
+            commit('SET_LOADING');
+            const url = UrlCreator.create(state.urlParams);
+            console.log('from favorite fetching ' + url);
+            PunkAPI.get(url).then(beers => {
+                const parsedBeers = JSON.parse(beers);
+                commit('RESET_LOADING');
+                if(parsedBeers.length < state.urlParams.per_page) {
+                    commit('SET_FAVORITE_BEERS', parsedBeers);
+                    commit('SET_FETCHED');
+                }
+                else {
+                    commit('SET_FAVORITE_BEERS', parsedBeers);
+                }
+            });
         },
         fetchFavoriteBeerIds({commit, state}) {
             const favoriteBeerIds = LocalStorageAPI.fetchFavoriteBeerIds();
@@ -104,13 +125,10 @@ export const store = new Vuex.Store({
             }
             LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
         },
-        removeFavoriteBeerId({commit, state}, favoriteBeerId) {
+        removeFavoriteBeer({commit, state}, favoriteBeerId) {
             const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
             commit('SET_FAVORITE_BEER_IDS', filteredIds);
             LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
-        },
-        // updateFavoriteBeerIds({commit, state}) {
-        //     LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
-        // }
+        }
     }
 })

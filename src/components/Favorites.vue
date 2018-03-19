@@ -6,15 +6,14 @@
             :favoriteBeerIds="favoriteBeerIds"
             :beer=beer
             :key=index
-            @removeFavoriteBeerId="removeFavoriteBeerId"
-            @addFavoriteBeerId="addFavoriteBeerId"
+            @removeFavoriteBeer="removeFavoriteBeer"
         />
-        <favorites-pagination
+        <!-- <favorites-pagination
             :current-page="favoritesParams.page"
-            :total-items="favoriteBeerIdsCopy.length"
+            :total-items="favoriteBeers.length"
             :items-per-page="favoritesParams.per_page"
             @change-page="changePage"
-        />
+        /> -->
     </article>
 </template>
 
@@ -28,13 +27,11 @@ export default {
             favoritesParams: {
                 page: 1,
                 per_page: 5
-            },
-            favoriteBeerIdsCopy: []
+            }
         }
     },
     mounted() {
         this.$store.dispatch('fetchFavoriteBeerIds');
-        this.setFavoriteBeerIdsCopy();
         this.loadFavoriteBeers();
     },
     computed: {
@@ -56,29 +53,22 @@ export default {
         'favorites-pagination': Pagination
     },
     methods: {
-        setFavoriteBeerIdsCopy(){
-            this.favoriteBeerIdsCopy = this.$store.state.favoriteBeerIds;
-            console.log('copied'+this.favoriteBeerIdsCopy)
-        },
         loadFavoriteBeers() {
-            console.log('lading params '+JSON.stringify({ids: this.favoriteBeerIdsCopy.join('|')}))
-            this.$store.commit('ADD_URL_PARAMS',{ ...this.favoritesParams, ids: this.favoriteBeerIdsCopy.join('|')});
-            this.$store.dispatch('fetchBeers');
+            console.log('loading params '+JSON.stringify({ids: this.$store.state.favoriteBeerIds.join('|')}))
+            this.$store.commit('ADD_URL_PARAMS', { ...this.favoritesParams, ids: this.$store.state.favoriteBeerIds.join('|')});
+            this.$store.dispatch('fetchFavoriteBeers');
         },
-        removeFavoriteBeerId(favoriteBeerId) {
-            this.$store.dispatch('removeFavoriteBeerId', favoriteBeerId);
+        removeFavoriteBeer(favoriteBeerId) {
+            this.$store.dispatch('removeFavoriteBeer', favoriteBeerId);
+            this.loadFavoriteBeers();
         },
         addFavoriteBeerId(favoriteBeerId) {
             this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
         },
-        changePage(pageNumber) {
-            this.favoritesParams.page = pageNumber;
-            this.loadFavoriteBeers();
-        }
-        // saveFavorites() {
-        //     this.$store.dispatch('updateFavoriteBeerIds');
+        // changePage(pageNumber) {
+        //     this.favoritesParams.page = pageNumber;
+        //     this.loadFavoriteBeers();
         // }
-
     }
 }
 </script>

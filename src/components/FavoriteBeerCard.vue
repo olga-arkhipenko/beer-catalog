@@ -5,8 +5,8 @@
             <p class="favorite-beer-card__tagLine">{{beer.tagLine}}</p>
             <p class="favorite-beer-card__description">{{beer.description}}</p>
             <button class="toggle-bar__button">open</button>
-            <button class="toggle-bar__button" @click="addFavoriteBeerId($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-            <button class="toggle-bar__button" @click="removeFavoriteBeerId($event, beer.id)" v-else>remove favorite</button>
+            <!-- <button class="toggle-bar__button" @click="addFavoriteBeerId($event, beer.id)">add to favorite</button> -->
+            <button class="toggle-bar__button" @click="removeFavoriteBeer($event, beer.id)">remove favorite</button>
         </div>
         <img :src="beer.image" alt="Beer pic" class="favorite-beer-card__image">
     </div>
@@ -23,19 +23,19 @@ export default {
         }
     },
     computed: {
-        isAddFavoriteButtonShown() {
-            console.log(this.favoriteBeerIds)
-            return !this.favoriteBeerIds.includes(this.beer.id);
-        }
+        // isAddFavoriteButtonShown() {
+        //     console.log(this.favoriteBeerIds)
+        //     return !this.favoriteBeerIds.includes(this.beer.id);
+        // }
     },
     methods: {
-        addFavoriteBeerId(event, favoriteBeerId) {
-            console.log('adding card')
-            this.$emit('addFavoriteBeerId', favoriteBeerId);
-        },
-        removeFavoriteBeerId(event, favoriteBeerId) {
+        // addFavoriteBeerId(event, favoriteBeerId) {
+        //     console.log('adding card')
+        //     this.$emit('addFavoriteBeerId', favoriteBeerId);
+        // },
+        removeFavoriteBeer(event, favoriteBeerId) {
             console.log('removing card')
-            this.$emit('removeFavoriteBeerId', favoriteBeerId);
+            this.$emit('removeFavoriteBeer', favoriteBeerId);
         }
     }
 }

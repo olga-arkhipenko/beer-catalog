@@ -12,7 +12,7 @@
                 :beer=beer
                 :key=index
                 @addFavoriteBeerId="addFavoriteBeerId"
-                @removeFavoriteBeerId="removeFavoriteBeerId"
+                @removeFavoriteBeer="removeFavoriteBeer"
             />
         </section>
     <catalog-spinner v-if="isLoading"/>
@@ -95,8 +95,8 @@ export default {
         addFavoriteBeerId(favoriteBeerId) {
             this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
         },
-        removeFavoriteBeerId(favoriteBeerId) {
-            this.$store.dispatch('removeFavoriteBeerId', favoriteBeerId)
+        removeFavoriteBeer(favoriteBeerId) {
+            this.$store.dispatch('removeFavoriteBeer', favoriteBeerId)
         },
         // saveFavorites() {
         //     this.$store.dispatch('updateFavoriteBeerIds');

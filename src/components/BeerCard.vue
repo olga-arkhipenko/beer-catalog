@@ -7,7 +7,7 @@
             <div class="toggle-bar">
                 <button class="toggle-bar__button">open</button>
                 <button class="toggle-bar__button" @click="addFavoriteBeerId($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-                <button class="toggle-bar__button" @click="removeFavoriteBeerId($event, beer.id)" v-else>remove favorite</button>
+                <button class="toggle-bar__button" @click="removeFavoriteBeer($event, beer.id)" v-else>remove favorite</button>
             </div>
         </div>
     </div>
@@ -35,9 +35,9 @@ export default {
             console.log('adding card')
             this.$emit('addFavoriteBeerId', favoriteBeerId);
         },
-        removeFavoriteBeerId(event, favoriteBeerId) {
+        removeFavoriteBeer(event, favoriteBeerId) {
             console.log('removing card')
-            this.$emit('removeFavoriteBeerId', favoriteBeerId);
+            this.$emit('removeFavoriteBeer', favoriteBeerId);
         }
     }
 }
