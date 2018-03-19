@@ -1,6 +1,7 @@
 <template>
     <div class="logo">
         <router-link to="/" href="/" class="link">
+            <img class="logo__image" src="../assets/logo-beer.png" alt="Logo Beer">
             <span class="logo__name">
                 {{logoName}}
             </span>
@@ -20,9 +21,15 @@ export default {
 
 <style>
     .logo {
-        /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+        display: inline-block;
+    }
+    .logo__image {
+        height: 50px;
+        vertical-align: bottom;
+    }
+    .logo__name {
         font-family: 'Courier New', Courier, monospace;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 </style>
 
