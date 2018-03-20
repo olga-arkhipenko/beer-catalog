@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {store} from './store/store'
 import App from './App';
-import Catalog from './components/Catalog';
-import Favorites from './components/Favorites';
+import Catalog from './components/catalog/Catalog';
+import Favorites from './components/favorites/Favorites';
 
 Vue.use(VueRouter);
 

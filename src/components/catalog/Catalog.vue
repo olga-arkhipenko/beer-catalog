@@ -22,7 +22,7 @@
 <script>
 import SearchPanel from './SearchPanel';
 import BeerCard from './BeerCard';
-import Spinner from './Spinner';
+import Spinner from '../../components/Spinner'
 
 export default {
     data() {

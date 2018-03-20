@@ -45,7 +45,7 @@ export default {
     beforeDestroy() {
         this.$store.commit('RESET_FECTHED');
         this.$store.commit('RESET_URL_PARAMS');
-        this.favoritesParams.page = 1;
+        this.resetPage();
     },
     components: {
         'favorite-beer-card': FavoriteBeerCard,
@@ -66,6 +66,9 @@ export default {
         changePage(pageNumber) {
             this.favoritesParams.page = pageNumber;
             this.loadFavoriteBeers();
+        },
+        resetPage() {
+            this.favoritesParams.page = 1;
         }
     }
 }

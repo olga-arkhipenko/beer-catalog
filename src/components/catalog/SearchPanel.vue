@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import UrlCreator from '../api/utilities/UrlCreator';
 import AdvancedSearchPanel from './AdvancedSearchPanel';
 
 export default {

@@ -7,7 +7,7 @@
 
 <script>
 import 'normalize.css';
-import HeaderNavigation from './components/HeaderNavigation';
+import HeaderNavigation from './components/header/HeaderNavigation';
 export default {
     name: 'App',
     components: {

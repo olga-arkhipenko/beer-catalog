@@ -8,7 +8,7 @@
 
 <script>
 import MainMenu from './MainMenu';
-import Logo from './Logo';
+import Logo from '../../components/Logo';
 export default {
     data() {
         return {
@@ -46,7 +46,7 @@ export default {
     .header-navigation__menu-button {
         margin: 20px;
         padding: 20px;
-        background: url(../assets/menu-burger.png);
+        background: url(../../assets/menu-burger.png);
         background-size: contain;
         border: none;
         cursor: pointer;
