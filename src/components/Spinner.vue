@@ -15,10 +15,6 @@
     </div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style>
     .spinner-circle {
         margin: 100px auto;

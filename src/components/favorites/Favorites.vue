@@ -2,10 +2,10 @@
     <article class="favorites">
         <h1 class="favorites__heading">Your favorite beers</h1>
         <favorite-beer-card
-            v-for="(beer, index) in favoriteBeers"
+            v-for="beer  in favoriteBeers"
             :favoriteBeerIds="favoriteBeerIds"
-            :beer=beer
-            :key=index
+            :beer="beer"
+            :key="beer.id"
             @removeFavoriteBeer="removeFavoriteBeer"
         />
         <favorites-pagination

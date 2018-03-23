@@ -79,14 +79,13 @@ export const store = new Vuex.Store({
                 commit('SET_LOADING');
                 const url = UrlCreator.create(state.urlParams);
                 PunkAPI.get(url).then(beers => {
-                    const parsedBeers = JSON.parse(beers);
                     commit('RESET_LOADING');
-                    if(parsedBeers.length < state.urlParams.per_page) {
-                        commit('SET_BEERS', parsedBeers);
+                    if(beers.length < state.urlParams.per_page) {
+                        commit('SET_BEERS', beers);
                         commit('SET_FETCHED');
                     }
                     else {
-                        commit('SET_BEERS', parsedBeers);
+                        commit('SET_BEERS', beers);
                     }
                 });
             }
@@ -95,14 +94,13 @@ export const store = new Vuex.Store({
             commit('SET_LOADING');
             const url = UrlCreator.create(state.urlParams);
             PunkAPI.get(url).then(beers => {
-                const parsedBeers = JSON.parse(beers);
                 commit('RESET_LOADING');
-                if(parsedBeers.length < state.urlParams.per_page) {
-                    commit('SET_FAVORITE_BEERS', parsedBeers);
+                if(beers.length < state.urlParams.per_page) {
+                    commit('SET_FAVORITE_BEERS', beers);
                     commit('SET_FETCHED');
                 }
                 else {
-                    commit('SET_FAVORITE_BEERS', parsedBeers);
+                    commit('SET_FAVORITE_BEERS', beers);
                 }
             });
         },

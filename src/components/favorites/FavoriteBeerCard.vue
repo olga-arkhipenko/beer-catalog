@@ -5,8 +5,8 @@
             <p class="favorite-beer-card__tagLine">{{beer.tagLine}}</p>
             <p class="favorite-beer-card__description">{{beer.description}}</p>
             <div class="favorite-bar">
-                <button class="action-button favorite-bar__button">OPEN</button>
-                <button class="action-button favorite-bar__button" @click="removeFavoriteBeer($event, beer.id)">REMOVE FAVORITE</button>
+                <button class="action-button favorite-bar__button">open</button>
+                <button class="action-button favorite-bar__button" @click="removeFavoriteBeer(beer.id)">remove favorite</button>
             </div>
         </div>
         <img :src="beer.image" alt="Beer pic" class="favorite-beer-card__image">
@@ -23,11 +23,8 @@ export default {
             type: Array
         }
     },
-    computed: {
-
-    },
     methods: {
-        removeFavoriteBeer(event, favoriteBeerId) {
+        removeFavoriteBeer(favoriteBeerId) {
             this.$emit('removeFavoriteBeer', favoriteBeerId);
         }
     }
@@ -67,6 +64,7 @@ export default {
         font-size: 1.3rem;
         font-weight: 600;
         color: #5a6fb9;
+        text-transform: uppercase;
     }
 
     .favorite-bar__button:hover {

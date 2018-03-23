@@ -1,22 +1,12 @@
 <template>
     <div class="logo">
-        <router-link to="/" href="/" class="link">
+        <router-link to="/" class="link">
             <span class="logo__name">
-                {{logoName}}
+                Beer Catalog
             </span>
         </router-link>
     </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-        logoName: 'Beer Catalog'
-    }
-  }
-}
-</script>
 
 <style>
     .logo {

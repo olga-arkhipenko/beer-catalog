@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <HeaderNavigation/>
+        <header-navigation/>
         <router-view></router-view>
     </div>
 </template>
@@ -11,7 +11,7 @@ import HeaderNavigation from './components/header/HeaderNavigation';
 export default {
     name: 'App',
     components: {
-        HeaderNavigation
+        'header-navigation': HeaderNavigation
     },
 };
 </script>

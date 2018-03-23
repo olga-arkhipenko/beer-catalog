@@ -7,10 +7,10 @@
         />
         <section class="catalog">
             <beer-card 
-                v-for="(beer, index) in beers"
+                v-for="beer in beers"
                 :favoriteBeerIds="favoriteBeerIds"
-                :beer=beer
-                :key=index
+                :beer="beer"
+                :key="beer.id"
                 @addFavoriteBeerId="addFavoriteBeerId"
                 @removeFavoriteBeer="removeFavoriteBeer"
             />

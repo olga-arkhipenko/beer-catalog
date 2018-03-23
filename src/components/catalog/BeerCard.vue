@@ -6,8 +6,8 @@
             <p class="beer-card__tagLine">{{beer.tagLine}}</p>
             <div class="toggle-bar">
                 <button class="toggle-bar__button">open</button>
-                <button class="toggle-bar__button" @click="addFavoriteBeerId($event, beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
-                <button class="toggle-bar__button" @click="removeFavoriteBeer($event, beer.id)" v-else>remove favorite</button>
+                <button class="toggle-bar__button" @click="addFavoriteBeerId(beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
+                <button class="toggle-bar__button" @click="removeFavoriteBeer(beer.id)" v-else>remove favorite</button>
             </div>
         </div>
     </div>
@@ -30,10 +30,10 @@ export default {
         }
     },
     methods: {
-        addFavoriteBeerId(event, favoriteBeerId) {
+        addFavoriteBeerId(favoriteBeerId) {
             this.$emit('addFavoriteBeerId', favoriteBeerId);
         },
-        removeFavoriteBeer(event, favoriteBeerId) {
+        removeFavoriteBeer(favoriteBeerId) {
             this.$emit('removeFavoriteBeer', favoriteBeerId);
         }
     }
