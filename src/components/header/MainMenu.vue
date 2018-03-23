@@ -2,16 +2,11 @@
     <transition name="slide">
         <nav class="main-menu">
             <primary-logo class="main-menu__title"/>
-            <button class="close-sign action-button main-menu__close-button" @click='hideMainMenu'>&#215;</button>
+            <button class="close-sign action-button main-menu__close-button" @click="hideMainMenu">&#215;</button>
             <ul class="main-menu__list">
-                <li class="main-menu__item">
-                    <router-link to="/" class="link">
-                        <span class="main-menu__item-name">Home</span>
-                    </router-link>
-                </li>
-                <li class="main-menu__item">
-                    <router-link to="/favorites" class="link">
-                        <span class="main-menu__item-name">Favorites</span>
+                <li class="main-menu__item" v-for="route in routes" :key="route.name">
+                    <router-link :to="route.path" class="link">
+                        <span class="main-menu__item-name">{{route.name}}</span>
                     </router-link>
                 </li>
             </ul>
@@ -21,8 +16,14 @@
 
 <script>
 import Logo from '../../components/Logo';
+import routes from '../../router/routes';
 
 export default {
+    data() {
+        return {
+            routes
+        }
+    },
     components: {
         'primary-logo': Logo
     },
