@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <header-navigation/>
         <router-view></router-view>
     </div>
@@ -9,7 +9,6 @@
 import 'normalize.css';
 import HeaderNavigation from './components/header/HeaderNavigation';
 export default {
-    name: 'App',
     components: {
         'header-navigation': HeaderNavigation
     },
