@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import FavoriteBeerCard from './FavoriteBeerCard';
-import Pagination from './Pagination';
+import FavoriteBeerCard from '../cards/FavoroteBeerCard';
+import Pagination from '../utilities/Spinner';
 
 export default {
     data() {

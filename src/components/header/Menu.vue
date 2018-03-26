@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Logo from '../../components/Logo';
+import Logo from './Logo';
 import routes from '../../router/routes';
 
 export default {

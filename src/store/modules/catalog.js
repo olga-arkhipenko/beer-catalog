@@ -6,9 +6,9 @@ export default {
     state: {
         beers: [],
         favoriteBeerIds: [],
-        urlParams: {},
-        isFetched: false,
-        isLoading: false
+        // urlParams: {},
+        // isFetched: false,
+        // isLoading: false
     },
     getters: {
         getCatalogBeersInfo(state) {
@@ -21,10 +21,10 @@ export default {
         }
     },
     mutations: {
-        SET_BEERS(state, beers) {
+        setBeers(state, beers) {
             state.beers.push(...beers);
         },
-        RESET_BEERS(state) {
+        resetBeers(state) {
             state.beers = [];
         },
         ADD_URL_PARAMS(state, urlParams) {
@@ -60,11 +60,11 @@ export default {
                 PunkAPI.get(url).then(beers => {
                     commit('RESET_LOADING');
                     if(beers.length < state.urlParams.per_page) {
-                        commit('SET_BEERS', beers);
+                        commit('setBeers', beers);
                         commit('SET_FETCHED');
                     }
                     else {
-                        commit('SET_BEERS', beers);
+                        commit('setBeers', beers);
                     }
                 });
             }

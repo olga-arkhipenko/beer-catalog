@@ -1,11 +1,11 @@
 <template>
-    <article class="page-content">
+    <article class="catalog">
         <search-panel
         ref="searchPanel"
         @loadBeers="loadBeers"
         @resetPage="resetPage"
         />
-        <section class="catalog">
+        <!-- <section class="catalog">
             <beer-card 
                 v-for="beer in beers"
                 :favoriteBeerIds="favoriteBeerIds"
@@ -14,28 +14,27 @@
                 @addFavoriteBeerId="addFavoriteBeerId"
                 @removeFavoriteBeer="removeFavoriteBeer"
             />
-        </section>
-    <catalog-spinner v-if="isLoading"/>
+        </section> -->
+        <grid-list/>
+        <catalog-spinner v-if="isLoading"/>
     </article>
 </template>
 
 <script>
-import SearchPanel from './SearchPanel';
-import BeerCard from './BeerCard';
-import Spinner from '../../components/Spinner'
+import SearchPanel from '../search/SearchPanel';
+import GridList from '../lists/GridList';
+import Spinner from '../utilities/Spinner';
 
 export default {
     data() {
         return {
-            catalogParams: {
-                page: 1,
-                per_page: 9
-            }   
+            pageNumber: 1,
+            itemsPerPage: 9
         }
     },
     components: {
-        'beer-card': BeerCard,
         'search-panel': SearchPanel,
+        'grid-list': GridList,
         'catalog-spinner': Spinner
     },
     mounted() {
@@ -58,7 +57,7 @@ export default {
             return this.$store.state.isLoading;
         },
         favoriteBeerIds() {
-            return this.$store.state.favoriteBeerIds;
+            return this.$store.state.favoriteBeerIds; // from another place
         }
     },
     methods: {
@@ -96,18 +95,8 @@ export default {
 </script>
 
 <style>
-    .page-content {
-        margin: 150px 0 0;
-    }
-    
     .catalog {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-        align-items: end;
-        width: 1240px;
-        margin: 40px auto;
+        margin: 150px 0 0;
     }
 </style>
 

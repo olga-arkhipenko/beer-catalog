@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import MainMenu from './MainMenu';
-import Logo from '../../components/Logo';
+import MainMenu from './Menu';
+import Logo from './Logo';
 export default {
     data() {
         return {
