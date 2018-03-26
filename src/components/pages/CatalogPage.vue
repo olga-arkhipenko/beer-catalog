@@ -15,7 +15,10 @@
                 @removeFavoriteBeer="removeFavoriteBeer"
             />
         </section> -->
-        <grid-list/>
+        <grid-list
+            :beers="beers"
+            :favoriteBeerIds="favoriteBeerIds"
+        />
         <catalog-spinner v-if="isLoading"/>
     </article>
 </template>
@@ -39,19 +42,19 @@ export default {
     },
     mounted() {
         window.addEventListener('scroll', this.loadNextBeerPage);
-        this.$store.dispatch('fetchFavoriteBeerIds');
-        this.loadBeers();
+        // this.$store.dispatch('fetchFavoriteBeerIds');
+        // this.loadBeers();
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
-        this.$store.commit('RESET_BEERS');
-        this.$store.commit('RESET_FECTHED');
-        this.$store.commit('RESET_URL_PARAMS');
-        this.resetPage();
+        // this.$store.commit('RESET_BEERS');
+        // this.$store.commit('RESET_FECTHED');
+        // this.$store.commit('RESET_URL_PARAMS');
+        // this.resetPage();
     },
     computed: {
         beers() {
-            return this.$store.getters.getCatalogBeersInfo;
+            return this.$store.catalog.state.beers; //HERE
         },
         isLoading() {
             return this.$store.state.isLoading;
@@ -62,7 +65,7 @@ export default {
     },
     methods: {
         loadBeers() {
-            this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
+            // this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
             this.$store.dispatch('fetchBeers');
         },
         loadNextBeerPage() {

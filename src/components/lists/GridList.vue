@@ -5,8 +5,6 @@
             :favoriteBeerIds="favoriteBeerIds"
             :beer="beer"
             :key="beer.id"
-            @addFavoriteBeerId="addFavoriteBeerId"
-            @removeFavoriteBeer="removeFavoriteBeer"
         />
     </section>
 </template>
