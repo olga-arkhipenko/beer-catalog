@@ -2,16 +2,16 @@
     <article class="favorites">
         <h1 class="favorites__heading">Your favorite beers</h1>
         <favorite-beer-card
-            v-for="beer  in favoriteBeers"
+            v-for="beer in favoriteBeers"
             :favoriteBeerIds="favoriteBeerIds"
             :beer="beer"
             :key="beer.id"
             @removeFavoriteBeer="removeFavoriteBeer"
         />
         <favorites-pagination
-            :current-page="favoritesParams.page"
-            :total-beers="favoriteBeerIds.length"
-            :beers-per-page="favoritesParams.per_page"
+            :currentPage="favoritesParams.page"
+            :totalItems="favoriteBeerIds.length"
+            :itemsPerPage="favoritesParams.per_page"
             @changePage="changePage"
         />
     </article>
@@ -25,8 +25,8 @@ export default {
     data() {
         return {
             favoritesParams: {
-                page: 1,
-                per_page: 5
+                pageNumber: 1,
+                itemsPerPage: 5
             }
         }
     },

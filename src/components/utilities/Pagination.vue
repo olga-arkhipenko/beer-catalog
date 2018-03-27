@@ -24,23 +24,13 @@ export default {
         };
     },
     props: {
-        currentPage: {
-            type: Number,
-            required: true,
-            default: 1
-        },
-        totalBeers: {
-            type: Number,
-            required: true
-        },
-        beersPerPage: {
-            type: Number,
-            required: true
-        }
+        currentPage: Number,
+        totalItems: Number,
+        itemsPerPage: Number
     },
     computed: {
         totalPages() {
-            return Math.ceil(this.totalBeers / this.beersPerPage);
+            return Math.ceil(this.totalItems / this.itemsPerPage);
         },
         pageRange() {
             let pageRange = [];
