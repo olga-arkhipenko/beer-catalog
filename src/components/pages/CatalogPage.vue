@@ -2,19 +2,9 @@
     <article class="catalog">
         <search-panel
         ref="searchPanel"
-        @loadBeers="loadBeers"
+        @loadBeerPage="loadBeerPage"
         @resetPage="resetPage"
         />
-        <!-- <section class="catalog">
-            <beer-card 
-                v-for="beer in beers"
-                :favoriteBeerIds="favoriteBeerIds"
-                :beer="beer"
-                :key="beer.id"
-                @addFavoriteBeerId="addFavoriteBeerId"
-                @removeFavoriteBeer="removeFavoriteBeer"
-            />
-        </section> -->
         <grid-list
             :beers="beers"
             :favoriteBeerIds="favoriteBeerIds"
@@ -27,6 +17,7 @@
 import SearchPanel from '../search/SearchPanel';
 import GridList from '../lists/GridList';
 import Spinner from '../utilities/Spinner';
+import windowUtils from '../../utilities/windowUtils'
 
 export default {
     data() {
@@ -42,6 +33,7 @@ export default {
     },
     mounted() {
         window.addEventListener('scroll', this.loadNextBeerPage);
+        this.loadBeerPage(this.pageNumber, this.itemsPerPage);
         // this.$store.dispatch('fetchFavoriteBeerIds');
         // this.loadBeers();
     },
@@ -54,45 +46,38 @@ export default {
     },
     computed: {
         beers() {
-            return this.$store.catalog.state.beers; //HERE
+            return this.$store.state.catalog.beers;
         },
-        isLoading() {
-            return this.$store.state.isLoading;
-        },
-        favoriteBeerIds() {
-            return this.$store.state.favoriteBeerIds; // from another place
-        }
+        // isLoading() {
+        //     return this.$store.state.isLoading;
+        // },
+        // favoriteBeerIds() {
+        //     return this.$store.state.favoriteBeerIds; // from another place
+        // }
     },
     methods: {
-        loadBeers() {
+        loadBeerPage(...params) {
             // this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
-            this.$store.dispatch('fetchBeers');
+            this.$store.dispatch('loadBeerPage', params);
         },
         loadNextBeerPage() {
-            if(this.isBottom()) {
+            if(windowUtils.isBottom()) {
                 this.incrementPage();
-                this.loadBeers();
+                this.loadBeerPage(this.pageNumber, this.itemsPerPage);
             }
         },
         incrementPage() {
-            this.catalogParams.page++;
+            this.pageNumber++;
         },
         resetPage() {
-            this.catalogParams.page = 1;
+            this.pageNumber = 1;
         },
-        isBottom(){
-            const scrollY = window.scrollY;
-            const visibleContent = document.documentElement.clientHeight;
-            const pageHeight = document.documentElement.scrollHeight;
-            const pageBottom = visibleContent + scrollY >= pageHeight;
-            return pageBottom || pageHeight < visibleContent;
-        },
-        addFavoriteBeerId(favoriteBeerId) {
-            this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
-        },
-        removeFavoriteBeer(favoriteBeerId) {
-            this.$store.dispatch('removeFavoriteBeer', favoriteBeerId)
-        }
+        // addFavoriteBeerId(favoriteBeerId) {
+        //     this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
+        // },
+        // removeFavoriteBeer(favoriteBeerId) {
+        //     this.$store.dispatch('removeFavoriteBeer', favoriteBeerId)
+        // }
     }
 }
 </script>
