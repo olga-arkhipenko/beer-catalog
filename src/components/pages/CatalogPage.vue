@@ -58,11 +58,13 @@ export default {
     methods: {
         loadBeerPage(...params) {
             // this.$store.commit('ADD_URL_PARAMS', this.catalogParams);
+            //Придется или из через ref, или что-то пустое передавать. или хз 
             this.$store.dispatch('loadBeerPage', params);
         },
         loadNextBeerPage() {
             if(windowUtils.isBottom()) {
                 this.incrementPage();
+                //Брать рефы здесь
                 this.loadBeerPage(this.pageNumber, this.itemsPerPage);
             }
         },
