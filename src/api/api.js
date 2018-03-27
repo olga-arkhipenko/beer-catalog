@@ -5,7 +5,7 @@ export default {
             xhr.open('GET', url, true);
             xhr.onload = function () {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                  resolve(JSON.parse(xhr.response));
+                  resolve(xhr.response);
                 } else {
                   reject({
                     status: xhr.status,
@@ -13,7 +13,7 @@ export default {
                   });
                 }
               };
-              xhr.send();
+            xhr.send();
         });
     }
 }

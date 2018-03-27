@@ -10,7 +10,7 @@
         <button class="action-button search-panel__button" @click="submitSearch">&#128269;</button>
         <adavanced-search-panel 
             @submitSearch="submitSearch"
-            @addSearchingParams="addSearchingParams"
+            @addSearchParams="addSearchParams"
             v-if="isAdvancedSearchPanelShown"
         />
     </article>
@@ -18,37 +18,40 @@
 
 <script>
 import AdvancedSearchPanel from './AdvancedSearchPanel';
+import {mapActions} from 'vuex';
 
 export default {
     data() {
         return {
             inputBeerName: '',
             isAdvancedSearchPanelShown: false,
-            searchingParams: {}
         }
+    },
+    props: {
+        searchParams: Object
     },
     components: {
         'adavanced-search-panel': AdvancedSearchPanel
     },
     computed: {
-        searchingBeerName(){
+        searchBeerName(){
             return this.inputBeerName.toLowerCase().replace(/\s+/g, '_')
         }
     },
     methods: {
+        ...mapActions('catalog', ['resetStore']),
+
         submitSearch() {
-            if(this.searchingBeerName) {
-                this.$store.commit('RESET_BEERS');
-                this.$store.commit('RESET_FECTHED');
+            if(this.searchBeerName) {
+                this.resetStore();
                 this.$emit('resetPage');
-                this.addSearchingParams({beer_name: this.searchingBeerName});
-                this.$store.commit('ADD_URL_PARAMS', this.searchingParams);
-                this.$emit('loadBeers');
+                this.addSearchParams({beer_name: this.searchingBeerName});
+                this.$emit('loadBeerPage');
                 this.showAdvancedSearchPanel();
             }
         },
-        addSearchingParams(additionalParams) {
-            this.searchingParams = {...this.searchingParams, ...additionalParams};
+        addSearchParams(searchParams) {
+            this.searchParams = {...this.searchParams, ...searchParams};
         },
         showAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = true;
@@ -57,15 +60,15 @@ export default {
             this.isAdvancedSearchPanelShown = false;
         },
         cleanSearch() {
-            this.inputBeerName = '';
-            this.$store.commit('RESET_BEERS');
-            this.$store.commit('RESET_FECTHED');
-            this.$store.commit('RESET_URL_PARAMS');
-            this.hideAdvancedSearchPanel();
+            // this.inputBeerName = '';
+            // this.$store.commit('RESET_BEERS');
+            // this.$store.commit('RESET_FECTHED');
+            // this.$store.commit('RESET_URL_PARAMS');
+            // this.hideAdvancedSearchPanel();
         },
         submitCleanSearch() {
-            this.cleanSearch();
-            this.$emit('loadBeers');
+            // this.cleanSearch();
+            // this.$emit('loadBeers');
         }
     }
 }

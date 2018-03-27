@@ -56,18 +56,18 @@ export default {
     },
     actions: {
         fetchFavoriteBeers({commit, state}) {
-            commit('SET_LOADING');
-            const url = UrlCreator.create(state.urlParams);
-            PunkAPI.get(url).then(beers => {
-                commit('RESET_LOADING');
-                if(beers.length < state.urlParams.per_page) {
-                    commit('SET_FAVORITE_BEERS', beers);
-                    commit('SET_FETCHED');
-                }
-                else {
-                    commit('SET_FAVORITE_BEERS', beers);
-                }
-            });
+            // commit('SET_LOADING');
+            // const url = UrlCreator.create(state.urlParams);
+            // PunkAPI.get(url).then(beers => {
+            //     commit('RESET_LOADING');
+            //     if(beers.length < state.urlParams.per_page) {
+            //         commit('SET_FAVORITE_BEERS', beers);
+            //         commit('SET_FETCHED');
+            //     }
+            //     else {
+            //         commit('SET_FAVORITE_BEERS', beers);
+            //     }
+            // });
         },
         fetchFavoriteBeerIds({commit, state}) {
             const favoriteBeerIds = LocalStorageAPI.fetchFavoriteBeerIds();

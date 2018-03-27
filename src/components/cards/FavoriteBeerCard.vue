@@ -16,12 +16,8 @@
 <script>
 export default {
     props: {
-        beer: {
-            type: Object
-        },
-        favoriteBeerIds: {
-            type: Array
-        }
+        beer: Object,
+        favoriteBeerIds: Array
     },
     methods: {
         removeFavoriteBeer(favoriteBeerId) {

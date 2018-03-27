@@ -4,21 +4,21 @@
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">Alcohol by volume</span>
                 <label>
-                    <input type="range" min="2" max="14" class="advanced-search-panel__range" v-model.number="advancedParams.abv_gt" @change="submitSearch">
+                    <input type="range" min="2" max="14" class="advanced-search-panel__range" v-model.number="advancedParams.alcoholByVolume" @change="submitSearch">
                     <span class="advanced-search-panel__filter-note" v-cloak>more than {{advancedParams.abv_gt}}</span>
                 </label>
             </div>
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">International Bitterness Units</span>
                 <label>
-                    <input type="range" min="0" max="120" class="advanced-search-panel__range" v-model.number="advancedParams.ibu_gt" @change="submitSearch">
+                    <input type="range" min="0" max="120" class="advanced-search-panel__range" v-model.number="advancedParams.InterBitUnits" @change="submitSearch">
                     <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedParams.ibu_gt}}</span>
                 </label>
             </div>
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">Color by EBC</span>
                 <label>
-                    <input type="range" min="4" max="80" class="advanced-search-panel__range" v-model.number="advancedParams.ebc_gt" @change="submitSearch">
+                    <input type="range" min="4" max="80" class="advanced-search-panel__range" v-model.number="advancedParams.colorByEBC" @change="submitSearch">
                     <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedParams.ebc_gt}}</span>
                 </label>
             </div>
@@ -30,16 +30,16 @@
     export default {
         data() {
             return {
-                advancedParams: {
-                    abv_gt: 2,
-                    ibu_gt: 0,
-                    ebc_gt: 4
+                advancedSearchParams: {
+                    alcoholByVolume: 2,
+                    InterBitUnits: 0,
+                    colorByEBC: 4
                 }
             }
         },
         methods: {
             submitSearch() {
-                this.$emit('addSearchingParams', this.advancedParams);
+                this.$emit('addSearchingParams', this.advancedSearchParams);
                 this.$emit('submitSearch');
             }
         }

@@ -1,16 +1,16 @@
 <template>
     <div>
-        <header-navigation/>
+        <navigation/>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 import 'normalize.css';
-import HeaderNavigation from './components/header/HeaderNavigation';
+import Navigation from './components/header/Navigation';
 export default {
     components: {
-        'header-navigation': HeaderNavigation
+        'navigation': Navigation
     },
 };
 </script>
