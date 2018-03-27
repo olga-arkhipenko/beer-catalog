@@ -10,10 +10,15 @@
 </template>
 
 <script>
+import CatalogBeerCard from '../cards/CatalogBeerCard';
+
 export default {
     props: {
         beers: Array,
         favoriteBeerIds: Array
+    },
+    components: {
+        'beer-card': CatalogBeerCard
     }
 }
 </script>

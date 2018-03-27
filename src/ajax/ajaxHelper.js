@@ -5,9 +5,12 @@ import dataUtils from '../utils/dataUtils';
 export default {
     fetchCatalogData(requestParams) {
         const url = urlCreator.create(requestParams);
-        api.get(url).then(data => {
+        let beers = [];
+        console.log('url ' + url)
+        return api.get(url).then(data => {
             const parsedData = JSON.parse(data);
-            const filteredData = dataUtils.filterForCatalog(parsedData);
+            const filteredData = dataUtils.catalogFilter(parsedData);
+            console.log('from promise ' + filteredData)
             return filteredData;
         });
     },

@@ -10,7 +10,7 @@ export default {
         // isLoading: false
     },
     mutations: {
-        setBeers(state, beers) {
+        pushBeers(state, beers) {
             state.beers.push(...beers);
         },
         resetBeers(state) {
@@ -37,13 +37,16 @@ export default {
     },
     actions: {
         loadBeers({commit, state}, requestParams) {
-            console.log('hello'+ requestParams);
-            const beers = ajaxHelper.fetchCatalogData(requestParams);
-            commit('setBeers', beers);
+            console.log('hello'+ JSON.stringify(requestParams));
+            ajaxHelper.fetchCatalogData(requestParams).then(beers => {
+                console.log('beers are ' + beers);
+                commit('pushBeers', beers);
+            });
         },
-        openCatalogPage({commit, state}, catalogParams) {
-            this.loadBeers(catalogParams);
-            this.loadFavoriteBeerIds();
+        openCatalogPage({commit, dispatch}, catalogParams) {
+            console.log('hi' + JSON.stringify(catalogParams));
+            dispatch('loadBeers', catalogParams);
+            dispatch('loadFavoriteBeerIds');
         },
         loadFavoriteBeerIds({commit, state}) {
             const favoriteBeerIds = localStorage.fetchFavoriteBeerIds();

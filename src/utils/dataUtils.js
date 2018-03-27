@@ -1,5 +1,5 @@
 export default {
-    filterForCatalog(data) {
+    catalogFilter(data) {
         return data.map(item => ({
             id: item.id, 
             name: item.name, 
@@ -7,7 +7,7 @@ export default {
             tagLine: item.tagline
         }));
     },
-    filterForFavorites(data) {
+    favoritesFilter(data) {
 
     }
 }

@@ -38,7 +38,7 @@ export default {
     },
     mounted() {
         window.addEventListener('scroll', this.loadNextBeerPage);
-        this.openCatalogPage();
+        this.openCatalogPage(this.catalogParams);
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
