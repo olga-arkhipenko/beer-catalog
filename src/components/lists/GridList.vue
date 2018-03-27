@@ -2,12 +2,22 @@
     <section class="grid-list">
         <beer-card 
             v-for="beer in beers"
-            :favoriteBeerIds="favoriteBeerIds"
             :beer="beer"
+            :favoriteBeerIds="favoriteBeerIds"
             :key="beer.id"
         />
     </section>
 </template>
+
+<script>
+export default {
+    props: {
+        beers: Array,
+        favoriteBeerIds: Array
+    }
+}
+</script>
+
 
 <style>
     .grid-list {

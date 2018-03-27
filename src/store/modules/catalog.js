@@ -1,6 +1,5 @@
-// import PunkAPI from '../../api/PunkAPI';
-// import LocalStorageAPI from '../../api/LocalStorageAPI';
 import ajaxHelper from '../../ajax/ajaxHelper';
+import localStorage from '../../localStorage/localStorage';
 
 export default {
     namespaced: true,
@@ -8,17 +7,7 @@ export default {
         beers: [],
         favoriteBeerIds: [],
         isAllFetched: false,
-        isLoading: false
-    },
-    getters: {
-        getCatalogBeersInfo(state) {
-            return state.beers.map(beer => ({
-                id: beer.id, 
-                name: beer.name, 
-                image: beer.image_url, 
-                tagLine: beer.tagline
-                }));
-        }
+        // isLoading: false
     },
     mutations: {
         setBeers(state, beers) {
@@ -27,51 +16,42 @@ export default {
         resetBeers(state) {
             state.beers = [];
         },
-        setAllFetched(state) {
-            state.isAllFetched = true;
-        },
-        resetAllFetched(state) {
-            state.isAllFetched = false;
-        },
-        setLoading(state) {
-            state.isLoading = true;
-        },
-        resetLoading(state) {
-            state.isLoading = false;
-        },
-        SET_FAVORITE_BEER_IDS(state, favoriteBeerIds) {
+        // setAllFetched(state) {
+        //     state.isAllFetched = true;
+        // },
+        // resetAllFetched(state) {
+        //     state.isAllFetched = false;
+        // },
+        // setLoading(state) {
+        //     state.isLoading = true;
+        // },
+        // resetLoading(state) {
+        //     state.isLoading = false;
+        // },
+        setFavoriteBeerIds(state, favoriteBeerIds) {
             state.favoriteBeerIds = favoriteBeerIds;
         },
-        ADD_FAVORITE_BEER_ID(state, favoriteBeerId) {
+        addFavoriteBeerId(state, favoriteBeerId) {
             state.favoriteBeerIds.push(favoriteBeerId);
         }
     },
     actions: {
-        loadBeerPage({commit, state}, payload) {
-            // if(!state.isFetched) {
-            //     commit('setLoading');
-            console.log(JSON.parse(payload));
-                // const url = UrlCreator.create(payload);
-                ajaxHelper.fetchData(payload);
-                // PunkAPI.get(url).then(beers => {
-                    // commit('resetLoading');
-                    // if(beers.length < state.urlParams.per_page) {
-                        // commit('setBeers', beers);
-                        // commit('SET_FETCHED');
-                    // }
-                    // else {
-                        // commit('setBeers', beers);
-                    // }
-                // });
-            // }
+        loadBeers({commit, state}, requestParams) {
+            console.log('hello'+ requestParams);
+            const beers = ajaxHelper.fetchCatalogData(requestParams);
+            commit('setBeers', beers);
         },
-        resetStore({commit, state}) {
-            commit('resetBeers');
-            commit('resetAllFetched');
-        }
-        // fetchFavoriteBeerIds({commit, state}) {
-        //     const favoriteBeerIds = LocalStorageAPI.fetchFavoriteBeerIds();
-        //     commit('SET_FAVORITE_BEER_IDS', favoriteBeerIds);
+        openCatalogPage({commit, state}, catalogParams) {
+            this.loadBeers(catalogParams);
+            this.loadFavoriteBeerIds();
+        },
+        loadFavoriteBeerIds({commit, state}) {
+            const favoriteBeerIds = localStorage.fetchFavoriteBeerIds();
+            commit('setFavoriteBeerIds', favoriteBeerIds);
+        },
+        // resetStore({commit, state}) {
+        //     commit('resetBeers');
+        //     // commit('resetAllFetched');
         // },
         // addFavoriteBeerId({commit, state}, favoriteBeerId) {
         //     if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {

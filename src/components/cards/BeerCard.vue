@@ -17,12 +17,8 @@
 
 export default {
     props: {
-        beer: {
-            type: Object
-        },
-        favoriteBeerIds: {
-            type: Array
-        }
+        beer: Object,
+        favoriteBeerIds: Array
     },
     computed: {
         isAddFavoriteButtonShown() {
@@ -30,12 +26,12 @@ export default {
         }
     },
     methods: {
-        addFavoriteBeerId(favoriteBeerId) {
-            this.$emit('addFavoriteBeerId', favoriteBeerId);
-        },
-        removeFavoriteBeer(favoriteBeerId) {
-            this.$emit('removeFavoriteBeer', favoriteBeerId);
-        }
+        // addFavoriteBeerId(favoriteBeerId) {
+        //     this.$emit('addFavoriteBeerId', favoriteBeerId);
+        // },
+        // removeFavoriteBeer(favoriteBeerId) {
+        //     this.$emit('removeFavoriteBeer', favoriteBeerId);
+        // }
     }
 }
 </script>

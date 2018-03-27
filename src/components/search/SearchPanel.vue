@@ -34,7 +34,7 @@ export default {
         'adavanced-search-panel': AdvancedSearchPanel
     },
     computed: {
-        searchBeerName(){
+        formattedBeerName(){
             return this.inputBeerName.toLowerCase().replace(/\s+/g, '_')
         }
     },
@@ -45,7 +45,7 @@ export default {
             if(this.searchBeerName) {
                 this.resetStore();
                 this.$emit('resetPage');
-                this.addSearchParams({beer_name: this.searchingBeerName});
+                this.addSearchParams({beerName: this.formattedBeerName});
                 this.$emit('loadBeerPage');
                 this.showAdvancedSearchPanel();
             }

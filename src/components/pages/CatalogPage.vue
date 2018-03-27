@@ -7,9 +7,9 @@
         />
         <grid-list
         :beers="beers"
-
+        :favoriteBeerIds="favoriteBeerIds"
         />
-        <!-- <catalog-spinner v-if="isLoading"/> -->
+        <catalog-spinner v-if="isSpinnerShown"/>
     </article>
 </template>
 
@@ -27,7 +27,8 @@ export default {
                 pageNumber: 1,
                 itemsPerPage: 9
             },
-            searchParams: {}
+            searchParams: {},
+            isSpinnerShown: false
         }
     },
     components: {
@@ -37,9 +38,7 @@ export default {
     },
     mounted() {
         window.addEventListener('scroll', this.loadNextBeerPage);
-        this.loadBeerPage(this.catalogParams, this.searchParams);
-        // this.$store.dispatch('fetchFavoriteBeerIds');
-        // this.loadBeers();
+        this.openCatalogPage();
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
@@ -48,22 +47,13 @@ export default {
         // this.$store.commit('RESET_URL_PARAMS');
         // this.resetPage();
     },
-    computed: mapState('catalog', ['beers']),
-        // beers() {
-        //     return this.beers;
-        // },
-        // isLoading() {
-        //     return this.$store.state.isLoading;
-        // },
-        // favoriteBeerIds() {
-        //     return this.$store.state.favoriteBeerIds; // from another place
-        // }
+    computed: mapState('catalog', ['beers', 'favoriteBeerIds']),
     methods: {
-        ...mapActions('catalog', ['loadBeerPage']),
+        ...mapActions('catalog', ['loadBeers', 'loadFavoriteBeerIds', 'openCatalogPage']),
 
         loadBeerPage(catalogParams, searchParams) {
             const payload = {...catalogParams, ...searchParams};
-            loadBeerPage(payload);
+            this.loadBeers(payload);
         },
         loadNextBeerPage() {
             if(windowUtils.isBottom()) {
@@ -76,13 +66,7 @@ export default {
         },
         resetPage() {
             this.catalogParam.pageNumber = 1;
-        },
-        // addFavoriteBeerId(favoriteBeerId) {
-        //     this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
-        // },
-        // removeFavoriteBeer(favoriteBeerId) {
-        //     this.$store.dispatch('removeFavoriteBeer', favoriteBeerId)
-        // }
+        }
     }
 }
 </script>
