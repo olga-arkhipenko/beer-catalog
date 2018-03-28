@@ -53,7 +53,6 @@ export default {
         },
         addAllSearchParams(advancedSearchParams) {
             const allSearchParams = {beerName: this.formattedBeerName, ...advancedSearchParams};
-            console.log(JSON.stringify(allSearchParams))
             this.$emit('addSearchParams', allSearchParams);
         },
         showAdvancedSearchPanel() {

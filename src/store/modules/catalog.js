@@ -15,12 +15,6 @@ export default {
         resetBeers(state) {
             state.beers = [];
         },
-        // setAllFetched(state) {
-        //     state.isAllFetched = true;
-        // },
-        // resetAllFetched(state) {
-        //     state.isAllFetched = false;
-        // },
         setLoading(state) {
             state.isLoading = true;
         },
@@ -38,13 +32,11 @@ export default {
         loadBeers({commit, state}, requestParams) {
             commit('setLoading');
             ajaxHelper.fetchCatalogData(requestParams).then(beers => {
-                console.log('beers are ' + beers);
                 commit('pushBeers', beers);
                 commit('resetLoading');
             });
         },
         openCatalogPage({commit, dispatch}, catalogParams) {
-            console.log('hi' + JSON.stringify(catalogParams));
             dispatch('loadBeers', catalogParams);
             dispatch('loadFavoriteBeerIds');
         },
@@ -55,15 +47,13 @@ export default {
         resetStore({commit, state}) {
             commit('resetBeers');
         },
-        addFavoriteBeerId({commit, state}, favoriteBeerId) {
-            console.log('adding ' + favoriteBeerId);
+        addFavoriteBeer({commit, state}, favoriteBeerId) {
             if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
                 commit('addFavoriteBeerId', favoriteBeerId);
             }
             localStorage.updateFavoriteBeerIds(state.favoriteBeerIds);
         },
         removeFavoriteBeer({commit, state}, favoriteBeerId) {
-            console.log('removing ' + favoriteBeerId);
             const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
             commit('setFavoriteBeerIds', filteredIds);
             localStorage.updateFavoriteBeerIds(state.favoriteBeerIds);

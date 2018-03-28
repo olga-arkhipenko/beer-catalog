@@ -6,7 +6,7 @@
             <p class="favorite-beer-card__description">{{beer.description}}</p>
             <div class="favorite-bar">
                 <button class="action-button favorite-bar__button">open</button>
-                <button class="action-button favorite-bar__button" @click="removeFavoriteBeer(beer.id)">remove favorite</button>
+                <button class="action-button favorite-bar__button" @click="deleteFavoriteBeer(beer.id)">remove favorite</button>
             </div>
         </div>
         <img :src="beer.image" alt="Beer pic" class="favorite-beer-card__image">
@@ -14,14 +14,18 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
     props: {
         beer: Object,
         favoriteBeerIds: Array
     },
     methods: {
-        removeFavoriteBeer(favoriteBeerId) {
-            this.$emit('removeFavoriteBeer', favoriteBeerId);
+        ...mapActions('favorites', ['removeFavoriteBeer']),
+        deleteFavoriteBeer(favoriteBeerId) {
+            this.removeFavoriteBeer(favoriteBeerId);
+            this.$emit('loadFavoriteBeerPage');
         }
     }
 }

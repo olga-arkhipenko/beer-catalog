@@ -6,12 +6,12 @@
             :favoriteBeerIds="favoriteBeerIds"
             :beer="beer"
             :key="beer.id"
-            @removeFavoriteBeer="removeFavoriteBeer"
+            @loadFavoriteBeerPage="loadFavoriteBeerPage"
         />
         <favorites-pagination
-            :currentPage="favoritesParams.page"
+            :currentPage="favoritesParams.pageNumber"
             :totalItems="favoriteBeerIds.length"
-            :itemsPerPage="favoritesParams.per_page"
+            :itemsPerPage="favoritesParams.itemsPerPage"
             @changePage="changePage"
         />
     </article>
@@ -19,7 +19,8 @@
 
 <script>
 import FavoriteBeerCard from '../cards/FavoriteBeerCard';
-import Pagination from '../utilities/Spinner';
+import Pagination from '../utilities/Pagination';
+import {mapState, mapActions} from 'vuex';
 
 export default {
     data() {
@@ -30,45 +31,29 @@ export default {
             }
         }
     },
-    mounted() {
-        this.$store.dispatch('fetchFavoriteBeerIds');
-        this.loadFavoriteBeers();
-    },
-    computed: {
-        favoriteBeers() {
-            return this.$store.getters.getFavoriteBeersInfo;
-        },
-        favoriteBeerIds() {
-            return this.$store.state.favoriteBeerIds;
-        }
-    },
-    beforeDestroy() {
-        this.$store.commit('RESET_FECTHED');
-        this.$store.commit('RESET_URL_PARAMS');
-        this.resetPage();
-    },
     components: {
         'favorite-beer-card': FavoriteBeerCard,
         'favorites-pagination': Pagination
     },
+    mounted() {
+        this.loadFavoriteBeerPage();
+    },
+    computed: mapState('favorites', ['favoriteBeers', 'favoriteBeerIds']),
+    beforeDestroy() {
+        this.resetPage();
+    },
     methods: {
-        loadFavoriteBeers() {
-            this.$store.commit('ADD_URL_PARAMS', { ...this.favoritesParams, ids: this.$store.state.favoriteBeerIds.join('|')});
-            this.$store.dispatch('fetchFavoriteBeers');
-        },
-        removeFavoriteBeer(favoriteBeerId) {
-            this.$store.dispatch('removeFavoriteBeer', favoriteBeerId);
-            this.loadFavoriteBeers();
-        },
-        addFavoriteBeerId(favoriteBeerId) {
-            this.$store.dispatch('addFavoriteBeerId', favoriteBeerId)
+        ...mapActions('favorites', ['loadFavoriteBeers', 'fetchFavoriteBeerIds']),
+        loadFavoriteBeerPage() {
+            console.log('loading beers');
+            this.loadFavoriteBeers(this.favoritesParams);
         },
         changePage(pageNumber) {
-            this.favoritesParams.page = pageNumber;
-            this.loadFavoriteBeers();
+            this.favoritesParams.pageNumber = pageNumber;
+            this.loadFavoriteBeerPage();
         },
         resetPage() {
-            this.favoritesParams.page = 1;
+            this.favoritesParams.pageNumber = 1;
         }
     }
 }

@@ -6,7 +6,7 @@
             <p class="beer-card__tagLine">{{beer.tagLine}}</p>
             <div class="toggle-bar">
                 <button class="toggle-bar__button">open</button>
-                <button class="toggle-bar__button" @click="addFavoriteBeerId(beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
+                <button class="toggle-bar__button" @click="addFavoriteBeer(beer.id)" v-if="isAddFavoriteButtonShown">add to favorite</button>
                 <button class="toggle-bar__button" @click="removeFavoriteBeer(beer.id)" v-else>remove favorite</button>
             </div>
         </div>
@@ -26,13 +26,7 @@ export default {
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
-    methods: mapActions('catalog', ['addFavoriteBeerId', 'removeFavoriteBeer'])
-        // addFavoriteBeerId(favoriteBeerId) {
-        //     this.$emit('addFavoriteBeerId', favoriteBeerId);
-        // },
-        // removeFavoriteBeer(favoriteBeerId) {
-        //     this.$emit('removeFavoriteBeer', favoriteBeerId);
-        // }
+    methods: mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer'])
 }
 </script>
 
