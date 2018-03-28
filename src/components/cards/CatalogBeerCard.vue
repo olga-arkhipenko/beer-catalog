@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 
 export default {
     props: {
@@ -25,14 +26,13 @@ export default {
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
-    methods: {
+    methods: mapActions('catalog', ['addFavoriteBeerId', 'removeFavoriteBeer'])
         // addFavoriteBeerId(favoriteBeerId) {
         //     this.$emit('addFavoriteBeerId', favoriteBeerId);
         // },
         // removeFavoriteBeer(favoriteBeerId) {
         //     this.$emit('removeFavoriteBeer', favoriteBeerId);
         // }
-    }
 }
 </script>
 

@@ -54,19 +54,20 @@ export default {
         },
         resetStore({commit, state}) {
             commit('resetBeers');
-            // commit('resetAllFetched');
         },
-        // addFavoriteBeerId({commit, state}, favoriteBeerId) {
-        //     if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
-        //         commit('ADD_FAVORITE_BEER_ID', favoriteBeerId);
-        //     }
-        //     LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
-        // },
-        // removeFavoriteBeer({commit, state}, favoriteBeerId) {
-        //     const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
-        //     commit('SET_FAVORITE_BEER_IDS', filteredIds);
-        //     LocalStorageAPI.updateFavoriteBeerIds(state.favoriteBeerIds);
-        // }
+        addFavoriteBeerId({commit, state}, favoriteBeerId) {
+            console.log('adding ' + favoriteBeerId);
+            if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
+                commit('addFavoriteBeerId', favoriteBeerId);
+            }
+            localStorage.updateFavoriteBeerIds(state.favoriteBeerIds);
+        },
+        removeFavoriteBeer({commit, state}, favoriteBeerId) {
+            console.log('removing ' + favoriteBeerId);
+            const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
+            commit('setFavoriteBeerIds', filteredIds);
+            localStorage.updateFavoriteBeerIds(state.favoriteBeerIds);
+        }
     }
 
 }
