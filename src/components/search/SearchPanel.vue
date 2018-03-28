@@ -63,15 +63,15 @@ export default {
             this.isAdvancedSearchPanelShown = false;
         },
         cleanSearch() {
-            // this.inputBeerName = '';
-            // this.$store.commit('RESET_BEERS');
-            // this.$store.commit('RESET_FECTHED');
-            // this.$store.commit('RESET_URL_PARAMS');
-            // this.hideAdvancedSearchPanel();
+            this.inputBeerName = '';
+            this.$emit('resetPage');
+            this.$emit('resetSearchParams');
+            this.resetStore();
+            this.hideAdvancedSearchPanel();
         },
         submitCleanSearch() {
-            // this.cleanSearch();
-            // this.$emit('loadBeers');
+            this.cleanSearch();
+            this.$emit('loadBeerPage');
         }
     }
 }

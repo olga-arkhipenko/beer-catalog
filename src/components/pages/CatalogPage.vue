@@ -4,12 +4,13 @@
         @loadBeerPage="loadBeerPage"
         @addSearchParams="addSearchParams"
         @resetPage="resetPage"
+        @resetSearchParams="resetSearchParams"
         />
         <grid-list
         :beers="beers"
         :favoriteBeerIds="favoriteBeerIds"
         />
-        <catalog-spinner v-if="isSpinnerShown"/>
+        <catalog-spinner v-if="isLoading"/>
     </article>
 </template>
 
@@ -42,16 +43,16 @@ export default {
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
-        // this.$store.commit('RESET_BEERS');
-        // this.resetPage();
+        this.resetStore();
+        this.resetPage();
+        this.resetSearchParams();
     },
-    computed: mapState('catalog', ['beers', 'favoriteBeerIds']),
+    computed: mapState('catalog', ['beers', 'favoriteBeerIds', 'isLoading']),
     methods: {
-        ...mapActions('catalog', ['loadBeers', 'loadFavoriteBeerIds', 'openCatalogPage']),
+        ...mapActions('catalog', ['loadBeers', 'loadFavoriteBeerIds', 'openCatalogPage', 'resetStore']),
 
         loadBeerPage() {
             const payload = {...this.catalogParams, ...this.searchParams};
-            console.log('pararams '+JSON.stringify(payload))
             this.loadBeers(payload);
         },
         loadNextBeerPage() {
@@ -62,13 +63,15 @@ export default {
         },
         addSearchParams(additionalParams) {
             this.searchParams = {...this.searchParams, ...additionalParams};
-            console.log('pararams '+JSON.stringify(this.searchParams))
         },
         incrementPage() {
             this.catalogParams.pageNumber++;
         },
         resetPage() {
             this.catalogParams.pageNumber = 1;
+        },
+        resetSearchParams() {
+            this.searchParams = {};
         }
     }
 }

@@ -6,8 +6,7 @@ export default {
     state: {
         beers: [],
         favoriteBeerIds: [],
-        isAllFetched: false,
-        // isLoading: false
+        isLoading: false
     },
     mutations: {
         pushBeers(state, beers) {
@@ -22,12 +21,12 @@ export default {
         // resetAllFetched(state) {
         //     state.isAllFetched = false;
         // },
-        // setLoading(state) {
-        //     state.isLoading = true;
-        // },
-        // resetLoading(state) {
-        //     state.isLoading = false;
-        // },
+        setLoading(state) {
+            state.isLoading = true;
+        },
+        resetLoading(state) {
+            state.isLoading = false;
+        },
         setFavoriteBeerIds(state, favoriteBeerIds) {
             state.favoriteBeerIds = favoriteBeerIds;
         },
@@ -37,9 +36,11 @@ export default {
     },
     actions: {
         loadBeers({commit, state}, requestParams) {
+            commit('setLoading');
             ajaxHelper.fetchCatalogData(requestParams).then(beers => {
                 console.log('beers are ' + beers);
                 commit('pushBeers', beers);
+                commit('resetLoading');
             });
         },
         openCatalogPage({commit, dispatch}, catalogParams) {
