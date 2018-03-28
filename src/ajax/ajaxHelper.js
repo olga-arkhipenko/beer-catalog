@@ -1,6 +1,6 @@
-import api from '../api/api';
-import urlCreator from '../api/utilities/urlCreator';
-import dataUtils from '../utils/dataUtils';
+import api from 'Api/api';
+import urlCreator from 'Api/utilities/urlCreator';
+import dataUtils from 'Utils/dataUtils';
 
 export default {
     fetchCatalogData(requestParams) {

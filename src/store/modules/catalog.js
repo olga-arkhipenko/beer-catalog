@@ -1,5 +1,5 @@
-import ajaxHelper from '../../ajax/ajaxHelper';
-import localStorage from '../../localStorage/localStorage';
+import ajaxHelper from 'Ajax/ajaxHelper';
+import localStorage from 'LocalStorage/localStorage';
 
 export default {
     namespaced: true,

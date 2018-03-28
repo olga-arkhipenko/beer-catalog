@@ -7,7 +7,7 @@
 
 <script>
 import 'normalize.css';
-import Navigation from './components/header/Navigation';
+import Navigation from 'Components/header/Navigation';
 export default {
     components: {
         'navigation': Navigation

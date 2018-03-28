@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import SearchPanel from '../search/SearchPanel';
-import GridList from '../lists/GridList';
-import Spinner from '../utilities/Spinner';
-import windowUtils from '../../utils/windowUtils';
+import SearchPanel from 'Components/search/SearchPanel';
+import GridList from 'Components/lists/GridList';
+import Spinner from 'Components/utilities/Spinner';
+import windowUtils from 'Utils/windowUtils';
 import {mapState, mapActions} from 'vuex';
 
 export default {

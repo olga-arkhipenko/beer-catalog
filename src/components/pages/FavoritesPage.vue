@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import FavoriteBeerCard from '../cards/FavoriteBeerCard';
-import Pagination from '../utilities/Pagination';
+import FavoriteBeerCard from 'Components/cards/FavoriteBeerCard';
+import Pagination from 'Components/utilities/Pagination';
 import {mapState, mapActions} from 'vuex';
 
 export default {
@@ -45,7 +45,6 @@ export default {
     methods: {
         ...mapActions('favorites', ['loadFavoriteBeers', 'fetchFavoriteBeerIds']),
         loadFavoriteBeerPage() {
-            console.log('loading beers');
             this.loadFavoriteBeers(this.favoritesParams);
         },
         changePage(pageNumber) {

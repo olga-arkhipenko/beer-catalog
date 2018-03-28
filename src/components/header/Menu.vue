@@ -16,7 +16,7 @@
 
 <script>
 import Logo from './Logo';
-import routes from '../../router/routes';
+import routes from 'Router/routes';
 
 export default {
     data() {

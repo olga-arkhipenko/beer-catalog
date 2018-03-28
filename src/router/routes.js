@@ -1,5 +1,5 @@
-import Catalog from '../components/pages/CatalogPage';
-import Favorites from '../components/pages/FavoritesPage';
+import Catalog from 'Components/pages/CatalogPage';
+import Favorites from 'Components/pages/FavoritesPage';
 
 export default [
     {
