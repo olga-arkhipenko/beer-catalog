@@ -10,7 +10,7 @@
         <button class="action-button search-panel__button" @click="submitSearch">&#128269;</button>
         <adavanced-search-panel 
             @submitSearch="submitSearch"
-            @addSearchParams="addSearchParams"
+            @addAllSearchParams="addAllSearchParams"
             v-if="isAdvancedSearchPanelShown"
         />
     </article>
@@ -21,14 +21,15 @@ import AdvancedSearchPanel from './AdvancedSearchPanel';
 import {mapActions} from 'vuex';
 
 export default {
+    props: {
+        initialSearchParams: Object
+    },
     data() {
         return {
             inputBeerName: '',
             isAdvancedSearchPanelShown: false,
+            advancedSearchParams: {}
         }
-    },
-    props: {
-        searchParams: Object
     },
     components: {
         'adavanced-search-panel': AdvancedSearchPanel
@@ -42,16 +43,18 @@ export default {
         ...mapActions('catalog', ['resetStore']),
 
         submitSearch() {
-            if(this.searchBeerName) {
+            if(this.formattedBeerName) {
                 this.resetStore();
                 this.$emit('resetPage');
-                this.addSearchParams({beerName: this.formattedBeerName});
+                this.addAllSearchParams();
                 this.$emit('loadBeerPage');
                 this.showAdvancedSearchPanel();
             }
         },
-        addSearchParams(searchParams) {
-            this.searchParams = {...this.searchParams, ...searchParams};
+        addAllSearchParams(advancedSearchParams) {
+            const allSearchParams = {beerName: this.formattedBeerName, ...advancedSearchParams};
+            console.log(JSON.stringify(allSearchParams))
+            this.$emit('addSearchParams', allSearchParams);
         },
         showAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = true;

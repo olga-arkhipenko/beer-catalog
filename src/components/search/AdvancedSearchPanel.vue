@@ -4,22 +4,22 @@
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">Alcohol by volume</span>
                 <label>
-                    <input type="range" min="2" max="14" class="advanced-search-panel__range" v-model.number="advancedParams.alcoholByVolume" @change="submitSearch">
-                    <span class="advanced-search-panel__filter-note" v-cloak>more than {{advancedParams.abv_gt}}</span>
+                    <input type="range" min="2" max="14" class="advanced-search-panel__range" v-model.number="advancedSearchParams.alcoholByVolume" @change="submitSearch">
+                    <span class="advanced-search-panel__filter-note" v-cloak>more than {{advancedSearchParams.alcoholByVolume}}</span>
                 </label>
             </div>
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">International Bitterness Units</span>
                 <label>
-                    <input type="range" min="0" max="120" class="advanced-search-panel__range" v-model.number="advancedParams.InterBitUnits" @change="submitSearch">
-                    <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedParams.ibu_gt}}</span>
+                    <input type="range" min="0" max="120" class="advanced-search-panel__range" v-model.number="advancedSearchParams.InterBitUnits" @change="submitSearch">
+                    <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedSearchParams.InterBitUnits}}</span>
                 </label>
             </div>
             <div class="advanced-search-panel__filter">
                 <span class="advanced-search-panel__filter-name">Color by EBC</span>
                 <label>
-                    <input type="range" min="4" max="80" class="advanced-search-panel__range" v-model.number="advancedParams.colorByEBC" @change="submitSearch">
-                    <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedParams.ebc_gt}}</span>
+                    <input type="range" min="4" max="80" class="advanced-search-panel__range" v-model.number="advancedSearchParams.colorByEBC" @change="submitSearch">
+                    <span v-cloak class="advanced-search-panel__filter-note">more than {{advancedSearchParams.colorByEBC}}</span>
                 </label>
             </div>
         </div>
@@ -39,7 +39,7 @@
         },
         methods: {
             submitSearch() {
-                this.$emit('addSearchingParams', this.advancedSearchParams);
+                this.$emit('addAllSearchParams', this.advancedSearchParams);
                 this.$emit('submitSearch');
             }
         }

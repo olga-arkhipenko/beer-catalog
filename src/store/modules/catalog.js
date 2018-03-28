@@ -37,7 +37,6 @@ export default {
     },
     actions: {
         loadBeers({commit, state}, requestParams) {
-            console.log('hello'+ JSON.stringify(requestParams));
             ajaxHelper.fetchCatalogData(requestParams).then(beers => {
                 console.log('beers are ' + beers);
                 commit('pushBeers', beers);
@@ -52,10 +51,10 @@ export default {
             const favoriteBeerIds = localStorage.fetchFavoriteBeerIds();
             commit('setFavoriteBeerIds', favoriteBeerIds);
         },
-        // resetStore({commit, state}) {
-        //     commit('resetBeers');
-        //     // commit('resetAllFetched');
-        // },
+        resetStore({commit, state}) {
+            commit('resetBeers');
+            // commit('resetAllFetched');
+        },
         // addFavoriteBeerId({commit, state}, favoriteBeerId) {
         //     if(state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
         //         commit('ADD_FAVORITE_BEER_ID', favoriteBeerId);

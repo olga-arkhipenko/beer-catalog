@@ -10,7 +10,6 @@ export default {
         return api.get(url).then(data => {
             const parsedData = JSON.parse(data);
             const filteredData = dataUtils.catalogFilter(parsedData);
-            console.log('from promise ' + filteredData)
             return filteredData;
         });
     },

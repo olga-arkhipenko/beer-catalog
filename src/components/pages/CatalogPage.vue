@@ -1,8 +1,8 @@
 <template>
     <article class="catalog">
         <search-panel
-        :searchParams="searchParams"
         @loadBeerPage="loadBeerPage"
+        @addSearchParams="addSearchParams"
         @resetPage="resetPage"
         />
         <grid-list
@@ -43,29 +43,32 @@ export default {
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
         // this.$store.commit('RESET_BEERS');
-        // this.$store.commit('RESET_FECTHED');
-        // this.$store.commit('RESET_URL_PARAMS');
         // this.resetPage();
     },
     computed: mapState('catalog', ['beers', 'favoriteBeerIds']),
     methods: {
         ...mapActions('catalog', ['loadBeers', 'loadFavoriteBeerIds', 'openCatalogPage']),
 
-        loadBeerPage(catalogParams, searchParams) {
-            const payload = {...catalogParams, ...searchParams};
+        loadBeerPage() {
+            const payload = {...this.catalogParams, ...this.searchParams};
+            console.log('pararams '+JSON.stringify(payload))
             this.loadBeers(payload);
         },
         loadNextBeerPage() {
             if(windowUtils.isBottom()) {
                 this.incrementPage();
-                this.loadBeerPage(this.catalogParams, this.searchParams);
+                this.loadBeerPage();
             }
         },
+        addSearchParams(additionalParams) {
+            this.searchParams = {...this.searchParams, ...additionalParams};
+            console.log('pararams '+JSON.stringify(this.searchParams))
+        },
         incrementPage() {
-            this.catalogParam.pageNumber++;
+            this.catalogParams.pageNumber++;
         },
         resetPage() {
-            this.catalogParam.pageNumber = 1;
+            this.catalogParams.pageNumber = 1;
         }
     }
 }
