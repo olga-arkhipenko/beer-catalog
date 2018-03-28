@@ -39,7 +39,8 @@ export default {
     },
     mounted() {
         window.addEventListener('scroll', this.loadNextBeerPage);
-        this.openCatalogPage(this.catalogParams);
+        this.loadFavoriteBeerIds();
+        this.loadBeerPage(this.catalogParams);
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.loadNextBeerPage);
@@ -47,10 +48,13 @@ export default {
         this.resetPage();
         this.resetSearchParams();
     },
-    computed: mapState('catalog', ['beers', 'favoriteBeerIds', 'isLoading']),
+    computed: {
+        ...mapState('catalog', ['beers', 'isLoading']),
+        ...mapState('local', ['favoriteBeerIds']),
+    },
     methods: {
-        ...mapActions('catalog', ['loadBeers', 'loadFavoriteBeerIds', 'openCatalogPage', 'resetStore']),
-
+        ...mapActions('catalog', ['loadBeers', 'openCatalogPage', 'resetStore']),
+        ...mapActions('local', ['loadFavoriteBeerIds']),
         loadBeerPage() {
             const payload = {...this.catalogParams, ...this.searchParams};
             this.loadBeers(payload);

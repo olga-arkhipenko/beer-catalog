@@ -36,16 +36,22 @@ export default {
         'favorites-pagination': Pagination
     },
     mounted() {
+        this.loadFavoriteBeerIds();
         this.loadFavoriteBeerPage();
     },
-    computed: mapState('favorites', ['favoriteBeers', 'favoriteBeerIds']),
+    computed: {
+        ...mapState('favorites', ['favoriteBeers']),
+        ...mapState('local', ['favoriteBeerIds']),
+    },
     beforeDestroy() {
         this.resetPage();
     },
     methods: {
-        ...mapActions('favorites', ['loadFavoriteBeers', 'fetchFavoriteBeerIds']),
+        ...mapActions('favorites', ['loadFavoriteBeers']),
+        ...mapActions('local', ['loadFavoriteBeerIds']),
         loadFavoriteBeerPage() {
-            this.loadFavoriteBeers(this.favoritesParams);
+            const payload = {...this.favoritesParams, beerIds: this.favoriteBeerIds};
+            this.loadFavoriteBeers(payload);
         },
         changePage(pageNumber) {
             this.favoritesParams.pageNumber = pageNumber;

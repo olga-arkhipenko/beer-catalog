@@ -26,7 +26,7 @@ export default {
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
-    methods: mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer'])
+    methods: mapActions('local', ['addFavoriteBeer', 'removeFavoriteBeer'])
 }
 </script>
 

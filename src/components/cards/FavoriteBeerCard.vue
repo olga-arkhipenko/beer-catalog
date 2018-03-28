@@ -22,7 +22,7 @@ export default {
         favoriteBeerIds: Array
     },
     methods: {
-        ...mapActions('favorites', ['removeFavoriteBeer']),
+        ...mapActions('local', ['removeFavoriteBeer']),
         deleteFavoriteBeer(favoriteBeerId) {
             this.removeFavoriteBeer(favoriteBeerId);
             this.$emit('loadFavoriteBeerPage');
