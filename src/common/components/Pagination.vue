@@ -72,25 +72,31 @@ export default {
 </script>
 
 <style>
-    .pagination {
-        display: inline-flex;
-        flex-direction: row;
-        list-style: none;
-    }
-    .pagination__page {
-        display: block;
-        padding: 15px 20px;
-        font-family: 'Courier New', Courier, monospace;
-        color: #ffffff;
-        background-color: #31364c;
-    }
+.pagination {
+    display: inline-flex;
+    flex-direction: row;
 
-    .pagination__page:hover {
-        background-color: #464568;
-    }
+    list-style: none;
+}
 
-    .active {
-        background-color: #6d6c97;
-    }
+.pagination__page {
+    display: block;
+
+    padding: 15px 20px;
+
+    color: #ffffff;
+    background-color: #31364c;
+
+    font-family: "Courier New", Courier, monospace;
+}
+
+.pagination__page:hover {
+    background-color: #464568;
+}
+
+.active {
+    background-color: #6d6c97;
+}
+
 </style>
 

@@ -31,26 +31,33 @@ export default {
 </script>
 
 <style>
-    .header-navigation {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        z-index: 1;
-        color: #ffffff;
-        background-color: #31364c;
-        border-bottom: 1px solid #ffffff;
-    }
+.header-navigation {
+    position: fixed;
+    z-index: 1;
+    top: 0;
 
-    .header-navigation__menu-button {
-        margin: 20px;
-        padding: 20px;
-        background: url(../../assets/menu-burger.png);
-        background-size: contain;
-        border: none;
-        cursor: pointer;
-    }
+    display: flex;
+
+    width: 100%;
+
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: #31364c;
+
+    align-items: center;
+}
+
+.header-navigation__menu-button {
+    margin: 20px;
+    padding: 20px;
+
+    cursor: pointer;
+
+    border: none;
+    background: url(../../assets/menu-burger.png);
+    background-size: contain;
+}
+
 </style>
 
 

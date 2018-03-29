@@ -10,7 +10,7 @@
         :beers="beers"
         :favoriteBeerIds="favoriteBeerIds"
         />
-        <catalog-spinner v-if="isLoading"/>
+        <catalog-spinner v-if="isSpinnerShown"/>
     </article>
 </template>
 
@@ -38,12 +38,10 @@ export default {
         'catalog-spinner': Spinner
     },
     mounted() {
-        window.addEventListener('scroll', this.loadNextBeerPage);
         this.loadFavoriteBeerIds();
-        this.loadBeerPage(this.catalogParams);
+        this.loadBeerPage();
     },
     beforeDestroy() {
-        window.removeEventListener('scroll', this.loadNextBeerPage);
         this.resetStore();
         this.resetPage();
         this.resetSearchParams();
@@ -60,6 +58,7 @@ export default {
             this.loadBeers(payload);
         },
         loadNextBeerPage() {
+            console.log('im called')
             if(windowUtils.isBottom()) {
                 this.incrementPage();
                 this.loadBeerPage();
