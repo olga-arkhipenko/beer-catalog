@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CatalogBeerCard from 'Components/cards/CatalogBeerCard';
+import CatalogBeerCard from 'catalogModule/components/CatalogCard';
 
 export default {
     props: {

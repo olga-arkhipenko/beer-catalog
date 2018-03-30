@@ -6,11 +6,11 @@
             class="search-panel__search-line" 
             placeholder="What are you looking for?"
         >
-        <button class="close-sign action-button search-panel__button" @click="submitCleanSearch">&#215;</button>
+        <button class="close-sign action-button search-panel__button" @click="submitClean">&#215;</button>
         <button class="action-button search-panel__button" @click="submitSearch">&#128269;</button>
         <adavanced-search-panel 
+            :searchParams="searchParams"
             @submitSearch="submitSearch"
-            @addAllSearchParams="addAllSearchParams"
             v-if="isAdvancedSearchPanelShown"
         />
     </article>
@@ -22,17 +22,17 @@ import {mapActions} from 'vuex';
 
 export default {
     props: {
-        initialSearchParams: Object
+        searchParams: Object
     },
     data() {
         return {
             inputBeerName: '',
             isAdvancedSearchPanelShown: false,
-            advancedSearchParams: {}
+            // advancedSearchParams: {}
         }
     },
     components: {
-        'adavanced-search-panel': AdvancedSearchPanel
+        AdvancedSearchPanel
     },
     computed: {
         formattedBeerName(){
@@ -46,29 +46,29 @@ export default {
             if(this.formattedBeerName) {
                 this.resetStore();
                 this.$emit('resetPage');
-                this.addAllSearchParams();
+                // this.addAllSearchParams();
                 this.$emit('loadBeerPage');
                 this.showAdvancedSearchPanel();
             }
         },
-        addAllSearchParams(advancedSearchParams) {
-            const allSearchParams = {beerName: this.formattedBeerName, ...advancedSearchParams};
-            this.$emit('addSearchParams', allSearchParams);
-        },
+        // addAllSearchParams(advancedSearchParams) {
+        //     const allSearchParams = {beerName: this.formattedBeerName, ...advancedSearchParams};
+        //     this.$emit('addSearchParams', allSearchParams);
+        // },
         showAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = true;
         },
         hideAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = false;
         },
-        cleanSearch() {
+        clean() {
             this.inputBeerName = '';
             this.$emit('resetPage');
             this.$emit('resetSearchParams');
             this.resetStore();
             this.hideAdvancedSearchPanel();
         },
-        submitCleanSearch() {
+        submitClean() {
             this.cleanSearch();
             this.$emit('loadBeerPage');
         }

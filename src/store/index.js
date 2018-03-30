@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import catalog from './modules/catalog/index';
-import favorites from './modules/favorites/index';
-import local from './modules/local/index';
+import catalog from 'catalogModule/store/index';
+import favorites from 'favoritesModule/store/index';
+// import favoritesManagement from 'favoritesManagement/store/index';
 
 Vue.use(Vuex);
 
@@ -10,6 +10,6 @@ export default new Vuex.Store({
     modules: {
         catalog,
         favorites,
-        local
+        // favoritesManagement
     }
 });

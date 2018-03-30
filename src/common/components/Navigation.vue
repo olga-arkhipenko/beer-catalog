@@ -1,13 +1,13 @@
 <template>
     <nav class="navigation">
         <button class="navigation__menu-button" @click="showMenu"></button>
-        <menu @hideMenu="hideMenu" v-if="isMenuShown" v-click-outside="hideMenu"/>
+        <main-menu @hideMenu="hideMenu" v-if="isMenuShown" v-click-outside="hideMenu"/>
         <logo class="navigation__logo"/>
     </nav>
 </template>
 
 <script>
-import Menu from './Menu';
+import MainMenu from './MainMenu';
 import Logo from './Logo';
 import clickOutside from "../directives/clickOutside";
 export default {
@@ -18,7 +18,7 @@ export default {
     },
     components: {
         Logo,
-        Menu
+        MainMenu
     },
     directives: {
         clickOutside

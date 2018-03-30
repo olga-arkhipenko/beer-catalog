@@ -1,15 +1,15 @@
-import Catalog from 'Components/pages/CatalogPage';
-import Favorites from 'Components/pages/FavoritesPage';
+import CatalogPage from 'catalogModule/components/CatalogPage';
+import FavoritesPage from 'favoritesModule/components/FavoritesPage';
 
 export default [
     {
         path: '/',
         name: 'Home',
-        component: Catalog
+        component: CatalogPage
     },
     {
         path: '/favorites', 
         name: 'Favorites',
-        component: Favorites,
+        component: FavoritesPage,
     }
 ]

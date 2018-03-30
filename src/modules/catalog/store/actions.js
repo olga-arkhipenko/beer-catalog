@@ -1,9 +1,9 @@
-import ajaxHelper from 'Ajax/ajaxHelper';
+import catalogService from '../services/catalogService';
 
 export const actions = {
-    loadBeers({commit, state}, requestParams) {
+    loadBeers({commit, state}, beerParams) {
         commit('setLoading');
-        ajaxHelper.fetchCatalogData(requestParams).then(beers => {
+        catalogService.fetchBeers(beerParams).then(beers => {
             commit('pushBeers', beers);
             commit('resetLoading');
         });

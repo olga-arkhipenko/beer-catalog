@@ -1,4 +1,4 @@
-import ajaxHelper from 'Ajax/ajaxHelper';
+import ajaxHelper from '../../../ajax/ajaxHelper';
 
 export const actions = {
     loadFavoriteBeers({commit, state, dispatch}, requestParams) {

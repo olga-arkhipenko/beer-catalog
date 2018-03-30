@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import FavoriteBeerCard from 'Components/cards/FavoriteBeerCard';
-import Pagination from 'Components/utilities/Pagination';
+import FavoriteBeerCard from './FavoritesCard';
+import Pagination from 'common/components/Pagination';
 import {mapState, mapActions} from 'vuex';
 
 export default {
