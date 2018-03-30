@@ -1,22 +1,22 @@
 <template>
     <transition name="slide">
-        <nav class="main-menu">
-            <primary-logo class="main-menu__title"/>
-            <button class="close-sign action-button main-menu__close-button" @click="hideMainMenu">&#215;</button>
-            <ul class="main-menu__list">
-                <li class="main-menu__item" v-for="route in routes" :key="route.name">
+        <div class="menu">
+            <logo class="menu__title"/>
+            <button class="close-sign action-button menu__close-button" @click="hideMenu">&#215;</button>
+            <ul class="menu__list">
+                <li class="menu__item" v-for="route in routes" :key="route.name">
                     <router-link :to="route.path" class="link">
-                        <span class="main-menu__item-name">{{route.name}}</span>
+                        <span class="menu__item-name" v-cloak> {{ route.name }} </span>
                     </router-link>
                 </li>
             </ul>
-        </nav>
+        </div>
     </transition>
 </template>
 
 <script>
 import Logo from './Logo';
-import routes from 'Router/routes';
+import routes from 'router/routes';
 
 export default {
     data() {
@@ -25,18 +25,18 @@ export default {
         }
     },
     components: {
-        'primary-logo': Logo
+        Logo
     },
     methods: {
-        hideMainMenu() {
-            this.$emit('hideMainMenu');
+        hideMenu() {
+            this.$emit('hideMenu');
         }
     }
 }
 </script>
 
 <style>
-.main-menu {
+.menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -48,20 +48,29 @@ export default {
     background: #31374c;
 }
 
-.main-menu__title {
+.menu__title {
     margin: 30px;
 }
 
-.main-menu__close-button {
+.menu__close-button {
     position: absolute;
     top: 5px;
     right: 10px;
 }
 
-.main-menu__list {
+.menu__list {
     list-style: none;
 
     color: #36495d;
+}
+
+.menu__item {
+    padding: 10px 0;
+
+    color: #31a39f;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.3rem;
 }
 
 .slide-enter-active {
@@ -76,14 +85,4 @@ export default {
 .slide-leave-to {
     transform: translateX(-250px);
 }
-
-.main-menu__item {
-    padding: 10px 0;
-
-    color: #31a39f;
-
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.3rem;
-}
-
 </style>

@@ -17,7 +17,6 @@
     font-family: "Courier New", Courier, monospace;
     font-size: 1.8rem;
 }
-
 </style>
 
 

@@ -50,13 +50,13 @@ module.exports = env => {
         resolve: {
             alias: {
                 'vue$': 'vue/dist/vue.esm.js',
-                Components: path.resolve(__dirname, 'src/components'),
-                Ajax: path.resolve(__dirname, 'src/ajax'),
-                Api: path.resolve(__dirname, 'src/api'),
-                LocalStorage: path.resolve(__dirname, 'src/localStorage'),
-                Router: path.resolve(__dirname, 'src/router'),
-                Store: path.resolve(__dirname, 'src/store'),
-                Utils: path.resolve(__dirname, 'src/utils'),
+                common: path.resolve(__dirname, 'src/common'),
+                // catalog: path.resolve(__dirname, 'src/modules/catalog'),
+                // Api: path.resolve(__dirname, 'src/api'),
+                // LocalStorage: path.resolve(__dirname, 'src/localStorage'),
+                router: path.resolve(__dirname, 'src/router'),
+                // Store: path.resolve(__dirname, 'src/store'),
+                // Utils: path.resolve(__dirname, 'src/utils'),
             },
             extensions: ['*', '.js', '.vue', '.json']
             },
