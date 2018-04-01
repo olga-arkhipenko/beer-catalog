@@ -1,16 +1,33 @@
 module.exports = {
     root: true,
     parserOptions: {
-        parser: "babel-eslint"
+        sourceType: 'module',
+        parser: 'babel-eslint'
+    },
+    env: {
+        browser: true
     },
     extends: [
-        "standard",
-        "plugin:vue/recommended"
+        'plugin:vue/recommended',
+        'airbnb-base'
     ],
     plugins: [
-        "html"
+        'vue'
     ],
     rules: {
-        "no-new": 0
+        'no-new': 'off',
+        'indent': ['error', 4],
+        'comma-dangle': ['error', 'never'],
+        'import/no-unresolved': 'off',
+        'import/extensions': ['error', 'never', {
+            'packages': 'always' 
+        }],
+        'vue/html-indent': ['error', 4, {
+            'alignAttributesVertically': true
+        }],
+        'vue/require-default-prop': ['error', {
+            'required': false,
+            'non-required': false
+        }]
     }
 };

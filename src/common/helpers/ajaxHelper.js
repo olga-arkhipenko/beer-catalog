@@ -5,14 +5,14 @@ export default {
             xhr.open('GET', url, true);
             xhr.onload = function () {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                  resolve (xhr.response);
+                    resolve (xhr.response);
                 } else {
-                  reject ({
-                    status: xhr.status,
-                    statusText: xhr.statusText
-                  });
+                    reject ({
+                        status: xhr.status,
+                        statusText: xhr.statusText
+                    });
                 }
-              };
+            };
             xhr.send();
         });
     }
