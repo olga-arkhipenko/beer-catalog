@@ -73,9 +73,11 @@ export default {
 }
 .favorites__heading {
     margin: 30px 0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 2rem;
+
     text-align: center;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 2rem;
 }
 </style>
 

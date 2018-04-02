@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         hideMenu() {
-            this.$emit('hideMenu');
+            this.$emit('onMenuHide');
         }
     }
 };

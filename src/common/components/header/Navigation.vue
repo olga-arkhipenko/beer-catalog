@@ -6,7 +6,7 @@
         <main-menu
             v-click-outside="hideMenu"
             v-if="isMenuShown"
-            @hideMenu="hideMenu"
+            @onMenuHide="hideMenu"
         />
         <logo class="navigation__logo"/>
     </nav>

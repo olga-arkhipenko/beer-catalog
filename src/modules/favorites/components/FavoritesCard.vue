@@ -28,20 +28,25 @@ export default {
             required: true
         }
     },
-    methods: mapActions('favoritesManagement', ['removeFavoriteBeer'])
+    methods: mapActions('favorites', ['removeFavoriteBeer'])
 };
 </script>
 
 <style>
 .favorite-beer-card {
     position: relative;
+
     display: flex;
-    justify-content: space-between;
+
     margin: 0 0 30px;
     padding: 20px 30px;
-    font-family: 'Courier New', Courier, monospace;
+
     border: 1px solid #c7d7e9;
-    box-shadow: 10px 10px 0px -4px #c7d7e9;
+    box-shadow: 10px 10px 0 -4px #c7d7e9;
+
+    font-family: "Courier New", Courier, monospace;
+
+    justify-content: space-between;
 }
 
 .favorite-beer-card__name {
@@ -62,10 +67,12 @@ export default {
 }
 
 .favorite-bar__button {
+    text-transform: uppercase;
+
+    color: #5a6fb9;
+
     font-size: 1.3rem;
     font-weight: 600;
-    color: #5a6fb9;
-    text-transform: uppercase;
 }
 
 .favorite-bar__button:hover {

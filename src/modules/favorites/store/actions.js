@@ -5,6 +5,10 @@ export const actions = {
         favoritesService.fetchBeers(requestParams).then((beers) => {
             commit('setFavoriteBeers', beers);
         });
+    },
+    removeFavoriteBeer({ dispatch }, favoriteBeerId) {
+        dispatch('removeFavoriteBeer', favoriteBeerId, { root: true });
+        dispatch('loadFavoriteBeers');
     }
 };
 

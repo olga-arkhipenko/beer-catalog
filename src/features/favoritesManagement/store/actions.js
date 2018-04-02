@@ -12,7 +12,7 @@ export default {
         localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
         dispatch('loadFavoriteBeerIds');
     },
-    removeFavoriteBeer({ commit, state, dispatch }, favoriteBeerId) {
+    removeFavoriteBeerId({ commit, state, dispatch }, favoriteBeerId) {
         const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
         commit('setFavoriteBeerIds', filteredIds);
         localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
