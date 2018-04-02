@@ -6,6 +6,7 @@
                 v-for="beer in favoriteBeers"
                 :beer="beer"
                 :key="beer.id"
+                @onFavoriteBeerRemove="deleteFavoriteBeer"
             />
         </row-list>
         <pagination
@@ -31,7 +32,7 @@ export default {
     },
     data() {
         return {
-            favoritesParams: {
+            pageParams: {
                 pageNumber: 1,
                 itemsPerPage: 5
             }
@@ -39,7 +40,10 @@ export default {
     },
     computed: {
         ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds'])
+        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds']),
+        favoritesParams() {
+            return { ...this.pageParams, beerIds: this.favoriteBeerIds };
+        }
     },
     mounted() {
         this.loadFavoriteBeerIds();
@@ -49,18 +53,20 @@ export default {
         this.resetPage();
     },
     methods: {
-        ...mapActions('favorites', ['loadFavoriteBeers']),
+        ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeer']),
         ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
         loadBeerPage() {
-            const favoritesParams = { ...this.favoritesParams, beerIds: this.favoriteBeerIds };
-            this.loadFavoriteBeers(favoritesParams);
+            this.loadFavoriteBeers(this.favoritesParams);
         },
         changePage(pageNumber) {
-            this.favoritesParams.pageNumber = pageNumber;
+            this.pageParams.pageNumber = pageNumber;
             this.loadBeerPage();
         },
         resetPage() {
-            this.favoritesParams.pageNumber = 1;
+            this.pageParams.pageNumber = 1;
+        },
+        deleteFavoriteBeer(favoriteBeerId) {
+            this.removeFavoriteBeer(favoriteBeerId, this.favoritesParams);
         }
     }
 };

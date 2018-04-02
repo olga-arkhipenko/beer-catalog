@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 
 export default {
     props: {
@@ -28,7 +27,11 @@ export default {
             required: true
         }
     },
-    methods: mapActions('favorites', ['removeFavoriteBeer'])
+    methods: {
+        removeFavoriteBeer(favoriteBeerId) {
+            this.$emit('onFavoriteBeerRemove', favoriteBeerId);
+        }
+    }
 };
 </script>
 
