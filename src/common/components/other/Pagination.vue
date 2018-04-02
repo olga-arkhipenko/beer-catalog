@@ -1,16 +1,29 @@
 <template>
     <ul class="pagination">
         <li v-if="hasPrev">
-            <a href="#" class="link pagination__page" @click.prevent="changePage(prevPage)">
+            <a
+                href="#"
+                class="link pagination__page"
+                @click.prevent="changePage(prevPage)">
                 <span>&laquo;</span>
             </a>
         </li>
-        <li v-for="(page, index) in totalPages" :key=index>
-            <a href="#" class="link pagination__page" @click.prevent="changePage(page)" :class="isActive(page)">{{page}}</a>
+        <li
+            v-for="(page, index) in totalPages"
+            :key="index">
+            <a
+                :class="isActive(page)"
+                href="#"
+                class="link pagination__page"
+                @click.prevent="changePage(page)"
+            >{{ page }}</a>
         </li>
         <li v-if="hasNext">
-            <a href="#" class="link pagination__page" @click.prevent="changePage(nextPage)">
-            <span>&raquo;</span>
+            <a
+                href="#"
+                class="link pagination__page"
+                @click.prevent="changePage(nextPage)">
+                <span>&raquo;</span>
             </a>
         </li>
     </ul>
@@ -18,22 +31,31 @@
 
 <script>
 export default {
+    props: {
+        currentPage: {
+            type: Number,
+            required: true
+        },
+        totalItems: {
+            type: Number,
+            required: true
+        },
+        itemsPerPage: {
+            type: Number,
+            required: true
+        }
+    },
     data() {
         return {
             pageOffset: 2
         };
-    },
-    props: {
-        currentPage: Number,
-        totalItems: Number,
-        itemsPerPage: Number
     },
     computed: {
         totalPages() {
             return Math.ceil(this.totalItems / this.itemsPerPage);
         },
         pageRange() {
-            let pageRange = [];
+            const pageRange = [];
             for (let i = this.pageRangeBefore; i <= this.pageRangeAfter; i++) {
                 pageRange.push(i);
             }
@@ -62,9 +84,9 @@ export default {
     },
     methods: {
         changePage(pageNumber) {
-            this.$emit("changePage", pageNumber);
+            this.$emit('pageChanged', pageNumber);
         },
-        isActive (pageNumber) {
+        isActive(pageNumber) {
             return this.currentPage === pageNumber ? 'active' : '';
         }
     }

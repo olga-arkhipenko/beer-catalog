@@ -1,9 +1,10 @@
 export default {
-    isFn: true,
-    bind (el, binding) {
+    // isFn: true,
+    // bind(el, binding) {
 
-    },
-    unbind (el, binding) {
-        
-    }
-}
+    // },
+    // unbind(el, binding) {
+
+    // }
+};
+

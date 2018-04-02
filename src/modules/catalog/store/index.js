@@ -1,5 +1,5 @@
-import {mutations} from './mutations';
-import {actions} from './actions';
+import mutations from './mutations';
+import actions from './actions';
 
 export default {
     namespaced: true,
@@ -8,5 +8,6 @@ export default {
         isLoading: false
     },
     mutations,
-    actions,
-}
+    actions
+};
+

@@ -11,7 +11,7 @@
             <div class="toggle-bar">
                 <button class="toggle-bar__button">open</button>
                 <button
-                    v-if="isAddFavoriteButtonShown"
+                    v-if="isFavoriteBeer"
                     class="toggle-bar__button"
                     @click="addFavoriteBeer(beer.id)"
                 >add to favorite</button>
@@ -26,69 +26,85 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     props: {
-        beer: Object,
-        favoriteBeerIds: Array
+        beer: {
+            type: Object,
+            required: true
+        },
+        favoriteBeerIds: {
+            type: Array,
+            required: true
+        }
     },
     computed: {
-        isAddFavoriteButtonShown() {
+        isFavoriteBeer() {
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
-    }
-//   methods: mapActions('local', ["addFavoriteBeer", "removeFavoriteBeer"])
+    },
+    methods: mapActions('favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer'])
 };
 </script>
 
 <style>
 .beer-card {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1rem;
-  text-align: center;
-  background-color: #f3f9ff;
-  color: #ffffff;
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #f3f9ff;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
 }
 
 .beer-card__image {
-  margin: 30px 0;
-  height: 300px;
-  vertical-align: bottom;
+    height: 300px;
+    margin: 30px 0;
+
+    vertical-align: bottom;
 }
 
 .beer-card__info {
-  display: grid;
-  min-height: 220px;
-  padding: 5px 20px;
-  background-color: #31374c;
-  text-align: left;
+    display: grid;
+
+    min-height: 220px;
+    padding: 5px 20px;
+
+    text-align: left;
+
+    background-color: #31374c;
 }
 
 .beer-card__name {
-  color: #56a558;
+    color: #56a558;
 }
 
 .beer-card__tagLine {
-  color: #abc0d8;
+    color: #abc0d8;
 }
 
 .toggle-bar {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 20px;
-  font-size: 1.2rem;
+    display: flex;
+
+    margin: 15px 20px;
+
+    font-size: 1.2rem;
+
+    justify-content: space-between;
 }
 
 .toggle-bar__button {
-  color: #ffe696;
-  background-color: transparent;
-  border: none;
-  text-transform: uppercase;
-  cursor: pointer;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    color: #ffe696;
+    border: none;
+    background-color: transparent;
 }
 
 .toggle-bar__button:hover {
-  color: #dd44a3;
+    color: #dd44a3;
 }
 </style>

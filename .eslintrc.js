@@ -17,7 +17,10 @@ module.exports = {
     rules: {
         'no-new': 'off',
         'indent': ['error', 4],
+        'no-param-reassign': 'off',
+        'no-plusplus': 'off',
         'comma-dangle': ['error', 'never'],
+        'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': ['error', 'never', {
             'packages': 'always' 
@@ -25,9 +28,6 @@ module.exports = {
         'vue/html-indent': ['error', 4, {
             'alignAttributesVertically': true
         }],
-        'vue/require-default-prop': ['error', {
-            'required': false,
-            'non-required': false
-        }]
+        'no-console': 'off'
     }
 };

@@ -1,9 +1,10 @@
-import ajaxHelper from '../../../ajax/ajaxHelper';
+import favoritesService from '../services/favoritesService';
 
 export const actions = {
-    loadFavoriteBeers({commit, state, dispatch}, requestParams) {
-        ajaxHelper.fetchFavoritesData(requestParams).then(beers => {
+    loadFavoriteBeers({ commit }, requestParams) {
+        favoritesService.fetchBeers(requestParams).then((beers) => {
             commit('setFavoriteBeers', beers);
         });
     }
-}
+};
+

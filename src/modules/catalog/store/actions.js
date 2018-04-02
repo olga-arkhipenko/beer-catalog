@@ -1,14 +1,16 @@
 import catalogService from '../services/catalogService';
 
-export const actions = {
-    loadBeers({commit, state}, beerParams) {
+export default {
+    loadBeers({ commit }, beerParams) {
         commit('setLoading');
-        catalogService.fetchBeers(beerParams).then(beers => {
+        catalogService.fetchBeers(beerParams).then((beers) => {
+            console.log(JSON.stringify(beers));
             commit('pushBeers', beers);
             commit('resetLoading');
         });
     },
-    resetStore({commit, state}) {
+    resetBeers({ commit }) {
         commit('resetBeers');
     }
-}
+};
+

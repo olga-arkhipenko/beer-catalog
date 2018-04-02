@@ -1,13 +1,14 @@
 export default {
-    get (itemName) {
+    get(itemName) {
         const localData = window.localStorage.getItem(itemName);
         if (!localData) {
             window.localStorage.setItem(itemName, '[]');
             return [];
-        } 
+        }
         return JSON.parse(localData);
     },
-    update (itemName, newItemData) {
+    update(itemName, newItemData) {
         window.localStorage.setItem(itemName, JSON.stringify(newItemData));
     }
-}
+};
+

@@ -1,26 +1,44 @@
 <template>
-    <article class="catalog">
+    <article
+        class="catalog"
+    >
         <search-panel
-            :searchParams="searchParams"
+            :search-params="searchParams"
             @loadBeerPage="loadBeerPage"
             @resetPage="resetPage"
             @resetSearchParams="resetSearchParams"
         />
-        <grid-list
-            :beers="beers"
-
-        />
+        <grid-list>
+            <catalog-card
+                v-for="beer in beers"
+                :beer="beer"
+                :key="beer.id"
+                :favorite-beer-ids="favoriteBeerIds"
+            />
+        </grid-list>
         <spinner v-if="isSpinnerShown"/>
     </article>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import GridList from 'common/components/lists/GridList';
+import Spinner from 'common/components/other/Spinner';
+import pageUtil from 'common/utilities/pageUtil';
+import pageScroll from 'common/directives/pageScroll';
 import SearchPanel from './SearchPanel';
-import GridList from 'common/components/GridList';
-import Spinner from 'common/components/Spinner';
-import {mapState, mapActions} from 'vuex';
+import CatalogCard from './CatalogCard';
 
 export default {
+    components: {
+        SearchPanel,
+        GridList,
+        CatalogCard,
+        Spinner
+    },
+    directives: {
+        pageScroll
+    },
     data() {
         return {
             pageParams: {
@@ -28,50 +46,44 @@ export default {
                 itemsPerPage: 9
             },
             searchParams: {
-                beerName: '',
+                name: '',
                 alcoholByVolume: 0,
-                interBitUnits: 0,
+                bitternessUnits: 0,
                 colorByEBC: 0
-            },
-            isSpinnerShown: false
-        }
-    },
-    components: {
-        SearchPanel,
-        GridList,
-        Spinner
-    },
-    mounted() {
-        // this.loadFavoriteBeerIds();
-        this.loadBeerPage();
-    },
-    beforeDestroy() {
-        this.resetStore();
-        this.resetPage();
-        this.resetSearchParams();
+            }
+        };
     },
     computed: {
         ...mapState('catalog', ['beers', 'isLoading']),
-        // ...mapState('local', ['favoriteBeerIds']),
+        ...mapState('favoritesManagement', ['favoriteBeerIds']),
+        isSpinnerShown() {
+            return this.isLoading;
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.loadNextPage);
+        this.loadFavoriteBeerIds();
+        this.loadBeerPage(this.pageParams);
+    },
+    beforeDestroy() {
+        this.resetBeers();
+        window.removeEventListener('scroll', this.loadNextPage);
+        this.resetPage();
+        this.resetSearchParams();
     },
     methods: {
-        ...mapActions('catalog', ['loadBeers', 'openCatalogPage', 'resetStore']),
-        // ...mapActions('local', ['loadFavoriteBeerIds']),
+        ...mapActions('catalog', ['loadBeers', 'resetBeers']),
+        ...mapActions('favoritesManagement', ['loadFavoriteBeerIds']),
         loadBeerPage() {
-            console.log(JSON.stringify(this.searchParams));
-            const catalogParams = {...this.pageParams, ...this.searchParams};
+            const catalogParams = { ...this.pageParams, ...this.searchParams };
             this.loadBeers(catalogParams);
         },
-        loadNextBeerPage() {
-            console.log('im called')
-            // if(windowUtils.isBottom()) {
+        loadNextPage() {
+            if (pageUtil.isBottom()) {
                 this.incrementPage();
                 this.loadBeerPage();
-            // }
+            }
         },
-        // addSearchParams(additionalParams) {
-        //     this.searchParams = {...this.searchParams, ...additionalParams};
-        // },
         incrementPage() {
             this.pageParams.pageNumber++;
         },
@@ -87,12 +99,12 @@ export default {
             };
         }
     }
-}
+};
 </script>
 
 <style>
-    .catalog {
-        margin: 150px 0 0;
-    }
+.catalog {
+    margin: 150px 0 0;
+}
 </style>
 

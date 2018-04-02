@@ -2,11 +2,22 @@
     <transition name="slide">
         <div class="menu">
             <logo class="menu__title"/>
-            <button class="close-sign action-button menu__close-button" @click="hideMenu">&#215;</button>
+            <button
+                class="close-sign action-button menu__close-button"
+                @click="hideMenu">&#215;</button>
             <ul class="menu__list">
-                <li class="menu__item" v-for="route in routes" :key="route.name">
-                    <router-link :to="route.path" class="link">
-                        <span class="menu__item-name" v-cloak> {{ route.name }} </span>
+                <li
+                    v-for="route in routes"
+                    :key="route.name"
+                    class="menu__item"
+                >
+                    <router-link
+                        :to="route.path"
+                        class="link">
+                        <span
+                            v-cloak
+                            class="menu__item-name"
+                        > {{ route.name }} </span>
                     </router-link>
                 </li>
             </ul>
@@ -15,24 +26,24 @@
 </template>
 
 <script>
-import Logo from './Logo';
 import routes from 'router/routes';
+import Logo from './Logo';
 
 export default {
+    components: {
+        Logo
+    },
     data() {
         return {
             routes
-        }
-    },
-    components: {
-        Logo
+        };
     },
     methods: {
         hideMenu() {
             this.$emit('hideMenu');
         }
     }
-}
+};
 </script>
 
 <style>

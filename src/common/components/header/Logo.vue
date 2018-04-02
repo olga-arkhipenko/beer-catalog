@@ -1,6 +1,8 @@
 <template>
     <div class="logo">
-        <router-link to="/" class="link">
+        <router-link
+            to="/"
+            class="link">
             <span class="logo__name">
                 Beer Catalog
             </span>
@@ -18,5 +20,4 @@
     font-size: 1.8rem;
 }
 </style>
-
 

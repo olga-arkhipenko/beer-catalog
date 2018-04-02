@@ -1,4 +1,4 @@
-export const mutations = {
+export default {
     pushBeers(state, beers) {
         state.beers.push(...beers);
     },
@@ -11,4 +11,5 @@ export const mutations = {
     resetLoading(state) {
         state.isLoading = false;
     }
-}
+};
+

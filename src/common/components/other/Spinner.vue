@@ -1,7 +1,7 @@
 <template>
     <div class="spinner">
-        <div class="spinner__cube-1"></div>
-        <div class="spinner__cube-2"></div>
+        <div class="spinner__cube-1"/>
+        <div class="spinner__cube-2"/>
     </div>
 </template>
 

@@ -1,27 +1,34 @@
 <template>
     <nav class="navigation">
-        <button class="navigation__menu-button" @click="showMenu"></button>
-        <main-menu @hideMenu="hideMenu" v-if="isMenuShown" v-click-outside="hideMenu"/>
+        <button
+            class="navigation__menu-button"
+            @click="showMenu"/>
+        <main-menu
+            v-click-outside="hideMenu"
+            v-if="isMenuShown"
+            @hideMenu="hideMenu"
+        />
         <logo class="navigation__logo"/>
     </nav>
 </template>
 
 <script>
+import clickOutside from 'common/directives/clickOutside';
 import MainMenu from './MainMenu';
 import Logo from './Logo';
-import clickOutside from "../directives/clickOutside";
+
 export default {
-    data() {
-        return {
-            isMenuShown: false
-        }
-    },
     components: {
         Logo,
         MainMenu
     },
     directives: {
         clickOutside
+    },
+    data() {
+        return {
+            isMenuShown: false
+        };
     },
     methods: {
         showMenu() {
@@ -31,7 +38,7 @@ export default {
             this.isMenuShown = false;
         }
     }
-}
+};
 </script>
 
 <style>
@@ -58,10 +65,8 @@ export default {
     cursor: pointer;
 
     border: none;
-    background: url(../assets/menu-burger.png);
+    background: url(../../assets/menu-burger.png);
     background-size: contain;
 }
-
 </style>
-
 

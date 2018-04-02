@@ -8,8 +8,9 @@ export default [
         component: CatalogPage
     },
     {
-        path: '/favorites', 
+        path: '/favorites',
         name: 'Favorites',
-        component: FavoritesPage,
+        component: FavoritesPage
     }
-]
+];
+
