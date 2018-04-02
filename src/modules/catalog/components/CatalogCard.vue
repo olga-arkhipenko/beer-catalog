@@ -44,7 +44,7 @@ export default {
             return !this.favoriteBeerIds.includes(this.beer.id);
         }
     },
-    methods: mapActions('favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer'])
+    methods: mapActions('catalog/favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer'])
 };
 </script>
 

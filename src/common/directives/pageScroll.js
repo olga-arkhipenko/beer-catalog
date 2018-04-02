@@ -1,9 +1,11 @@
 import pageUtil from 'common/utilities/pageUtil';
 
 function handlePageBottom(handler) {
-    if (pageUtil.isBottom()) {
-        handler();
-    }
+    return function () {
+        if (pageUtil.isBottom()) {
+            handler();
+        }
+    };
 }
 
 export default {

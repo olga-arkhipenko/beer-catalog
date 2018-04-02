@@ -1,9 +1,9 @@
 <template>
     <article
+        v-page-scroll="loadNextPage"
         class="catalog"
     >
         <search-panel
-            :search-params="searchParams"
             @paramsChanged="addSearchParams"
             @searchParamsReset="resetSearchParams"
             @reload="reloadCatalog"
@@ -24,7 +24,6 @@
 import { mapState, mapActions } from 'vuex';
 import GridList from 'common/components/lists/GridList';
 import Spinner from 'common/components/other/Spinner';
-import pageUtil from 'common/utilities/pageUtil';
 import pageScroll from 'common/directives/pageScroll';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
@@ -45,44 +44,34 @@ export default {
                 pageNumber: 1,
                 itemsPerPage: 9
             },
-            searchParams: {
-                name: '',
-                alcoholByVolume: 0,
-                bitternessUnits: 0,
-                colorByEBC: 0
-            }
+            searchParams: {},
+            isSpinnerShown: false
         };
     },
     computed: {
-        ...mapState('catalog', ['beers', 'isLoading']),
-        ...mapState('favoritesManagement', ['favoriteBeerIds']),
-        isSpinnerShown() {
-            return this.isLoading;
-        }
+        ...mapState('catalog', ['beers']),
+        ...mapState('catalog/favoritesManagement', ['favoriteBeerIds'])
     },
     mounted() {
-        window.addEventListener('scroll', this.loadNextPage);
         this.loadFavoriteBeerIds();
-        this.loadBeerPage(this.pageParams);
+        this.loadBeerPage();
     },
     beforeDestroy() {
         this.resetBeers();
-        window.removeEventListener('scroll', this.loadNextPage);
         this.resetPage();
         this.resetSearchParams();
     },
     methods: {
         ...mapActions('catalog', ['loadBeers', 'resetBeers']),
-        ...mapActions('favoritesManagement', ['loadFavoriteBeerIds']),
+        ...mapActions('catalog/favoritesManagement', ['loadFavoriteBeerIds']),
         loadBeerPage() {
+            this.showSpinner();
             const catalogParams = { ...this.pageParams, ...this.searchParams };
             this.loadBeers(catalogParams);
         },
         loadNextPage() {
-            if (pageUtil.isBottom()) {
-                this.incrementPage();
-                this.loadBeerPage();
-            }
+            this.incrementPage();
+            this.loadBeerPage();
         },
         reloadCatalog() {
             this.resetBeers();
@@ -95,16 +84,14 @@ export default {
         addSearchParams(searchParams) {
             this.searchParams = { ...this.searchParams, ...searchParams };
         },
+        showSpinner() {
+            this.isSpinnerShown = true;
+        },
         resetPage() {
             this.pageParams.pageNumber = 1;
         },
         resetSearchParams() {
-            this.searchParams = {
-                name: '',
-                alcoholByVolume: 0,
-                bitternessUnits: 0,
-                colorByEBC: 0
-            };
+            this.searchParams = {};
         }
     }
 };

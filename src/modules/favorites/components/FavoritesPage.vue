@@ -39,7 +39,7 @@ export default {
     },
     computed: {
         ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('favoritesManagement', ['favoriteBeerIds'])
+        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds'])
     },
     mounted() {
         this.loadFavoriteBeerIds();
@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         ...mapActions('favorites', ['loadFavoriteBeers']),
-        ...mapActions('favoritesManagement', ['loadFavoriteBeerIds']),
+        ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
         loadBeerPage() {
             const favoritesParams = { ...this.favoritesParams, beerIds: this.favoriteBeerIds };
             this.loadFavoriteBeers(favoritesParams);

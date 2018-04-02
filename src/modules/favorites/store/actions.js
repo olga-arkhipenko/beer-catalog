@@ -6,9 +6,9 @@ export const actions = {
             commit('setFavoriteBeers', beers);
         });
     },
-    removeFavoriteBeer({ dispatch }, favoriteBeerId) {
-        dispatch('removeFavoriteBeer', favoriteBeerId, { root: true });
-        dispatch('loadFavoriteBeers');
+    removeFavoriteBeer(context, favoriteBeerId) {
+        context.dispatch('favoritesManagement/removeFavoriteBeer', favoriteBeerId);
+        context.dispatch('loadFavoriteBeers');
     }
 };
 

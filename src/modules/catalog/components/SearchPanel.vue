@@ -16,6 +16,7 @@
         <advanced-search-panel
             v-if="isAdvancedSearchPanelShown"
             :search-params="searchParams"
+            @searchParamsAdding="addSearchParams"
             @valueChanged="submitSearch"
         />
     </article>
@@ -28,16 +29,22 @@ export default {
     components: {
         AdvancedSearchPanel
     },
-    props: {
-        searchParams: {
-            type: Object,
-            required: true
-        }
-    },
+    // props: {
+    //     searchParams: {
+    //         type: Object,
+    //         required: true
+    //     }
+    // },
     data() {
         return {
             inputName: '',
-            isAdvancedSearchPanelShown: false
+            isAdvancedSearchPanelShown: false,
+            searchParams: {
+                name: '',
+                alcoholByVolume: 0,
+                bitternessUnits: 0,
+                colorByEBC: 0
+            }
         };
     },
     computed: {

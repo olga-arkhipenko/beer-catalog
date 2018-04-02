@@ -4,12 +4,6 @@ export default {
     },
     resetBeers(state) {
         state.beers = [];
-    },
-    setLoading(state) {
-        state.isLoading = true;
-    },
-    resetLoading(state) {
-        state.isLoading = false;
     }
 };
 

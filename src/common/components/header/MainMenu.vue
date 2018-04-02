@@ -1,6 +1,9 @@
 <template>
     <transition name="slide">
-        <div class="menu">
+        <div
+            v-click-outside="hideMenu"
+            class="menu"
+        >
             <logo class="menu__title"/>
             <button
                 class="close-sign action-button menu__close-button"
@@ -26,12 +29,16 @@
 </template>
 
 <script>
+import clickOutside from 'common/directives/clickOutside';
 import routes from 'router/routes';
 import Logo from './Logo';
 
 export default {
     components: {
         Logo
+    },
+    directives: {
+        clickOutside
     },
     data() {
         return {

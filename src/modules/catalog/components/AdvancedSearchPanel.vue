@@ -41,7 +41,8 @@ export default {
     },
     methods: {
         submitSearch(advancedParams) {
-            this.$emit('valueChanged', advancedParams);
+            this.$emit('searchParamsAdding', advancedParams);
+            this.$emit('valueChanged');
         }
     }
 };
