@@ -10,7 +10,7 @@
             v-model.number="value"
             type="range"
             class="slider__ranger"
-            @change="triggerValueChange">
+            @change="triggerValueChange(value)">
         <span
             v-cloak
             class="slider__note"
@@ -39,9 +39,39 @@ export default {
         }
     },
     methods: {
-        triggerValueChange() {
-            this.$emit('valueChanged');
+        triggerValueChange(sliderParam) {
+            this.$emit('valueChanged', sliderParam);
         }
     }
 };
 </script>
+
+<style>
+.slider {
+    display: flex;
+
+    margin: 0 0 10px;
+
+    justify-content: space-between;
+}
+
+.slider__name {
+    display: inline-block;
+
+    margin: 0 20px 0 0;
+
+    font-size: 1.1rem;
+}
+
+.slider__ranger {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.slider__note {
+    color: #6d6c96;
+
+    font-size: 0.8rem;
+}
+</style>
+

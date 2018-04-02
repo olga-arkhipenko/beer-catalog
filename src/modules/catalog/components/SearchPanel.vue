@@ -13,10 +13,10 @@
         <button
             class="action-button search-panel__button"
             @click="submitSearch">&#128269;</button>
-        <adavanced-search-panel
+        <advanced-search-panel
             v-if="isAdvancedSearchPanelShown"
             :search-params="searchParams"
-            @submitSearch="submitSearch"
+            @valueChanged="submitSearch"
         />
     </article>
 </template>
@@ -46,11 +46,10 @@ export default {
         }
     },
     methods: {
-        submitSearch() {
+        submitSearch(advancedParams) {
             if (this.formattedName) {
-                this.resetStore();
-                this.$emit('resetPage');
-                this.$emit('loadBeerPage');
+                this.addSearchParams(advancedParams);
+                this.$emit('reload');
                 this.showAdvancedSearchPanel();
             }
         },
@@ -60,15 +59,15 @@ export default {
         hideAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = false;
         },
-        // clean() {
-        //     this.inputName = '';
-        //     this.$emit('resetPage');
-        //     this.$emit('resetSearchParams');
-        //     this.hideAdvancedSearchPanel();
-        // },
+        addSearchParams(advancedParams) {
+            const searchParams = { name: this.formattedName, ...advancedParams };
+            this.$emit('paramsChanged', searchParams);
+        },
         submitClean() {
-            // this.cleanSearch();
-            this.$emit('loadBeerPage');
+            this.inputName = '';
+            this.hideAdvancedSearchPanel();
+            this.$emit('searchParamsReset');
+            this.$emit('reload');
         }
     }
 };

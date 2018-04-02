@@ -40,8 +40,8 @@ export default {
         }
     },
     methods: {
-        submitSearch() {
-            this.$emit('submitSearch');
+        submitSearch(advancedParams) {
+            this.$emit('valueChanged', advancedParams);
         }
     }
 };
@@ -54,33 +54,6 @@ export default {
 
 .advanced-search-panel__inner {
     display: inline-block;
-}
-
-.advanced-search-panel__filter {
-    display: flex;
-
-    margin: 0 0 10px;
-
-    justify-content: space-between;
-}
-
-.advanced-search-panel__filter-name {
-    display: inline-block;
-
-    margin: 0 20px 0 0;
-
-    font-size: 1.1rem;
-}
-
-.advanced-search-panel__range {
-    cursor: pointer;
-    vertical-align: middle;
-}
-
-.advanced-search-panel__filter-note {
-    color: #6d6c96;
-
-    font-size: 0.8rem;
 }
 </style>
 

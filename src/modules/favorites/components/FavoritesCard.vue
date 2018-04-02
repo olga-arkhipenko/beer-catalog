@@ -28,9 +28,7 @@ export default {
             required: true
         }
     },
-    methods: {
-        ...mapActions('favoritesManagement', ['removeFavoriteBeer'])
-    }
+    methods: mapActions('favoritesManagement', ['removeFavoriteBeer'])
 };
 </script>
 

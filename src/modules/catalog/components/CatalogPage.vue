@@ -4,9 +4,9 @@
     >
         <search-panel
             :search-params="searchParams"
-            @loadBeerPage="loadBeerPage"
-            @resetPage="resetPage"
-            @resetSearchParams="resetSearchParams"
+            @paramsChanged="addSearchParams"
+            @searchParamsReset="resetSearchParams"
+            @reload="reloadCatalog"
         />
         <grid-list>
             <catalog-card
@@ -84,17 +84,25 @@ export default {
                 this.loadBeerPage();
             }
         },
+        reloadCatalog() {
+            this.resetBeers();
+            this.resetPage();
+            this.loadBeerPage();
+        },
         incrementPage() {
             this.pageParams.pageNumber++;
+        },
+        addSearchParams(searchParams) {
+            this.searchParams = { ...this.searchParams, ...searchParams };
         },
         resetPage() {
             this.pageParams.pageNumber = 1;
         },
         resetSearchParams() {
             this.searchParams = {
-                beerName: '',
+                name: '',
                 alcoholByVolume: 0,
-                interBitUnits: 0,
+                bitternessUnits: 0,
                 colorByEBC: 0
             };
         }
