@@ -66,7 +66,8 @@ export default {
             this.pageParams.pageNumber = 1;
         },
         deleteFavoriteBeer(favoriteBeerId) {
-            this.removeFavoriteBeer(favoriteBeerId, this.favoritesParams);
+            this.removeFavoriteBeer({ id: favoriteBeerId, requestParams: this.favoritesParams });
+            // this.loadBeerPage();
         }
     }
 };
