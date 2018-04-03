@@ -5,6 +5,7 @@ export default {
     alcoholByVolume: 'abv_gt',
     bitternessUnits: 'ibu_gt',
     colorByEBC: 'ebc_gt',
+    beerId: 'id',
     beerIds: 'ids'
 };
 
