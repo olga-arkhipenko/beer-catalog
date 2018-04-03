@@ -50,6 +50,7 @@ module.exports = (env) => {
                 common: path.resolve(__dirname, 'src/common'),
                 catalogModule: path.resolve(__dirname, 'src/modules/catalog'),
                 favoritesModule: path.resolve(__dirname, 'src/modules/favorites'),
+                beerInfoModule: path.resolve(__dirname, 'src/modules/beerInfo'),
                 features: path.resolve(__dirname, 'src/features'),
                 favoritesManagement: path.resolve(__dirname, 'src/features/favoritesManagement'),
                 router: path.resolve(__dirname, 'src/router'),
