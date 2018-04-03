@@ -1,8 +1,8 @@
-import favoritesService from '../services/favoritesService';
+import beerService from 'common/services/beerService';
 
 export default {
     loadFavoriteBeers({ commit }, requestParams) {
-        favoritesService.fetchBeers(requestParams).then((beers) => {
+        beerService.fetchBeers(requestParams).then((beers) => {
             commit('setFavoriteBeers', beers);
         });
     },

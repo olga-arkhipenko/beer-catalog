@@ -1,8 +1,8 @@
-import { FavoritesCard } from 'favoritesModule/models/favoritesCard';
+import { Beer } from 'common/models/Beer';
 
 export default {
     Map(beers) {
-        return beers.map(beer => new FavoritesCard(
+        return beers.map(beer => new Beer(
             beer.id,
             beer.name,
             beer.image_url,
