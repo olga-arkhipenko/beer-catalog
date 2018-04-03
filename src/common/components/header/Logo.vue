@@ -2,10 +2,8 @@
     <div class="logo">
         <router-link
             to="/"
-            class="link">
-            <span class="logo__name">
-                Beer Catalog
-            </span>
+            class="link logo__name">
+            Beer Catalog
         </router-link>
     </div>
 </template>

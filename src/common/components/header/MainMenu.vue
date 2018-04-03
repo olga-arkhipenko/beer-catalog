@@ -7,17 +7,15 @@
                 @click="hideMenu">&#215;</button>
             <ul class="menu__list">
                 <li
-                    v-for="route in routes"
+                    v-for="route in mainMenuRoutes"
                     :key="route.name"
                     class="menu__item"
                 >
                     <router-link
+                        v-cloak
                         :to="route.path"
-                        class="link">
-                        <span
-                            v-cloak
-                            class="menu__item-name"
-                        > {{ route.name }} </span>
+                        class="link menu__item-name">
+                        {{ route.name }}
                     </router-link>
                 </li>
             </ul>
@@ -26,7 +24,7 @@
 </template>
 
 <script>
-import routes from 'router/routes';
+import mainMenuRoutes from 'router/mainMenuRoutes';
 import Logo from './Logo';
 
 export default {
@@ -35,7 +33,7 @@ export default {
     },
     data() {
         return {
-            routes
+            mainMenuRoutes
         };
     },
     methods: {
