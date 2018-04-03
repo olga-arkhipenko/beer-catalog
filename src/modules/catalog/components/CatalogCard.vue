@@ -9,7 +9,11 @@
             <h3 class="beer-card__name">{{ beer.name }}</h3>
             <p class="beer-card__tagLine">{{ beer.tagLine }}</p>
             <div class="toggle-bar">
-                <button class="toggle-bar__button">open</button>
+                <button class="toggle-bar__button">
+                    <router-link
+                        :to="`/beer/${beer.id}`"
+                        class="link menu__item-name">open</router-link>
+                </button>
                 <button
                     v-if="isFavoriteBeer"
                     class="toggle-bar__button"
