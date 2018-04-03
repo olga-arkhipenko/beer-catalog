@@ -6,7 +6,7 @@ export default {
         commit('setFavoriteBeerIds', favoriteBeerIds);
     },
     addFavoriteBeer({ commit, state }, favoriteBeerId) {
-        if (state.favoriteBeerIds.every(beerId => beerId !== favoriteBeerId)) {
+        if (!state.favoriteBeerIds.includes(favoriteBeerId)) {
             commit('addFavoriteBeerId', favoriteBeerId);
         }
         localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
