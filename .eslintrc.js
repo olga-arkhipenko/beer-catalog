@@ -29,7 +29,6 @@ module.exports = {
         }],
         'vue/html-indent': ['error', 4, {
             'alignAttributesVertically': true
-        }],
-        'no-console': 'off'
+        }]
     }
 };
