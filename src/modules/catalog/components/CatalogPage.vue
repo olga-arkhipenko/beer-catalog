@@ -67,7 +67,6 @@ export default {
         loadBeerPage() {
             this.showSpinner();
             const catalogParams = { ...this.pageParams, ...this.searchParams };
-            console.log(`catalog params ${JSON.stringify(catalogParams)}`);
             this.loadBeers(catalogParams);
         },
         loadNextPage() {

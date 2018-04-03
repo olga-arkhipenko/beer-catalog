@@ -12,9 +12,12 @@ export default {
         localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
     },
     removeFavoriteBeer({ commit, state }, favoriteBeerId) {
-        const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
-        commit('setFavoriteBeerIds', filteredIds);
-        localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
+        return new Promise((resolve) => {
+            const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
+            commit('setFavoriteBeerIds', filteredIds);
+            localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
+            resolve(state.favoriteBeerIds);
+        });
     }
 };
 

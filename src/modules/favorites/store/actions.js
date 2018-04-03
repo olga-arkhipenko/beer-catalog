@@ -7,8 +7,10 @@ export default {
         });
     },
     removeFavoriteBeer({ dispatch }, payload) {
-        dispatch('favoritesManagement/removeFavoriteBeer', payload.id);
-        dispatch('loadFavoriteBeers', payload.requestParams);
+        dispatch('favoritesManagement/removeFavoriteBeer', payload.id).then((beerIds) => {
+            const allParams = { ...payload.requestParams, beerIds };
+            dispatch('loadFavoriteBeers', allParams);
+        });
     }
 };
 

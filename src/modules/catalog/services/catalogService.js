@@ -8,9 +8,7 @@ import catalogCardMapper from 'features/punkApiManagement/catalogCardMapper';
 export default {
     fetchBeers(beerParams) {
         const mappedParams = urlMapper.Map(punkApiMap, beerParams);
-        console.log(`mapped ${JSON.stringify(mappedParams)}`);
         const url = urlCreator.create(punkApiUrl, mappedParams);
-        console.log(url);
         return ajaxHelper.get(url).then(beers => catalogCardMapper.Map(JSON.parse(beers)));
     }
 };
