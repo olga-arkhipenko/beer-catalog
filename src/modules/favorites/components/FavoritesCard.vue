@@ -5,7 +5,9 @@
             <p class="favorite-beer-card__tagLine">{{ beer.tagLine }}</p>
             <p class="favorite-beer-card__description">{{ beer.description }}</p>
             <div class="favorite-bar">
-                <button class="action-button favorite-bar__button">open</button>
+                <router-link
+                    :to="`/beer/${beer.id}`"
+                    class="link menu__item-name">open</router-link>
                 <button
                     class="action-button favorite-bar__button"
                     @click="removeFavoriteBeer(beer.id)">remove favorite</button>
