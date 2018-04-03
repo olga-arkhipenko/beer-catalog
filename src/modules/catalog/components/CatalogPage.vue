@@ -4,8 +4,10 @@
         class="catalog"
     >
         <search-panel
+            :search-params="searchParams"
             @paramsChanged="addSearchParams"
-            @searchParamsReset="resetSearchParams"
+            @onSearchStart="loadBeerPage"
+            @reset="resetCatalog"
             @reload="reloadCatalog"
         />
         <grid-list>
@@ -57,9 +59,7 @@ export default {
         this.loadBeerPage();
     },
     beforeDestroy() {
-        this.resetBeers();
-        this.resetPage();
-        this.resetSearchParams();
+        this.resetCatalog();
     },
     methods: {
         ...mapActions('catalog', ['loadBeers', 'resetBeers']),
@@ -67,15 +67,11 @@ export default {
         loadBeerPage() {
             this.showSpinner();
             const catalogParams = { ...this.pageParams, ...this.searchParams };
+            console.log(`catalog params ${JSON.stringify(catalogParams)}`);
             this.loadBeers(catalogParams);
         },
         loadNextPage() {
             this.incrementPage();
-            this.loadBeerPage();
-        },
-        reloadCatalog() {
-            this.resetBeers();
-            this.resetPage();
             this.loadBeerPage();
         },
         incrementPage() {
@@ -92,6 +88,15 @@ export default {
         },
         resetSearchParams() {
             this.searchParams = {};
+        },
+        resetCatalog() {
+            this.resetBeers();
+            this.resetPage();
+            this.resetSearchParams();
+        },
+        reloadCatalog() {
+            this.resetCatalog();
+            this.loadBeerPage();
         }
     }
 };

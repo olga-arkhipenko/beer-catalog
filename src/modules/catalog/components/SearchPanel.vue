@@ -15,9 +15,7 @@
             @click="submitSearch">&#128269;</button>
         <advanced-search-panel
             v-if="isAdvancedSearchPanelShown"
-            :search-params="searchParams"
-            @searchParamsAdding="addSearchParams"
-            @valueChanged="submitSearch"
+            @searchSubmitting="submitSearch"
         />
     </article>
 </template>
@@ -29,22 +27,10 @@ export default {
     components: {
         AdvancedSearchPanel
     },
-    // props: {
-    //     searchParams: {
-    //         type: Object,
-    //         required: true
-    //     }
-    // },
     data() {
         return {
             inputName: '',
-            isAdvancedSearchPanelShown: false,
-            searchParams: {
-                name: '',
-                alcoholByVolume: 0,
-                bitternessUnits: 0,
-                colorByEBC: 0
-            }
+            isAdvancedSearchPanelShown: false
         };
     },
     computed: {
@@ -53,10 +39,11 @@ export default {
         }
     },
     methods: {
-        submitSearch(advancedParams) {
+        submitSearch(allSearchParams) {
             if (this.formattedName) {
-                this.addSearchParams(advancedParams);
-                this.$emit('reload');
+                this.$emit('reset');
+                this.addSearchParams(allSearchParams);
+                this.$emit('onSearchStart');
                 this.showAdvancedSearchPanel();
             }
         },
@@ -66,14 +53,13 @@ export default {
         hideAdvancedSearchPanel() {
             this.isAdvancedSearchPanelShown = false;
         },
-        addSearchParams(advancedParams) {
-            const searchParams = { name: this.formattedName, ...advancedParams };
-            this.$emit('paramsChanged', searchParams);
+        addSearchParams(searchParams) {
+            const allSearchParams = { name: this.formattedName, ...searchParams };
+            this.$emit('paramsChanged', allSearchParams);
         },
         submitClean() {
             this.inputName = '';
             this.hideAdvancedSearchPanel();
-            this.$emit('searchParamsReset');
             this.$emit('reload');
         }
     }

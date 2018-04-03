@@ -10,7 +10,7 @@
             v-model.number="value"
             type="range"
             class="slider__ranger"
-            @change="triggerValueChange(value)">
+            @change="triggerValueChange">
         <span
             v-cloak
             class="slider__note"
@@ -25,10 +25,6 @@ export default {
             type: String,
             required: true
         },
-        value: {
-            type: Number,
-            required: true
-        },
         minValue: {
             type: Number,
             required: true
@@ -38,9 +34,14 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            value: 0
+        };
+    },
     methods: {
-        triggerValueChange(sliderParam) {
-            this.$emit('valueChanged', sliderParam);
+        triggerValueChange() {
+            this.$emit('valueChanged', this.value);
         }
     }
 };

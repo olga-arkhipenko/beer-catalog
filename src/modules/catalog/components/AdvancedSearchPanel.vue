@@ -2,25 +2,22 @@
     <section class="advanced-search-panel">
         <div class="advanced-search-panel__inner">
             <slider
-                :value="searchParams.alcoholByVolume"
                 :min-value="2"
                 :max-value="14"
                 label="Alcohol by volume"
-                @valueChanged="submitSearch"
+                @valueChanged="addAlcoholByVolume"
             />
             <slider
                 :min-value="0"
                 :max-value="120"
-                :value="searchParams.bitternessUnits"
                 label="International Bitterness Units"
-                @valueChanged="submitSearch"
+                @valueChanged="addBitternessUnits"
             />
             <slider
-                :value="searchParams.colorByEBC"
                 :min-value="4"
                 :max-value="80"
                 label="Color by EBC"
-                @valueChanged="submitSearch"
+                @valueChanged="addColorByEBC"
             />
         </div>
     </section>
@@ -33,16 +30,30 @@ export default {
     components: {
         Slider
     },
-    props: {
-        searchParams: {
-            type: Object,
-            required: true
-        }
+    data() {
+        return {
+            advancedParams: {
+                alcoholByVolume: 0,
+                bitternessUnits: 0,
+                colorByEBC: 0
+            }
+        };
     },
     methods: {
-        submitSearch(advancedParams) {
-            this.$emit('searchParamsAdding', advancedParams);
-            this.$emit('valueChanged');
+        submitSearch() {
+            this.$emit('searchSubmitting', this.advancedParams);
+        },
+        addAlcoholByVolume(value) {
+            this.advancedParams.alcoholByVolume = value;
+            this.submitSearch();
+        },
+        addBitternessUnits(value) {
+            this.advancedParams.bitternessUnits = value;
+            this.submitSearch();
+        },
+        addColorByEBC(value) {
+            this.advancedParams.colorByEBC = value;
+            this.submitSearch();
         }
     }
 };

@@ -6,9 +6,9 @@ export default {
             commit('setFavoriteBeers', beers);
         });
     },
-    removeFavoriteBeer(context, payload) {
-        context.dispatch('favoritesManagement/removeFavoriteBeer', payload.id);
-        context.dispatch('loadFavoriteBeers', payload.requestParams);
+    removeFavoriteBeer({ dispatch }, payload) {
+        dispatch('favoritesManagement/removeFavoriteBeer', payload.id);
+        dispatch('loadFavoriteBeers', payload.requestParams);
     }
 };
 

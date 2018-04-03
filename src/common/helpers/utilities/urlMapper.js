@@ -5,7 +5,7 @@ export default {
                 accumulator[urlMap[current]] = urlParams[current].join('|');
                 return accumulator;
             }
-            if (!urlParams[current]) {
+            if (!urlParams[current] || !urlMap[current]) {
                 return accumulator;
             }
             accumulator[urlMap[current]] = urlParams[current];
