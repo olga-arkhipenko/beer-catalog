@@ -29,6 +29,7 @@ module.exports = {
         }],
         'vue/html-indent': ['error', 4, {
             'alignAttributesVertically': true
-        }]
+        }],
+        'consistent-return': 'off'
     }
 };

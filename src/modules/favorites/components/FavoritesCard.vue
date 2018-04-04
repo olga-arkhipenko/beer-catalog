@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         removeFavoriteBeer(favoriteBeerId) {
-            this.$emit('onFavoriteBeerRemove', favoriteBeerId);
+            this.$emit('favoriteBeerRemoved', favoriteBeerId);
         }
     }
 };

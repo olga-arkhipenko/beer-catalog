@@ -6,7 +6,7 @@
                 v-for="beer in favoriteBeers"
                 :beer="beer"
                 :key="beer.id"
-                @onFavoriteBeerRemove="deleteFavoriteBeer"
+                @favoriteBeerRemoved="deleteFavoriteBeer"
             />
         </row-list>
         <pagination

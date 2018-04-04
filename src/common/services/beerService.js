@@ -9,6 +9,7 @@ export default {
     fetchBeers(beerParams) {
         const mappedParams = urlMapper.Map(punkApiMap, beerParams);
         const url = urlCreator.create(punkApiUrl, mappedParams);
+        console.log(url);
         return ajaxHelper.get(url).then(beers => beerMapper.Map(beers));
     }
 };

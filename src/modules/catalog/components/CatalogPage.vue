@@ -10,7 +10,7 @@
             @reset="resetCatalog"
             @reload="reloadCatalog"
         />
-        <grid-list>
+        <grid-list >
             <catalog-card
                 v-for="beer in beers"
                 :beer="beer"
