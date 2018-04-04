@@ -12,7 +12,7 @@
             v-for="(page, index) in totalPages"
             :key="index">
             <button
-                :class="isActive(page)"
+                :class="{active: isActive(page)}"
                 href="#"
                 class="link pagination__page"
                 @click.prevent="changePage(page)"
@@ -87,7 +87,7 @@ export default {
             this.$emit('pageChanged', pageNumber);
         },
         isActive(pageNumber) {
-            return this.currentPage === pageNumber ? 'active' : '';
+            return this.currentPage === pageNumber;
         }
     }
 };
