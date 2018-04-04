@@ -1,30 +1,30 @@
 <template>
     <ul class="pagination">
         <li v-if="hasPrev">
-            <a
+            <button
                 href="#"
                 class="link pagination__page"
                 @click.prevent="changePage(prevPage)">
                 <span>&laquo;</span>
-            </a>
+            </button>
         </li>
         <li
             v-for="(page, index) in totalPages"
             :key="index">
-            <a
+            <button
                 :class="isActive(page)"
                 href="#"
                 class="link pagination__page"
                 @click.prevent="changePage(page)"
-            >{{ page }}</a>
+            >{{ page }}</button>
         </li>
         <li v-if="hasNext">
-            <a
+            <button
                 href="#"
                 class="link pagination__page"
                 @click.prevent="changePage(nextPage)">
                 <span>&raquo;</span>
-            </a>
+            </button>
         </li>
     </ul>
 </template>
@@ -119,6 +119,5 @@ export default {
 .active {
     background-color: #6d6c97;
 }
-
 </style>
 
