@@ -9,6 +9,7 @@ export default {
     fetchBeers(beerParams) {
         const mappedParams = urlMapper.Map(PARAMS_MAP, beerParams);
         const url = urlCreator.create(URL, mappedParams);
+        console.log(url);
         return ajaxHelper.get(url).then(beers => beerMapper.Map(beers));
     }
 };

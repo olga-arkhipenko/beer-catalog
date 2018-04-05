@@ -5,7 +5,6 @@ export const PARAMS_MAP = {
     alcoholByVolume: 'abv_gt',
     bitternessUnits: 'ibu_gt',
     colorByEBC: 'ebc_gt',
-    beerIds: 'ids',
-    beerId: 'id'
+    beerIds: 'ids'
 };
 

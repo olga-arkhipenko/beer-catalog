@@ -1,9 +1,9 @@
 export class Beer {
-    constructor(id, name, image, tagLine, description) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.tagLine = tagLine;
-        this.description = description;
+    constructor(beerObject) {
+        this.id = beerObject.id;
+        this.name = beerObject.name;
+        this.image = beerObject.image_url;
+        this.tagLine = beerObject.tagline;
+        this.description = beerObject.description;
     }
 }
