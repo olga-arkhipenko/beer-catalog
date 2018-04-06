@@ -1,13 +1,13 @@
 <template>
     <article class="favorites">
         <h1 class="favorites__heading">Your favorite beers</h1>
-        <row-list>
-            <favorites-card
-                v-for="beer in favoriteBeers"
-                :beer="beer"
-                :key="beer.id"
-                @favoriteBeerRemoved="deleteFavoriteBeer"
-            />
+        <row-list :items="favoriteBeers">
+            <template scope="props">
+                <favorites-card
+                    :beer="props.item"
+                    @favoriteBeerRemoved="deleteFavoriteBeer"
+                />
+            </template>
         </row-list>
         <pagination
             :current-page="favoritesParams.pageNumber"
