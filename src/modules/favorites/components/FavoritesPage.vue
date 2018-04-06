@@ -47,7 +47,7 @@ export default {
     },
     mounted() {
         this.loadFavoriteBeerIds();
-        this.loadBeerPage();
+        this.loadFavoriteBeers(this.favoritesParams);
     },
     beforeDestroy() {
         this.resetPage();
@@ -55,12 +55,9 @@ export default {
     methods: {
         ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeer']),
         ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
-        loadBeerPage() {
-            this.loadFavoriteBeers(this.favoritesParams);
-        },
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
-            this.loadBeerPage();
+            this.loadFavoriteBeers(this.favoritesParams);
         },
         resetPage() {
             this.pageParams.pageNumber = 1;
