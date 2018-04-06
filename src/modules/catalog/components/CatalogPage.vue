@@ -1,31 +1,31 @@
 <template>
-    <scroll-wrapper @pageScrolled="loadNextPage">
-        <article class="catalog">
-            <search-panel
-                :search-params="searchParams"
-                @paramsChanged="addSearchParams"
-                @onSearchStart="loadBeerPage"
-                @reset="resetCatalog"
-                @reload="reloadCatalog"
-            />
-            <grid-list :items="beers">
-                <template scope="props">
-                    <catalog-card
-                        :favorite-beer-ids="favoriteBeerIds"
-                        :beer="props.item"
-                    />
-                </template>
-            </grid-list>
-            <spinner v-if="isSpinnerShown"/>
-        </article>
-    </scroll-wrapper>
+    <article
+        v-page-scroll="loadNextPage"
+        class="catalog">
+        <search-panel
+            :search-params="searchParams"
+            @paramsChanged="addSearchParams"
+            @onSearchStart="loadBeerPage"
+            @reset="resetCatalog"
+            @reload="reloadCatalog"
+        />
+        <grid-list :items="beers">
+            <template scope="props">
+                <catalog-card
+                    :favorite-beer-ids="favoriteBeerIds"
+                    :beer="props.item"
+                />
+            </template>
+        </grid-list>
+        <spinner v-if="isSpinnerShown"/>
+    </article>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import GridList from 'common/components/lists/GridList';
 import Spinner from 'common/components/other/Spinner';
-import ScrollWrapper from 'common/components/wrappers/ScrollWrapper';
+import pageScroll from 'common/directives/pageScroll';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -34,8 +34,10 @@ export default {
         SearchPanel,
         GridList,
         CatalogCard,
-        Spinner,
-        ScrollWrapper
+        Spinner
+    },
+    directives: {
+        pageScroll
     },
     data() {
         return {
@@ -47,7 +49,6 @@ export default {
             isSpinnerShown: false
         };
     },
-
     computed: {
         ...mapState('catalog', ['beers']),
         ...mapState('catalog/favoritesManagement', ['favoriteBeerIds'])

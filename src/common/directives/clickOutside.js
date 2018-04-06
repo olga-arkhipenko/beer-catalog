@@ -6,13 +6,13 @@ export default {
                 binding.value();
             }
         };
-        el.clickOutside = handler;
+        el.__VueClickOutside__ = handler;
         document.addEventListener('click', handler);
     },
 
     unbind(el) {
-        document.removeEventListener('click', el.clickOutside);
-        el.clickOutside = null;
+        document.removeEventListener('click', el.__VueClickOutside__);
+        el.__VueClickOutside__ = null;
     }
 };
 
