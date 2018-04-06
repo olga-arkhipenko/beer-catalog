@@ -1,4 +1,4 @@
-export const PARAMS_MAP = {
+export const QUERY_PARAMS_MAP = {
     pageNumber: 'page',
     itemsPerPage: 'per_page',
     name: 'beer_name',

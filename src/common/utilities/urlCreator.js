@@ -1,6 +1,7 @@
 export default {
     create(url, params) {
         const route = url.replace(/:(\w+)/g, (_, routeParam) => params[routeParam] || '');
+        console.log(route);
         const query = Object.keys(params)
             .reduce((accumulator, queryParam, i, paramsArray) => {
                 accumulator = accumulator.concat(`${queryParam}=${params[queryParam]}`);

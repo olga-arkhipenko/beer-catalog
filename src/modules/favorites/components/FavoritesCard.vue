@@ -2,7 +2,7 @@
     <div class="favorite-beer-card">
         <div class="favorite-beer-card__info">
             <h3 class="favorite-beer-card__name">{{ beer.name }}</h3>
-            <p class="favorite-beer-card__tagLine">{{ beer.tagLine }}</p>
+            <p class="favorite-beer-card__tagLine">{{ beer.tagline }}</p>
             <p class="favorite-beer-card__description">{{ beer.description }}</p>
             <div class="favorite-bar">
                 <router-link

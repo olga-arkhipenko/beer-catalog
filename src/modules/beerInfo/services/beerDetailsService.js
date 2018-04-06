@@ -7,10 +7,12 @@ import { ROUTE_PARAMS_MAP } from 'features/punkApiManagement/routeParamsMap';
 import beerMapper from 'features/punkApiManagement/beerMapper';
 
 export default {
-    fetchBeers(beerParams) {
-        const mappedParams = urlMapper.mapParams(QUERY_PARAMS_MAP, ROUTE_PARAMS_MAP, beerParams);
+    fetchBeer(beerId) {
+        const mappedParams = urlMapper.mapParams(QUERY_PARAMS_MAP, ROUTE_PARAMS_MAP, { beerId });
         const url = urlCreator.create(URL, mappedParams);
         console.log(url);
-        return ajaxHelper.get(url).then(beers => beers.map(beer => beerMapper.mapToBeer(beer)));
+        return ajaxHelper.get(url).then((beer) => {
+            beerMapper.mapToBeerDetails(beer[0]);
+        });
     }
 };

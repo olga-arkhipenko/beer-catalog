@@ -1,5 +1,5 @@
 export default {
-    Map(urlMap, urlParams) {
+    mapParams(urlMap, urlParams) {
         return Object.keys(urlParams).reduce((accumulator, current) => {
             if (Array.isArray(urlParams[current])) {
                 accumulator[urlMap[current]] = urlParams[current].join('|');

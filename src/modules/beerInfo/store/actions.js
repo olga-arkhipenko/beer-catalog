@@ -1,8 +1,9 @@
-import beerInfoService from 'beerInfoModule/services/beerInfoService';
+import beerDetailsService from 'beerInfoModule/services/beerDetailsService';
 
 export default {
     loadBeer({ commit }, beerId) {
-        beerInfoService.fetchBeer(beerId).then((beer) => {
+        beerDetailsService.fetchBeer(beerId).then((beer) => {
+            console.log(beer);
             commit('setBeer', beer);
         });
     },

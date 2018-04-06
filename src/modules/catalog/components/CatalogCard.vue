@@ -7,7 +7,7 @@
         >
         <div class="beer-card__info">
             <h3 class="beer-card__name">{{ beer.name }}</h3>
-            <p class="beer-card__tagLine">{{ beer.tagLine }}</p>
+            <p class="beer-card__tagLine">{{ beer.tagline }}</p>
             <div class="toggle-bar">
                 <button class="toggle-bar__button">
                     <router-link
