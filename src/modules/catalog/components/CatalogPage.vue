@@ -1,35 +1,31 @@
 <template>
-    <!-- <scroll-wrapper :handler="loadNextPage"> -->
-    <article
-        v-page-scroll="loadNextPage"
-        class="catalog"
-    >
-        <search-panel
-            :search-params="searchParams"
-            @paramsChanged="addSearchParams"
-            @onSearchStart="loadBeerPage"
-            @reset="resetCatalog"
-            @reload="reloadCatalog"
-        />
-        <grid-list >
-            <catalog-card
-                v-for="beer in beers"
-                :beer="beer"
-                :key="beer.id"
-                :favorite-beer-ids="favoriteBeerIds"
+    <scroll-wrapper @pageScrolled="loadNextPage">
+        <article class="catalog">
+            <search-panel
+                :search-params="searchParams"
+                @paramsChanged="addSearchParams"
+                @onSearchStart="loadBeerPage"
+                @reset="resetCatalog"
+                @reload="reloadCatalog"
             />
-        </grid-list>
-        <spinner v-if="isSpinnerShown"/>
-    </article>
-    <!-- </scroll-wrapper> -->
+            <grid-list >
+                <catalog-card
+                    v-for="beer in beers"
+                    :beer="beer"
+                    :key="beer.id"
+                    :favorite-beer-ids="favoriteBeerIds"
+                />
+            </grid-list>
+            <spinner v-if="isSpinnerShown"/>
+        </article>
+    </scroll-wrapper>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import GridList from 'common/components/lists/GridList';
 import Spinner from 'common/components/other/Spinner';
-import ScrollWrapper from 'common/components/other/ScrollWrapper';
-import pageScroll from 'common/directives/pageScroll';
+import ScrollWrapper from 'common/components/wrappers/ScrollWrapper';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -40,9 +36,6 @@ export default {
         CatalogCard,
         Spinner,
         ScrollWrapper
-    },
-    directives: {
-        pageScroll
     },
     data() {
         return {
