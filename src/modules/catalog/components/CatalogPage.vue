@@ -8,12 +8,10 @@
                 @reset="resetCatalog"
                 @reload="reloadCatalog"
             />
-            <grid-list >
+            <grid-list :items="beers">
                 <catalog-card
-                    v-for="beer in beers"
-                    :beer="beer"
-                    :key="beer.id"
                     :favorite-beer-ids="favoriteBeerIds"
+                    scope-slot="beer"
                 />
             </grid-list>
             <spinner v-if="isSpinnerShown"/>
