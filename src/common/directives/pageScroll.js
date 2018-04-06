@@ -11,7 +11,6 @@ export default {
         el.__VueHandlePageBottom__ = handler;
         window.addEventListener('scroll', handler);
     },
-
     unbind(el) {
         window.removeEventListener('scroll', el.__VueHandlePageBottom__);
         el.__VueHandlePageBottom__ = null;
