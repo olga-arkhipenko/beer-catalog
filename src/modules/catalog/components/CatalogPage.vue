@@ -9,10 +9,12 @@
                 @reload="reloadCatalog"
             />
             <grid-list :items="beers">
-                <catalog-card
-                    :favorite-beer-ids="favoriteBeerIds"
-                    scope-slot="beer"
-                />
+                <template scope="props">
+                    <catalog-card
+                        :favorite-beer-ids="favoriteBeerIds"
+                        :beer="props.item"
+                    />
+                </template>
             </grid-list>
             <spinner v-if="isSpinnerShown"/>
         </article>
