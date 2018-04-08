@@ -78,6 +78,14 @@ const mapBrewing = function (beer) {
     return mapBrewing;
 };
 
+const mapFoodPairing = function (beer) {
+    return beer.food_pairing.map((foodPair) => {
+        const mappedFoodPair = new FoodPair();
+        mappedFoodPair.name = foodPair;
+        return mappedFoodPair;
+    });
+};
+
 export default {
     mapToBeer(beer) {
         return mapBeer(beer, Beer);
@@ -87,12 +95,9 @@ export default {
         mappedBeerDetails.alcoholByVolume = beer.abv;
         mappedBeerDetails.bitternessUnits = beer.ibu;
         mappedBeerDetails.colorByEBC = beer.ebc;
-        mappedBeerDetails.foodPairing = beer.food_pairing.map((foodPair) => {
-            const mappedFoodPair = new FoodPair();
-            mappedFoodPair.name = foodPair;
-            return mappedFoodPair;
-        });
+        mappedBeerDetails.foodPairing = mapFoodPairing(beer);
         mappedBeerDetails.brewing = mapBrewing(beer);
+        console.log(JSON.stringify(mappedBeerDetails));
         return mappedBeerDetails;
     }
 };
