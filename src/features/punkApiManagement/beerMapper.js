@@ -53,7 +53,7 @@ const mapMashTemp = function (beer) {
         mappedMashTemp.value = mashTemp.temp.value;
         mappedMashTemp.units = mashTemp.temp.units;
         mappedMashTemp.duration = mashTemp.temp.duration;
-        return mapMashTemp;
+        return mappedMashTemp;
     });
 };
 

@@ -1,10 +1,15 @@
 <template>
     <section class="food-pairing">
-        <h2>Food Pairing</h2>
-        <div
-            v-for="foodPair in foodPairing"
-            :key="foodPair.name"> {{ foodPair.name }}
-        </div>
+        <h2 class="food-pairing__heading">Food Pairing</h2>
+        <ul class="food-pairing__list beer-info-list">
+            <li
+                v-for="(foodPair, index) in foodPairing"
+                v-cloak
+                :key="index"
+                class="beer-info-list__item"
+            > {{ foodPair.name }}.
+            </li>
+        </ul>
     </section>
 </template>
 
@@ -22,7 +27,14 @@ export default {
 
 <style>
 .food-pairing {
-    float: right;
+    float: left;
+
+    margin: 40px;
 }
+
+.food-pairing__heading {
+    color: #31374c;
+}
+
 </style>
 

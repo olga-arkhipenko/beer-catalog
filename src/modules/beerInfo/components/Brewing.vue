@@ -1,8 +1,9 @@
 <template>
     <section class="brewing">
-        <h2>Brewing</h2>
+        <h2 class="brewing__heading">Brewing</h2>
         <p v-cloak>{{ brewing.tips }}</p>
         <ingredients :ingredients="brewing.ingredients"/>
+        <methods :methods="brewing.methods"/>
     </section>
 </template>
 
@@ -23,3 +24,10 @@ export default {
     }
 };
 </script>
+
+<style>
+.brewing__heading {
+    color: #31374c;
+}
+</style>
+

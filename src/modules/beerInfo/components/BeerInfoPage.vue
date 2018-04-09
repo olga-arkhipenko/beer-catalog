@@ -12,12 +12,12 @@
             class="beer-info__tag">{{ beer.tagline }}</p>
         <button
             v-if="isFavoriteBeer"
-            class=""
+            class="beer-info__button action-button"
             @click="removeFavoriteBeer(beer.id)"
         >remove favorite</button>
         <button
             v-else
-            class=""
+            class="beer-info__button action-button"
             @click="addFavoriteBeer(beer.id)"
         >add favorite</button>
         <p class="beer-info__description">
@@ -71,17 +71,33 @@ export default {
 
 <style>
 .beer-info {
-    margin: 120px 0 0;
+    width: 1240px;
+    margin: 120px auto;
 
     font-family: "Courier New", Courier, monospace;
 }
+
 .beer-info__heading {
     color: #31374c;
 }
+
 .beer-info__image {
     float: right;
 
     height: 300px;
+    margin: 20px;
 }
+
+.beer-info__button {
+    padding: 10px 20px;
+
+    text-transform: uppercase;
+
+    color: #ffffff;
+    background-color: #464c67;
+
+    font-size: 1.3rem;
+}
+
 </style>
 

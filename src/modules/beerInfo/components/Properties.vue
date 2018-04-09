@@ -1,33 +1,44 @@
 <template>
     <section class="beer-properties">
-        <h2>Properties</h2>
-        <div class="properties">
-            <div class="properties__item">
+        <h2 class="properties__heading">Properties</h2>
+        <div class="properties__list beer-info-list">
+            <div class="beer-info-list__item">
                 <div>
                     <span>ABV</span>
-                    <span>&#9432;</span>
+                    <span class="tooltip-sign">&#9432;
+                        <span class="tooltip-info"> Alcohol By Volume measures what
+                        percentage of your beer is alcohol</span>
+                    </span>
                 </div>
-                <div>
+                <span v-cloak>
                     {{ beer.alcoholByVolume }}
-                </div>
+                </span>
             </div>
-            <div class="properties__item">
+            <div class="beer-info-list__item">
                 <div>
                     <span>IBU</span>
-                    <span>&#9432;</span>
+                    <span class="tooltip-sign">&#9432;
+                        <span class="tooltip-info"> International bitterness unit
+                        measures the bitterness from hops in a beer on a scale
+                        of 0 to 100.</span>
+                    </span>
                 </div>
-                <div>
+                <span v-cloak>
                     {{ beer.bitternessUnits }}
-                </div>
+                </span>
             </div>
-            <div class="properties__item">
+            <div class="beer-info-list__item">
                 <div>
                     <span>EBC</span>
-                    <span>&#9432;</span>
+                    <span class="tooltip-sign">&#9432;
+                        <span class="tooltip-info">Beer color by  European Brewery Convention
+                        is a measurement of  wort colour,
+                        as well as quantifying haze in beer</span>
+                    </span>
                 </div>
-                <div>
+                <span v-cloak>
                     {{ beer.colorByEBC }}
-                </div>
+                </span>
             </div>
         </div>
     </section>
@@ -47,13 +58,15 @@ export default {
 <style>
 .beer-properties {
     float: left;
-}
-.properties {
-    width: 300px;
-}
-.properties__item {
-    display: flex;
 
-    justify-content: space-between;
+    margin: 40px;
 }
+.properties__list {
+    min-width: 300px;
+}
+
+.properties__heading {
+    color: #31374c;
+}
+
 </style>
