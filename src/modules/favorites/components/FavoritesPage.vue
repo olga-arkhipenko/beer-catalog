@@ -2,7 +2,7 @@
     <article class="favorites">
         <h1 class="favorites__heading">Your favorite beers</h1>
         <row-list :items="favoriteBeers">
-            <template scope="props">
+            <template slot-scope="props">
                 <favorites-card
                     :beer="props.item"
                     @favoriteBeerRemoved="deleteFavoriteBeer"
@@ -10,9 +10,9 @@
             </template>
         </row-list>
         <pagination
-            :current-page="favoritesParams.pageNumber"
+            :current-page="pageParams.pageNumber"
             :total-items="favoriteBeerIds.length"
-            :items-per-page="favoritesParams.itemsPerPage"
+            :items-per-page="pageParams.itemsPerPage"
             @pageChanged="changePage"
         />
     </article>
@@ -40,14 +40,10 @@ export default {
     },
     computed: {
         ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds']),
-        favoritesParams() {
-            return { ...this.pageParams, beerIds: this.favoriteBeerIds };
-        }
+        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds'])
     },
     mounted() {
-        this.loadFavoriteBeerIds();
-        this.loadFavoriteBeers(this.favoritesParams);
+        this.loadFavoriteBeers(this.pageParams);
     },
     beforeDestroy() {
         this.resetPage();
@@ -57,7 +53,7 @@ export default {
         ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
-            this.loadFavoriteBeers(this.favoritesParams);
+            this.loadFavoriteBeers(this.pageParams);
         },
         resetPage() {
             this.pageParams.pageNumber = 1;

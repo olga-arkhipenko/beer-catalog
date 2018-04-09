@@ -1,21 +1,25 @@
-import localStorageHelper from 'common/helpers/localStorageHelper';
+import favoritesManagementService from 'favoritesManagement/service/favoritesManagementService';
 
 export default {
     loadFavoriteBeerIds({ commit }) {
-        const favoriteBeerIds = localStorageHelper.get('favoriteBeerIds');
-        commit('setFavoriteBeerIds', favoriteBeerIds);
+        return favoritesManagementService
+            .fetchFavoriteBeerIds()
+            .then((favoriteBeerIds) => {
+                commit('setFavoriteBeerIds', favoriteBeerIds);
+                return favoriteBeerIds;
+            });
     },
     addFavoriteBeer({ commit, state }, favoriteBeerId) {
         if (!state.favoriteBeerIds.includes(favoriteBeerId)) {
             commit('addFavoriteBeerId', favoriteBeerId);
         }
-        localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
+        favoritesManagementService.updateFavoriteBeerIds(state.favoriteBeerIds);
     },
     removeFavoriteBeer({ commit, state }, favoriteBeerId) {
         return new Promise((resolve) => {
             const filteredIds = state.favoriteBeerIds.filter(beerId => beerId !== favoriteBeerId);
             commit('setFavoriteBeerIds', filteredIds);
-            localStorageHelper.update('favoriteBeerIds', state.favoriteBeerIds);
+            favoritesManagementService.updateFavoriteBeerIds(state.favoriteBeerIds);
             resolve(state.favoriteBeerIds);
         });
     }

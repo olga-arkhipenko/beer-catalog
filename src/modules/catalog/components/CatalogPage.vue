@@ -10,7 +10,7 @@
             @reload="reloadCatalog"
         />
         <grid-list :items="beers">
-            <template scope="props">
+            <template slot-scope="props">
                 <catalog-card
                     :favorite-beer-ids="favoriteBeerIds"
                     :beer="props.item"

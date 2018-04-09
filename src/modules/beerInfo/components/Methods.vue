@@ -26,7 +26,7 @@
 export default {
     props: {
         methods: {
-            type: Array,
+            type: Object,
             required: true
         }
     }
