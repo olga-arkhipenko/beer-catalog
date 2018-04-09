@@ -7,7 +7,7 @@
             <div class="favorite-bar">
                 <router-link
                     :to="`/beer/${beer.id}`"
-                    class="link menu__item-name">open</router-link>
+                    class="link favorite-bar__button">open</router-link>
                 <button
                     class="action-button favorite-bar__button"
                     @click="removeFavoriteBeer(beer.id)">remove favorite</button>
