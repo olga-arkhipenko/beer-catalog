@@ -4,15 +4,14 @@
         <div class="methods__list beer-info-list">
             <h3>Mash</h3>
             <p
-                v-for="mashTemp in methods[0]"
+                v-for="(mashTemp, index) in methods[0]"
                 v-cloak
-                :key="mashTemp.name">
-                {{ mashTemp.value }} minutes
-                {{ mashTemp.duration }}
-                {{ mashTemp.units }}
+                :key="index">
+                {{ mashTemp.duration || 'A few' }} minutes
+                at {{ mashTemp.temperature }}
             </p>
             <h3>Fermentation</h3>
-            <p v-cloak>Perform at {{ methods[1].value }} {{ methods[1].units }}°C</p>
+            <p v-cloak>Perform at {{ methods[1].value }} {{ methods[1].unit }} °C</p>
             <h3>Twist</h3>
             <p v-cloak>{{ methods[2].name || 'nothing' }}</p>
         </div>

@@ -50,9 +50,8 @@ const mapYeast = function (beer) {
 const mapMashTemp = function (beer) {
     return beer.method.mash_temp.map((mashTemp) => {
         const mappedMashTemp = new MashTemp();
-        mappedMashTemp.value = mashTemp.temp.value;
-        mappedMashTemp.units = mashTemp.temp.units;
-        mappedMashTemp.duration = mashTemp.temp.duration;
+        mappedMashTemp.temperature = `${mashTemp.temp.value} ${mashTemp.temp.unit}`;
+        mappedMashTemp.duration = mashTemp.duration;
         return mappedMashTemp;
     });
 };
