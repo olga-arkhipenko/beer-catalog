@@ -31,6 +31,7 @@ module.exports = {
             'alignAttributesVertically': true
         }],
         'consistent-return': 'off',
-        'no-underscore-dangle': 'off'
+        'no-underscore-dangle': 'off',
+        'no-mixed-operators': 'off'
     }
 };

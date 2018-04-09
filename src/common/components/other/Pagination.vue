@@ -55,11 +55,8 @@ export default {
             return Math.ceil(this.totalItems / this.itemsPerPage);
         },
         pageRange() {
-            const pageRange = [];
-            for (let i = this.pageRangeBefore; i <= this.pageRangeAfter; i++) {
-                pageRange.push(i);
-            }
-            return pageRange;
+            return new Array(this.pageRangeAfter - this.pageRangeBefore + 1)
+                .fill(0).map((_, i) => i + 1);
         },
         pageRangeBefore() {
             const before = this.currentPage - this.pageOffset;
