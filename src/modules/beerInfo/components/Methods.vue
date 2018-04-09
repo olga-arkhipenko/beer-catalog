@@ -1,20 +1,24 @@
 <template>
     <section class="methods">
         <h2 class="methods__heading">Methods</h2>
-        <div class="methods__list beer-info-list">
+        <section class="methods__list beer-info-list">
             <h3>Mash</h3>
-            <p
-                v-for="(mashTemp, index) in methods[0]"
+            <div
+                v-for="(mashTemp, index) in methods.mashTemp"
                 v-cloak
                 :key="index">
-                {{ mashTemp.duration || 'A few' }} minutes
-                at {{ mashTemp.temperature }}
-            </p>
+                <p v-if="mashTemp.duration">{{ mashTemp.duration }} minutes, </p>
+                <p>temperature - {{ mashTemp.value }} {{ mashTemp.unit }}</p>
+            </div>
             <h3>Fermentation</h3>
-            <p v-cloak>Perform at {{ methods[1].value }} {{ methods[1].unit }} °C</p>
-            <h3>Twist</h3>
-            <p v-cloak>{{ methods[2].name || 'nothing' }}</p>
-        </div>
+            <span v-cloak>Perform at
+                {{ methods.fermentation.value }}
+                {{ methods.fermentation.unit }}</span>
+            <div v-if="methods.twist.name">
+                <h3>Twist</h3>
+                <span v-cloak>{{ methods.twist.name }}</span>
+            </div>
+        </section>
     </section>
 </template>
 
@@ -33,7 +37,9 @@ export default {
 <style>
 .methods {
     float: left;
-    margin: 40px;
+
+    margin: 10px 0 20px;
+    max-width: 50%;
 }
 
 .methods__heading {

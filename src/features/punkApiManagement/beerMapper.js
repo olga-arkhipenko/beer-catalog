@@ -2,6 +2,8 @@ import { Beer } from 'common/models/Beer';
 import { BeerDetails } from 'beerInfoModule/models/BeerDetails';
 import { FoodPair } from 'beerInfoModule/models/FoodPair';
 import { Brewing } from 'beerInfoModule/models/Brewing';
+import { Ingredients } from 'beerInfoModule/models/Ingredients';
+import { Methods } from 'beerInfoModule/models/Methods';
 import { Malt } from 'beerInfoModule/models/Malt';
 import { Hops } from 'beerInfoModule/models/Hops';
 import { Yeast } from 'beerInfoModule/models/Yeast';
@@ -19,71 +21,89 @@ const mapBeer = function (beer, TargetType) {
     return mappedBeer;
 };
 
-const mapMalt = function (beer) {
-    return beer.ingredients.malt.map((malt) => {
+const mapMalt = function (malt) {
+    return malt.map((maltItem) => {
         const mappedMalt = new Malt();
-        mappedMalt.name = malt.name;
-        mappedMalt.value = malt.amount.value;
-        mappedMalt.units = malt.amount.units;
+        mappedMalt.name = maltItem.name;
+        mappedMalt.value = maltItem.amount.value;
+        mappedMalt.unit = maltItem.amount.unit;
         return mappedMalt;
     });
 };
 
-const mapHops = function (beer) {
-    return beer.ingredients.hops.map((hops) => {
+const mapHops = function (hops) {
+    return hops.map((hopsItem) => {
         const mappedHops = new Hops();
-        mappedHops.name = hops.name;
-        mappedHops.value = hops.amount.value;
-        mappedHops.units = hops.amount.units;
-        mappedHops.add = hops.add;
-        mappedHops.attribute = hops.attribute;
+        mappedHops.name = hopsItem.name;
+        mappedHops.value = hopsItem.amount.value;
+        mappedHops.unit = hopsItem.amount.unit;
+        mappedHops.add = hopsItem.add;
+        mappedHops.attribute = hopsItem.attribute;
         return mappedHops;
     });
 };
 
-const mapYeast = function (beer) {
+const mapYeast = function (yeast) {
     const mappedYeast = new Yeast();
-    mappedYeast.name = beer.ingredients.yeast;
+    mappedYeast.name = yeast;
     return mappedYeast;
 };
 
-const mapMashTemp = function (beer) {
-    return beer.method.mash_temp.map((mashTemp) => {
+const mapIngredients = function (ingredients) {
+    const mappedIngredients = new Ingredients();
+    mappedIngredients.malt = mapMalt(ingredients.malt);
+    mappedIngredients.hops = mapHops(ingredients.hops);
+    mappedIngredients.yeast = mapYeast(ingredients.yeast);
+    return mappedIngredients;
+};
+
+const mapMashTemp = function (mashTemp) {
+    return mashTemp.map((mashTempItem) => {
         const mappedMashTemp = new MashTemp();
-        mappedMashTemp.temperature = `${mashTemp.temp.value} ${mashTemp.temp.unit}`;
-        mappedMashTemp.duration = mashTemp.duration;
+        mappedMashTemp.value = mashTempItem.temp.value;
+        mappedMashTemp.unit = mashTempItem.temp.unit;
+        mappedMashTemp.duration = mashTempItem.duration;
         return mappedMashTemp;
     });
 };
 
-const mapFermentation = function (beer) {
+const mapFermentation = function (fermentation) {
     const mappedFermentation = new Fermentation();
-    mappedFermentation.value = beer.method.fermentation.temp.value;
-    mappedFermentation.units = beer.method.fermentation.temp.units;
+    mappedFermentation.value = fermentation.temp.value;
+    mappedFermentation.unit = fermentation.temp.unit;
     return mappedFermentation;
 };
 
-const mapTwist = function (beer) {
+const mapTwist = function (twist) {
     const mappedTwist = new Twist();
-    mappedTwist.name = beer.method.twist;
+    mappedTwist.name = twist;
     return mappedTwist;
 };
 
-const mapBrewing = function (beer) {
+const mapMethods = function (methods) {
+    const mappedMethods = new Methods();
+    mappedMethods.mashTemp = mapMashTemp(methods.mash_temp);
+    mappedMethods.fermentation = mapFermentation(methods.fermentation);
+    mappedMethods.twist = mapTwist(methods.twist);
+    return mappedMethods;
+};
+
+const mapBrewing = function (tips, ingredients, methods) {
     const mappedBrewing = new Brewing();
-    mappedBrewing.tips = beer.brewers_tips;
-    mappedBrewing.ingredients = [mapMalt(beer), mapHops(beer), mapYeast(beer)];
-    mappedBrewing.methods = [mapMashTemp(beer), mapFermentation(beer), mapTwist(beer)];
+    mappedBrewing.tips = tips;
+    mappedBrewing.ingredients = mapIngredients(ingredients);
+    mappedBrewing.methods = mapMethods(methods);
     return mappedBrewing;
 };
 
-const mapFoodPairing = function (beer) {
-    return beer.food_pairing.map((foodPair) => {
+const mapFoodPairing = function (foodPairing) {
+    return foodPairing.map((foodPair) => {
         const mappedFoodPair = new FoodPair();
         mappedFoodPair.name = foodPair;
         return mappedFoodPair;
     });
 };
+
 
 export default {
     mapToBeer(beer) {
@@ -94,8 +114,8 @@ export default {
         mappedBeerDetails.alcoholByVolume = beer.abv;
         mappedBeerDetails.bitternessUnits = beer.ibu;
         mappedBeerDetails.colorByEBC = beer.ebc;
-        mappedBeerDetails.foodPairing = mapFoodPairing(beer);
-        mappedBeerDetails.brewing = mapBrewing(beer);
+        mappedBeerDetails.foodPairing = mapFoodPairing(beer.food_pairing);
+        mappedBeerDetails.brewing = mapBrewing(beer.brewers_tips, beer.ingredients, beer.method);
         return mappedBeerDetails;
     }
 };

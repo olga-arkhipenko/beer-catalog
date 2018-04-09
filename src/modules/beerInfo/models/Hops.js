@@ -1,7 +1,7 @@
 export class Hops {
     name = null;
     value = null;
-    units = null;
+    unit = null;
     add = null;
     attribute = null;
 }

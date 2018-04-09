@@ -4,21 +4,21 @@
         <div class="beer-info-list">
             <h3>Malt</h3>
             <p
-                v-for="(malt, index) in ingredients[0]"
+                v-for="(malt, index) in ingredients.malt"
                 v-cloak
                 :key="index">
                 "{{ malt.name }}" - {{ malt.value }} {{ malt.units }}
             </p>
             <h3>Hops</h3>
             <p
-                v-for="(hops, index) in ingredients[1]"
+                v-for="(hops, index) in ingredients.hops"
                 v-cloak
                 :key="index">"{{ hops.name }}" - {{ hops.value }}
                 {{ hops.units }}, {{ hops.attribute }},
                 add when {{ hops.add || 'start' }}
             </p>
             <h3>Yeast</h3>
-            <p v-cloak>{{ ingredients[2].name }}</p>
+            <p v-cloak>{{ ingredients.yeast.name }}</p>
             <div/>
         </div>
     </section>
@@ -38,8 +38,8 @@ export default {
 <style>
 .ingredients {
     float: left;
-
-    margin: 40px;
+    margin: 10px 30px 20px 0;
+    max-width: 50%;
 }
 
 .ingredients__heading {

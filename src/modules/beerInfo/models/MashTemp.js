@@ -1,4 +1,5 @@
 export class MashTemp {
-    temperature = null;
+    value = null;
+    unit = null;
     duration = null;
 }

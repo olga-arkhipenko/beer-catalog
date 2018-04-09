@@ -68,5 +68,4 @@ export default {
 .properties__heading {
     color: #31374c;
 }
-
 </style>
