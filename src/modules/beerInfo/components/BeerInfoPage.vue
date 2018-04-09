@@ -58,13 +58,14 @@ export default {
     },
     mounted() {
         this.loadBeer(this.id);
+        this.loadFavoriteBeerIds();
     },
     beforeDestroy() {
         this.resetBeer();
     },
     methods: {
         ...mapActions('beerInfo', ['loadBeer', 'resetBeer']),
-        ...mapActions('beerInfo/favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer'])
+        ...mapActions('beerInfo/favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer', 'loadFavoriteBeerIds'])
     }
 };
 </script>

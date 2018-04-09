@@ -6,14 +6,14 @@
             <p
                 v-for="(malt, index) in ingredients.malt"
                 v-cloak
-                :key="index">
+                :key="index + Math.random()">
                 "{{ malt.name }}" - {{ malt.value }} {{ malt.units }}
             </p>
             <h3>Hops</h3>
             <p
                 v-for="(hops, index) in ingredients.hops"
                 v-cloak
-                :key="index">"{{ hops.name }}" - {{ hops.value }}
+                :key="index + Math.random()">"{{ hops.name }}" - {{ hops.value }}
                 {{ hops.units }}, {{ hops.attribute }},
                 add when {{ hops.add || 'start' }}
             </p>
@@ -28,7 +28,7 @@
 export default {
     props: {
         ingredients: {
-            type: Array,
+            type: Object,
             required: true
         }
     }
