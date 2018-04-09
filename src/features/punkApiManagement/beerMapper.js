@@ -75,7 +75,7 @@ const mapBrewing = function (beer) {
     mappedBrewing.tips = beer.brewers_tips;
     mappedBrewing.ingredients = [mapMalt(beer), mapHops(beer), mapYeast(beer)];
     mappedBrewing.methods = [mapMashTemp(beer), mapFermentation(beer), mapTwist(beer)];
-    return mapBrewing;
+    return mappedBrewing;
 };
 
 const mapFoodPairing = function (beer) {
@@ -97,7 +97,6 @@ export default {
         mappedBeerDetails.colorByEBC = beer.ebc;
         mappedBeerDetails.foodPairing = mapFoodPairing(beer);
         mappedBeerDetails.brewing = mapBrewing(beer);
-        console.log(JSON.stringify(mappedBeerDetails));
         return mappedBeerDetails;
     }
 };

@@ -7,7 +7,7 @@
         >
         <div class="beer-card__info">
             <h3 class="beer-card__name">{{ beer.name }}</h3>
-            <p class="beer-card__tagLine">{{ beer.tagline }}</p>
+            <p class="beer-card__tag">{{ beer.tagline }}</p>
             <div class="toggle-bar">
                 <button class="toggle-bar__button">
                     <router-link
@@ -85,7 +85,7 @@ export default {
     color: #56a558;
 }
 
-.beer-card__tagLine {
+.beer-card__tag {
     color: #abc0d8;
 }
 
