@@ -9,7 +9,10 @@
             @reset="resetCatalog"
             @reload="reloadCatalog"
         />
-        <grid-list :items="beers">
+        <grid-list
+            v-if="beers.length > 0"
+            :items="beers"
+        >
             <template slot-scope="props">
                 <catalog-card
                     :favorite-beer-ids="favoriteBeerIds"
@@ -45,13 +48,15 @@ export default {
                 pageNumber: 1,
                 itemsPerPage: 9
             },
-            searchParams: {},
-            isSpinnerShown: false
+            searchParams: {}
         };
     },
     computed: {
         ...mapState('catalog', ['beers']),
-        ...mapState('catalog/favoritesManagement', ['favoriteBeerIds'])
+        ...mapState('catalog/favoritesManagement', ['favoriteBeerIds']),
+        isSpinnerShown() {
+            return this.beers.length % this.pageParams.itemsPerPage === 0;
+        }
     },
     mounted() {
         this.loadFavoriteBeerIds();
@@ -64,7 +69,6 @@ export default {
         ...mapActions('catalog', ['loadBeers', 'resetBeers']),
         ...mapActions('catalog/favoritesManagement', ['loadFavoriteBeerIds']),
         loadBeerPage() {
-            this.showSpinner();
             const catalogParams = { ...this.pageParams, ...this.searchParams };
             this.loadBeers(catalogParams);
         },
@@ -77,9 +81,6 @@ export default {
         },
         addSearchParams(searchParams) {
             this.searchParams = { ...this.searchParams, ...searchParams };
-        },
-        showSpinner() {
-            this.isSpinnerShown = true;
         },
         resetPage() {
             this.pageParams.pageNumber = 1;

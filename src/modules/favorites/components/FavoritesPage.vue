@@ -10,6 +10,7 @@
             </template>
         </row-list>
         <pagination
+            v-if="isPaginationShown"
             :current-page="pageParams.pageNumber"
             :total-items="favoriteBeerIds.length"
             :items-per-page="pageParams.itemsPerPage"
@@ -40,7 +41,11 @@ export default {
     },
     computed: {
         ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds'])
+        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds']),
+        isPaginationShown() {
+            // return this.favoriteBeerIds.length > this.pageParams.itemsPerPage;
+            return true;
+        }
     },
     mounted() {
         this.loadFavoriteBeers(this.pageParams);
@@ -51,6 +56,7 @@ export default {
     methods: {
         ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeer']),
         ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
+
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
             this.loadFavoriteBeers(this.pageParams);

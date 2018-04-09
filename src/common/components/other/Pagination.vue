@@ -3,7 +3,7 @@
         <li v-if="hasPrev">
             <button
                 href="#"
-                class="link pagination__page"
+                class="pagination__page actioin-button"
                 @click.prevent="changePage(prevPage)">
                 <span>&laquo;</span>
             </button>
@@ -14,14 +14,14 @@
             <button
                 :class="{active: isActive(page)}"
                 href="#"
-                class="link pagination__page"
+                class="pagination__page actioin-button"
                 @click.prevent="changePage(page)"
             >{{ page }}</button>
         </li>
         <li v-if="hasNext">
             <button
                 href="#"
-                class="link pagination__page"
+                class="pagination__page actioin-button"
                 @click.prevent="changePage(nextPage)">
                 <span>&raquo;</span>
             </button>
@@ -105,6 +105,7 @@ export default {
 
     color: #ffffff;
     background-color: #31364c;
+    border: 1px solid #c7d7e9;
 
     font-family: "Courier New", Courier, monospace;
 }
