@@ -3,7 +3,7 @@
         <li v-if="hasPrev">
             <button
                 href="#"
-                class="pagination__page actioin-button"
+                class="action-button pagination__page"
                 @click.prevent="changePage(prevPage)">
                 <span>&laquo;</span>
             </button>
@@ -14,14 +14,14 @@
             <button
                 :class="{active: isActive(page)}"
                 href="#"
-                class="pagination__page actioin-button"
+                class="action-button pagination__page"
                 @click.prevent="changePage(page)"
             >{{ page }}</button>
         </li>
         <li v-if="hasNext">
             <button
                 href="#"
-                class="pagination__page actioin-button"
+                class="action-button pagination__page"
                 @click.prevent="changePage(nextPage)">
                 <span>&raquo;</span>
             </button>
