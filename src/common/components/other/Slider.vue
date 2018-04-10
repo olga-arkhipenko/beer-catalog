@@ -21,6 +21,10 @@
 <script>
 export default {
     props: {
+        value: {
+            type: Number,
+            required: true
+        },
         label: {
             type: String,
             required: true
@@ -34,14 +38,9 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            value: 0
-        };
-    },
     methods: {
         triggerValueChange() {
-            this.$emit('valueChanged', this.value);
+            this.$emit('update:value', this.value);
         }
     }
 };

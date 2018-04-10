@@ -4,20 +4,23 @@
             <slider
                 :min-value="2"
                 :max-value="14"
+                :value.sync="advancedParams.alcoholByVolume"
                 label="Alcohol by volume"
-                @valueChanged="addAlcoholByVolume"
+                @update:value="submitSearch"
             />
             <slider
                 :min-value="0"
                 :max-value="120"
+                :value.sync="advancedParams.bitternessUnits"
                 label="International Bitterness Units"
-                @valueChanged="addBitternessUnits"
+                @update:value="submitSearch"
             />
             <slider
                 :min-value="4"
                 :max-value="80"
+                :value.sync="advancedParams.colorByEBC"
                 label="Color by EBC"
-                @valueChanged="addColorByEBC"
+                @update:value="submitSearch"
             />
         </div>
     </section>
@@ -42,18 +45,6 @@ export default {
     methods: {
         submitSearch() {
             this.$emit('searchSubmitting', this.advancedParams);
-        },
-        addAlcoholByVolume(value) {
-            this.advancedParams.alcoholByVolume = value;
-            this.submitSearch();
-        },
-        addBitternessUnits(value) {
-            this.advancedParams.bitternessUnits = value;
-            this.submitSearch();
-        },
-        addColorByEBC(value) {
-            this.advancedParams.colorByEBC = value;
-            this.submitSearch();
         }
     }
 };
