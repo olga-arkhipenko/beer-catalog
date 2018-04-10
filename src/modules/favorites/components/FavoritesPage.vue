@@ -10,10 +10,10 @@
             </template>
         </row-list>
         <pagination
-            v-if="isPaginationShown"
             :current-page="pageParams.pageNumber"
             :total-items="favoriteBeerIds.length"
             :items-per-page="pageParams.itemsPerPage"
+            class="favorites__pagination"
             @pageChanged="changePage"
         />
     </article>
@@ -41,11 +41,7 @@ export default {
     },
     computed: {
         ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds']),
-        isPaginationShown() {
-            // return this.favoriteBeerIds.length > this.pageParams.itemsPerPage;
-            return true;
-        }
+        ...mapState('favorites/favoritesManagement', ['favoriteBeerIds'])
     },
     mounted() {
         this.loadFavoriteBeers(this.pageParams);
@@ -76,6 +72,7 @@ export default {
     width: 1024px;
     margin: 140px auto;
 }
+
 .favorites__heading {
     margin: 30px 0;
 
