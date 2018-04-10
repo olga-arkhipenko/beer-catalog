@@ -1,7 +1,7 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
 import urlCreator from 'common/utilities/urlCreator';
 import { URL } from 'features/punkApiManagement/url';
-import beerMapper from 'features/punkApiManagement/beerMapper';
+import beerMapper from 'features/punkApiManagement/mappers/beerMapper';
 
 export default {
     fetchBeer(beerId) {

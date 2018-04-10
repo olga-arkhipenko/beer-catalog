@@ -3,7 +3,7 @@ import urlMapper from 'common/utilities/urlMapper';
 import urlCreator from 'common/utilities/urlCreator';
 import { URL } from 'features/punkApiManagement/url';
 import { QUERY_PARAMS_MAP } from 'features/punkApiManagement/queryParamsMap';
-import beerMapper from 'features/punkApiManagement/beerMapper';
+import beerMapper from 'features/punkApiManagement/mappers/beerMapper';
 
 export default {
     fetchBeers(beerParams) {
