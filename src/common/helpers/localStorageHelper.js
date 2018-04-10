@@ -6,11 +6,11 @@ export default {
                 window.localStorage.setItem(itemName, '[]');
                 resolve([]);
             }
-            resolve(localData);
+            resolve(JSON.parse(localData));
         });
     },
     update(itemName, newItemData) {
-        window.localStorage.setItem(itemName, newItemData);
+        window.localStorage.setItem(itemName, JSON.stringify(newItemData));
     }
 };
 
