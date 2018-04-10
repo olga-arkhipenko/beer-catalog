@@ -1,5 +1,7 @@
 <template>
-    <article class="beer-info">
+    <article
+        v-if="isLoaded"
+        class="beer-info">
         <img
             :src="beer.image"
             alt="Beer pic"
@@ -28,11 +30,15 @@
         <div class="clearfix"/>
         <brewing :brewing="beer.brewing"/>
     </article>
+    <spinner
+        v-else
+        class="beer-info__spinner"/>
 </template>
 
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Spinner from 'common/components/other/Spinner';
 import Properties from './Properties';
 import FoodPairing from './FoodPairing';
 import Brewing from './Brewing';
@@ -41,7 +47,8 @@ export default {
     components: {
         Properties,
         FoodPairing,
-        Brewing
+        Brewing,
+        Spinner
     },
     props: {
         id: {
@@ -54,6 +61,9 @@ export default {
         ...mapState('beerInfo/favoritesManagement', ['favoriteBeerIds']),
         isFavoriteBeer() {
             return this.favoriteBeerIds.includes(this.beer.id);
+        },
+        isLoaded() {
+            return Object.keys(this.beer).length;
         }
     },
     mounted() {
@@ -73,7 +83,8 @@ export default {
 <style>
 .beer-info {
     width: 1240px;
-    margin: 120px auto;
+    margin: 120px auto 0;
+    position: relative;
 
     font-family: "Courier New", Courier, monospace;
 }
@@ -98,6 +109,11 @@ export default {
     background-color: #464c67;
 
     font-size: 1.3rem;
+}
+
+.beer-info__spinner {
+    position: fixed;
+    top: 300px;
 }
 
 </style>
