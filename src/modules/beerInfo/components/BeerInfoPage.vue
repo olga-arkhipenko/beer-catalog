@@ -82,9 +82,10 @@ export default {
 
 <style>
 .beer-info {
+    position: relative;
+
     width: 1240px;
     margin: 120px auto 0;
-    position: relative;
 
     font-family: "Courier New", Courier, monospace;
 }
@@ -114,7 +115,11 @@ export default {
 .beer-info__spinner {
     position: fixed;
     top: 300px;
+    left: 50%;
+
+    width: 100%;
 }
+
 
 </style>
 
