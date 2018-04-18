@@ -5,7 +5,7 @@ module.exports = (env) => {
     const isProductionBuild = !!(env && env.production);
 
     const config = {
-        entry: './src/index.js',
+        entry: './src/client/index.js',
         output: {
             path: path.resolve(__dirname, './dist'),
             publicPath: '/dist/',
@@ -47,14 +47,14 @@ module.exports = (env) => {
         resolve: {
             alias: {
                 vue$: 'vue/dist/vue.esm.js',
-                common: path.resolve(__dirname, 'src/common'),
-                catalogModule: path.resolve(__dirname, 'src/modules/catalog'),
-                favoritesModule: path.resolve(__dirname, 'src/modules/favorites'),
-                beerInfoModule: path.resolve(__dirname, 'src/modules/beerInfo'),
-                features: path.resolve(__dirname, 'src/features'),
-                favoritesManagement: path.resolve(__dirname, 'src/features/favoritesManagement'),
-                router: path.resolve(__dirname, 'src/router'),
-                store: path.resolve(__dirname, 'src/store')
+                common: path.resolve(__dirname, 'src/client/common'),
+                catalogModule: path.resolve(__dirname, 'src/client/modules/catalog'),
+                favoritesModule: path.resolve(__dirname, 'src/client/modules/favorites'),
+                beerInfoModule: path.resolve(__dirname, 'src/client/modules/beerInfo'),
+                features: path.resolve(__dirname, 'src/client/features'),
+                favoritesManagement: path.resolve(__dirname, 'src/client/features/favoritesManagement'),
+                router: path.resolve(__dirname, 'src/client/router'),
+                store: path.resolve(__dirname, 'src/client/store')
             },
             extensions: ['*', '.js', '.vue', '.json']
         },
