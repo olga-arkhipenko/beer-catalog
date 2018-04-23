@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
     "dependencies": {
+        "express": "^4.16.3",
         "normalize.css": "^8.0.0",
         "vue": "^2.5.13",
         "vue-router": "^3.0.1",
