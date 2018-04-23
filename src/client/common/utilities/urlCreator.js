@@ -13,10 +13,9 @@ function getRouteParams(url) {
 export default {
     create(url, params) {
         const routeParams = getRouteParams(url);
-        let fullPath = url;
         if (routeParams) {
             routeParams.forEach((routeParam) => {
-                fullPath = fullPath.replace(`:${routeParam}`, params[routeParam] || '');
+                url = url.replace(`:${routeParam}`, params[routeParam] || '');
             });
         }
         const allParams = Object.keys(params);
@@ -26,7 +25,7 @@ export default {
             }
             return accumulator;
         }, '?') || '';
-        return `${fullPath}${query}`;
+        return `${url}${query}`;
     }
 };
 
