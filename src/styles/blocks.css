@@ -1,0 +1,72 @@
+.link {
+    text-decoration: none;
+
+    color: inherit;
+}
+
+.action-button {
+    cursor: pointer;
+
+    border: none;
+    background: transparent;
+}
+
+.close-sign {
+    padding: 5px;
+
+    color: #bf4a50;
+
+    font-size: 2rem;
+}
+
+.tooltip-sign {
+    position: relative;
+
+    display: inline-block;
+
+    cursor: pointer;
+    vertical-align: middle;
+
+    font-size: 1.3rem;
+}
+
+.tooltip-info {
+    position: absolute;
+
+    visibility: hidden;
+
+    width: 300px;
+    padding: 10px;
+
+    color: #ffffff;
+    background-color: #464c67;
+
+    font-size: 0.9rem;
+}
+
+.tooltip-sign:hover .tooltip-info {
+    visibility: visible;
+}
+
+.beer-info-list {
+    padding: 20px;
+
+    color: #31374c;
+    background-color: #eff8ff;
+}
+
+.beer-info-list__item {
+    display: flex;
+
+    font-size: 1.1rem;
+    line-height: 2rem;
+
+    justify-content: space-between;
+}
+
+.clearfix::after {
+    display: table;
+    clear: both;
+
+    content: "";
+}
