@@ -25,6 +25,7 @@ export default {
         mappedBeerDetails.foodPairing = foodPairingMapper.mapFoodPairing(beer.food_pairing);
         mappedBeerDetails.brewing =
         brewingMapper.mapBrewing(beer.brewers_tips, beer.ingredients, beer.method);
+
         return mappedBeerDetails;
     }
 };
