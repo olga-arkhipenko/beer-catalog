@@ -9,21 +9,21 @@
             <h3 class="beer-card__name">{{ beer.name }}</h3>
             <p class="beer-card__tag">{{ beer.tagline }}</p>
             <div class="toggle-bar">
-                <button class="toggle-bar__button">
-                    <router-link
-                        :to="`/beer/${beer.id}`"
-                        class="link menu__item-name">open</router-link>
-                </button>
-                <button
+                <router-link
+                    :to="`/beer/${beer.id}`"
+                    class="link toggle-bar__button">open</router-link>
+                <a
                     v-if="isFavoriteBeer"
-                    class="toggle-bar__button"
+                    href="#"
+                    class="link toggle-bar__button"
                     @click="removeFavoriteBeer(beer.id)"
-                >remove favorite</button>
-                <button
+                >remove favorite</a>
+                <a
                     v-else
-                    class="toggle-bar__button"
+                    href="#"
+                    class="link toggle-bar__button"
                     @click="addFavoriteBeer(beer.id)"
-                >add favorite</button>
+                >add favorite</a>
             </div>
         </div>
     </div>
