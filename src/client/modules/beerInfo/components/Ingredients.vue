@@ -7,14 +7,14 @@
                 v-for="malt in ingredients.malt"
                 v-cloak
                 :key="malt.id">
-                "{{ malt.name }}" - {{ malt.value }} {{ malt.units }}
+                "{{ malt.name }}" - {{ malt.value }} {{ malt.unit }}
             </p>
             <h3>Hops</h3>
             <p
                 v-for="hops in ingredients.hops"
                 v-cloak
                 :key="hops.id">"{{ hops.name }}" - {{ hops.value }}
-                {{ hops.units }}, {{ hops.attribute }},
+                {{ hops.unit }}, {{ hops.attribute }},
                 add when {{ hops.add || 'start' }}
             </p>
             <h3>Yeast</h3>
