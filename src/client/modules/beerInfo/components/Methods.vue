@@ -4,9 +4,9 @@
         <section class="methods__list beer-info-list">
             <h3>Mash</h3>
             <div
-                v-for="(mashTemp, index) in methods.mashTemp"
+                v-for="mashTemp in methods.mashTemp"
                 v-cloak
-                :key="index">
+                :key="mashTemp.id">
                 <p v-if="mashTemp.duration">{{ mashTemp.duration }} minutes, </p>
                 <p>temperature - {{ mashTemp.value }} {{ mashTemp.unit }}</p>
             </div>

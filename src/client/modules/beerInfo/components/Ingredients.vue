@@ -4,16 +4,16 @@
         <div class="beer-info-list">
             <h3>Malt</h3>
             <p
-                v-for="(malt, index) in ingredients.malt"
+                v-for="malt in ingredients.malt"
                 v-cloak
-                :key="index + Math.random()">
+                :key="malt.id">
                 "{{ malt.name }}" - {{ malt.value }} {{ malt.units }}
             </p>
             <h3>Hops</h3>
             <p
-                v-for="(hops, index) in ingredients.hops"
+                v-for="hops in ingredients.hops"
                 v-cloak
-                :key="index + Math.random()">"{{ hops.name }}" - {{ hops.value }}
+                :key="hops.id">"{{ hops.name }}" - {{ hops.value }}
                 {{ hops.units }}, {{ hops.attribute }},
                 add when {{ hops.add || 'start' }}
             </p>

@@ -3,9 +3,9 @@
         <h2 class="food-pairing__heading">Food Pairing</h2>
         <ul class="food-pairing__list beer-info-list">
             <li
-                v-for="(foodPair, index) in foodPairing"
+                v-for="foodPair in foodPairing"
                 v-cloak
-                :key="index"
+                :key="foodPair.id"
                 class="beer-info-list__item"
             > {{ foodPair.name }}.
             </li>
