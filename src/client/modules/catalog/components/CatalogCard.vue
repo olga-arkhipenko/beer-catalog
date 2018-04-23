@@ -14,13 +14,11 @@
                     class="link toggle-bar__button">open</router-link>
                 <a
                     v-if="isFavoriteBeer"
-                    href="#"
                     class="link toggle-bar__button"
                     @click="removeFavoriteBeer(beer.id)"
                 >remove favorite</a>
                 <a
                     v-else
-                    href="#"
                     class="link toggle-bar__button"
                     @click="addFavoriteBeer(beer.id)"
                 >add favorite</a>
