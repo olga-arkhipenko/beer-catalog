@@ -10,7 +10,9 @@ export default {
         });
     },
     update(itemName, newItemData) {
-        window.localStorage.setItem(itemName, JSON.stringify(newItemData));
+        return new Promise((resolve) => {
+            window.localStorage.setItem(itemName, JSON.stringify(newItemData));
+            resolve();
+        });
     }
 };
-
