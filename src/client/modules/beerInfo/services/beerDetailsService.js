@@ -6,6 +6,8 @@ import beerMapper from 'features/punkApiManagement/mappers/beerMapper';
 export default {
     fetchBeer(beerId) {
         const url = urlCreator.create(URL, { id: beerId });
-        return ajaxHelper.get(url).then(beer => beerMapper.mapToBeerDetails(beer[0]));
+        return ajaxHelper
+            .get(url)
+            .then(beer => beerMapper.mapToBeerDetails(beer[0]));
     }
 };

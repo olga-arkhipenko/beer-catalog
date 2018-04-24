@@ -9,6 +9,7 @@ const mapIngredients = function (ingredients) {
     mappedIngredients.malt = ingredientsMapper.mapMalt(ingredients.malt);
     mappedIngredients.hops = ingredientsMapper.mapHops(ingredients.hops);
     mappedIngredients.yeast = ingredientsMapper.mapYeast(ingredients.yeast);
+
     return mappedIngredients;
 };
 const mapMethods = function (methods) {
@@ -16,6 +17,7 @@ const mapMethods = function (methods) {
     mappedMethods.mashTemp = methodsMapper.mapMashTemp(methods.mash_temp);
     mappedMethods.fermentation = methodsMapper.mapFermentation(methods.fermentation);
     mappedMethods.twist = methodsMapper.mapTwist(methods.twist);
+
     return mappedMethods;
 };
 
@@ -25,6 +27,7 @@ export default {
         mappedBrewing.tips = tips;
         mappedBrewing.ingredients = mapIngredients(ingredients);
         mappedBrewing.methods = mapMethods(methods);
+
         return mappedBrewing;
     }
 };

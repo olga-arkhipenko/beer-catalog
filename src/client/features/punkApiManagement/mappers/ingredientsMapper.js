@@ -9,6 +9,7 @@ export default {
             mappedMalt.name = maltItem.name;
             mappedMalt.value = maltItem.amount.value;
             mappedMalt.unit = maltItem.amount.unit;
+
             return mappedMalt;
         });
     },
@@ -20,12 +21,14 @@ export default {
             mappedHops.unit = hopsItem.amount.unit;
             mappedHops.add = hopsItem.add;
             mappedHops.attribute = hopsItem.attribute;
+
             return mappedHops;
         });
     },
     mapYeast(yeast) {
         const mappedYeast = new Yeast();
         mappedYeast.name = yeast;
+
         return mappedYeast;
     }
 };

@@ -5,6 +5,7 @@ export default {
         return foodPairing.map((foodPair) => {
             const mappedFoodPair = new FoodPair();
             mappedFoodPair.name = foodPair;
+
             return mappedFoodPair;
         });
     }

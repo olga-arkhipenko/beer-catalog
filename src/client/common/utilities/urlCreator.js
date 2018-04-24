@@ -8,6 +8,7 @@ function getRouteParams(url) {
         }
     };
     getRouteParam(url);
+
     return routes.length ? routes : null;
 }
 export default {
@@ -25,6 +26,7 @@ export default {
             }
             return accumulator;
         }, '?') || '';
+
         return `${url}${query}`;
     }
 };

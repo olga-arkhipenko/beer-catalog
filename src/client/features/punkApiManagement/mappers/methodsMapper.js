@@ -9,6 +9,7 @@ export default {
             mappedMashTemp.value = mashTempItem.temp.value;
             mappedMashTemp.unit = mashTempItem.temp.unit;
             mappedMashTemp.duration = mashTempItem.duration;
+
             return mappedMashTemp;
         });
     },
@@ -16,11 +17,13 @@ export default {
         const mappedFermentation = new Fermentation();
         mappedFermentation.value = fermentation.temp.value;
         mappedFermentation.unit = fermentation.temp.unit;
+
         return mappedFermentation;
     },
     mapTwist(twist) {
         const mappedTwist = new Twist();
         mappedTwist.name = twist;
+
         return mappedTwist;
     }
 };

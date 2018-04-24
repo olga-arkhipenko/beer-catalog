@@ -10,6 +10,7 @@ const mapBeer = function (beer, TargetType) {
     mappedBeer.image = beer.image_url;
     mappedBeer.tagline = beer.tagline;
     mappedBeer.description = beer.description;
+
     return mappedBeer;
 };
 
