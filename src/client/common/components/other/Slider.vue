@@ -7,14 +7,14 @@
         <input
             :min="minValue"
             :max="maxValue"
-            v-model.number="value"
+            v-model.number="tempValue"
             type="range"
             class="slider__ranger"
             @change="triggerValueChange">
         <span
             v-cloak
             class="slider__note"
-        > more than {{ value }}</span>
+        > more than {{ tempValue }}</span>
     </div>
 </template>
 
@@ -38,9 +38,14 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            tempValue: 0
+        };
+    },
     methods: {
         triggerValueChange() {
-            this.$emit('update:value', this.value);
+            this.$emit('update:value', this.tempValue);
         }
     }
 };
