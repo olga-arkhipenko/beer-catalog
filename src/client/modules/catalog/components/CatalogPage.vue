@@ -1,34 +1,34 @@
 <template>
-    <article
-        v-page-scroll="loadNextPage"
-        class="catalog">
-        <search-panel
-            :search-params="searchParams"
-            @paramsChanged="addSearchParams"
-            @onSearchStart="loadBeerPage"
-            @reset="resetCatalog"
-            @reload="reloadCatalog"
-        />
-        <grid-list
-            v-if="beers.length > 0"
-            :items="beers"
-        >
-            <template slot-scope="props">
-                <catalog-card
-                    :favorite-beer-ids="favoriteBeerIds"
-                    :beer="props.item"
-                />
-            </template>
-        </grid-list>
-        <spinner v-if="isSpinnerShown"/>
-    </article>
+    <page-scroller :scroll-handler="loadNextPage">
+        <article class="catalog">
+            <search-panel
+                :search-params="searchParams"
+                @paramsChanged="addSearchParams"
+                @onSearchStart="loadBeerPage"
+                @reset="resetCatalog"
+                @reload="reloadCatalog"
+            />
+            <grid-list
+                v-if="beers.length > 0"
+                :items="beers"
+            >
+                <template slot-scope="props">
+                    <catalog-card
+                        :favorite-beer-ids="favoriteBeerIds"
+                        :beer="props.item"
+                    />
+                </template>
+            </grid-list>
+            <spinner v-if="isSpinnerShown"/>
+        </article>
+    </page-scroller>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import GridList from 'common/components/lists/GridList';
 import Spinner from 'common/components/other/Spinner';
-import pageScroll from 'common/directives/pageScroll';
+import PageScroller from 'common/components/wrappers/PageScrollWrapper';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -37,10 +37,8 @@ export default {
         SearchPanel,
         GridList,
         CatalogCard,
-        Spinner
-    },
-    directives: {
-        pageScroll
+        Spinner,
+        PageScroller
     },
     data() {
         return {
