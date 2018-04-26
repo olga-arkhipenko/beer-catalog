@@ -2,9 +2,6 @@
     <transition name="slide">
         <div class="menu">
             <logo class="menu__title"/>
-            <button
-                class="close-sign action-button menu__close-button"
-                @click="hideMenu">&#215;</button>
             <ul class="menu__list">
                 <li
                     v-for="route in mainMenuRoutes"
