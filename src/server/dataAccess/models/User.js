@@ -1,16 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const user = sequelize.define('User', {
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     autoIncrement: true,
-        //     primaryKey: true
-        // },
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
         birthdate: {
-            type: DataTypes.DATAONLY
+            type: DataTypes.DATEONLY
         },
         email: {
             type: DataTypes.STRING,
@@ -25,5 +20,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     });
+
+    user.associate = (favorite) => {
+        user.belongsToMany(favorite, {
+            through: 'UserFavorite'
+        });
+    };
+
     return user;
 };
