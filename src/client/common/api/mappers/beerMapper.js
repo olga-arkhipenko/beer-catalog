@@ -7,7 +7,7 @@ const mapBeer = function (beer, TargetType) {
     const mappedBeer = new TargetType();
     mappedBeer.id = beer.id;
     mappedBeer.name = beer.name;
-    mappedBeer.image = beer.image_url;
+    mappedBeer.image = beer.image;
     mappedBeer.tagline = beer.tagline;
     mappedBeer.description = beer.description;
 
@@ -23,10 +23,13 @@ export default {
         mappedBeerDetails.alcoholByVolume = beer.abv;
         mappedBeerDetails.bitternessUnits = beer.ibu;
         mappedBeerDetails.colorByEBC = beer.ebc;
-        mappedBeerDetails.foodPairing = foodPairingMapper.mapFoodPairing(beer.food_pairing);
+        mappedBeerDetails.foodPairing = foodPairingMapper.mapFoodPairing(beer.foodPairing);
         mappedBeerDetails.brewing =
-        brewingMapper.mapBrewing(beer.brewers_tips, beer.ingredients, beer.method);
-
+            brewingMapper.mapBrewing(
+                beer.brewing.tips,
+                beer.brewing.ingredients,
+                beer.brewing.methods
+            );
         return mappedBeerDetails;
     }
 };

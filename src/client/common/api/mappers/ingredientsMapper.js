@@ -7,8 +7,8 @@ export default {
         return malt.map((maltItem) => {
             const mappedMalt = new Malt();
             mappedMalt.name = maltItem.name;
-            mappedMalt.value = maltItem.amount.value;
-            mappedMalt.unit = maltItem.amount.unit;
+            mappedMalt.value = maltItem.value;
+            mappedMalt.unit = maltItem.unit;
 
             return mappedMalt;
         });
@@ -17,8 +17,8 @@ export default {
         return hops.map((hopsItem) => {
             const mappedHops = new Hops();
             mappedHops.name = hopsItem.name;
-            mappedHops.value = hopsItem.amount.value;
-            mappedHops.unit = hopsItem.amount.unit;
+            mappedHops.value = hopsItem.value;
+            mappedHops.unit = hopsItem.unit;
             mappedHops.add = hopsItem.add;
             mappedHops.attribute = hopsItem.attribute;
 
@@ -27,7 +27,7 @@ export default {
     },
     mapYeast(yeast) {
         const mappedYeast = new Yeast();
-        mappedYeast.name = yeast;
+        mappedYeast.name = yeast.name;
 
         return mappedYeast;
     }

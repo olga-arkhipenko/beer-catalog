@@ -14,7 +14,7 @@ const mapIngredients = function (ingredients) {
 };
 const mapMethods = function (methods) {
     const mappedMethods = new Methods();
-    mappedMethods.mashTemp = methodsMapper.mapMashTemp(methods.mash_temp);
+    mappedMethods.mashTemp = methodsMapper.mapMashTemp(methods.mashTemp);
     mappedMethods.fermentation = methodsMapper.mapFermentation(methods.fermentation);
     mappedMethods.twist = methodsMapper.mapTwist(methods.twist);
 
