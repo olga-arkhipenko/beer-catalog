@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const beers = require('./view/routes/beers');
+const router = require('./view/routing/router');
 
 const app = express();
 
@@ -9,6 +9,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
 
-app.use('/beers', beers);
+router(app);
 
 app.listen(3030);
+
