@@ -62,7 +62,10 @@ module.exports = (env) => {
             historyApiFallback: true,
             noInfo: true,
             overlay: true,
-            publicPath: '/dist/'
+            publicPath: '/dist/',
+            proxy: {
+                '/': 'http://localhost:3030'
+            }
         },
         performance: {
             hints: false

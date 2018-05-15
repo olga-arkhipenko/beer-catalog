@@ -4,7 +4,7 @@
     "description": "Beer catalog based on Vue.js",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack-dev-server --mode development --hot --open",
+        "dev": "webpack-dev-server --mode development",
         "build": "webpack --progress --hide-modules --mode production --env.production"
     },
     "repository": {
