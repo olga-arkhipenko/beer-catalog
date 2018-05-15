@@ -1,12 +1,12 @@
-// import { FoodPair } from 'beerInfoModule/models/FoodPair';
+const FoodPair = require('../../view/models/FoodPair');
 
-// export default {
-//     mapFoodPairing(foodPairing) {
-//         return foodPairing.map((foodPair) => {
-//             const mappedFoodPair = new FoodPair();
-//             mappedFoodPair.name = foodPair;
+module.exports = {
+    mapFoodPairing(foodPairing) {
+        return foodPairing.map((foodPair) => {
+            const mappedFoodPair = new FoodPair();
+            mappedFoodPair.name = foodPair;
 
-//             return mappedFoodPair;
-//         });
-//     }
-// };
+            return mappedFoodPair;
+        });
+    }
+};
