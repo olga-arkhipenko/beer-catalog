@@ -10,8 +10,7 @@ module.exports = {
             res.on('end', () => {
                 if (res.statusCode >= 200 && res.statusCode <= 300) {
                     try {
-                        const data = JSON.parse(json);
-                        handler(data);
+                        handler(JSON.parse(json));
                     } catch (e) {
                         console.error('Error in request');
                     }
