@@ -2,7 +2,7 @@
     <form
         action="post"
         class="page">
-        Registration
+        Login
     </form>
 </template>
 
