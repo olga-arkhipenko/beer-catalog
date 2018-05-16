@@ -14,12 +14,12 @@
                     class="link toggle-bar__button">open</router-link>
                 <a
                     v-if="isFavoriteBeer"
-                    class="link toggle-bar__button"
+                    class="link toggle-bar__button toggle-bar__button-remove"
                     @click="removeFavoriteBeer(beer.id)"
                 >remove favorite</a>
                 <a
                     v-else
-                    class="link toggle-bar__button"
+                    class="link toggle-bar__button toggle-bar__button-add"
                     @click="addFavoriteBeer(beer.id)"
                 >add favorite</a>
             </div>
@@ -69,9 +69,9 @@ export default {
 }
 
 .beer-card__info {
-    display: grid;
+    position: relative;
 
-    min-height: 220px;
+    min-height: 200px;
     padding: 5px 20px;
 
     text-align: left;
@@ -88,9 +88,10 @@ export default {
 }
 
 .toggle-bar {
-    display: flex;
+    position: absolute;
+    bottom: 0;
 
-    margin: 15px 20px;
+    margin: 20px;
 
     font-size: 1.2rem;
 
@@ -101,12 +102,20 @@ export default {
     cursor: pointer;
     text-transform: uppercase;
 
-    color: #ffe696;
+    color: #38a39e;
     border: none;
     background-color: transparent;
 }
 
+.toggle-bar__button-remove {
+    margin: 0 0 0 0.5rem;
+}
+
+.toggle-bar__button-add {
+    margin: 0 0 0 2.5rem;
+}
+
 .toggle-bar__button:hover {
-    color: #dd44a3;
+    color: #ffb259;
 }
 </style>
