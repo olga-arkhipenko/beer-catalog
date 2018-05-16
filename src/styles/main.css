@@ -13,6 +13,13 @@
     color: inherit;
 }
 
+.clearfix::after {
+    display: table;
+    clear: both;
+
+    content: "";
+}
+
 .action-button {
     cursor: pointer;
 
@@ -26,6 +33,25 @@
     color: #bf4a50;
 
     font-size: 2rem;
+}
+
+.authorization {
+    margin: 0 30px 0 0;
+}
+
+.authorization__signup-button {
+    color: #ffb259;
+    text-shadow: #000000 2px 2px 0, #000000 -2px -2px 0, #000000 -2px 2px 0, #000000 2px -2px 0;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.4rem;
+}
+
+.authorization__login-button {
+    color: #40ca3a;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.4rem;
 }
 
 .tooltip-sign {
@@ -71,11 +97,4 @@
     line-height: 2rem;
 
     justify-content: space-between;
-}
-
-.clearfix::after {
-    display: table;
-    clear: both;
-
-    content: "";
 }
