@@ -1,6 +1,6 @@
-const URL = require('../../punkApiManagement/url');
+const URL = require('../../features/punkApiManagement/url');
 const requestHelper = require('../../helpers/requestHelper');
-const beerMapper = require('../../punkApiManagement/mappers/beerMapper');
+const beerMapper = require('../../features/punkApiManagement/mappers/beerMapper');
 
 module.exports = {
     getBeer(req, res) {

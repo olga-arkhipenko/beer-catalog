@@ -1,10 +1,8 @@
-// const beer = require('./routes/beer');
-const catalog = require('./routes/catalog');
+const beers = require('./routes/beers');
 // const registration = require('./routes/registration');
 
 module.exports = (app) => {
-    app.use('/api/beers', catalog);
-    // app.use('/beer', beer);
-    // app.use('/registration', registration);
+    app.use('/api/beers', beers);
+    // app.use('/api/registration', registration);
 };
 
