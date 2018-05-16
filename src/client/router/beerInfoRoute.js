@@ -2,7 +2,7 @@ import BeerInfoPage from 'beerInfoModule/components/BeerInfoPage';
 
 export default [
     {
-        path: '/beer/:id',
+        path: '/beers/:id',
         name: 'Beer',
         component: BeerInfoPage,
         props: true

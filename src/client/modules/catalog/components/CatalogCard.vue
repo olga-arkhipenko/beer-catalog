@@ -10,7 +10,7 @@
             <p class="beer-card__tag">{{ beer.tagline }}</p>
             <div class="toggle-bar">
                 <router-link
-                    :to="`/beer/${beer.id}`"
+                    :to="`/beers/${beer.id}`"
                     class="link toggle-bar__button">open</router-link>
                 <a
                     v-if="isFavoriteBeer"
