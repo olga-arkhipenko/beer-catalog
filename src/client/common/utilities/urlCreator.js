@@ -12,24 +12,6 @@
 //     return routes.length ? routes : null;
 // }
 export default {
-    // create(url, params) {
-    //     const routeParams = getRouteParams(url);
-    //     if (routeParams) {
-    //         routeParams.forEach((routeParam) => {
-    //             url = url.replace(`:${routeParam}`, params[routeParam] || '');
-    //         });
-    //     }
-    //     const allParams = Object.keys(params);
-    //     const query = allParams.reduce((accumulator, queryParam) => {
-    //         if (!routeParams.includes(queryParam)) {
-    //             accumulator = accumulator.concat(`${queryParam}=${params[queryParam]}&`);
-    //         }
-    //         return accumulator;
-    //     }, '?') || '';
-
-    //     return `${url}${query}`;
-    // }
-
     create(route, params) {
         const queryString =
         Object.keys(params)

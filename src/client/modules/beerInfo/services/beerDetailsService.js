@@ -3,7 +3,8 @@ import beerMapper from 'common/api/mappers/beerMapper';
 
 export default {
     fetchBeer(beerId) {
-        const url = `/beers/${beerId}`;
+        const url = `/api/beers/${beerId}`;
+        console.log(url);
         return ajaxHelper
             .get(url)
             .then(beer => beerMapper.mapToBeerDetails(beer));
