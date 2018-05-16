@@ -53,7 +53,6 @@ module.exports = (env) => {
                 beerInfoModule: path.resolve(__dirname, 'src/client/modules/beerInfo'),
                 features: path.resolve(__dirname, 'src/client/features'),
                 favoritesManagement: path.resolve(__dirname, 'src/client/features/favoritesManagement'),
-                router: path.resolve(__dirname, 'src/client/router'),
                 store: path.resolve(__dirname, 'src/client/store')
             },
             extensions: ['*', '.js', '.vue', '.json']
