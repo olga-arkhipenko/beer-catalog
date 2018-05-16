@@ -1,14 +1,28 @@
 <template>
     <nav class="navigation">
-        <button
-            class="navigation__menu-button"
-            @click="showMenu"/>
-        <main-menu
-            v-click-outside="hideMenu"
-            v-if="isMenuShown"
-            @onMenuHide="hideMenu"
-        />
-        <logo class="navigation__logo"/>
+        <div class="navigation__title">
+            <button
+                class="navigation__menu-button"
+                @click="showMenu"/>
+            <main-menu
+                v-click-outside="hideMenu"
+                v-if="isMenuShown"
+                @onMenuHide="hideMenu"
+            />
+            <logo class="navigation__logo"/>
+        </div>
+        <div class="authorization">
+            <router-link
+                to="/login"
+                class="link authorization__login-button">
+                Log in
+            </router-link>
+            <router-link
+                to="/registration"
+                class="link authorization__signup-button">
+                Sign up
+            </router-link>
+        </div>
     </nav>
 </template>
 
@@ -54,6 +68,13 @@ export default {
     color: #ffffff;
     border-bottom: 1px solid #ffffff;
     background-color: #31364c;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation__title {
+    display: flex;
 
     align-items: center;
 }

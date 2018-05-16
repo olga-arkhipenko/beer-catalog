@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import mainMenuRoutes from 'router/mainMenuRoutes';
+import mainMenuRoutes from 'routing/routes/mainMenu';
 import Logo from './Logo';
 
 export default {
