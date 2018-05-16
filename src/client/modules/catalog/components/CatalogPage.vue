@@ -1,6 +1,6 @@
 <template>
     <page-scroller :scroll-handler="loadNextPage">
-        <article class="catalog">
+        <article class="page">
             <search-panel
                 :search-params="searchParams"
                 @paramsChanged="addSearchParams"
@@ -98,10 +98,4 @@ export default {
     }
 };
 </script>
-
-<style>
-.catalog {
-    margin: 150px 0 0;
-}
-</style>
 

@@ -1,5 +1,5 @@
 <template>
-    <article class="favorites">
+    <article class="page">
         <h1 class="favorites__heading">Your favorite beers</h1>
         <row-list :items="favoriteBeers">
             <template slot-scope="props">
@@ -68,11 +68,6 @@ export default {
 </script>
 
 <style>
-.favorites {
-    width: 1024px;
-    margin: 140px auto;
-}
-
 .favorites__heading {
     margin: 30px 0;
 

@@ -24,9 +24,6 @@ export default {
 .grid-list {
     display: grid;
 
-    width: 1240px;
-    margin: 40px auto;
-
     align-items: end;
     grid-column-gap: 20px;
     grid-row-gap: 20px;

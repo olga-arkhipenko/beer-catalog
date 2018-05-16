@@ -2,6 +2,11 @@
     display: none;
 }
 
+.page {
+    width: 1024px;
+    margin: 140px auto;
+}
+
 .link {
     text-decoration: none;
 
