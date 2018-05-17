@@ -1,20 +1,22 @@
 <template>
     <div class="slider">
-        <span
-            v-cloak
-            class="slider__name"
-        > {{ label }} </span>
-        <input
-            :min="minValue"
-            :max="maxValue"
-            v-model.number="tempValue"
-            type="range"
-            class="slider__ranger"
-            @change="triggerValueChange">
-        <span
+        <div class="slider__inner">
+            <p
+                v-cloak
+                class="slider__name"
+            > {{ label }} </p>
+            <input
+                :min="minValue"
+                :max="maxValue"
+                v-model.number="tempValue"
+                type="range"
+                class="slider__ranger"
+                @change="triggerValueChange">
+        </div>
+        <p
             v-cloak
             class="slider__note"
-        > more than {{ tempValue }}</span>
+        > more than {{ tempValue }}</p>
     </div>
 </template>
 
@@ -60,10 +62,21 @@ export default {
     justify-content: space-between;
 }
 
+.slider__inner {
+    display: flex;
+
+    width: 80%;
+
+    justify-content: space-between;
+}
+
 .slider__name {
     display: inline-block;
 
-    margin: 0 20px 0 0;
+    width: 100%;
+    margin: 0 2rem 0 0;
+
+    text-align: left;
 
     font-size: 1.1rem;
 }
@@ -74,6 +87,11 @@ export default {
 }
 
 .slider__note {
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+
     color: #6d6c96;
 
     font-size: 0.8rem;
