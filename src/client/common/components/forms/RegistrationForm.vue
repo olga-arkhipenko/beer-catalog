@@ -29,7 +29,10 @@
                 type="date">
         </label>
         <label>
-            <p>Password</p>
+            <p>Password
+                <span
+                    v-if="isPasswordShort"
+                    class="password-notification">Password is too short</span></p>
             <input
                 v-model="password"
                 type="password"
@@ -72,11 +75,14 @@ export default {
     computed: {
         isPasswordMatch() {
             return this.password === this.passwordConfirm || this.passwordConfirm === '';
+        },
+        isPasswordShort() {
+            return this.password.length < 8 && this.password !== '';
         }
     },
     methods: {
         submitRegistration() {
-            if (this.isPasswordMatch) {
+            if (this.isPasswordMatch && !this.isPasswordShort) {
                 console.log(`registartion submitted ${this.birthdate}`);
             }
         }
