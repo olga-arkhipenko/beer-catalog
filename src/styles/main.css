@@ -5,6 +5,31 @@
 .page {
     width: 1024px;
     margin: 140px auto;
+
+    font-family: "Courier New", Courier, monospace;
+}
+
+.form {
+    width: 500px;
+    margin: 140px auto;
+    padding: 0 45px;
+
+    color: #328587;
+    border: 1px solid #c7d7e9;
+    box-shadow: 10px 10px 0 -4px #c7d7e9;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.4rem;
+}
+
+.form__heading {
+    font-size: 1.8rem;
+}
+
+.form__button-wrapper {
+    margin: 40px 0;
+
+    text-align: center;
 }
 
 .link {
@@ -41,7 +66,7 @@
 
 .authorization__signup-button {
     color: #ffb259;
-    text-shadow: #000000 2px 2px 0, #000000 -2px -2px 0, #000000 -2px 2px 0, #000000 2px -2px 0;
+    text-shadow: #000000 1px 1px 0, #000000 -1px -1px 0, #000000 -1px 1px 0, #000000 1px -1px 0;
 
     font-family: "Courier New", Courier, monospace;
     font-size: 1.4rem;
