@@ -22,9 +22,10 @@
                 size="28">
         </label>
         <div class="form__button-wrapper">
-            <button
+            <input
                 type="submit"
-                class="action-button login-button">Log in</button>
+                class="action-button login-button"
+                value="Log in">
         </div>
     </form>
 </template>
@@ -33,7 +34,7 @@
 export default {
     data() {
         return {
-            login: '',
+            email: '',
             password: ''
         };
     },

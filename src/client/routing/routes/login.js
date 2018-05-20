@@ -1,10 +1,10 @@
-import LoginPage from 'user/components/LoginPage';
+import LoginForm from 'user/components/LoginForm';
 
 export default [
     {
         path: '/login',
         name: 'Login',
-        component: LoginPage,
+        component: LoginForm,
         props: true
     }
 ];

@@ -1,10 +1,10 @@
-import RegistrationPage from 'user/components/RegistrationPage';
+import RegistrationForm from 'user/components/RegistrationForm';
 
 export default [
     {
         path: '/registration',
         name: 'Registration',
-        component: RegistrationPage,
+        component: RegistrationForm,
         props: true
     }
 ];

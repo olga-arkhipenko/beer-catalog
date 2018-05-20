@@ -2,43 +2,44 @@
     <form
         action="post"
         class="form"
-        @submit.prevent="submitRegistration">
+        @submit.prevent="submitForm">
         <p class="form__heading registartion-heading">Registration</p>
         <label>
             <p>Name</p>
             <input
-                v-model.trim="name"
+                v-model.trim="userData.name"
                 type="text"
                 required
                 placeholder="Enter your full name"
-                size="28">
+                size="30"
+                maxlength="255">
         </label>
         <label>
             <p>Email</p>
             <input
-                v-model.trim="email"
+                v-model.trim="userData.email"
                 type="email"
                 required
                 placeholder="Enter your contact email"
-                size="28">
+                size="30"
+                maxlength="255">
         </label>
         <label>
             <p>Birthdate</p>
             <input
-                v-model="birthdate"
+                v-model="userData.birthdate"
                 type="date">
         </label>
         <label>
-            <p>Password
-                <span
-                    v-if="isPasswordShort"
-                    class="password-notification">Password is too short</span></p>
+            <p>Password</p>
             <input
-                v-model="password"
+                v-model="userData.password"
                 type="password"
                 required
                 placeholder="Enter your password"
-                size="28">
+                size="30"
+                minlength="8"
+                maxlength="255">
         </label>
         <label>
             <p>Password again
@@ -47,43 +48,50 @@
                     class="password-notification">Password doesn't match</span>
             </p>
             <input
-                v-model="passwordConfirm"
+                v-model="checkedData.passwordConfirmed"
                 type="password"
                 required
                 placeholder="Confirm your password"
-                size="28">
+                size="30"
+                minlength="8"
+                maxlength="255">
         </label>
         <div class="form__button-wrapper">
-            <button
+            <input
                 type="submit"
-                class="action-button register-button">Sign up</button>
+                class="action-button register-button"
+                value="Sign up">
         </div>
     </form>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     data() {
         return {
-            name: '',
-            birthdate: null,
-            email: '',
-            password: '',
-            passwordConfirm: ''
+            userData: {
+                name: '',
+                birthdate: null,
+                email: '',
+                password: ''
+            },
+            checkedData: {
+                passwordConfirmed: ''
+            }
         };
     },
     computed: {
         isPasswordMatch() {
-            return this.password === this.passwordConfirm || this.passwordConfirm === '';
-        },
-        isPasswordShort() {
-            return this.password.length < 8 && this.password !== '';
+            return this.userData.password === this.checkedData.passwordConfirmed || this.checkedData.passwordConfirmed === '';
         }
     },
     methods: {
-        submitRegistration() {
-            if (this.isPasswordMatch && !this.isPasswordShort) {
-                console.log(`registartion submitted ${this.birthdate}`);
+        ...mapActions('user', ['submitRegistartion']),
+        submitForm() {
+            if (this.isPasswordMatch) {
+                this.submitRegistartion(this.userData);
             }
         }
     }
