@@ -11,3 +11,6 @@ const favoriteModel = favorite(databaseConnection, Sequelize.DataTypes);
 
 userModel.associate(favoriteModel);
 favoriteModel.associate(userModel);
+
+module.exports.favorite = favoriteModel;
+module.exports.user = userModel;
