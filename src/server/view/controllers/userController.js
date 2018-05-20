@@ -1,23 +1,25 @@
-// const userService = require('../../services/registrationService');
+const userService = require('../../services/userService');
 
 module.exports = {
     register(req, res) {
-        console.log(`req ${req.body}`);
-        res.send('hello');
-        // userService.register({
-        //     email: req.body.email,
-        //     password: req.body.password,
-        //     name: req.body.name
-        // })
-        //     .then((user) => {
-        //         req.session.userId = user.id;
-        //         res.send(user);
-        //     })
-        //     .catch((error) => {
-        //         console.error(`an error occur in register handler. ${error}`);
-        //         res.sendStatus(500);
-        //     });
-
+        userService
+            .register({
+                name: req.body.name,
+                email: req.body.email,
+                birthdate: req.body.birthdate,
+                password: req.body.password
+            })
+            .then((user) => {
+                console.log(`user before then ${user}`);
+                if (user) {
+                    res.sendStatus(200);
+                    res.end('yes');
+                }
+            })
+            .catch((error) => {
+                console.error(`Registration error. ${error}`);
+                res.sendStatus(500);
+            });
         // User.create(
         //     {
         //         name: req.body.name,
