@@ -20,7 +20,10 @@
     },
     "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
     "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
         "express": "^4.16.3",
+        "jsonwebtoken": "^8.2.1",
         "normalize.css": "^8.0.0",
         "pg": "^7.4.1",
         "pg-hstore": "^2.3.2",
@@ -30,6 +33,7 @@
         "vuex": "^3.0.1"
     },
     "devDependencies": {
+        "babel-cli": "^6.26.0",
         "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.2",
         "babel-loader": "^7.1.3",
