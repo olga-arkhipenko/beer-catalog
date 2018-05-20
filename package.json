@@ -20,7 +20,6 @@
     },
     "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
     "dependencies": {
-        "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.3",
         "express": "^4.16.3",
         "jsonwebtoken": "^8.2.1",
