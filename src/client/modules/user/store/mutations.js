@@ -12,5 +12,20 @@ export default {
     },
     setUserRegistered(state) {
         state.isRegistered = true;
+    },
+    resetRegistrationData(state) {
+        state.registrationData = {
+            name: '',
+            email: '',
+            birthdate: null,
+            password: ''
+        };
+    },
+    resetUserData(state) {
+        state.userData = {
+            name: '',
+            email: '',
+            birthdate: null
+        };
     }
 };

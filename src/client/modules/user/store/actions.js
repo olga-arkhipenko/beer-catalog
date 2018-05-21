@@ -9,5 +9,9 @@ export default {
                 console.log(JSON.stringify(userData));
                 commit('setUserData', userData);
             });
+    },
+    resetUserInfo({ commit }) {
+        commit('resetUserData');
+        commit('resetRegistrationData');
     }
 };
