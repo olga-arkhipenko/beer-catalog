@@ -12,8 +12,7 @@ module.exports = {
             .then((user) => {
                 console.log(`user before then ${user}`);
                 if (user) {
-                    res.sendStatus(200);
-                    res.end('yes');
+                    res.send(user);
                 }
             })
             .catch((error) => {

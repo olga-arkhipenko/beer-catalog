@@ -2,7 +2,7 @@ export default {
     get(url) {
         return fetch(url)
             .then(response => response.json())
-            .catch(new Error('fetch denied'));
+            .catch(new Error('Get denied'));
     },
     post(url, data) {
         console.log('here');
@@ -14,6 +14,11 @@ export default {
             },
             credentials: 'include',
             body: data
-        }).then(response => response.status);
+        })
+            .then((response) => {
+                console.log(`response ${response.status}`);
+                return response.json();
+            })
+            .catch(new Error('Post denied'));
     }
 };

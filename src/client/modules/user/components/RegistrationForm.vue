@@ -7,7 +7,7 @@
         <label>
             <p>Name</p>
             <input
-                v-model.trim="userData.name"
+                v-model.trim="registrationData.name"
                 type="text"
                 required
                 placeholder="Enter your full name"
@@ -17,7 +17,7 @@
         <label>
             <p>Email</p>
             <input
-                v-model.trim="userData.email"
+                v-model.trim="registrationData.email"
                 type="email"
                 required
                 placeholder="Enter your contact email"
@@ -27,13 +27,13 @@
         <label>
             <p>Birthdate</p>
             <input
-                v-model="userData.birthdate"
+                v-model="registrationData.birthdate"
                 type="date">
         </label>
         <label>
             <p>Password</p>
             <input
-                v-model="userData.password"
+                v-model="registrationData.password"
                 type="password"
                 required
                 placeholder="Enter your password"
@@ -71,7 +71,7 @@ import { mapActions } from 'vuex';
 export default {
     data() {
         return {
-            userData: {
+            registrationData: {
                 name: '',
                 birthdate: null,
                 email: '',
@@ -84,14 +84,14 @@ export default {
     },
     computed: {
         isPasswordMatch() {
-            return this.userData.password === this.checkedData.passwordConfirmed || this.checkedData.passwordConfirmed === '';
+            return this.registrationData.password === this.checkedData.passwordConfirmed || this.checkedData.passwordConfirmed === '';
         }
     },
     methods: {
         ...mapActions('user', ['submitRegistartion']),
         submitForm() {
             if (this.isPasswordMatch) {
-                this.submitRegistartion(this.userData);
+                this.submitRegistartion(this.registrationData);
             }
         }
     }

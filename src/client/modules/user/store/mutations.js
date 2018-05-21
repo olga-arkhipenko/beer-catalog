@@ -1,9 +1,14 @@
 export default {
+    setRegistrationData(state, registrationData) {
+        state.registrationData.name = registrationData.name;
+        state.registrationData.email = registrationData.email;
+        state.registrationData.birthdate = registrationData.birthdate;
+        state.registrationData.password = registrationData.password;
+    },
     setUserData(state, userData) {
         state.userData.name = userData.name;
         state.userData.email = userData.email;
         state.userData.birthdate = userData.birthdate;
-        state.userData.password = userData.password;
     },
     setUserRegistered(state) {
         state.isRegistered = true;

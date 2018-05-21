@@ -1,12 +1,13 @@
 import userService from 'user/services/userService';
 
 export default {
-    submitRegistartion({ commit, state }, userData) {
-        commit('setUserData', userData);
+    submitRegistartion({ commit, state }, registrationData) {
+        commit('setRegistrationData', registrationData);
         userService
-            .register(state.userData)
-            .then(() => {
-                commit('setUserRegistered');
+            .register(state.registrationData)
+            .then((userData) => {
+                console.log(JSON.stringify(userData));
+                commit('setUserData', userData);
             });
     }
 };
