@@ -1,4 +1,4 @@
-const userService = require('../../services/userService');
+const userService = require('../../logic/services/userService');
 
 module.exports = {
     register(req, res) {

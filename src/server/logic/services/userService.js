@@ -1,12 +1,6 @@
-const userRepository = require('../data/repositories/userRepository');
-const passwordEncryptor = require('../utils/passwordEncryptor');
-
-const mapper = databaseEntity => ({
-    id: databaseEntity.dataValues.id,
-    email: databaseEntity.dataValues.email,
-    birthDate: databaseEntity.dataValues.birthDate,
-    name: databaseEntity.dataValues.name
-});
+const userRepository = require('../../data/repositories/userRepository');
+const passwordEncryptor = require('../../utils/passwordEncryptor');
+const userMapper = require('../../data/mappers/userMapper');
 
 module.exports = {
     register(userData) {
@@ -24,7 +18,7 @@ module.exports = {
             .then((userEntity) => {
                 console.log(`${userEntity} userEntity`);
                 if (userEntity) {
-                    return mapper(userEntity);
+                    return userMapper.mapToUser(userEntity);
                 }
                 throw new Error('Unable to create user');
             });
