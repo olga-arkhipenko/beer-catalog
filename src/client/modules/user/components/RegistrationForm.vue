@@ -99,11 +99,11 @@ export default {
         },
         ...mapState('user', ['userData'])
     },
-    beforeDestroy() {
-        this.resetUserInfo();
-    },
+    // beforeDestroy() {
+    //     this.resetUserInfo();
+    // },
     methods: {
-        ...mapActions('user', ['submitRegistartion', 'resetUserInfo']),
+        ...mapActions('user', ['submitRegistartion']),
         submitForm() {
             if (this.isPasswordMatch) {
                 this.submitRegistartion(this.registrationData);

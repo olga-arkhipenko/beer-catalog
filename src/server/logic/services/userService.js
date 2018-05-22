@@ -4,7 +4,6 @@ const userMapper = require('../../data/mappers/userMapper');
 
 module.exports = {
     register(userData) {
-        console.log('hello from service');
         const salt = passwordEncryptor.createSalt().toString();
         const user = {
             name: userData.name,
@@ -21,6 +20,21 @@ module.exports = {
                     return userMapper.mapToUser(userEntity);
                 }
                 throw new Error('Unable to create user');
+            });
+    },
+    login(loginData) {
+        console.log('hello from service');
+        return userRepository
+            .findUser(loginData.email)
+            .then((user) => {
+                if (user) {
+                    if (passwordEncryptor.isMatch(loginData.password, user.salt, user.password)) {
+                        return userMapper.mapToUser(user);
+                    }
+                    throw new Error('Wrong user password');
+                } else {
+                    throw new Error('Wrong user email');
+                }
             });
     }
 };

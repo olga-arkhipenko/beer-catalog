@@ -10,10 +10,15 @@ export default {
             birthdate: null,
             password: ''
         },
+        loginData: {
+            email: '',
+            password: ''
+        },
         userData: {
             name: '',
             email: '',
-            birthdate: null
+            birthdate: null,
+            token: ''
         }
     },
     mutations,

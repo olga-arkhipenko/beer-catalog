@@ -2,7 +2,6 @@ const database = require('../index');
 
 module.exports = {
     createUser(user) {
-        console.log('hello from rep');
         return database.user
             .create({
                 name: user.name,
@@ -10,6 +9,15 @@ module.exports = {
                 birthdate: user.birthdate,
                 password: user.password,
                 salt: user.salt
+            });
+    },
+    findUser(email) {
+        console.log(`hello from ligin rep ${email}`);
+        return database.user
+            .findOne({
+                where: {
+                    email
+                }
             });
     }
 };

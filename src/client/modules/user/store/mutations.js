@@ -5,10 +5,15 @@ export default {
         state.registrationData.birthdate = registrationData.birthdate;
         state.registrationData.password = registrationData.password;
     },
+    setLoginData(state, loginData) {
+        state.loginData.email = loginData.email;
+        state.loginData.password = loginData.password;
+    },
     setUserData(state, userData) {
         state.userData.name = userData.name;
         state.userData.email = userData.email;
         state.userData.birthdate = userData.birthdate;
+        state.userData.token = userData.token;
     },
     setUserRegistered(state) {
         state.isRegistered = true;
@@ -18,6 +23,12 @@ export default {
             name: '',
             email: '',
             birthdate: null,
+            password: ''
+        };
+    },
+    resetLoginData(state) {
+        state.loginData = {
+            email: '',
             password: ''
         };
     },

@@ -1,4 +1,5 @@
 const userService = require('../../logic/services/userService');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     register(req, res) {
@@ -10,14 +11,30 @@ module.exports = {
                 password: req.body.password
             })
             .then((user) => {
-                console.log(`user before then ${user}`);
                 if (user) {
-                    res.send(user);
+                    res.status(200).send(user);
                 }
             })
             .catch((error) => {
                 console.error(`Registration error. ${error}`);
                 res.sendStatus(500);
+            });
+    },
+    login(req, res) {
+        console.log(req.body.email);
+        userService
+            .login({
+                email: req.body.email,
+                password: req.body.password
+            })
+            .then((user) => {
+                console.log(`user before then ${user}`);
+                if (user) {
+                    const token = jwt.sign({ id: user.id }, 'secret', {
+                        expiresIn: 86400
+                    });
+                    res.status(200).send({ token, ...user });
+                }
             });
         // User.create(
         //     {

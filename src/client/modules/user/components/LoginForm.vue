@@ -2,11 +2,11 @@
     <form
         action="post"
         class="form"
-        @submit.prevent="submitLogin">
+        @submit.prevent="submitForm">
         <label>
             <p>Email</p>
             <input
-                v-model.trim="email"
+                v-model.trim="loginData.email"
                 type="email"
                 required
                 placeholder="Enter your email"
@@ -15,7 +15,7 @@
         <label>
             <p>Password</p>
             <input
-                v-model="password"
+                v-model="loginData.password"
                 type="password"
                 required
                 placeholder="Enter your password"
@@ -31,16 +31,22 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     data() {
         return {
-            email: '',
-            password: ''
+            loginData: {
+                email: '',
+                password: ''
+            }
         };
     },
     methods: {
-        submitLogin() {
-            console.log('submit login');
+        ...mapActions('user', ['submitLogin']),
+        submitForm() {
+            console.log(`login${this.loginData}`);
+            this.submitLogin(this.loginData);
         }
     }
 };

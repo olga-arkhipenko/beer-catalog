@@ -1,10 +1,16 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
 
 export default {
-    register(userData) {
+    register(registrationData) {
         const url = '/api/registration';
-        const jsonUserData = JSON.stringify(userData);
-        return ajaxHelper.post(url, jsonUserData);
+        const jsonRegistrationData = JSON.stringify(registrationData);
+        return ajaxHelper.post(url, jsonRegistrationData);
+    },
+    login(loginData) {
+        const url = '/api/login';
+        const jsonLoginData = JSON.stringify(loginData);
+        console.log(`json${jsonLoginData}`);
+        return ajaxHelper.post(url, jsonLoginData);
     }
 };
 

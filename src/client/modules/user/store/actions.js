@@ -5,13 +5,19 @@ export default {
         commit('setRegistrationData', registrationData);
         userService
             .register(state.registrationData)
-            .then((userData) => {
-                console.log(JSON.stringify(userData));
-                commit('setUserData', userData);
+            .then((/* userData */) => {
+                // commit('setUserData', userData);
+                commit('resetRegistrationData');
             });
     },
-    resetUserInfo({ commit }) {
-        commit('resetUserData');
-        commit('resetRegistrationData');
+    submitLogin({ commit, state }, loginData) {
+        commit('setLoginData', loginData);
+        userService
+            .login(state.loginData)
+            .then((userData) => {
+                console.log(`userres ${JSON.stringify(userData)}`);
+                commit('setUserData', userData);
+                commit('resetLoginData');
+            });
     }
 };
