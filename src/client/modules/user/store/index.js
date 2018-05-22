@@ -17,8 +17,7 @@ export default {
         userData: {
             name: '',
             email: '',
-            birthdate: null,
-            token: ''
+            birthdate: null
         }
     },
     mutations,

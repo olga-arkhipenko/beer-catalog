@@ -12,7 +12,6 @@ module.exports = {
             });
     },
     findUser(email) {
-        console.log(`hello from ligin rep ${email}`);
         return database.user
             .findOne({
                 where: {

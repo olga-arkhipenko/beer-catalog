@@ -9,8 +9,17 @@ export default {
     login(loginData) {
         const url = '/api/login';
         const jsonLoginData = JSON.stringify(loginData);
-        console.log(`json${jsonLoginData}`);
-        return ajaxHelper.post(url, jsonLoginData);
+        return ajaxHelper
+            .post(url, jsonLoginData)
+            .then((userData) => {
+                const accessToken = userData.token;
+                window.localStorage.setItem('accessToken', accessToken);
+                return {
+                    name: userData.name,
+                    email: userData.email,
+                    birthdate: userData.birthdate
+                };
+            });
     }
 };
 

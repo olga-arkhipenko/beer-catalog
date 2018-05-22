@@ -15,7 +15,6 @@ module.exports = {
         return userRepository
             .createUser(user)
             .then((userEntity) => {
-                console.log(`${userEntity} userEntity`);
                 if (userEntity) {
                     return userMapper.mapToUser(userEntity);
                 }
@@ -23,7 +22,7 @@ module.exports = {
             });
     },
     login(loginData) {
-        console.log('hello from service');
+        console.log('hello from login service');
         return userRepository
             .findUser(loginData.email)
             .then((user) => {
@@ -31,9 +30,9 @@ module.exports = {
                     if (passwordEncryptor.isMatch(loginData.password, user.salt, user.password)) {
                         return userMapper.mapToUser(user);
                     }
-                    throw new Error('Wrong user password');
+                    throw new Error('Login error. Wrong user password');
                 } else {
-                    throw new Error('Wrong user email');
+                    throw new Error('Login error. Wrong user email');
                 }
             });
     }

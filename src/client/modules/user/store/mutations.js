@@ -13,7 +13,6 @@ export default {
         state.userData.name = userData.name;
         state.userData.email = userData.email;
         state.userData.birthdate = userData.birthdate;
-        state.userData.token = userData.token;
     },
     setUserRegistered(state) {
         state.isRegistered = true;
