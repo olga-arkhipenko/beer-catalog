@@ -45,7 +45,6 @@ export default {
     methods: {
         ...mapActions('user', ['submitLogin']),
         submitForm() {
-            console.log(`login${this.loginData}`);
             this.submitLogin(this.loginData);
         }
     }

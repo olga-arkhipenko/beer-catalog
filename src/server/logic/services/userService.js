@@ -22,7 +22,6 @@ module.exports = {
             });
     },
     login(loginData) {
-        console.log('hello from login service');
         return userRepository
             .findUser(loginData.email)
             .then((user) => {

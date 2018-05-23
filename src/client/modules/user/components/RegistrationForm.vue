@@ -99,9 +99,6 @@ export default {
         },
         ...mapState('user', ['userData'])
     },
-    // beforeDestroy() {
-    //     this.resetUserInfo();
-    // },
     methods: {
         ...mapActions('user', ['submitRegistartion']),
         submitForm() {

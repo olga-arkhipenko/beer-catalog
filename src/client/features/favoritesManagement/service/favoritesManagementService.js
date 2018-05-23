@@ -1,11 +1,14 @@
-import localStorageHelper from 'common/helpers/localStorageHelper';
+import ajaxHelper from 'common/helpers/ajaxHelper';
 
 export default {
-    fetchFavoriteBeerIds() {
-        return localStorageHelper.get('favoriteBeerIds');
-    },
-    updateFavoriteBeerIds(newFavoriteBeerIds) {
-        localStorageHelper.update('favoriteBeerIds', newFavoriteBeerIds);
+    fetchFavoriteBeerIds(userData) {
+        const url = '/api/favorites';
+        const jsonUserData = JSON.stringify(userData);
+        console.log(`user${jsonUserData}`);
+        return ajaxHelper.post(url, jsonUserData);
     }
+    // updateFavoriteBeerIds(newFavoriteBeerIds) {
+    //     localStorageHelper.update('favoriteBeerIds', newFavoriteBeerIds);
+    // }
 };
 

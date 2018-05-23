@@ -18,5 +18,11 @@ export default {
                 commit('resetLoginData');
             })
             .catch(error => console.log(`Login error: ${error}`));
+    },
+    submitAddFavoriteBeer({ commit }, beerId) {
+        commit('addFavoriteBeer', beerId);
+    },
+    submitRemoveFavoriteBeer({ commit }, beerId) {
+        commit('removeFavoriteBeer', beerId);
     }
 };

@@ -7,6 +7,9 @@ export default {
                 .fetchBeers({ ...pageParams, beerIds: favoriteBeerIds })
                 .then(beers => commit('setFavoriteBeers', beers));
         });
+        // const url = '/api/favorites';
+        // const jsonRegistrationData = JSON.stringify(registrationData);
+        // return ajaxHelper.post(url, jsonRegistrationData);
     },
     removeFavoriteBeer({ dispatch }, payload) {
         dispatch('favoritesManagement/removeFavoriteBeer', payload.id).then((beerIds) => {

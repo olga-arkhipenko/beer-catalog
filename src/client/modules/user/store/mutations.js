@@ -13,6 +13,7 @@ export default {
         state.userData.name = userData.name;
         state.userData.email = userData.email;
         state.userData.birthdate = userData.birthdate;
+        state.userData.token = userData.token;
     },
     setUserRegistered(state) {
         state.isRegistered = true;
@@ -32,10 +33,15 @@ export default {
         };
     },
     resetUserData(state) {
-        state.userData = {
-            name: '',
-            email: '',
-            birthdate: null
-        };
+        state.userData.name = '';
+        state.userData.email = '';
+        state.userData.birthdate = null;
+        state.userData.token = '';
+    },
+    addFavoriteBeer(state, beerId) {
+        console.log(beerId);
+    },
+    removeFavoriteBeer(state, beerId) {
+        console.log(beerId);
     }
 };

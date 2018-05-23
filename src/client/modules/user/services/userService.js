@@ -9,17 +9,13 @@ export default {
     login(loginData) {
         const url = '/api/login';
         const jsonLoginData = JSON.stringify(loginData);
-        return ajaxHelper
-            .post(url, jsonLoginData)
-            .then((userData) => {
-                const accessToken = userData.token;
-                window.localStorage.setItem('accessToken', accessToken);
-                return {
-                    name: userData.name,
-                    email: userData.email,
-                    birthdate: userData.birthdate
-                };
-            });
+        return ajaxHelper.post(url, jsonLoginData);
+    },
+    addFavoriteBeer(beerId) {
+        console.log(`add ${beerId}`);
+    },
+    removeFavoriteBeer(beerId) {
+        console.log(`remove ${beerId}`);
     }
 };
 

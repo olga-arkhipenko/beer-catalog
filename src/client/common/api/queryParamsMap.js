@@ -4,6 +4,6 @@ export const QUERY_PARAMS_MAP = {
     name: 'name',
     alcoholByVolume: 'abv',
     bitternessUnits: 'ibu',
-    colorByEBC: 'ebc'
-    // beerIds: 'ids'
+    colorByEBC: 'ebc',
+    beerIds: 'ids'
 };

@@ -15,12 +15,12 @@
                 <a
                     v-if="isFavoriteBeer"
                     class="link toggle-bar__button toggle-bar__button-remove"
-                    @click="removeFavoriteBeer(beer.id)"
+                    @click="submitRemoveFavoriteBeer(beer.id)"
                 >remove favorite</a>
                 <a
                     v-else
                     class="link toggle-bar__button toggle-bar__button-add"
-                    @click="addFavoriteBeer(beer.id)"
+                    @click="submitAddFavoriteBeer(beer.id)"
                 >add favorite</a>
             </div>
         </div>
@@ -46,7 +46,7 @@ export default {
             return this.favoriteBeerIds.includes(this.beer.id);
         }
     },
-    methods: mapActions('catalog/favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer'])
+    methods: mapActions('user', ['submitRemoveFavoriteBeer', 'submitAddFavoriteBeer'])
 };
 </script>
 

@@ -6,8 +6,7 @@
                 <li
                     v-for="route in mainMenuRoutes"
                     :key="route.name"
-                    class="menu__item"
-                >
+                    class="menu__item">
                     <router-link
                         v-cloak
                         :to="route.path"

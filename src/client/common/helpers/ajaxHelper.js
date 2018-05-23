@@ -1,11 +1,15 @@
 export default {
     get(url) {
         return fetch(url)
-            .then(response => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            })
             .catch(new Error('Get denied'));
     },
     post(url, data) {
-        console.log('here');
         return fetch(url, {
             method: 'post',
             headers: {
@@ -17,6 +21,9 @@ export default {
         })
             .then((response) => {
                 console.log(`response ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
                 return response.json();
             })
             .catch(new Error('Post denied'));

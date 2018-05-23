@@ -5,8 +5,7 @@
             <template slot-scope="props">
                 <favorites-card
                     :beer="props.item"
-                    @favoriteBeerRemoved="deleteFavoriteBeer"
-                />
+                    @favoriteBeerRemoved="deleteFavoriteBeer"/>
             </template>
         </row-list>
         <pagination
@@ -14,8 +13,7 @@
             :total-items="favoriteBeerIds.length"
             :items-per-page="pageParams.itemsPerPage"
             class="favorites__pagination"
-            @pageChanged="changePage"
-        />
+            @pageChanged="changePage"/>
     </article>
 </template>
 
@@ -51,7 +49,6 @@ export default {
     },
     methods: {
         ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeer']),
-        ...mapActions('favorites/favoritesManagement', ['loadFavoriteBeerIds']),
 
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;

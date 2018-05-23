@@ -1,9 +1,9 @@
 import favoritesManagementService from 'favoritesManagement/service/favoritesManagementService';
 
 export default {
-    loadFavoriteBeerIds({ commit }) {
+    loadFavoriteBeerIds({ commit }, userData) {
         return favoritesManagementService
-            .fetchFavoriteBeerIds()
+            .fetchFavoriteBeerIds(userData)
             .then((favoriteBeerIds) => {
                 commit('setFavoriteBeerIds', favoriteBeerIds);
                 return favoriteBeerIds;
