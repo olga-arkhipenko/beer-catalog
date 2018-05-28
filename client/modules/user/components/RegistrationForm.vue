@@ -2,6 +2,7 @@
     <section>
         <form
             action="post"
+            enctype="multipart/form-data"
             class="form"
             @submit.prevent="submitForm">
             <p class="form__heading registartion-heading">Registration</p>
@@ -57,6 +58,12 @@
                     minlength="8"
                     maxlength="255">
             </label>
+            <p>Upload profile picture</p>
+            <input
+                type="file"
+                accept="image/*"
+                class="upload-button"
+                @change="uploadProfilePicture">
             <div class="form__button-wrapper">
                 <input
                     type="submit"
@@ -64,12 +71,6 @@
                     value="Sign up">
             </div>
         </form>
-        <p
-            v-if="isRegistrationSucceed"
-            class="form__notification"
-        >
-            <span>User {{ userData.name }} succesfully created</span>
-        </p>
     </section>
 </template>
 
@@ -83,7 +84,8 @@ export default {
                 name: '',
                 birthdate: null,
                 email: '',
-                password: ''
+                password: '',
+                profilePicture: null
             },
             checkedData: {
                 passwordConfirmed: ''
@@ -91,16 +93,40 @@ export default {
         };
     },
     computed: {
+        ...mapState('user', ['userData']),
+
         isPasswordMatch() {
             return this.registrationData.password === this.checkedData.passwordConfirmed || this.checkedData.passwordConfirmed === '';
-        },
-        isRegistrationSucceed() {
-            return this.userData.name;
-        },
-        ...mapState('user', ['userData'])
+        }
     },
     methods: {
         ...mapActions('user', ['submitRegistartion']),
+
+        uploadProfilePicture(e) {
+            const files = e.target.files || e.dataTransfer.files;
+            console.log(files[0]);
+            this.registrationData.profilePicture = files[0] || null;
+            // const formData = new FormData();
+            // formData.append('profilePicture', files[0], files[0].name);
+            // console.log(formData);
+            // this.createProfilePicture(files[0]);
+        },
+        // addProfilePicture(image) {
+        //     this.registrationData.profilePicture = image;
+        // },
+        // createProfilePicture(file) {
+        //     const formData = new FormData();
+        //     formData.append('profilePicture', file, file.name);
+        //     this.registrationData.profilePicture = formData;
+        //     console.log();
+        // const reader = new FileReader();
+
+        // reader.onloadend = function () {
+        //     callback(reader.result);
+        // };
+
+        // reader.readAsDataURL(file);
+        // },
         submitForm() {
             if (this.isPasswordMatch) {
                 this.submitRegistartion(this.registrationData);
@@ -118,17 +144,6 @@ export default {
     color: #fb3224;
 
     font-size: 1.1rem;
-}
-
-.form__notification {
-    margin: 20px 0;
-
-    text-align: center;
-
-    color: #3fbd3e;
-
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.5rem;
 }
 
 .registartion-heading {

@@ -1,10 +1,14 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
 
 export default {
-    register(registrationData) {
-        const url = '/api/registration';
+    register(registrationData, profilePicture) {
+        const registrationUrl = '/api/registration';
+        const imageUploadUrl = `${registrationUrl}/upload`;
         const jsonRegistrationData = JSON.stringify(registrationData);
-        return ajaxHelper.post(url, jsonRegistrationData);
+        return ajaxHelper
+            .postImage(imageUploadUrl, profilePicture)
+            .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData))
+            .catch(() => 'something wrong with image upload');
     },
     login(loginData) {
         const url = '/api/login';

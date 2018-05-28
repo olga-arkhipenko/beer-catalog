@@ -59,7 +59,7 @@ export default {
         }
     },
     mounted() {
-        this.loadFavoriteBeerIds(this.userData);
+        // this.loadFavoriteBeerIds(this.userData);
         this.loadBeerPage();
     },
     beforeDestroy() {

@@ -4,6 +4,7 @@ export default {
         state.registrationData.email = registrationData.email;
         state.registrationData.birthdate = registrationData.birthdate;
         state.registrationData.password = registrationData.password;
+        state.registrationData.profilePicture = registrationData.profilePicture;
     },
     setLoginData(state, loginData) {
         state.loginData.email = loginData.email;
