@@ -2,11 +2,9 @@ const path = require('path');
 const express = require('express');
 const router = require('./view/routing/router');
 const bodyParser = require('body-parser');
-// const fileUpload = require('express-fileupload');
 
 const app = express();
 
-// app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

@@ -8,7 +8,6 @@ export default {
     fetchBeers(beerParams) {
         const mappedParams = urlMapper.mapParams(QUERY_PARAMS_MAP, beerParams);
         const url = urlCreator.create('/api/beers', mappedParams);
-        console.log(url);
         return ajaxHelper
             .get(url)
             .then(beers => beers.map(beerMapper.mapToBeer));

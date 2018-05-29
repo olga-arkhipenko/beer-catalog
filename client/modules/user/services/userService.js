@@ -3,7 +3,7 @@ import ajaxHelper from 'common/helpers/ajaxHelper';
 export default {
     register(registrationData, profilePicture) {
         const registrationUrl = '/api/registration';
-        const imageUploadUrl = `${registrationUrl}/upload`;
+        const imageUploadUrl = '/api/upload';
         const jsonRegistrationData = JSON.stringify(registrationData);
         return ajaxHelper
             .postImage(imageUploadUrl, profilePicture)
@@ -14,12 +14,12 @@ export default {
         const url = '/api/login';
         const jsonLoginData = JSON.stringify(loginData);
         return ajaxHelper.post(url, jsonLoginData);
-    },
-    addFavoriteBeer(beerId) {
-        console.log(`add ${beerId}`);
-    },
-    removeFavoriteBeer(beerId) {
-        console.log(`remove ${beerId}`);
     }
+    // addFavoriteBeer(beerId) {
+    //     console.log(`add ${beerId}`);
+    // },
+    // removeFavoriteBeer(beerId) {
+    //     console.log(`remove ${beerId}`);
+    // }
 };
 

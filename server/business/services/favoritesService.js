@@ -6,7 +6,6 @@ module.exports = {
             .findFavoriteIds(userId)
             .then((ids) => {
                 if (ids) {
-                    console.log(`ids${ids}`);
                     return ids;
                 }
                 throw new Error('Unable to create user');

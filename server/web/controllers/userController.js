@@ -19,8 +19,8 @@ module.exports = {
                 res.status(500).send(error);
             });
     },
-    uploadImage(req) {
-        console.log(`here ${req.files}`);
+    uploadImage(/* req */) {
+        // console.log(`here ${req.files}`);
     },
     login(req, res) {
         userService

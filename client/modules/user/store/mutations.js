@@ -39,10 +39,10 @@ export default {
         state.userData.birthdate = null;
         state.userData.token = '';
     },
-    addFavoriteBeer(state, beerId) {
-        console.log(beerId);
+    addFavoriteBeer(/* state, beerId */) {
+        // console.log(beerId);
     },
-    removeFavoriteBeer(state, beerId) {
-        console.log(beerId);
+    removeFavoriteBeer(/* state,  beerId */) {
+        // console.log(beerId);
     }
 };

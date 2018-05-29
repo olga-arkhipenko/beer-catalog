@@ -32,8 +32,8 @@ export default {
             method: 'post',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
-                'Content-Length': image.size
+                'Content-Type': 'multipart/form-data'
+                // 'Content-Length': image.size || ''
             },
             credentials: 'include',
             body: image

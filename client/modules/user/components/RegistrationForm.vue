@@ -104,7 +104,7 @@ export default {
 
         uploadProfilePicture(e) {
             const files = e.target.files || e.dataTransfer.files;
-            console.log(files[0]);
+            // console.log(files[0]);
             this.registrationData.profilePicture = files[0] || null;
             // const formData = new FormData();
             // formData.append('profilePicture', files[0], files[0].name);
