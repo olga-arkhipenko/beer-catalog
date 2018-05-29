@@ -15,7 +15,7 @@ router(app);
 
 app.use(express.static('.'));
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../index.html'));
+    res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
 app.listen(3030);

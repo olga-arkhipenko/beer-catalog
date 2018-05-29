@@ -6,8 +6,9 @@
     "scripts": {
         "dev": "webpack-dev-server --mode development",
         "prod": "webpack --progress --hide-modules --mode production --env.production",
-        "build-dev": "node_modules/.bin/babel src/server/ -w -d bin/dev/",
-        "start": "node bin/dev/app.js"
+        "build-dev": "node_modules/.bin/babel server -d -w bin/dev/",
+        "start": "node bin/dev/app.js",
+        "build": "(node_modules/.bin/babel server -d bin/dev/ | node dev/app.js) & webpack-dev-server --mode development"
     },
     "repository": {
         "type": "git",
