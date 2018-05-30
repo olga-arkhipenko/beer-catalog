@@ -10,9 +10,10 @@ export default {
             birthdate: registrationData.birthdate,
             password: registrationData.password
         });
-        return ajaxHelper
-            .postImage(imageUploadUrl, registrationData.profilePicture)
-            .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData));
+        return registrationData.profilePicture ?
+            ajaxHelper.postImage(imageUploadUrl, registrationData.profilePicture)
+                .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData))
+            : ajaxHelper.postJson(registrationUrl, jsonRegistrationData);
         // .catch(() => console.error('something wrong with image upload'));
     },
     login(loginData) {

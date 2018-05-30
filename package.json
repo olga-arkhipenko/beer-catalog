@@ -7,7 +7,7 @@
         "dev": "webpack-dev-server --mode development",
         "prod": "webpack --progress --hide-modules --mode production --env.production",
         "start": "node server/app.js",
-        "build": "node server/app.js & webpack-dev-server --mode development"
+        "build": "node server/app.js & webpack-dev-server --mode development --open"
     },
     "repository": {
         "type": "git",
