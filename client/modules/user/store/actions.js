@@ -4,7 +4,7 @@ export default {
     submitRegistartion({ commit, state }, registrationData) {
         commit('setRegistrationData', registrationData);
         userService
-            .register(state.registrationData, state.registrationData.profilePicture)
+            .register(state.registrationData)
             .then(() => commit('resetRegistrationData'));
         // .catch(err => console.error(`User data problem: ${err}`));
     },
