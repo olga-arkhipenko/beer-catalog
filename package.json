@@ -6,9 +6,8 @@
     "scripts": {
         "dev": "webpack-dev-server --mode development",
         "prod": "webpack --progress --hide-modules --mode production --env.production",
-        "build-dev": "node_modules/.bin/babel server -w -d  dev",
-        "start": "node dev/app.js",
-        "build": "(node_modules/.bin/babel server -d dev | node dev/app.js) & webpack-dev-server --mode development"
+        "start": "node server/app.js",
+        "build": "node server/app.js & webpack-dev-server --mode development"
     },
     "repository": {
         "type": "git",
@@ -34,7 +33,6 @@
         "vuex": "^3.0.1"
     },
     "devDependencies": {
-        "babel-cli": "^6.26.0",
         "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.2",
         "babel-loader": "^7.1.3",

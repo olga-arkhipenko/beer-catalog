@@ -1,7 +1,9 @@
 module.exports = class Ingredients {
-    ingredients = {
-        malt: null,
-        hops: null,
-        yeast: null
+    constructor() {
+        this.ingredients = {
+            malt: null,
+            hops: null,
+            yeast: null
+        };
     }
 };

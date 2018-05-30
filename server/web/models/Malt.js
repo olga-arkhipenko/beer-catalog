@@ -1,5 +1,7 @@
 module.exports = class Malt {
-    name = null;
-    value = null;
-    unit = null;
+    constructor() {
+        this.name = null;
+        this.value = null;
+        this.unit = null;
+    }
 };

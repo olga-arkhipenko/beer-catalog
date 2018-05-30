@@ -1,7 +1,9 @@
 module.exports = class Hops {
-    name = null;
-    value = null;
-    unit = null;
-    add = null;
-    attribute = null;
+    constructor() {
+        this.name = null;
+        this.value = null;
+        this.unit = null;
+        this.add = null;
+        this.attribute = null;
+    }
 };

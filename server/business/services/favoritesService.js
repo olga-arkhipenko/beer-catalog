@@ -1,4 +1,4 @@
-const favoritesRepository = require('../../data/repositories/favoritesRepository');
+const favoritesRepository = require('../../dataAccess/repositories/favoritesRepository');
 
 module.exports = {
     getfavoritesIds(userId) {

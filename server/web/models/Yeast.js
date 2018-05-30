@@ -1,3 +1,5 @@
 module.exports = class Yeast {
-    name = null;
+    constructor() {
+        this.name = null;
+    }
 };

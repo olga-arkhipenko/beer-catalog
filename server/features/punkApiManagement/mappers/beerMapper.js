@@ -1,4 +1,4 @@
-const Beer = require('../../../view/models/Beer');
+const Beer = require('../../../web/models/Beer');
 const foodPairingMapper = require('./foodPairingMapper');
 const brewingMapper = require('./brewingMapper');
 

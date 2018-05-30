@@ -1,4 +1,4 @@
-const userService = require('../../logic/services/userService');
+const userService = require('../../business/services/userService');
 const jwt = require('jsonwebtoken');
 
 module.exports = {

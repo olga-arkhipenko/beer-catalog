@@ -1,4 +1,4 @@
-const User = require('../../logic/models/User');
+const User = require('../../business/models/User');
 
 module.exports = {
     mapToUser(databaseEntity) {

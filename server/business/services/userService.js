@@ -1,6 +1,6 @@
-const userRepository = require('../../data/repositories/userRepository');
+const userRepository = require('../../dataAccess/repositories/userRepository');
 const passwordEncryptor = require('../../utils/passwordEncryptor');
-const userMapper = require('../../data/mappers/userMapper');
+const userMapper = require('../../dataAccess/mappers/userMapper');
 
 module.exports = {
     register(userData) {

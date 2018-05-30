@@ -1,6 +1,6 @@
-const Malt = require('../../../view/models/Malt');
-const Hops = require('../../../view/models/Hops');
-const Yeast = require('../../../view/models/Yeast');
+const Malt = require('../../../web/models/Malt');
+const Hops = require('../../../web/models/Hops');
+const Yeast = require('../../../web/models/Yeast');
 
 module.exports = {
     mapMalt(malt) {

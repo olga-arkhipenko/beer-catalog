@@ -1,6 +1,8 @@
 module.exports = class Brewing {
-    tips = null;
-    ingredients = null;
-    methods = null;
+    constructor() {
+        this.tips = null;
+        this.ingredients = null;
+        this.methods = null;
+    }
 };
 
