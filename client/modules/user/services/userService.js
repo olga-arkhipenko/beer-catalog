@@ -12,8 +12,8 @@ export default {
         });
         return ajaxHelper
             .postImage(imageUploadUrl, registrationData.profilePicture)
-            .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData))
-            .catch(() => console.error('something wrong with image upload'));
+            .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData));
+        // .catch(() => console.error('something wrong with image upload'));
     },
     login(loginData) {
         const url = '/api/login';
