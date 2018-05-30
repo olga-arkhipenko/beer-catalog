@@ -25,7 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    user.associate = (favorite) => {
+    user.associate = (favorite, image) => {
+        user.belongsTo(image, {
+            as: 'profilePicture'
+        });
         user.belongsToMany(favorite, {
             through: 'UserFavorite'
         });
