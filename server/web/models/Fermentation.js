@@ -1,4 +1,6 @@
 module.exports = class Fermentation {
-    value = null;
-    unit = null;
+    constructor() {
+        this.value = null;
+        this.unit = null;
+    }
 };

@@ -1,3 +1,5 @@
 module.exports = class Twist {
-    name = null;
+    constructor() {
+        this.name = null;
+    }
 };

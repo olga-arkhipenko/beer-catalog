@@ -1,13 +1,15 @@
 module.exports = class Beer {
-    id = null;
-    name = null;
-    image = null;
-    tagline = null;
-    description = null;
-    abv = null;
-    ibu = null;
-    ebc = null;
-    foodPairing = null;
-    brewing = null;
+    constructor() {
+        this.id = null;
+        this.name = null;
+        this.image = null;
+        this.tagline = null;
+        this.description = null;
+        this.abv = null;
+        this.ibu = null;
+        this.ebc = null;
+        this.foodPairing = null;
+        this.brewing = null;
+    }
 };
 

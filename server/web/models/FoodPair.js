@@ -1,3 +1,5 @@
 module.exports = class FoodPair {
-    name = null;
+    constructor() {
+        this.name = null;
+    }
 };

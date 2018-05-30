@@ -1,5 +1,7 @@
 module.exports = class MashTemp {
-    value = null;
-    unit = null;
-    duration = null;
+    constructor() {
+        this.value = null;
+        this.unit = null;
+        this.duration = null;
+    }
 };
