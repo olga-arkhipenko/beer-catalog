@@ -8,7 +8,8 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 birthdate: req.body.birthdate,
-                password: req.body.password
+                password: req.body.password,
+                profilePicture: req.body.profilePicture
             })
             .then((user) => {
                 if (user) {
@@ -19,8 +20,15 @@ module.exports = {
                 res.status(500).send(error);
             });
     },
-    uploadImage(/* req */) {
-        // console.log(`here ${req.file}`);
+    uploadProfilePicture(req, res) {
+        userService
+            .uploadProfilePicture(req.body)
+            .then((image) => {
+                res.status(200).send(image);
+            })
+            .catch((error) => {
+                res.status(500).send(error);
+            });
     },
     login(req, res) {
         userService
@@ -41,4 +49,3 @@ module.exports = {
             });
     }
 };
-

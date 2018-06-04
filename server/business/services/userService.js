@@ -1,6 +1,9 @@
 const userRepository = require('../../dataAccess/repositories/userRepository');
+const imageRepository = require('../../dataAccess/repositories/imageRepository');
 const passwordEncryptor = require('../../utils/passwordEncryptor');
 const userMapper = require('../../dataAccess/mappers/userMapper');
+const imageMapper = require('../../dataAccess/mappers/imageMapper');
+const cloudinaryManager = require('../../features/cloudinaryManagement/cloudinaryManager');
 
 module.exports = {
     register(userData) {
@@ -10,16 +13,22 @@ module.exports = {
             email: userData.email,
             birthdate: userData.birthdate,
             password: passwordEncryptor.encrypt(userData.password, salt),
-            salt
+            salt,
+            profilePictureId: userData.profilePicture.id
         };
         return userRepository
             .createUser(user)
-            .then((userEntity) => {
-                if (userEntity) {
-                    return userMapper.mapToUser(userEntity);
-                }
-                throw new Error('Unable to create user');
-            });
+            .then(userEntity => userMapper.mapToUser(userEntity));
+    },
+    uploadProfilePicture(image) {
+        return cloudinaryManager
+            .upload(image)
+            .then(imageInfo => imageRepository.createImage({
+                url: imageInfo.url,
+                width: imageInfo.width,
+                height: imageInfo.height
+            }))
+            .then(imageEntity => imageMapper.mapToImage(imageEntity));
     },
     login(loginData) {
         return userRepository
