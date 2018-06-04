@@ -10,6 +10,7 @@ export default {
         const url = urlCreator.create('/api/beers', mappedParams);
         return ajaxHelper
             .get(url)
-            .then(beers => beers.map(beerMapper.mapToBeer));
+            .then(beers => beers.map(beerMapper.mapToBeer))
+            .catch(err => console.error(err));
     }
 };

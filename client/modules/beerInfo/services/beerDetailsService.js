@@ -6,6 +6,7 @@ export default {
         const url = `/api/beers/${beerId}`;
         return ajaxHelper
             .get(url)
-            .then(beer => beerMapper.mapToBeerDetails(beer));
+            .then(beer => beerMapper.mapToBeerDetails(beer))
+            .catch(err => console.error(err));
     }
 };

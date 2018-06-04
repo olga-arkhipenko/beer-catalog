@@ -7,7 +7,7 @@
                 v-cloak
                 :key="foodPair.id"
                 class="beer-info-list__item"
-            > {{ foodPair.name }}.
+            > {{ JSON.stringify(foodPair.name) }}.
             </li>
         </ul>
     </section>
