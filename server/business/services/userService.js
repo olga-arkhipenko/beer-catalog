@@ -33,15 +33,18 @@ module.exports = {
     login(loginData) {
         return userRepository
             .findUser(loginData.email)
-            .then((user) => {
-                if (user) {
-                    if (passwordEncryptor.isMatch(loginData.password, user.salt, user.password)) {
-                        return userMapper.mapToUser(user);
+            .then((userEntity) => {
+                if (userEntity) {
+                    if (passwordEncryptor.isMatch(
+                        loginData.password,
+                        userEntity.salt,
+                        userEntity.password
+                    )) {
+                        return userMapper.mapToUserDetails(userEntity);
                     }
                     throw new Error('Login error. Wrong user password');
-                } else {
-                    throw new Error('Login error. Wrong user email');
                 }
+                throw new Error('Login error. Wrong user email');
             });
     }
 };

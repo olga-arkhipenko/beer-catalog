@@ -37,15 +37,13 @@ module.exports = {
                 password: req.body.password
             })
             .then((user) => {
-                if (user) {
-                    const token = jwt.sign({ id: user.id }, 'secret', {
-                        expiresIn: 86400
-                    });
-                    res.status(200).send({ token, ...user });
-                }
+                const token = jwt.sign({ id: user.id }, 'secret', {
+                    expiresIn: 86400
+                });
+                res.status(200).send({ token, ...user });
             })
             .catch((error) => {
-                res.status(400).send(error);
+                res.status(500).send(error);
             });
     }
 };
