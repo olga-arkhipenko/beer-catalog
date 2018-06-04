@@ -1,15 +1,27 @@
 const User = require('../../business/models/User');
+const UserDetails = require('../../business/models/UserDetails');
+const imageMapper = require('./imageMapper');
+
+const mapUser = function (databaseEntity, TargetType) {
+    const mappedUser = new TargetType();
+    mappedUser.id = databaseEntity.dataValues.id;
+    mappedUser.email = databaseEntity.dataValues.email;
+    mappedUser.birthdate = databaseEntity.dataValues.birthdate;
+    mappedUser.name = databaseEntity.dataValues.name;
+
+    return mappedUser;
+};
 
 module.exports = {
     mapToUser(databaseEntity) {
-        const user = new User();
-        user.id = databaseEntity.dataValues.id;
-        user.email = databaseEntity.dataValues.email;
-        user.birthdate = databaseEntity.dataValues.birthdate;
-        user.name = databaseEntity.dataValues.name;
-        user.profilePictureId = databaseEntity.dataValues.profilePictureId;
+        return mapUser(databaseEntity, User);
+    },
+    mapToUserDetails(databaseEntity) {
+        const mappedUserDetails = mapUser(databaseEntity, UserDetails);
+        mappedUserDetails.profilePicture =
+        imageMapper.mapToImage(databaseEntity.dataValues.profilePicture);
 
-        return user;
+        return mappedUserDetails;
     }
 };
 
