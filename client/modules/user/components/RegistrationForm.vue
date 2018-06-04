@@ -105,27 +105,7 @@ export default {
         uploadProfilePicture(e) {
             const files = e.target.files || e.dataTransfer.files;
             this.registrationData.profilePicture = files[0] || null;
-            // const formData = new FormData();
-            // formData.append('profilePicture', files[0], files[0].name);
-            // console.log(formData);
-            // this.createProfilePicture(files[0]);
         },
-        // addProfilePicture(image) {
-        //     this.registrationData.profilePicture = image;
-        // },
-        // createProfilePicture(file) {
-        //     const formData = new FormData();
-        //     formData.append('profilePicture', file, file.name);
-        //     this.registrationData.profilePicture = formData;
-        //     console.log();
-        // const reader = new FileReader();
-
-        // reader.onloadend = function () {
-        //     callback(reader.result);
-        // };
-
-        // reader.readAsDataURL(file);
-        // },
         submitForm() {
             if (this.isPasswordMatch) {
                 this.submitRegistartion(this.registrationData);
