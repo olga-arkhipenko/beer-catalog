@@ -2,8 +2,11 @@ const path = require('path');
 const express = require('express');
 const router = require('./web/routing/router');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const app = express();
+
+app.use(morgan('combined'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
