@@ -7,6 +7,7 @@ module.exports = {
         user.email = databaseEntity.dataValues.email;
         user.birthdate = databaseEntity.dataValues.birthdate;
         user.name = databaseEntity.dataValues.name;
+        user.profilePictureId = databaseEntity.dataValues.profilePictureId;
 
         return user;
     }

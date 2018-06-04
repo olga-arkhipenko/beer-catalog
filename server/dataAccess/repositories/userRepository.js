@@ -8,7 +8,8 @@ module.exports = {
                 email: user.email,
                 birthdate: user.birthdate,
                 password: user.password,
-                salt: user.salt
+                salt: user.salt,
+                profilePictureId: user.profilePictureId
             });
     },
     findUser(email) {

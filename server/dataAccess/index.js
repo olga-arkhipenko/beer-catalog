@@ -16,3 +16,4 @@ favoriteModel.associate(userModel);
 
 module.exports.favorite = favoriteModel;
 module.exports.user = userModel;
+module.exports.image = imageModel;
