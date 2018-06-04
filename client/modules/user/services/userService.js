@@ -4,17 +4,12 @@ export default {
     register(registrationData) {
         const registrationUrl = '/api/registration';
         const imageUploadUrl = '/api/uploadImage';
-        const jsonRegistrationData = JSON.stringify({
-            name: registrationData.name,
-            email: registrationData.email,
-            birthdate: registrationData.birthdate,
-            password: registrationData.password
-        });
-        return registrationData.profilePicture ?
-            ajaxHelper.postImage(imageUploadUrl, registrationData.profilePicture)
-                .then(() => ajaxHelper.postJson(registrationUrl, jsonRegistrationData))
-            : ajaxHelper.postJson(registrationUrl, jsonRegistrationData);
-        // .catch(() => console.error('something wrong with image upload'));
+        return ajaxHelper
+            .postImage(imageUploadUrl, registrationData.profilePicture)
+            .then(profilePicture =>
+                ajaxHelper
+                    .postJson(registrationUrl, { ...registrationData, profilePicture }))
+            .catch(err => console.error(err));
     },
     login(loginData) {
         const url = '/api/login';

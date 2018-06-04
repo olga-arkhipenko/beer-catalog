@@ -6,8 +6,7 @@ export default {
                     throw new Error(response.statusText);
                 }
                 return response.json();
-            })
-            .catch(new Error('Get denied'));
+            });
     },
     postJson(url, data) {
         return fetch(url, {
@@ -17,22 +16,22 @@ export default {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: data
+            body: JSON.stringify(data)
         })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
                 return response.json();
-            })
-            .catch(new Error('Post json denied'));
+            });
     },
     postImage(url, image) {
         return fetch(url, {
             method: 'post',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': image.type
+                'Content-Type': image.type,
+                'Content-Length': image.size
             },
             credentials: 'include',
             body: image
@@ -42,7 +41,6 @@ export default {
                     throw new Error(response.statusText);
                 }
                 return response.json();
-            })
-            .catch(new Error('Post image denied'));
+            });
     }
 };

@@ -5,8 +5,8 @@ export default {
         commit('setRegistrationData', registrationData);
         userService
             .register(state.registrationData)
-            .then(() => commit('resetRegistrationData'));
-        // .catch(err => console.error(`User data problem: ${err}`));
+            .then(() => commit('resetRegistrationData'))
+            .catch(err => console.error(`Registartion problem: ${err}`));
     },
     submitLogin({ commit, state }, loginData) {
         commit('setLoginData', loginData);
