@@ -17,7 +17,11 @@ module.exports = {
             .findOne({
                 where: {
                     email
-                }
+                },
+                include: [{
+                    model: database.image,
+                    as: 'profilePicture'
+                }]
             });
     }
 };
