@@ -12,19 +12,13 @@ module.exports = {
                 profilePicture: req.body.profilePicture
             })
             .then(user => res.status(200).send(user))
-            .catch((error) => {
-                res.status(500).send(error);
-            });
+            .catch(err => res.status(500).send(err));
     },
     uploadProfilePicture(req, res) {
         userService
             .uploadProfilePicture(req.body)
-            .then((image) => {
-                res.status(200).send(image);
-            })
-            .catch((error) => {
-                res.status(500).send(error);
-            });
+            .then(image => res.status(200).send(image))
+            .catch(err => res.status(500).send(err));
     },
     login(req, res) {
         userService
@@ -36,8 +30,6 @@ module.exports = {
                 const token = jwtHelper.createTokent({ id: user.id });
                 res.status(200).send({ token, ...user });
             })
-            .catch((error) => {
-                res.status(500).send(error);
-            });
+            .catch(err => res.status(500).send(err));
     }
 };
