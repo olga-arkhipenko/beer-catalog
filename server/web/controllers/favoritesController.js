@@ -1,14 +1,29 @@
 const jwtHelper = require('../../helpers/jwtHelper');
+const favoritesService = require('../../business/services/favoritesService');
 
 module.exports = {
-    getIds(req, res) {
+    getFavoritesIds(req, res) {
         const token = req.body.token;
         if (token) {
-            jwtHelper.verifyToken(token).then((/* decodedToken */) => {
-                // const userId = decodedToken.id;
+            jwtHelper.verifyToken(token).then((decodedToken) => {
+                favoritesService
+                    .getFavoritesIds(decodedToken.id)
+                    .then(favoritesIds => res.status(200).send(favoritesIds));
             });
         } else {
-            res.send(400);
+            res.status(200).send([]);
+        }
+    },
+    getFavorites(req, res) {
+        const token = req.body.token;
+        if (token) {
+            jwtHelper.verifyToken(token).then((decodedToken) => {
+                favoritesService
+                    .getFavorites(decodedToken.id)
+                    .then(favorites => res.status(200).send(favorites));
+            });
+        } else {
+            res.status(400).send();
         }
     }
 };
