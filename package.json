@@ -4,10 +4,10 @@
     "description": "Beer catalog based on Vue.js",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack-dev-server --mode development",
-        "prod": "webpack --progress --hide-modules --mode production --env.production",
-        "start": "node server/app.js",
-        "build": "node server/app.js & webpack-dev-server --mode development --open"
+        "start-dev-client": "webpack-dev-server --mode development",
+        "build-prod-client": "webpack --progress --hide-modules --mode production --env.production",
+        "start-server": "node server/app.js",
+        "start": "node server/app.js & webpack-dev-server --mode development --open"
     },
     "repository": {
         "type": "git",
