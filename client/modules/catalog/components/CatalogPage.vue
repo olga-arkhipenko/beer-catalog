@@ -6,17 +6,14 @@
                 @paramsChanged="addSearchParams"
                 @onSearchStart="loadBeerPage"
                 @reset="resetCatalog"
-                @reload="reloadCatalog"
-            />
+                @reload="reloadCatalog"/>
             <grid-list
                 v-if="beers.length > 0"
-                :items="beers"
-            >
+                :items="beers">
                 <template slot-scope="props">
                     <catalog-card
                         :favorite-beer-ids="favoriteBeerIds"
-                        :beer="props.item"
-                    />
+                        :beer="props.item"/>
                 </template>
             </grid-list>
             <spinner v-if="isSpinnerShown"/>
@@ -59,7 +56,7 @@ export default {
         }
     },
     mounted() {
-        // this.loadFavoriteBeerIds(this.userData);
+        this.loadFavoriteBeerIds(this.userData);
         this.loadBeerPage();
     },
     beforeDestroy() {

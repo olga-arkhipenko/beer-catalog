@@ -2,9 +2,10 @@ import ajaxHelper from 'common/helpers/ajaxHelper';
 
 export default {
     fetchFavoriteBeerIds(userData) {
-        const url = '/api/favorites';
-        const jsonUserData = JSON.stringify(userData);
-        return ajaxHelper.post(url, jsonUserData);
+        const url = '/api/favorites/ids';
+        return ajaxHelper
+            .postJson(url, userData)
+            .catch(err => console.error(err));
     }
     // updateFavoriteBeerIds(newFavoriteBeerIds) {
     //     localStorageHelper.update('favoriteBeerIds', newFavoriteBeerIds);
