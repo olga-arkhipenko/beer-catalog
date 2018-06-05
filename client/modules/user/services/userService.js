@@ -8,14 +8,14 @@ export default {
             .postImage(imageUploadUrl, registrationData.profilePicture)
             .then(profilePicture =>
                 ajaxHelper
-                    .postJson(registrationUrl, { ...registrationData, profilePicture }))
-            .catch(err => console.error(err));
+                    .postJson(registrationUrl, { ...registrationData, profilePicture }));
+        // .catch(err => console.error(err));
     },
     login(loginData) {
         const url = '/api/login';
         return ajaxHelper
-            .postJson(url, loginData)
-            .catch(err => console.error(err));
+            .postJson(url, loginData);
+        // .catch(err => console.error(err));
     }
     // addFavoriteBeer(beerId) {
     //     console.log(`add ${beerId}`);
