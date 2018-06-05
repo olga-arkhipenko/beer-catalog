@@ -13,8 +13,9 @@ export default {
     },
     login(loginData) {
         const url = '/api/login';
-        const jsonLoginData = JSON.stringify(loginData);
-        return ajaxHelper.post(url, jsonLoginData);
+        return ajaxHelper
+            .postJson(url, loginData)
+            .catch(err => console.error(err));
     }
     // addFavoriteBeer(beerId) {
     //     console.log(`add ${beerId}`);

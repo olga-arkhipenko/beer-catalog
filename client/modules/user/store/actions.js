@@ -15,8 +15,8 @@ export default {
             .then((userData) => {
                 commit('setUserData', userData);
                 commit('resetLoginData');
-            });
-        // .catch(err => console.error(`Login error: ${err}`));
+            })
+            .catch(err => console.error(`Login error: ${err}`));
     },
     submitAddFavoriteBeer({ commit }, beerId) {
         commit('addFavoriteBeer', beerId);
