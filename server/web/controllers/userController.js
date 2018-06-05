@@ -1,5 +1,5 @@
 const userService = require('../../business/services/userService');
-const jwt = require('jsonwebtoken');
+const jwtHelper = require('../../helpers/jwtHelper');
 
 module.exports = {
     register(req, res) {
@@ -11,11 +11,7 @@ module.exports = {
                 password: req.body.password,
                 profilePicture: req.body.profilePicture
             })
-            .then((user) => {
-                if (user) {
-                    res.status(200).send(user);
-                }
-            })
+            .then(user => res.status(200).send(user))
             .catch((error) => {
                 res.status(500).send(error);
             });
@@ -37,9 +33,7 @@ module.exports = {
                 password: req.body.password
             })
             .then((user) => {
-                const token = jwt.sign({ id: user.id }, 'secret', {
-                    expiresIn: 86400
-                });
+                const token = jwtHelper.createTokent({ id: user.id });
                 res.status(200).send({ token, ...user });
             })
             .catch((error) => {
