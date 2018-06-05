@@ -1,4 +1,4 @@
-export const QUERY_PARAMS_MAP = {
+export default {
     pageNumber: 'page',
     itemsPerPage: 'amount',
     name: 'name',

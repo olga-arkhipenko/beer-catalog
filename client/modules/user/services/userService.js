@@ -1,21 +1,19 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
+import urls from 'common/api/constants/urls';
 
 export default {
     register(registrationData) {
-        const registrationUrl = '/api/registration';
-        const imageUploadUrl = '/api/uploadImage';
         return ajaxHelper
-            .postImage(imageUploadUrl, registrationData.profilePicture)
+            .postImage(urls.imageUpload, registrationData.profilePicture)
             .then(profilePicture =>
                 ajaxHelper
-                    .postJson(registrationUrl, { ...registrationData, profilePicture }));
-        // .catch(err => console.error(err));
+                    .postJson(urls.registration, { ...registrationData, profilePicture }))
+            .catch(err => console.error(err));
     },
     login(loginData) {
-        const url = '/api/login';
         return ajaxHelper
-            .postJson(url, loginData);
-        // .catch(err => console.error(err));
+            .postJson(urls.login, loginData)
+            .catch(err => console.error(err));
     }
     // addFavoriteBeer(beerId) {
     //     console.log(`add ${beerId}`);
