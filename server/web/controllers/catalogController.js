@@ -9,9 +9,14 @@ module.exports = {
     getBeers(req, res) {
         const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, req.query);
         const url = urlCreator.create(URL, mappedParams);
-        requestHelper.get(url, (beers) => {
-            const mappedBeers = beers.map(beerMapper.mapToBeer);
-            res.json(mappedBeers);
-        });
+        requestHelper
+            .get(url)
+            .then((beers) => {
+                if (beers) {
+                    const mappedBeers = beers.map(beerMapper.mapToBeer);
+                    res.status(200).send(mappedBeers);
+                } else res.status(500).send();
+            })
+            .catch(err => res.status(500).send(err));
     }
 };
