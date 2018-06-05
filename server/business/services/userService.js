@@ -3,7 +3,7 @@ const imageRepository = require('../../dataAccess/repositories/imageRepository')
 const passwordEncryptor = require('../../utils/passwordEncryptor');
 const userMapper = require('../../dataAccess/mappers/userMapper');
 const imageMapper = require('../../dataAccess/mappers/imageMapper');
-const cloudinaryManager = require('../../features/cloudinaryManagement/cloudinaryManager');
+const cloudinaryManager = require('../../integration/cloudinaryManagement/cloudinaryManager');
 
 module.exports = {
     register(userData) {

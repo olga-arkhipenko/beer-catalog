@@ -1,9 +1,9 @@
-const QUERY_PARAMS_MAP = require('../../features/punkApiManagement/queryParamsMap');
-const URL = require('../../features/punkApiManagement/url');
+const QUERY_PARAMS_MAP = require('../../integration/punkApiManagement/queryParamsMap');
+const URL = require('../../integration/punkApiManagement/url');
+const beerMapper = require('../../integration/punkApiManagement/mappers/beerMapper');
 const urlCreator = require('../../utils/urlCreator');
 const paramsMapper = require('../../utils/paramsMapper');
 const requestHelper = require('../../helpers/requestHelper');
-const beerMapper = require('../../features/punkApiManagement/mappers/beerMapper');
 
 module.exports = {
     getBeers(req, res) {
