@@ -1,5 +1,7 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
 import urls from 'common/api/constants/urls';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import errors from 'common/helpers/notification/errors';
 
 export default {
     register(registrationData) {
@@ -11,9 +13,10 @@ export default {
             .catch(err => console.error(err));
     },
     login(loginData) {
-        return ajaxHelper
-            .postJson(urls.login, loginData)
-            .catch(err => console.error(err));
+        const promise = ajaxHelper.postJson(urls.login, loginData);
+        promise.catch(() => notificationHelper.showError(errors.login));
+
+        return promise;
     }
     // addFavoriteBeer(beerId) {
     //     console.log(`add ${beerId}`);
