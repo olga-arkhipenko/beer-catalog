@@ -1,14 +1,12 @@
 export default {
     setUserData(state, userData) {
-        state.userData.name = userData.name;
-        state.userData.email = userData.email;
-        state.userData.birthdate = userData.birthdate;
-        state.userData.token = userData.token;
+        state.name = userData.name;
+        state.profilePictureUrl = userData.profilePictureUrl;
+        state.token = userData.token;
     },
     resetUserData(state) {
-        state.userData.name = '';
-        state.userData.email = '';
-        state.userData.birthdate = null;
+        state.name = '';
+        state.profilePictureUrl = null;
         state.userData.token = '';
     },
     addFavoriteBeer(/* state, beerId */) {

@@ -49,14 +49,13 @@ export default {
     computed: {
         ...mapState('catalog', ['beers']),
         ...mapState('catalog/favoritesManagement', ['favoriteBeerIds']),
-        ...mapState('user', ['userData']),
 
         isSpinnerShown() {
             return this.beers.length % this.pageParams.itemsPerPage === 0;
         }
     },
     mounted() {
-        this.loadFavoriteBeerIds(this.userData);
+        // this.loadFavoriteBeerIds(this.userData);
         this.loadBeerPage();
     },
     beforeDestroy() {
