@@ -8,12 +8,13 @@ import notificationHelper from 'common/helpers/notification/notificationHelper';
 import errors from 'common/helpers/notification/errors';
 
 export default {
-    fetchBeers(beerParams) {
-        const mappedParams = urlMapper.mapParams(queryParamsMap, beerParams);
-        const url = urlCreator.create(urls.beers, mappedParams);
+    fetchFavoriteBeers(pageParams, userData) {
+        const mappedParams = urlMapper.mapParams(queryParamsMap, pageParams);
+        const url = urlCreator.create(urls.favorites, mappedParams);
+        console.log(url);
         const promise = ajaxHelper
-            .get(url)
-            .then(beers => beers.map(beerMapper.mapToBeer));
+            .postJson(url, userData)
+            .then(favoriteBeers => favoriteBeers.map(beerMapper.mapToBeer));
         promise.catch(() => notificationHelper.showError(errors.beersLoading));
 
         return promise;
