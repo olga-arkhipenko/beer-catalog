@@ -1,6 +1,13 @@
 export default {
     get(url) {
-        return fetch(url)
+        return fetch(url, {
+            method: 'get',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(response.statusText);
