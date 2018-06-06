@@ -1,8 +1,8 @@
-import catalogService from '../services/catalogService';
+import beersService from '../services/beersService';
 
 export default {
     loadBeers({ commit }, beerParams) {
-        catalogService.fetchBeers(beerParams)
+        beersService.fetchBeers(beerParams)
             .then((beers) => {
                 commit('pushBeers', beers);
             });
