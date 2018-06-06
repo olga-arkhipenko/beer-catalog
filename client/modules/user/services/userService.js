@@ -5,12 +5,12 @@ import errors from 'common/helpers/notification/errors';
 
 export default {
     register(registrationData) {
-        return ajaxHelper
-            .postImage(urls.imageUpload, registrationData.profilePicture)
-            .then(profilePicture =>
-                ajaxHelper
-                    .postJson(urls.registration, { ...registrationData, profilePicture }))
-            .catch(err => console.error(err));
+        const promise = ajaxHelper.postImage(urls.imageUpload, registrationData.profilePicture);
+        promise.then(profilePicture =>
+            ajaxHelper.postJson(urls.registration, { ...registrationData, profilePicture }))
+            .catch(() => notificationHelper.showError(errors.registration));
+
+        return promise;
     },
     login(loginData) {
         const promise = ajaxHelper.postJson(urls.login, loginData);
