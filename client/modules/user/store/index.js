@@ -4,22 +4,10 @@ import actions from './actions';
 export default {
     namespaced: true,
     state: {
-        registrationData: {
-            name: '',
-            email: '',
-            birthdate: null,
-            password: '',
-            profilePicture: null
-        },
-        loginData: {
-            email: '',
-            password: ''
-        },
         userData: {
             name: '',
-            email: '',
-            birthdate: null,
-            token: '' // shouldn't be here
+            profilePictureUrl: null,
+            token: ''
         }
     },
     mutations,

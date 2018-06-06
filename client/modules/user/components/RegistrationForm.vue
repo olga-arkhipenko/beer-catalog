@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     data() {
@@ -93,8 +93,6 @@ export default {
         };
     },
     computed: {
-        ...mapState('user', ['userData']),
-
         isPasswordMatch() {
             return this.registrationData.password === this.checkedData.passwordConfirmed || this.checkedData.passwordConfirmed === '';
         }

@@ -1,19 +1,14 @@
 import userService from 'user/services/userService';
 
 export default {
-    submitRegistartion({ commit, state }, registrationData) {
-        commit('setRegistrationData', registrationData);
-        userService
-            .register(state.registrationData)
-            .then(() => commit('resetRegistrationData'));
+    submitRegistartion(_, registrationData) {
+        userService.register(registrationData);
     },
-    submitLogin({ commit, state }, loginData) {
-        commit('setLoginData', loginData);
+    submitLogin({ commit }, loginData) {
         userService
-            .login(state.loginData)
+            .login(loginData)
             .then((userData) => {
                 commit('setUserData', userData);
-                commit('resetLoginData');
             });
     },
     submitAddFavoriteBeer({ commit }, beerId) {
