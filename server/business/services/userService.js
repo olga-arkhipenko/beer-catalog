@@ -40,6 +40,7 @@ module.exports = {
                         userEntity.salt,
                         userEntity.password
                     )) {
+                        console.log(userEntity);
                         return userMapper.mapToUserDetails(userEntity);
                     }
                     throw new Error('Login error. Wrong user password');

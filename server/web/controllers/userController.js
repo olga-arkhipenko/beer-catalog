@@ -27,7 +27,7 @@ module.exports = {
                 password: req.body.password
             })
             .then((user) => {
-                const token = jwtHelper.createTokent({ id: user.id });
+                const token = jwtHelper.createToken({ id: user.id });
                 res.status(200).send({ token, ...user });
             })
             .catch(err => res.status(500).send(err));
