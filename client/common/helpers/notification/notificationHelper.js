@@ -8,6 +8,14 @@ export default {
             layout: 'topCenter',
             text: errorMessage
         }).show();
+    },
+    showWarning(warningMessage) {
+        new Noty({
+            type: 'warning',
+            theme: 'sunset',
+            layout: 'topRight',
+            text: warningMessage
+        }).show();
     }
 };
 
