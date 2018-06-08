@@ -31,5 +31,19 @@ module.exports = {
                 res.status(200).send({ token, ...user });
             })
             .catch(err => res.status(500).send(err));
+    },
+    getUser(req, res) {
+        const token = req.cookies.accessToken;
+        if (token) {
+            jwtHelper.verifyToken(token)
+                .then((decodedToken) => {
+                    userService
+                        .getUser(decodedToken.id)
+                        .then(user => res.status(200).send(user));
+                })
+                .catch(err => res.status(401).send(err));
+        } else {
+            res.status(401).send();
+        }
     }
 };

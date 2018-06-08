@@ -12,11 +12,23 @@ module.exports = {
                 profilePictureId: user.profilePictureId
             });
     },
-    findUser(email) {
+    findUserByEmail(email) {
         return database.user
             .findOne({
                 where: {
                     email
+                },
+                include: [{
+                    model: database.image,
+                    as: 'profilePicture'
+                }]
+            });
+    },
+    findUserById(userId) {
+        return database.user
+            .findOne({
+                where: {
+                    id: userId
                 },
                 include: [{
                     model: database.image,

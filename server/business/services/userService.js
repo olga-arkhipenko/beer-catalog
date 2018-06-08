@@ -32,7 +32,7 @@ module.exports = {
     },
     login(loginData) {
         return userRepository
-            .findUser(loginData.email)
+            .findUserByEmail(loginData.email)
             .then((userEntity) => {
                 if (userEntity) {
                     if (passwordEncryptor.isMatch(
@@ -40,12 +40,21 @@ module.exports = {
                         userEntity.salt,
                         userEntity.password
                     )) {
-                        console.log(userEntity);
                         return userMapper.mapToUserDetails(userEntity);
                     }
                     throw new Error('Login error. Wrong user password');
                 }
                 throw new Error('Login error. Wrong user email');
+            });
+    },
+    getUser(userId) {
+        return userRepository
+            .findUserById(userId)
+            .then((userEntity) => {
+                if (userEntity) {
+                    return userMapper.mapToUserDetails(userEntity);
+                }
+                throw new Error('User not found.');
             });
     }
 };
