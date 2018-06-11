@@ -11,7 +11,6 @@ export default {
     fetchFavoriteBeers(pageParams, userData) {
         const mappedParams = urlMapper.mapParams(queryParamsMap, pageParams);
         const url = urlCreator.create(urls.favorites, mappedParams);
-        console.log(url);
         const promise = ajaxHelper
             .postJson(url, userData)
             .then(favoriteBeers => favoriteBeers.map(beerMapper.mapToBeer));

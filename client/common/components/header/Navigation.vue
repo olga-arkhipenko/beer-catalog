@@ -22,19 +22,22 @@
                 class="link authorization__signup-button">
                 Sign up
             </router-link>
+            <user-block/>
         </div>
     </nav>
 </template>
 
 <script>
 import clickOutside from 'common/directives/clickOutside';
+import UserBlock from 'userModule/components/UserBlock';
 import MainMenu from './MainMenu';
 import Logo from './Logo';
 
 export default {
     components: {
         Logo,
-        MainMenu
+        MainMenu,
+        UserBlock
     },
     directives: {
         clickOutside

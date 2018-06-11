@@ -1,4 +1,4 @@
-import userService from 'user/services/userService';
+import userService from '../services/userService';
 
 export default {
     submitRegistartion(_, registrationData) {
@@ -7,6 +7,13 @@ export default {
     submitLogin({ commit }, loginData) {
         userService
             .login(loginData)
+            .then((userData) => {
+                commit('setUserData', userData);
+            });
+    },
+    getCurrentUserData({ commit }) {
+        userService
+            .getCurrentUser()
             .then((userData) => {
                 commit('setUserData', userData);
             });

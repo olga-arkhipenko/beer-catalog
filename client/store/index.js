@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import catalog from 'catalogModule/store/index';
 import favorites from 'favoritesModule/store/index';
 import beerInfo from 'beerInfoModule/store/index';
-import userData from 'user/store/index';
+import userData from 'userModule/store/index';
 
 Vue.use(Vuex);
 

@@ -1,4 +1,4 @@
-import RegistrationForm from 'user/components/RegistrationForm';
+import RegistrationForm from 'userModule/components/RegistrationForm';
 
 export default [
     {

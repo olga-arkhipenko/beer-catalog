@@ -13,15 +13,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     data() {
         return {
-            
-        }
+
+        };
     },
-    computed: {
-        isAuthorized()
-    }
-}
+    mounted() {
+        this.getCurrentUserData();
+    },
+    methods: mapActions('userData', ['getCurrentUserData'])
+};
 </script>
 

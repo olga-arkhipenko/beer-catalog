@@ -5,8 +5,7 @@ export default {
     namespaced: true,
     state: {
         name: '',
-        profilePictureUrl: null,
-        token: ''
+        profilePictureUrl: null
 
     },
     mutations,

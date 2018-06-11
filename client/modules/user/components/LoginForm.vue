@@ -43,7 +43,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions('user', ['submitLogin']),
+        ...mapActions('userData', ['submitLogin']),
         submitForm() {
             this.submitLogin(this.loginData);
         }
