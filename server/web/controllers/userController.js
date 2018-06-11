@@ -36,7 +36,7 @@ module.exports = {
             })
             .then((user) => {
                 const token = jwtHelper.createToken({ id: user.id });
-                const mappedUser = userMapper.mapToUser(user);
+                const mappedUser = userMapper.mapToUserDetails(user);
                 res.status(200).send({ token, ...mappedUser });
             })
             .catch(err => res.status(500).send(err));
@@ -49,7 +49,7 @@ module.exports = {
                     userService
                         .getUser(decodedToken.id)
                         .then((user) => {
-                            const mappedUser = userMapper.mapToUser(user);
+                            const mappedUser = userMapper.mapToUserDetails(user);
                             res.status(200).send(mappedUser);
                         });
                 })
