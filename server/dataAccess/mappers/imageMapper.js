@@ -1,12 +1,12 @@
-const Image = require('../../business/models/Image');
+const Image = require('../models/Image');
 
 module.exports = {
-    mapToImage(databaseEntity) {
+    mapToImage(databaseModel) {
         const image = new Image();
-        image.id = databaseEntity.dataValues.id;
-        image.url = databaseEntity.dataValues.url;
-        image.width = databaseEntity.dataValues.width;
-        image.height = databaseEntity.dataValues.height;
+        image.id = databaseModel.dataValues.id;
+        image.url = databaseModel.dataValues.url;
+        image.width = databaseModel.dataValues.width;
+        image.height = databaseModel.dataValues.height;
 
         return image;
     }

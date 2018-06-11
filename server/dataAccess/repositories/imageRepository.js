@@ -1,4 +1,5 @@
 const database = require('../index');
+const imageMapper = require('../mappers/imageMapper');
 
 module.exports = {
     createImage(profilePicture) {
@@ -7,6 +8,7 @@ module.exports = {
                 url: profilePicture.url,
                 width: profilePicture.width,
                 height: profilePicture.height
-            });
+            })
+            .then(imageModel => imageMapper.mapToImage(imageModel));
     }
 };

@@ -7,6 +7,7 @@ const requestHelper = require('../../helpers/requestHelper');
 
 module.exports = {
     getBeers(req, res) {
+        console.log(`cook ${req.cookies}`);
         const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, req.query);
         const url = urlCreator.create(URL, mappedParams);
         requestHelper

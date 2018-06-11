@@ -1,19 +1,19 @@
 const Sequelize = require('sequelize');
 const databaseConfig = require('./configs/dataBaseConfig');
 const databaseConnector = require('./databaseConnector');
-const user = require('./models/User');
-const favorite = require('./models/Favorite');
-const image = require('./models/Image');
+const user = require('./modules/User');
+const favorite = require('./modules/Favorite');
+const image = require('./modules/Image');
 
 const databaseConnection = databaseConnector.connect(databaseConfig);
 
-const userModel = user(databaseConnection, Sequelize.DataTypes);
-const favoriteModel = favorite(databaseConnection, Sequelize.DataTypes);
-const imageModel = image(databaseConnection, Sequelize.DataTypes);
+const userModul = user(databaseConnection, Sequelize.DataTypes);
+const favoriteModul = favorite(databaseConnection, Sequelize.DataTypes);
+const imageModul = image(databaseConnection, Sequelize.DataTypes);
 
-userModel.associate(favoriteModel, imageModel);
-favoriteModel.associate(userModel);
+userModul.associate(favoriteModul, imageModul);
+favoriteModul.associate(userModul);
 
-module.exports.favorite = favoriteModel;
-module.exports.user = userModel;
-module.exports.image = imageModel;
+module.exports.favorite = favoriteModul;
+module.exports.user = userModul;
+module.exports.image = imageModul;

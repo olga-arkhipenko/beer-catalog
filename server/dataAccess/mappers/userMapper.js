@@ -1,25 +1,25 @@
-const User = require('../../business/models/User');
-const UserDetails = require('../../business/models/UserDetails');
+const User = require('../models/User');
+const UserDetails = require('../models/UserDetails');
 const imageMapper = require('./imageMapper');
 
-const mapUser = function (databaseEntity, TargetType) {
+const mapUser = function (databaseModel, TargetType) {
     const mappedUser = new TargetType();
-    mappedUser.id = databaseEntity.dataValues.id;
-    mappedUser.email = databaseEntity.dataValues.email;
-    mappedUser.birthdate = databaseEntity.dataValues.birthdate;
-    mappedUser.name = databaseEntity.dataValues.name;
+    mappedUser.id = databaseModel.dataValues.id;
+    mappedUser.email = databaseModel.dataValues.email;
+    mappedUser.birthdate = databaseModel.dataValues.birthdate;
+    mappedUser.name = databaseModel.dataValues.name;
 
     return mappedUser;
 };
 
 module.exports = {
-    mapToUser(databaseEntity) {
-        return mapUser(databaseEntity, User);
+    mapToUser(databaseModel) {
+        return mapUser(databaseModel, User);
     },
-    mapToUserDetails(databaseEntity) {
-        const mappedUserDetails = mapUser(databaseEntity, UserDetails);
+    mapToUserDetails(databaseModel) {
+        const mappedUserDetails = mapUser(databaseModel, UserDetails);
         mappedUserDetails.profilePicture =
-        imageMapper.mapToImage(databaseEntity.dataValues.profilePicture);
+            imageMapper.mapToImage(databaseModel.dataValues.profilePicture);
 
         return mappedUserDetails;
     }

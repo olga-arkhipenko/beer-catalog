@@ -1,5 +1,7 @@
 const userService = require('../../business/services/userService');
 const jwtHelper = require('../../helpers/jwtHelper');
+const userMapper = require('../mappers/userMapper');
+const imageMapper = require('../mappers/imageMapper');
 
 module.exports = {
     register(req, res) {
@@ -11,13 +13,19 @@ module.exports = {
                 password: req.body.password,
                 profilePicture: req.body.profilePicture
             })
-            .then(user => res.status(200).send(user))
+            .then((user) => {
+                const mappedUser = userMapper.mapToUser(user);
+                res.status(200).send(mappedUser);
+            })
             .catch(err => res.status(500).send(err));
     },
     uploadProfilePicture(req, res) {
         userService
             .uploadProfilePicture(req.body)
-            .then(image => res.status(200).send(image))
+            .then((image) => {
+                const mappedImage = imageMapper.mapToImage(image);
+                res.status(200).send(mappedImage);
+            })
             .catch(err => res.status(500).send(err));
     },
     login(req, res) {
@@ -28,7 +36,8 @@ module.exports = {
             })
             .then((user) => {
                 const token = jwtHelper.createToken({ id: user.id });
-                res.status(200).send({ token, ...user });
+                const mappedUser = userMapper.mapToUser(user);
+                res.status(200).send({ token, ...mappedUser });
             })
             .catch(err => res.status(500).send(err));
     },
@@ -39,7 +48,10 @@ module.exports = {
                 .then((decodedToken) => {
                     userService
                         .getUser(decodedToken.id)
-                        .then(user => res.status(200).send(user));
+                        .then((user) => {
+                            const mappedUser = userMapper.mapToUser(user);
+                            res.status(200).send(mappedUser);
+                        });
                 })
                 .catch(err => res.status(401).send(err));
         } else {

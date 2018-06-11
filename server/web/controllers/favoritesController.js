@@ -21,7 +21,7 @@ module.exports = {
                 favoritesService
                     .getFavorites(decodedToken.id)
                     .then(favorites => res.status(200).send(favorites));
-            });
+            }); // catch 401
         } else {
             res.status(400).send();
         }

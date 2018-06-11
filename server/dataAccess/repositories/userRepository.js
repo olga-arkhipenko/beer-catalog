@@ -1,4 +1,5 @@
 const database = require('../index');
+const userMapper = require('../mappers/userMapper');
 
 module.exports = {
     createUser(user) {
@@ -10,7 +11,8 @@ module.exports = {
                 password: user.password,
                 salt: user.salt,
                 profilePictureId: user.profilePictureId
-            });
+            })
+            .then(userModel => userMapper.mapToUser(userModel));
     },
     findUserByEmail(email) {
         return database.user
@@ -22,7 +24,8 @@ module.exports = {
                     model: database.image,
                     as: 'profilePicture'
                 }]
-            });
+            })
+            .then(userModel => userMapper.mapToUserDetails(userModel));
     },
     findUserById(userId) {
         return database.user
@@ -34,7 +37,8 @@ module.exports = {
                     model: database.image,
                     as: 'profilePicture'
                 }]
-            });
+            })
+            .then(userModel => userMapper.mapToUserDetails(userModel));
     }
 };
 
