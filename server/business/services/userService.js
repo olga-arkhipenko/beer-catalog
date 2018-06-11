@@ -1,8 +1,8 @@
 const userRepository = require('../../dataAccess/repositories/userRepository');
 const imageRepository = require('../../dataAccess/repositories/imageRepository');
 const passwordEncryptor = require('../../utils/passwordEncryptor');
-const userMapper = require('../../dataAccess/mappers/userMapper');
-const imageMapper = require('../../dataAccess/mappers/imageMapper');
+const userMapper = require('../mappers/userMapper');
+const imageMapper = require('../mappers/imageMapper');
 const cloudinaryManager = require('../../integration/cloudinaryManagement/cloudinaryManager');
 
 module.exports = {
@@ -23,10 +23,10 @@ module.exports = {
     uploadProfilePicture(image) {
         return cloudinaryManager
             .upload(image)
-            .then(imageInfo => imageRepository.createImage({
-                url: imageInfo.url,
-                width: imageInfo.width,
-                height: imageInfo.height
+            .then(imageData => imageRepository.createImage({
+                url: imageData.url,
+                width: imageData.width,
+                height: imageData.height
             }))
             .then(imageEntity => imageMapper.mapToImage(imageEntity));
     },
@@ -34,6 +34,7 @@ module.exports = {
         return userRepository
             .findUserByEmail(loginData.email)
             .then((userEntity) => {
+                console.log(userEntity);
                 if (userEntity) {
                     if (passwordEncryptor.isMatch(
                         loginData.password,

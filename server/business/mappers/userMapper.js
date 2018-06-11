@@ -5,9 +5,9 @@ const imageMapper = require('./imageMapper');
 const mapUser = function (dataEntity, TargetType) {
     const mappedUser = new TargetType();
     mappedUser.id = dataEntity.id;
+    mappedUser.name = dataEntity.name;
     mappedUser.email = dataEntity.email;
     mappedUser.birthdate = dataEntity.birthdate;
-    mappedUser.name = dataEntity.name;
 
     return mappedUser;
 };
