@@ -12,8 +12,8 @@ export default {
         const promise = ajaxHelper.postImage(urls.imageUpload, registrationData.profilePicture);
         promise.then(profilePicture =>
             ajaxHelper.postJson(urls.registration, { ...registrationData, profilePicture }))
-            .then(userData => userMapper.mapToUser(userData))
-            .catch(() => notificationHelper.showError(errors.registration));
+            .then(userData => userMapper.mapToUser(userData));
+        promise.catch(() => notificationHelper.showError(errors.registration));
 
         return promise;
     },
@@ -21,7 +21,7 @@ export default {
         const promise = ajaxHelper.postJson(urls.login, loginData);
         promise.then((userData) => {
             cookieHelper.set(cookieConstants.token, userData.token);
-            const mappedUser = userMapper.mapToUser(userData);
+            const mappedUser = userMapper.mapToUserDetails(userData);
             return mappedUser;
         });
         promise.catch(() => notificationHelper.showError(errors.login));
@@ -30,7 +30,7 @@ export default {
     },
     getCurrentUser() {
         const promise = ajaxHelper.get(urls.user);
-        promise.then(userData => userMapper.mapToUser(userData));
+        promise.then(userData => userMapper.mapToUserDetails(userData));
         promise.catch(() => notificationHelper.showWarning(warnings.authorization));
 
         return promise;

@@ -8,7 +8,7 @@
                 src=""
                 alt="User avatar.">
         </div>
-        <button class="sigh-out-cutton">Sign out</button>
+        <button class="sigh-out-button">Sign out</button>
     </section>
 </template>
 
@@ -16,10 +16,8 @@
 import { mapActions } from 'vuex';
 
 export default {
-    data() {
-        return {
+    props: {
 
-        };
     },
     mounted() {
         this.getCurrentUserData();
