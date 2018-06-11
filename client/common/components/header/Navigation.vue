@@ -11,33 +11,29 @@
             />
             <logo class="navigation__logo"/>
         </div>
-        <div class="authorization">
-            <router-link
-                to="/login"
-                class="link authorization__login-button">
-                Log in
-            </router-link>
-            <router-link
-                to="/registration"
-                class="link authorization__signup-button">
-                Sign up
-            </router-link>
-            <user-block/>
-        </div>
+        <user-block
+            v-if="name"
+            :name="name"
+            :profile-picture-url="profilePictureUrl"
+        />
+        <authorization-block v-else/>
     </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import clickOutside from 'common/directives/clickOutside';
 import UserBlock from 'userModule/components/UserBlock';
 import MainMenu from './MainMenu';
 import Logo from './Logo';
+import AuthorizationBlock from './AuthorizationBlock';
 
 export default {
     components: {
         Logo,
         MainMenu,
-        UserBlock
+        UserBlock,
+        AuthorizationBlock
     },
     directives: {
         clickOutside
@@ -46,6 +42,9 @@ export default {
         return {
             isMenuShown: false
         };
+    },
+    computed: {
+        ...mapState('userData', ['name', 'profilePictureUrl'])
     },
     methods: {
         showMenu() {
