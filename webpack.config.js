@@ -51,11 +51,11 @@ module.exports = (env) => {
                 catalogModule: path.resolve(__dirname, 'client/modules/catalog'),
                 favoritesModule: path.resolve(__dirname, 'client/modules/favorites'),
                 beerInfoModule: path.resolve(__dirname, 'client/modules/beerInfo'),
+                userModule: path.resolve(__dirname, 'client/modules/user'),
                 features: path.resolve(__dirname, 'client/features'),
                 favoritesManagement: path.resolve(__dirname, 'client/features/favoritesManagement'),
                 routing: path.resolve(__dirname, 'client/routing'),
-                store: path.resolve(__dirname, 'client/store'),
-                user: path.resolve(__dirname, 'client/modules/user')
+                store: path.resolve(__dirname, 'client/store')
             },
             extensions: ['*', '.js', '.vue', '.json']
         },
