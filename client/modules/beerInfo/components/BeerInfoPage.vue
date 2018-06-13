@@ -44,6 +44,9 @@ import FoodPairing from './FoodPairing';
 import Brewing from './Brewing';
 
 export default {
+    beforeRouteEnter(to, from, next) {
+        next(vm => vm.$store.dispatch('userData/getCurrentUserData'));
+    },
     components: {
         Properties,
         FoodPairing,

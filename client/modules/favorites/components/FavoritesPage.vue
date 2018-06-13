@@ -24,6 +24,9 @@ import RowList from 'common/components/lists/RowList';
 import FavoritesCard from './FavoritesCard';
 
 export default {
+    beforeRouteEnter(to, from, next) {
+        next(vm => vm.$store.dispatch('userData/getCurrentUserData'));
+    },
     components: {
         RowList,
         FavoritesCard,

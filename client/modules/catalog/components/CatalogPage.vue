@@ -30,6 +30,9 @@ import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
 export default {
+    beforeRouteEnter(to, from, next) {
+        next(vm => vm.$store.dispatch('userData/getCurrentUserData'));
+    },
     components: {
         SearchPanel,
         GridList,
@@ -48,14 +51,12 @@ export default {
     },
     computed: {
         ...mapState('catalog', ['beers']),
-        ...mapState('catalog/favoritesManagement', ['favoriteBeerIds']),
 
         isSpinnerShown() {
             return this.beers.length % this.pageParams.itemsPerPage === 0;
         }
     },
     mounted() {
-        // this.loadFavoriteBeerIds(this.userData);
         this.loadBeerPage();
     },
     beforeDestroy() {
@@ -63,7 +64,6 @@ export default {
     },
     methods: {
         ...mapActions('catalog', ['loadBeers', 'resetBeers']),
-        ...mapActions('catalog/favoritesManagement', ['loadFavoriteBeerIds']),
 
         loadBeerPage() {
             const catalogParams = { ...this.pageParams, ...this.searchParams };
