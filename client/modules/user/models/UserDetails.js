@@ -1,4 +1,4 @@
-export class UserDetails {
+export default class UserDetails {
     name = null;
     profilePictureUrl = null;
 }

@@ -1,3 +1,3 @@
-export class User {
+export default class User {
     name = null;
 }
