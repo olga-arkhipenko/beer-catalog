@@ -11,12 +11,15 @@
             />
             <logo class="navigation__logo"/>
         </div>
-        <user-block
-            v-if="name"
-            :name="name"
-            :profile-picture-url="profilePictureUrl"
-        />
-        <authorization-block v-else/>
+        <div v-if="name">
+            <user-block
+                :name="name"
+                :profile-picture-url="profilePictureUrl"
+            />
+        </div>
+        <div v-else>
+            <authorization-block/>
+        </div>
     </nav>
 </template>
 
@@ -66,6 +69,7 @@ export default {
     display: flex;
 
     width: 100%;
+    padding: 10px 0;
 
     color: #ffffff;
     border-bottom: 1px solid #ffffff;

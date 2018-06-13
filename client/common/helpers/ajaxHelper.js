@@ -23,7 +23,7 @@ export default {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify(data)
+            body: data ? JSON.stringify(data) : ''
         })
             .then((response) => {
                 if (!response.ok) {
@@ -41,7 +41,7 @@ export default {
                 'Content-Length': image.size
             },
             credentials: 'include',
-            body: image
+            body: image || ''
         })
             .then((response) => {
                 if (!response.ok) {
@@ -58,7 +58,7 @@ export default {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify(data)
+            body: data ? JSON.stringify(data) : ''
         })
             .then((response) => {
                 if (!response.ok) {

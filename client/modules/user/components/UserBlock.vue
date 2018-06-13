@@ -1,14 +1,19 @@
 <template>
-    <section>
-        <p class="user-name">
-            hello
+    <section class="user-block">
+        <p
+            v-cloak
+            class="user-block__name">
+            {{ name }}
         </p>
-        <div class="user-avatar">
-            <img
-                src=""
-                alt="User avatar.">
-        </div>
-        <button class="sigh-out-button">Sign out</button>
+        <img
+            :src="profilePictureUrl"
+            alt="User avatar."
+            class="user-block__avatar">
+        <button
+            class="sigh-out-button"
+            @click="submitSignOut">
+            Sign out
+        </button>
     </section>
 </template>
 
@@ -17,12 +22,30 @@ import { mapActions } from 'vuex';
 
 export default {
     props: {
-
+        name: {
+            type: String,
+            required: true
+        },
+        profilePictureUrl: {
+            type: String,
+            required: true
+        }
     },
     mounted() {
         this.getCurrentUserData();
     },
-    methods: mapActions('userData', ['getCurrentUserData'])
+    methods: mapActions('userData', ['getCurrentUserData', 'submitSignOut'])
 };
 </script>
+
+<style>
+.user-block {
+    display: flex;
+    align-items: center;
+}
+
+.user-block__avatar {
+    max-height: 80px;
+}
+</style>
 

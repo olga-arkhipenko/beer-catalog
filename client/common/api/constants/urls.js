@@ -4,5 +4,6 @@ export default {
     imageUpload: '/api/user/uploadImage',
     registration: '/api/user/registration',
     login: '/api/user/login',
+    signout: '/api/user/signout',
     user: '/api/user'
 };

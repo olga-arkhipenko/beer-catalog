@@ -25,6 +25,12 @@ export default {
 
         return promise;
     },
+    signout() {
+        const promise = ajaxHelper.postJson(urls.signout);
+        promise.catch(() => notificationHelper.showWarning(warnings.signout));
+
+        return promise;
+    },
     getCurrentUser() {
         const promise = ajaxHelper.get(urls.user);
         promise.then(userData => userMapper.mapToUserDetails(userData));

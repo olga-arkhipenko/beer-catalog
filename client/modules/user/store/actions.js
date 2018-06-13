@@ -11,6 +11,11 @@ export default {
                 commit('setUserData', userData);
             });
     },
+    submitSignOut({ commit }) {
+        userService
+            .signout()
+            .then(() => commit('resetUserData'));
+    },
     getCurrentUserData({ commit }) {
         userService
             .getCurrentUser()
