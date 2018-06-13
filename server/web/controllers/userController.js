@@ -2,6 +2,7 @@ const userService = require('../../business/services/userService');
 const jwtHelper = require('../../helpers/jwtHelper');
 const userMapper = require('../mappers/userMapper');
 const imageMapper = require('../mappers/imageMapper');
+const cookieParams = require('../configs/cookieParams');
 
 module.exports = {
     register(req, res) {
@@ -37,13 +38,22 @@ module.exports = {
             .then((user) => {
                 const token = jwtHelper.createToken({ id: user.id });
                 const mappedUser = userMapper.mapToUserDetails(user);
-                res.cookie('accessToken', token);
+                res.cookie(cookieParams.name, token);
                 res.status(200).send(mappedUser);
             })
             .catch(err => res.status(500).send(err));
     },
+    signout(req, res) {
+        const token = req.cookies[cookieParams.name];
+        if (token) {
+            res.clearCookie(cookieParams.name);
+            res.status(200).send({});
+        } else {
+            res.status(401).send();
+        }
+    },
     getUser(req, res) {
-        const token = req.cookies.accessToken;
+        const token = req.cookies[cookieParams.name];
         if (token) {
             jwtHelper.verifyToken(token)
                 .then((decodedToken) => {
