@@ -49,5 +49,22 @@ export default {
                 }
                 return response.json();
             });
+    },
+    delete(url, data) {
+        return fetch(url, {
+            method: 'delete',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(data)
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            });
     }
 };
