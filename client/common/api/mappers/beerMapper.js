@@ -10,6 +10,7 @@ const mapBeer = function (beer, TargetType) {
     mappedBeer.image = beer.image;
     mappedBeer.tagline = beer.tagline;
     mappedBeer.description = beer.description;
+    mappedBeer.isFavorite = beer.isFavorite;
 
     return mappedBeer;
 };

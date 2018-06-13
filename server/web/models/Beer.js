@@ -5,6 +5,7 @@ module.exports = class Beer {
         this.image = null;
         this.tagline = null;
         this.description = null;
+        this.isFavorite = false;
         this.abv = null;
         this.ibu = null;
         this.ebc = null;

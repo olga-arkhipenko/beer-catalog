@@ -11,9 +11,7 @@
                 v-if="beers.length > 0"
                 :items="beers">
                 <template slot-scope="props">
-                    <catalog-card
-                        :favorite-beer-ids="favoriteBeerIds"
-                        :beer="props.item"/>
+                    <catalog-card :beer="props.item"/>
                 </template>
             </grid-list>
             <spinner v-if="isSpinnerShown"/>

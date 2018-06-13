@@ -4,4 +4,5 @@ export class Beer {
     image = null;
     tagline = null;
     description = null;
+    isFavorite = false;
 }

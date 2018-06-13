@@ -6,6 +6,7 @@ const urlCreator = require('../../utils/urlCreator');
 const paramsMapper = require('../../utils/paramsMapper');
 const jwtHelper = require('../../helpers/jwtHelper');
 const favoritesService = require('../../business/services/favoritesService');
+const cookieParams = require('../configs/cookieParams');
 
 module.exports = {
     getBeer(req, res) {
@@ -25,19 +26,23 @@ module.exports = {
             .get(url)
             .then((beers) => {
                 const mappedBeers = beers.map(beerMapper.mapToBeer);
-                const token = req.body.token;
+                const token = req.cookies[cookieParams.name];
                 if (token) {
                     jwtHelper.verifyToken(token).then((decodedToken) => {
                         favoritesService
                             .getFavoritesIds(decodedToken.id)
                             .then((favoritesIds) => {
-
+                                const mappedFavoriteBeers =
+                                mappedBeers.map((beer) => {
+                                    beer.isFavorite = !!favoritesIds.includes(beer.id);
+                                    return beer;
+                                });
+                                res.status(200).send(mappedFavoriteBeers);
                             });
                     });
                 } else {
-                    res.status(200).send();
+                    res.status(200).send(mappedBeers);
                 }
-                res.status(200).send(mappedBeers);
             })
             .catch(err => res.status(500).send(err));
     }

@@ -13,7 +13,7 @@
                     :to="`/beers/${beer.id}`"
                     class="link toggle-bar__button">open</router-link>
                 <a
-                    v-if="isFavoriteBeer"
+                    v-if="beer.isFavorite"
                     class="link toggle-bar__button toggle-bar__button-remove"
                     @click="submitRemoveFavoriteBeer(beer.id)"
                 >remove favorite</a>
@@ -35,15 +35,6 @@ export default {
         beer: {
             type: Object,
             required: true
-        },
-        favoriteBeerIds: {
-            type: Array,
-            required: true
-        }
-    },
-    computed: {
-        isFavoriteBeer() {
-            return this.favoriteBeerIds.includes(this.beer.id);
         }
     },
     methods: mapActions('user', ['submitRemoveFavoriteBeer', 'submitAddFavoriteBeer'])
