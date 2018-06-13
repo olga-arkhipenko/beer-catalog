@@ -6,7 +6,6 @@ export default {
     state: {
         name: '',
         profilePictureUrl: null
-
     },
     mutations,
     actions
