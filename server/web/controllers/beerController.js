@@ -7,6 +7,7 @@ const paramsMapper = require('../../utils/paramsMapper');
 const jwtHelper = require('../../helpers/jwtHelper');
 const favoritesService = require('../../business/services/favoritesService');
 const cookieParams = require('../configs/cookieParams');
+const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
     getBeer(req, res) {
@@ -15,9 +16,9 @@ module.exports = {
             .get(url)
             .then((beer) => {
                 const mappedBeer = beerMapper.mapToBeer(beer[0]);
-                res.status(200).send(mappedBeer);
+                responseHandler.sendResponse(res, 200, mappedBeer);
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => responseHandler.sendResponse(res, 500, err));
     },
     getBeers(req, res) {
         const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, req.query);
@@ -37,13 +38,13 @@ module.exports = {
                                     beer.isFavorite = !!favoritesIds.includes(beer.id);
                                     return beer;
                                 });
-                                res.status(200).send(mappedFavoriteBeers);
+                                responseHandler.sendResponse(res, 200, mappedFavoriteBeers);
                             });
                     });
                 } else {
-                    res.status(200).send(mappedBeers);
+                    responseHandler.sendResponse(res, 200, mappedBeers);
                 }
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => responseHandler.sendResponse(res, 500, err));
     }
 };

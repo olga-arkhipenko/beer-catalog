@@ -3,6 +3,7 @@ const jwtHelper = require('../../helpers/jwtHelper');
 const userMapper = require('../mappers/userMapper');
 const imageMapper = require('../mappers/imageMapper');
 const cookieParams = require('../configs/cookieParams');
+const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
     register(req, res) {
@@ -16,18 +17,18 @@ module.exports = {
             })
             .then((user) => {
                 const mappedUser = userMapper.mapToUser(user);
-                res.status(200).send(mappedUser);
+                responseHandler.sendResponse(res, 200, mappedUser);
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => responseHandler.sendResponse(res, 500, err));
     },
     uploadProfilePicture(req, res) {
         userService
             .uploadProfilePicture(req.body)
             .then((image) => {
                 const mappedImage = imageMapper.mapToImage(image);
-                res.status(200).send(mappedImage);
+                responseHandler.sendResponse(res, 200, mappedImage);
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => responseHandler.sendResponse(res, 500, err));
     },
     login(req, res) {
         userService
@@ -39,17 +40,17 @@ module.exports = {
                 const token = jwtHelper.createToken({ id: user.id });
                 const mappedUser = userMapper.mapToUserDetails(user);
                 res.cookie(cookieParams.name, token);
-                res.status(200).send(mappedUser);
+                responseHandler.sendResponse(res, 200, mappedUser);
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => responseHandler.sendResponse(res, 500, err));
     },
     signout(req, res) {
         const token = req.cookies[cookieParams.name];
         if (token) {
             res.clearCookie(cookieParams.name);
-            res.status(200).send({});
+            responseHandler.sendResponse(res, 200, {});
         } else {
-            res.status(401).send();
+            responseHandler.sendResponse(res, 401);
         }
     },
     getUser(req, res) {
@@ -61,12 +62,12 @@ module.exports = {
                         .getUser(decodedToken.id)
                         .then((user) => {
                             const mappedUser = userMapper.mapToUserDetails(user);
-                            res.status(200).send(mappedUser);
+                            responseHandler.sendResponse(res, 200, mappedUser);
                         });
                 })
-                .catch(err => res.status(401).send(err));
+                .catch(err => responseHandler.sendResponse(res, 401, err));
         } else {
-            res.status(401).send();
+            responseHandler.sendResponse(res, 401);
         }
     }
 };

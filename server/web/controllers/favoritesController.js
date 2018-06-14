@@ -1,6 +1,7 @@
 const jwtHelper = require('../../helpers/jwtHelper');
 const favoritesService = require('../../business/services/favoritesService');
 const cookieParams = require('../configs/cookieParams');
+const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
     addFavorite(req, res) {
@@ -12,11 +13,11 @@ module.exports = {
                     favoritesService
                         .addFavorite(beerId, decodedToken.id)
                         .then((favoriteBeerId) => {
-                            res.status(200).send({ beerId: favoriteBeerId });
+                            responseHandler.sendResponse(res, 200, { beerId: favoriteBeerId });
                         }));
-            promise.catch(err => res.status(500).send(err));
+            promise.catch(err => responseHandler.sendResponse(res, 500, err));
         } else {
-            res.status(401).send();
+            responseHandler.sendResponse(res, 401);
         }
     },
     removeFavorite(req, res) {
@@ -28,12 +29,12 @@ module.exports = {
                     favoritesService
                         .removeFavorite(beerId, decodedToken.id)
                         .then((unfavoriteBeerId) => {
-                            res.status(200).send({ beerId: unfavoriteBeerId });
+                            responseHandler.sendResponse(res, 200, { beerId: unfavoriteBeerId });
                         });
                 });
-            promise.catch(err => res.status(401).send(err));
+            promise.catch(err => responseHandler.sendResponse(res, 401, err));
         } else {
-            res.status(401).send();
+            responseHandler.sendResponse(res, 401);
         }
     },
     getFavorites(req, res) {
@@ -45,12 +46,12 @@ module.exports = {
                     favoritesService
                         .getFavorites(decodedToken.id, query)
                         .then((favoritesData) => {
-                            res.status(200).send(favoritesData);
+                            responseHandler.sendResponse(res, 200, favoritesData);
                         });
                 });
-            promise.catch(err => res.status(401).send(err));
+            promise.catch(err => responseHandler.sendResponse(res, 401, err));
         } else {
-            res.status(401).send();
+            responseHandler.sendResponse(res, 401);
         }
     }
 };
