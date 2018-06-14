@@ -16,6 +16,14 @@ export default {
             layout: 'topRight',
             text: warningMessage
         }).show();
+    },
+    showSuccess(successMessage) {
+        new Noty({
+            type: 'success',
+            theme: 'sunset',
+            layout: 'topCenter',
+            text: successMessage
+        }).show();
     }
 };
 

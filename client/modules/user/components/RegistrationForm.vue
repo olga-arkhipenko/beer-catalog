@@ -61,6 +61,7 @@
             <p>Upload profile picture</p>
             <input
                 type="file"
+                required
                 accept="image/*"
                 class="upload-button"
                 @change="uploadProfilePicture">
