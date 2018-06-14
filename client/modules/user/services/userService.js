@@ -34,7 +34,7 @@ export default {
     getCurrentUser() {
         const promise = ajaxHelper.get(urls.user);
         promise.then(userData => userMapper.mapToUserDetails(userData));
-        promise.catch(() => notificationHelper.showWarning(warnings.authorization));
+        promise.catch();
 
         return promise;
     }
