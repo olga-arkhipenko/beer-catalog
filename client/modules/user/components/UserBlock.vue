@@ -9,18 +9,32 @@
             :src="profilePictureUrl"
             alt="User avatar."
             class="user-block__avatar">
-        <button
-            class="sign-out-button"
-            @click="submitSignOut">
-            Sign out
+        <button @click="showDropdown">
+            O
         </button>
+        <transition name="popover">
+            <div
+                v-click-outside="hideDropdown"
+                v-if="isDropdownShown"
+                class="dropdown-menu">
+                <button
+                    class="sign-out-button"
+                    @click="submitSignOut">
+                    Sign out
+                </button>
+            </div>
+        </transition>
     </section>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import clickOutside from 'common/directives/clickOutside';
 
 export default {
+    directives: {
+        clickOutside
+    },
     props: {
         name: {
             type: String,
@@ -31,10 +45,24 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            isDropdownShown: false
+        };
+    },
     mounted() {
         this.getCurrentUserData();
     },
-    methods: mapActions('userData', ['getCurrentUserData', 'submitSignOut'])
+    methods: {
+        ...mapActions('userData', ['getCurrentUserData', 'submitSignOut']),
+
+        showDropdown() {
+            this.isDropdownShown = true;
+        },
+        hideDropdown() {
+            this.isDropdownShown = false;
+        }
+    }
 };
 </script>
 
