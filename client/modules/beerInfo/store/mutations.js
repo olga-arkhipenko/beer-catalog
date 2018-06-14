@@ -4,5 +4,11 @@ export default {
     },
     resetBeer(state) {
         state.beer = {};
+    },
+    makeBeerFavorite(state) {
+        state.beer.isFavorite = true;
+    },
+    unmakeBeerFavorite(state) {
+        state.beer.isFavorite = false;
     }
 };

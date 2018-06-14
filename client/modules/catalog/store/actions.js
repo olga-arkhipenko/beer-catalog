@@ -10,8 +10,15 @@ export default {
     resetBeers({ commit }) {
         commit('resetBeers');
     },
-    makeBeerFavorite({ commit }, beerId) {
-        commit('makeBeerFavorite', beerId);
+    addFavoriteBeer({ commit, dispatch }, beerId) {
+        dispatch('favorites/addFavoriteBeer', beerId, { root: true })
+            .then(favoriteBeerId => commit('makeBeerFavorite', favoriteBeerId));
+    },
+    removeFavoriteBeer({ commit, dispatch }, beerId) {
+        dispatch('favorites/removeFavoriteBeer', beerId, { root: true })
+            .then((unfavoriteBeerId) => {
+                commit('unmakeBeerFavorite', unfavoriteBeerId);
+            });
     }
 };
 

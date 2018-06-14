@@ -12,6 +12,14 @@ export default {
             }
             return beer;
         });
+    },
+    unmakeBeerFavorite(state, beerId) {
+        state.beers = state.beers.map((beer) => {
+            if (beer.id === beerId) {
+                beer.isFavorite = false;
+            }
+            return beer;
+        });
     }
 };
 

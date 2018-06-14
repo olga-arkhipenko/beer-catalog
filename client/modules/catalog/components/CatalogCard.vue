@@ -37,7 +37,7 @@ export default {
             required: true
         }
     },
-    methods: mapActions('favorites', ['addFavoriteBeer', 'removeFavoriteBeer'])
+    methods: mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer'])
 };
 </script>
 

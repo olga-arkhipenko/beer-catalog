@@ -13,15 +13,15 @@
             v-cloak
             class="beer-info__tag">{{ beer.tagline }}</p>
         <button
-            v-if="isFavoriteBeer"
+            v-if="beer.isFavorite"
             class="beer-info__button action-button"
-            @click="removeFavoriteBeer(beer.id)"
-        >remove favorite</button>
+            @click="removeFavoriteBeer(beer.id)">
+            remove favorite</button>
         <button
             v-else
             class="beer-info__button action-button"
-            @click="addFavoriteBeer(beer.id)"
-        >add favorite</button>
+            @click="addFavoriteBeer(beer.id)">
+            add favorite</button>
         <p class="beer-info__description">
             {{ beer.description }}
         </p>
@@ -61,25 +61,18 @@ export default {
     },
     computed: {
         ...mapState('beerInfo', ['beer']),
-        ...mapState('beerInfo/favoritesManagement', ['favoriteBeerIds']),
-        isFavoriteBeer() {
-            return this.favoriteBeerIds.includes(this.beer.id);
-        },
+
         isLoaded() {
             return Object.keys(this.beer).length;
         }
     },
     mounted() {
         this.loadBeer(this.id);
-        this.loadFavoriteBeerIds();
     },
     beforeDestroy() {
         this.resetBeer();
     },
-    methods: {
-        ...mapActions('beerInfo', ['loadBeer', 'resetBeer']),
-        ...mapActions('beerInfo/favoritesManagement', ['addFavoriteBeer', 'removeFavoriteBeer', 'loadFavoriteBeerIds'])
-    }
+    methods: mapActions('beerInfo', ['loadBeer', 'resetBeer', 'addFavoriteBeer', 'removeFavoriteBeer'])
 };
 </script>
 

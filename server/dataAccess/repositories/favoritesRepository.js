@@ -34,14 +34,14 @@ module.exports = {
                 return beers[0].beerId;
             }));
     },
-    removeFavorite(userId, beerId) {
+    removeFavorite(beerId, userId) {
         return new Promise((resolve, reject) => {
             database.user.findById(userId)
                 .then((user) => {
                     if (user) {
                         resolve(user);
                     } else {
-                        reject();
+                        reject(new Error('User not found.'));
                     }
                 })
                 .catch(err => reject(err));
@@ -54,6 +54,7 @@ module.exports = {
             })
             .then((beer) => {
                 user.removeFavorite(beer);
+                return beer.beerId;
             }));
     }
 };

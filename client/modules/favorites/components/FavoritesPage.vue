@@ -41,8 +41,7 @@ export default {
         };
     },
     computed: {
-        ...mapState('favorites', ['favoriteBeers']),
-        ...mapState('user', ['userData'])
+        ...mapState('favorites', ['favoriteBeers'])
     },
     mounted() {
         this.loadFavoriteBeers(this.pageParams, this.userData);

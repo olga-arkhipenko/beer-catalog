@@ -20,18 +20,18 @@ module.exports = {
         }
     },
     removeFavorite(req, res) {
-        const token = req.cookies.accessToken;
+        const token = req.cookies[cookieParams.name];
         const beerId = req.body.beerId;
         if (token) {
-            jwtHelper.verifyToken(token)
+            const promise = jwtHelper.verifyToken(token)
                 .then((decodedToken) => {
                     favoritesService
                         .removeFavorite(beerId, decodedToken.id)
-                        .then((favorites) => {
-                            res.status(200).send(favorites);
+                        .then((unfavoriteBeerId) => {
+                            res.status(200).send({ beerId: unfavoriteBeerId });
                         });
-                })
-                .catch(err => res.status(401).send(err));
+                });
+            promise.catch(err => res.status(401).send(err));
         } else {
             res.status(401).send();
         }

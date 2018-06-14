@@ -1,16 +1,16 @@
 import favoritesService from '../services/favoritesService';
 
 export default {
-    loadFavoriteBeers({ commit }, pageParams, userData) {
+    loadFavoriteBeers({ commit }, pageParams) {
         favoritesService
-            .fetchFavoriteBeers(pageParams, userData)
+            .fetchFavoriteBeers(pageParams)
             .then(beers => commit('setFavoriteBeers', beers));
+    },
+    addFavoriteBeer(_, beerId) {
+        return favoritesService.addFavoriteBeer(beerId);
+    },
+    removeFavoriteBeer(_, beerId) {
+        return favoritesService.removeFavoriteBeer(beerId);
     }
-    // removeFavoriteBeer({ dispatch }, payload) {
-    //     dispatch('favoritesManagement/removeFavoriteBeer', payload.id).then((beerIds) => {
-    //         const allParams = { ...payload.requestParams, beerIds };
-    //         dispatch('loadFavoriteBeers', allParams);
-    //     });
-    // }
 };
 
