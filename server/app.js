@@ -1,18 +1,19 @@
-require('dotenv').config({ path: `${__dirname}/.env` });
+const dotenv = require('dotenv');
 const path = require('path');
-const fs = require('fs');
 const express = require('express');
 const router = require('./web/routing/router');
+const logger = require('./utils/logger');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
+
+
+dotenv.config({ path: `${__dirname}/.env` });
 
 const app = express();
 
 app.set('port', process.env.PORT || 3030);
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flag: 'a' });
-app.use(morgan('combined', { stream: accessLogStream }));
+logger(app);
 
 app.use(cookieParser());
 
