@@ -7,13 +7,13 @@ const image = require('./modules/Image');
 
 const databaseConnection = databaseConnector.connect(databaseConfig);
 
-const userModul = user(databaseConnection, Sequelize.DataTypes);
-const favoriteModul = favorite(databaseConnection, Sequelize.DataTypes);
-const imageModul = image(databaseConnection, Sequelize.DataTypes);
+const userModule = user(databaseConnection, Sequelize.DataTypes);
+const favoriteModule = favorite(databaseConnection, Sequelize.DataTypes);
+const imageModule = image(databaseConnection, Sequelize.DataTypes);
 
-userModul.associate(favoriteModul, imageModul);
-favoriteModul.associate(userModul);
+userModule.associate(favoriteModule, imageModule);
+favoriteModule.associate(userModule);
 
-module.exports.favorite = favoriteModul;
-module.exports.user = userModul;
-module.exports.image = imageModul;
+module.exports.favorite = favoriteModule;
+module.exports.user = userModule;
+module.exports.image = imageModule;
