@@ -18,6 +18,9 @@ export default {
     removeFavoriteBeerWithReload({ dispatch }, payload) {
         return favoritesService.removeFavoriteBeer(payload.beerId)
             .then(() => dispatch('loadFavoriteBeers', payload.requestParams));
+    },
+    resetBeers({ commit }) {
+        commit('resetBeers');
     }
 };
 

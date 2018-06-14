@@ -4,6 +4,9 @@ export default {
     },
     setAmountOfPages(state, amount) {
         state.amountOfPages = amount;
+    },
+    resetBeers(state) {
+        state.favoriteBeers = [];
     }
 };
 
