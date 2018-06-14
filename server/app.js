@@ -3,8 +3,7 @@ const path = require('path');
 const express = require('express');
 const router = require('./web/routing/router');
 const logger = require('./utils/logger');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const parserConfigurator = require('./utils/parserConfigurator');
 
 
 dotenv.config({ path: `${__dirname}/.env` });
@@ -14,13 +13,7 @@ const app = express();
 app.set('port', process.env.PORT || 3030);
 
 logger(app);
-
-app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.raw({ limit: '50mb', type: 'image/*' }));
-
+parserConfigurator(app);
 router(app);
 
 app.use(express.static('.'));
