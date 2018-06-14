@@ -37,17 +37,18 @@ module.exports = {
         }
     },
     getFavorites(req, res) {
-        const token = req.cookies.accessToken;
+        const token = req.cookies[cookieParams.name];
+        const query = req.query;
         if (token) {
-            jwtHelper.verifyToken(token)
+            const promise = jwtHelper.verifyToken(token)
                 .then((decodedToken) => {
                     favoritesService
-                        .getFavorites(decodedToken.id)
-                        .then((favorites) => {
-                            res.status(200).send(favorites);
+                        .getFavorites(decodedToken.id, query)
+                        .then((favoritesData) => {
+                            res.status(200).send(favoritesData);
                         });
-                })
-                .catch(err => res.status(401).send(err));
+                });
+            promise.catch(err => res.status(401).send(err));
         } else {
             res.status(401).send();
         }

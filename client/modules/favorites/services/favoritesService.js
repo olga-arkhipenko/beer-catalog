@@ -8,12 +8,15 @@ import notificationHelper from 'common/helpers/notification/notificationHelper';
 import warnings from 'common/helpers/notification/warnings';
 
 export default {
-    fetchFavoriteBeers(pageParams, userData) {
+    fetchFavoriteBeers(pageParams) {
         const mappedParams = urlMapper.mapParams(queryParamsMap, pageParams);
         const url = urlCreator.create(urls.favorites, mappedParams);
         const promise = ajaxHelper
-            .postJson(url, userData)
-            .then(favoriteBeers => favoriteBeers.map(beerMapper.mapToBeer));
+            .get(url)
+            .then(favoritesData => ({
+                beers: favoritesData.beers.map(beerMapper.mapToBeer),
+                amountOfPages: favoritesData.amountOfPages
+            }));
         promise.catch(() => notificationHelper.showWarning(warnings.authorization));
 
         return promise;
