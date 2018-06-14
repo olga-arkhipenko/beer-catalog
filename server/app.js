@@ -13,7 +13,9 @@ const app = express();
 app.set('port', process.env.PORT || 3030);
 
 logger(app);
+
 parserConfigurator(app);
+
 router(app);
 
 app.use(express.static('.'));

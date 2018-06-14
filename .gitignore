@@ -4,4 +4,4 @@ node_modules/
 dist/
 dev/
 server/.env
-server/access.log
+*.log
