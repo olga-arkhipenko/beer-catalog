@@ -14,6 +14,10 @@ export default {
     },
     removeFavoriteBeer(_, beerId) {
         return favoritesService.removeFavoriteBeer(beerId);
+    },
+    removeFavoriteBeerWithReload({ dispatch }, payload) {
+        return favoritesService.removeFavoriteBeer(payload.beerId)
+            .then(() => dispatch('loadFavoriteBeers', payload.requestParams));
     }
 };
 

@@ -50,7 +50,7 @@ export default {
         this.resetPage();
     },
     methods: {
-        ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeer']),
+        ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeerWithReload']),
 
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
@@ -60,7 +60,9 @@ export default {
             this.pageParams.pageNumber = 1;
         },
         deleteFavoriteBeer(favoriteBeerId) {
-            this.removeFavoriteBeer({ id: favoriteBeerId, requestParams: this.pageParams });
+            this.removeFavoriteBeerWithReload({
+                beerId: favoriteBeerId, requestParams: this.pageParams
+            });
         }
     }
 };
