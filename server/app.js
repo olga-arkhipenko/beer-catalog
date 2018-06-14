@@ -1,5 +1,6 @@
 require('dotenv').config({ path: `${__dirname}/.env` });
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const router = require('./web/routing/router');
 const bodyParser = require('body-parser');
@@ -10,7 +11,8 @@ const app = express();
 
 app.set('port', process.env.PORT || 3030);
 
-app.use(morgan('combined'));
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flag: 'a' });
+app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(cookieParser());
 
