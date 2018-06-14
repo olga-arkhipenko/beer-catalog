@@ -34,7 +34,6 @@ module.exports = {
         return userRepository
             .findUserByEmail(loginData.email)
             .then((userEntity) => {
-                console.log(userEntity);
                 if (userEntity) {
                     if (passwordEncryptor.isMatch(
                         loginData.password,

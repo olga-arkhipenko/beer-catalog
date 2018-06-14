@@ -20,7 +20,7 @@ app.use(bodyParser.raw({ limit: '50mb', type: 'image/*' }));
 router(app);
 
 app.use(express.static('.'));
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
     res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 

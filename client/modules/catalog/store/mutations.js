@@ -4,6 +4,14 @@ export default {
     },
     resetBeers(state) {
         state.beers = [];
+    },
+    makeBeerFavorite(state, beerId) {
+        state.beers = state.beers.map((beer) => {
+            if (beer.id === beerId) {
+                beer.isFavorite = true;
+            }
+            return beer;
+        });
     }
 };
 

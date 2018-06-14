@@ -9,6 +9,9 @@ export default {
     },
     resetBeers({ commit }) {
         commit('resetBeers');
+    },
+    makeBeerFavorite({ commit }, beerId) {
+        commit('makeBeerFavorite', beerId);
     }
 };
 
