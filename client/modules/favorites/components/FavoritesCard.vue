@@ -6,7 +6,7 @@
             <p class="favorite-beer-card__description">{{ beer.description }}</p>
             <div class="favorite-bar">
                 <router-link
-                    :to="`/beer/${beer.id}`"
+                    :to="`/beers/${beer.id}`"
                     class="link favorite-bar__button">open</router-link>
                 <button
                     class="action-button favorite-bar__button"
