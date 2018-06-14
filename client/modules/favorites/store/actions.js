@@ -4,7 +4,10 @@ export default {
     loadFavoriteBeers({ commit }, pageParams) {
         favoritesService
             .fetchFavoriteBeers(pageParams)
-            .then(beers => commit('setFavoriteBeers', beers));
+            .then((favoritesData) => {
+                commit('setFavoriteBeers', favoritesData.beers);
+                commit('setAmountOfPages', favoritesData.amountOfPages);
+            });
     },
     addFavoriteBeer(_, beerId) {
         return favoritesService.addFavoriteBeer(beerId);

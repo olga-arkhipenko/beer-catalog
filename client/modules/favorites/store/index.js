@@ -4,7 +4,8 @@ import actions from './actions';
 export default {
     namespaced: true,
     state: {
-        favoriteBeers: []
+        favoriteBeers: [],
+        amountOfPages: 0
     },
     mutations,
     actions

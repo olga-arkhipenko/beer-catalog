@@ -36,7 +36,7 @@ export default {
             type: Number,
             required: true
         },
-        totalItems: {
+        totalPages: {
             type: Number,
             required: true
         },
@@ -51,9 +51,6 @@ export default {
         };
     },
     computed: {
-        totalPages() {
-            return Math.ceil(this.totalItems / this.itemsPerPage);
-        },
         pageRange() {
             return new Array(this.pageRangeAfter - this.pageRangeBefore + 1)
                 .fill(0).map((_, i) => i + 1);

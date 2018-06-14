@@ -10,7 +10,7 @@
         </row-list>
         <pagination
             :current-page="pageParams.pageNumber"
-            :total-items="favoriteBeers.length"
+            :total-pages="amountOfPages"
             :items-per-page="pageParams.itemsPerPage"
             class="favorites__pagination"
             @pageChanged="changePage"/>
@@ -41,10 +41,10 @@ export default {
         };
     },
     computed: {
-        ...mapState('favorites', ['favoriteBeers'])
+        ...mapState('favorites', ['favoriteBeers', 'amountOfPages'])
     },
     mounted() {
-        this.loadFavoriteBeers(this.pageParams, this.userData);
+        this.loadFavoriteBeers(this.pageParams);
     },
     beforeDestroy() {
         this.resetPage();
