@@ -9,8 +9,10 @@
             :src="profilePictureUrl"
             alt="User avatar."
             class="user-block__avatar">
-        <button @click="showDropdown">
-            O
+        <button
+            class="user-block__settings-button action-button"
+            @click="showDropdown">
+            &#9776;
         </button>
         <transition name="popover">
             <div
@@ -69,10 +71,11 @@ export default {
 <style>
 .user-block {
     display: flex;
-    align-items: center;
-    margin: 0 20px 0;
+
     font-family: "Courier New", Courier, monospace;
     font-size: 1.6rem;
+
+    align-items: center;
 }
 
 .user-block__name {
@@ -83,9 +86,19 @@ export default {
     max-height: 80px;
 }
 
+.user-block__settings-button {
+    margin: 10px;
+    padding: 10px;
+
+    color: #369996;
+
+    font-size: 2rem;
+}
+
 .sign-out-button {
     cursor: pointer;
     text-transform: uppercase;
+
     color: #38a39e;
     border: none;
     background-color: transparent;
