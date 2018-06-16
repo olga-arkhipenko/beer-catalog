@@ -52,8 +52,11 @@
     cursor: pointer;
 
     border: none;
-    outline: none;
     background: transparent;
+}
+
+.action-button:focus {
+    outline: none;
 }
 
 .close-sign {
