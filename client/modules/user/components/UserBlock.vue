@@ -95,6 +95,17 @@ export default {
     font-size: 2rem;
 }
 
+.dropdown-menu {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+
+    padding: 20px;
+
+    border: 1px solid #e9f1fb;
+    background-color: #f3f9ff;
+}
+
 .sign-out-button {
     cursor: pointer;
     text-transform: uppercase;
@@ -102,6 +113,15 @@ export default {
     color: #38a39e;
     border: none;
     background-color: transparent;
+}
+
+.popover-enter-active {
+    transition: all 0.15s ease;
+}
+
+.popover-enter,
+.popover-leave {
+    transform: translateX(100px);
 }
 </style>
 

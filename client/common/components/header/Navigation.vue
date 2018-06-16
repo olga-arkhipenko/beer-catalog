@@ -2,7 +2,7 @@
     <nav class="navigation">
         <div class="navigation__title">
             <button
-                class="navigation__menu-button"
+                class="navigation__menu-button action-button"
                 @click="showMenu"/>
             <main-menu
                 v-click-outside="hideMenu"
