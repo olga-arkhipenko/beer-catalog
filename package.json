@@ -9,7 +9,7 @@
         "start-server": "node server/app.js",
         "start-dev": "node server/app.js & webpack-dev-server --mode development --open",
         "start": "node server/app.js",
-        "heroku-postbuild": "npm run build-prod-client"
+        "heroku-postbuild": "webpack --progress --hide-modules --mode production --env.production"
     },
     "repository": {
         "type": "git",
