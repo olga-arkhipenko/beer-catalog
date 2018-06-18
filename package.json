@@ -1,13 +1,15 @@
 {
     "name": "beer-catalog",
     "version": "1.0.0",
-    "description": "Beer catalog based on Vue.js",
+    "description": "Beer catalog implemented with Vue.js and Node.js",
     "main": "index.js",
     "scripts": {
         "start-dev-client": "webpack-dev-server --mode development",
         "build-prod-client": "webpack --progress --hide-modules --mode production --env.production",
         "start-server": "node server/app.js",
-        "start": "node server/app.js & webpack-dev-server --mode development --open"
+        "start-dev": "node server/app.js & webpack-dev-server --mode development --open",
+        "start": "node server/app.js",
+        "heroku-postbuild": "npm run build-prod-client"
     },
     "repository": {
         "type": "git",

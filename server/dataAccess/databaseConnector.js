@@ -1,13 +1,23 @@
 const Sequelize = require('sequelize');
+const config = require('config');
+
 
 module.exports = {
-    connect: (databaseConfig) => {
-        const databaseConnection = new Sequelize(
-            databaseConfig.database,
-            databaseConfig.user,
-            databaseConfig.password,
-            databaseConfig.options
-        );
+    connect: () => {
+        let databaseConnection;
+        if (config.has('databaseConfig.url')) {
+            databaseConnection = new Sequelize(
+                config.get('databaseConfig.url'),
+                config.get('databaseConfig.options')
+            );
+        } else {
+            databaseConnection = new Sequelize(
+                config.get('localDatabaseConfig.database'),
+                config.get('localDatabaseConfig.user'),
+                config.get('localDatabaseConfig.password'),
+                config.get('localDatabaseConfig.options')
+            );
+        }
         databaseConnection
             .authenticate()
             .then(() => {

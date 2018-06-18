@@ -6,7 +6,7 @@ const logger = require('./utils/logger');
 const parserConfigurator = require('./utils/parserConfigurator');
 
 
-dotenv.config({ path: `${__dirname}/.env` });
+dotenv.config();
 
 const app = express();
 
