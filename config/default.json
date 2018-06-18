@@ -2,11 +2,10 @@
     "databaseConfig": {
         "url": "",
         "options": {
-            "dialect": "postgres",
             "protocol": "postgres",
             "logging": false,
             "dialectOptions": {
-                "ssl": false
+                "ssl": true
             }
         }
     }

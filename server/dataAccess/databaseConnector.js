@@ -5,7 +5,7 @@ const config = require('config');
 module.exports = {
     connect: () => {
         let databaseConnection;
-        if (config.has('databaseConfig.url')) {
+        if (config.get('databaseConfig.url')) {
             databaseConnection = new Sequelize(
                 config.get('databaseConfig.url'),
                 config.get('databaseConfig.options')
