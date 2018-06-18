@@ -3,6 +3,6 @@
 node_modules/
 dist/
 dev/
-config/
+config/local.json
 *.env
 *.log
