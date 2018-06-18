@@ -1,0 +1,14 @@
+{
+    "databaseConfig": {
+        "url": "",
+        "options": {
+            "dialect": "postgres",
+            "protocol": "postgres",
+            "operatorsAliases": false,
+            "logging": false,
+            "dialectOptions": {
+                "ssl": true
+            }
+        }
+    }
+}
