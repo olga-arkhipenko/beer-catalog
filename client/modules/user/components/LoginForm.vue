@@ -1,21 +1,23 @@
 <template>
     <form
         action="post"
-        class="form"
+        class="form form--login"
         @submit.prevent="submitForm">
         <label>
-            <p>Email</p>
+            <p class="form__field">Email</p>
             <input
                 v-model.trim="loginData.email"
+                class="form__input"
                 type="email"
                 required
                 placeholder="Enter your email"
                 size="28">
         </label>
         <label>
-            <p>Password</p>
+            <p class="form__field">Password</p>
             <input
                 v-model="loginData.password"
+                class="form__input"
                 type="password"
                 required
                 placeholder="Enter your password"
@@ -53,6 +55,10 @@ export default {
 
 
 <style>
+.login-form {
+    padding: 20px 0 0;
+}
+
 .login-heading {
     text-align: center;
 

@@ -15,7 +15,7 @@
 .form {
     width: 500px;
     margin: 140px auto;
-    padding: 0 45px;
+    padding: 0 50px;
 
     color: #328587;
     border: 1px solid #c7d7e9;
@@ -25,8 +25,30 @@
     font-size: 1.4rem;
 }
 
+.form--login {
+    padding: 20px 50px 0;
+}
+
 .form__heading {
-    font-size: 1.8rem;
+    font-size: 2rem;
+}
+
+.form__input {
+    width: 100%;
+    padding: 4px 0;
+
+    border: none;
+    border-bottom: 1px solid #c8d8e9;
+}
+
+.form__input::placeholder {
+    color: #a9b6c5;
+}
+
+.form__field {
+    margin: 20px 0;
+
+    font-size: 1.6rem;
 }
 
 .form__button-wrapper {
