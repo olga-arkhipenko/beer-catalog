@@ -6,11 +6,5 @@ export default {
     resetUserData(state) {
         state.name = '';
         state.profilePictureUrl = null;
-    },
-    addFavoriteBeer(/* state, beerId */) {
-        // console.log(beerId);
-    },
-    removeFavoriteBeer(/* state,  beerId */) {
-        // console.log(beerId);
     }
 };

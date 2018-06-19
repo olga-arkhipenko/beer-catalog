@@ -21,12 +21,7 @@ export default {
             .getCurrentUser()
             .then((userData) => {
                 commit('setUserData', userData);
-            });
-    },
-    submitAddFavoriteBeer({ commit }, beerId) {
-        commit('addFavoriteBeer', beerId);
-    },
-    submitRemoveFavoriteBeer({ commit }, beerId) {
-        commit('removeFavoriteBeer', beerId);
+            })
+            .catch();
     }
 };
