@@ -6,6 +6,7 @@ export default {
             type: 'error',
             theme: 'sunset',
             layout: 'topCenter',
+            timeout: 3000,
             text: errorMessage
         }).show();
     },
@@ -14,6 +15,7 @@ export default {
             type: 'warning',
             theme: 'sunset',
             layout: 'topRight',
+            timeout: 3000,
             text: warningMessage
         }).show();
     },
@@ -22,6 +24,7 @@ export default {
             type: 'success',
             theme: 'sunset',
             layout: 'topCenter',
+            timeout: 3000,
             text: successMessage
         }).show();
     }
