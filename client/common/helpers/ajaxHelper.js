@@ -1,5 +1,8 @@
+// import requestHelper from 'common/helpers/requstHelper';
+
 export default {
     get(url) {
+        // return requestHelper(url, 'get');
         return fetch(url, {
             method: 'get',
             headers: {
