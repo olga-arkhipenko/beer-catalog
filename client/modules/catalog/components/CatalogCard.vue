@@ -98,13 +98,13 @@ export default {
     background-color: transparent;
 }
 
-.toggle-bar__button-remove {
+/* .toggle-bar__button-remove {
     margin: 0 0 0 0.5rem;
 }
 
 .toggle-bar__button-add {
     margin: 0 0 0 2.5rem;
-}
+} */
 
 .toggle-bar__button:hover {
     color: #ffb259;
