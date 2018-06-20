@@ -103,7 +103,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('userData', ['submitRegistartion']),
+        ...mapActions('userData', ['submitRegistration']),
 
         uploadProfilePicture(e) {
             const files = e.target.files || e.dataTransfer.files;
@@ -111,7 +111,7 @@ export default {
         },
         submitForm() {
             if (this.isPasswordMatch) {
-                this.submitRegistartion(this.registrationData);
+                this.submitRegistration(this.registrationData);
             }
         }
     }

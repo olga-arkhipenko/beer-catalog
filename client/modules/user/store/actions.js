@@ -1,7 +1,7 @@
 import userService from '../services/userService';
 
 export default {
-    submitRegistartion(_, registrationData) {
+    submitRegistration(_, registrationData) {
         userService.register(registrationData);
     },
     submitLogin({ commit }, loginData) {
