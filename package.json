@@ -34,6 +34,7 @@
         "express": "^4.16.3",
         "jsonwebtoken": "^8.2.1",
         "morgan": "^1.9.0",
+        "node-fetch": "^2.1.2",
         "normalize.css": "^8.0.0",
         "noty": "^3.2.0-beta",
         "pg": "^7.4.1",
