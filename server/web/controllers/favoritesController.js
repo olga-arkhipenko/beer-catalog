@@ -9,12 +9,9 @@ module.exports = {
         const beerId = req.body.beerId;
         if (token) {
             const promise = jwtHelper.verifyToken(token)
-                .then(decodedToken =>
-                    favoritesService
-                        .addFavorite(beerId, decodedToken.id)
-                        .then((favoriteBeerId) => {
-                            responseHandler.sendResponse(res, 200, { beerId: favoriteBeerId });
-                        }));
+                .then(decodedToken => favoritesService.addFavorite(beerId, decodedToken.id))
+                .then(favoriteBeerId =>
+                    responseHandler.sendResponse(res, 200, { beerId: favoriteBeerId }));
             promise.catch(err => responseHandler.sendResponse(res, 500, err));
         } else {
             responseHandler.sendResponse(res, 401);
@@ -25,13 +22,9 @@ module.exports = {
         const beerId = req.body.beerId;
         if (token) {
             const promise = jwtHelper.verifyToken(token)
-                .then((decodedToken) => {
-                    favoritesService
-                        .removeFavorite(beerId, decodedToken.id)
-                        .then((unfavoriteBeerId) => {
-                            responseHandler.sendResponse(res, 200, { beerId: unfavoriteBeerId });
-                        });
-                });
+                .then(decodedToken => favoritesService.removeFavorite(beerId, decodedToken.id))
+                .then(unfavoriteBeerId =>
+                    responseHandler.sendResponse(res, 200, { beerId: unfavoriteBeerId }));
             promise.catch(err => responseHandler.sendResponse(res, 401, err));
         } else {
             responseHandler.sendResponse(res, 401);
