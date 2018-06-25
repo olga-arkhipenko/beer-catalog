@@ -62,7 +62,7 @@ export default {
 .beer-card__info {
     position: relative;
 
-    min-height: 200px;
+    min-height: 215px;
     padding: 5px 20px;
 
     text-align: left;
@@ -80,9 +80,14 @@ export default {
 
 .toggle-bar {
     position: absolute;
+    right: 0;
     bottom: 0;
+    left: 0;
+
+    display: flex;
 
     margin: 20px;
+    padding: 10px;
 
     font-size: 1.2rem;
 
@@ -98,15 +103,8 @@ export default {
     background-color: transparent;
 }
 
-/* .toggle-bar__button-remove {
-    margin: 0 0 0 0.5rem;
-}
-
-.toggle-bar__button-add {
-    margin: 0 0 0 2.5rem;
-} */
-
 .toggle-bar__button:hover {
     color: #ffb259;
 }
+
 </style>
