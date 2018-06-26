@@ -17,7 +17,7 @@ export default {
                 beers: favoritesData.beers.map(beerMapper.mapToBeer),
                 amountOfPages: favoritesData.amountOfPages
             }));
-        promise.catch(() => notificationHelper.showWarning(warnings.authorization));
+        promise.catch(() => notificationHelper.showNotification('warning', warnings.authorization));
 
         return promise;
     },
@@ -27,7 +27,7 @@ export default {
         ajaxHelper
             .postJson(url, { beerId })
             .then(beer => beer.beerId);
-        promise.catch(() => notificationHelper.showWarning(warnings.authorization));
+        promise.catch(() => notificationHelper.showNotification('warning', warnings.authorization));
 
         return promise;
     },
@@ -36,7 +36,7 @@ export default {
         const promise = ajaxHelper
             .delete(url, { beerId })
             .then(beer => beer.beerId);
-        promise.catch(() => notificationHelper.showWarning(warnings.authorization));
+        promise.catch(() => notificationHelper.showNotification('warning', warnings.authorization));
 
         return promise;
     }

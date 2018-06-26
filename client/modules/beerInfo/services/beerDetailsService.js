@@ -9,7 +9,7 @@ export default {
         const promise = ajaxHelper
             .get(url)
             .then(beer => beerMapper.mapToBeerDetails(beer));
-        promise.catch(() => notificationHelper.showError(errors.beerLoading));
+        promise.catch(() => notificationHelper.showNotification('error', errors.beerLoading));
 
         return promise;
     }

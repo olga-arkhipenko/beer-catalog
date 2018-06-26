@@ -2,7 +2,8 @@ import userService from '../services/userService';
 
 export default {
     submitRegistration(_, registrationData) {
-        userService.register(registrationData);
+        userService.register(registrationData)
+            .catch(() => console.log('helolo'));
     },
     submitLogin({ commit }, loginData) {
         userService
@@ -21,7 +22,6 @@ export default {
             .getCurrentUser()
             .then((userData) => {
                 commit('setUserData', userData);
-            })
-            .catch();
+            });
     }
 };
