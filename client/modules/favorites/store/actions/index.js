@@ -1,12 +1,13 @@
-import favoritesService from '../services/favoritesService';
+import favoritesService from 'favoritesModule/services/favoritesService';
+import { setFavoriteBeers, setAmountOfPages, resetBeers } from '../mutations/constants';
 
 export default {
     loadFavoriteBeers({ commit }, pageParams) {
         favoritesService
             .fetchFavoriteBeers(pageParams)
             .then((favoritesData) => {
-                commit('setFavoriteBeers', favoritesData.beers);
-                commit('setAmountOfPages', favoritesData.amountOfPages);
+                commit(setFavoriteBeers, favoritesData.beers);
+                commit(setAmountOfPages, favoritesData.amountOfPages);
             });
     },
     addFavoriteBeer(_, beerId) {
@@ -20,7 +21,7 @@ export default {
             .then(() => dispatch('loadFavoriteBeers', payload.requestParams));
     },
     resetBeers({ commit }) {
-        commit('resetBeers');
+        commit(resetBeers);
     }
 };
 
