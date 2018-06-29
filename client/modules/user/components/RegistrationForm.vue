@@ -81,6 +81,8 @@
 
 <script>
 import { mapActions } from 'vuex';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 
 export default {
     data() {
@@ -111,7 +113,8 @@ export default {
         },
         submitForm() {
             if (this.isPasswordMatch) {
-                this.submitRegistration(this.registrationData);
+                const promise = this.submitRegistration(this.registrationData);
+                notificationHelper.showNotification(promise, configs.registration);
             }
         }
     }

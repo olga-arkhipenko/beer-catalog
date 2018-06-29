@@ -3,8 +3,7 @@ import { setUserData, resetUserData } from '../mutations/constants';
 
 export default {
     submitRegistration(_, registrationData) {
-        userService.register(registrationData)
-            .catch(() => console.log('helolo'));
+        return userService.register(registrationData);
     },
     submitLogin({ commit }, loginData) {
         userService
