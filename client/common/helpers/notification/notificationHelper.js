@@ -15,14 +15,16 @@ class NotificationManager {
                     timeout: 3000,
                     text: config.success.message
                 }).show())
-            .catch(() =>
+            .catch(() => {
                 new Noty({
                     type: config.error.type,
                     theme: 'sunset',
                     layout: 'topCenter',
                     timeout: 3000,
                     text: config.error.message
-                }).show());
+                }).show();
+                throw new Error();
+            });
     }
 }
 
