@@ -114,9 +114,7 @@ export default {
         submitForm() {
             if (this.isPasswordMatch) {
                 const promise = this.submitRegistration(this.registrationData);
-                notificationHelper.showNotification(promise, configs.registration)
-                    .then(() => console.log('all good'))
-                    .catch(() => console.log('all bad'));
+                notificationHelper.showNotification(promise, configs.registration);
             }
         }
     }
