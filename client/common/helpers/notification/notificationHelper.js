@@ -1,32 +1,4 @@
-import Noty from 'noty';
-
-class NotificationManager {
-    constructor(promise) {
-        this.promise = promise;
-    }
-
-    createNotification(config) {
-        return this.promise
-            .then(() =>
-                new Noty({
-                    type: config.success.type,
-                    theme: 'sunset',
-                    layout: 'topCenter',
-                    timeout: 3000,
-                    text: config.success.message
-                }).show())
-            .catch(() => {
-                new Noty({
-                    type: config.error.type,
-                    theme: 'sunset',
-                    layout: 'topCenter',
-                    timeout: 3000,
-                    text: config.error.message
-                }).show();
-                throw new Error();
-            });
-    }
-}
+import { NotificationManager } from './NotificationManager';
 
 export default {
     showNotification(promise, config) {
