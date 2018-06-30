@@ -34,6 +34,8 @@
 
 <script>
 import { mapActions } from 'vuex';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 
 export default {
     data() {
@@ -41,13 +43,14 @@ export default {
             loginData: {
                 email: '',
                 password: ''
-            }
+            }``
         };
     },
     methods: {
         ...mapActions('userData', ['submitLogin']),
         submitForm() {
-            this.submitLogin(this.loginData);
+            const promise = this.submitLogin(this.loginData);
+            notificationHelper.showNotification(promise, configs.login);
         }
     }
 };
