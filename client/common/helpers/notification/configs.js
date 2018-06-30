@@ -28,13 +28,13 @@ export default {
         }
     },
     authorization: {
-        warning: {
+        error: {
             type: 'warning',
             message: 'You are not logged in and cannot add favorite beers. Please, log in or sign up.'
         }
     },
     signout: {
-        warning: {
+        error: {
             type: 'warning',
             message: 'Something went wrong... You cannot sign out now.'
         }
