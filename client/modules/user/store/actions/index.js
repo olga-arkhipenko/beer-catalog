@@ -6,19 +6,19 @@ export default {
         return userService.register(registrationData);
     },
     submitLogin({ commit }, loginData) {
-        userService
+        return userService
             .login(loginData)
             .then((userData) => {
                 commit(setUserData, userData);
             });
     },
     submitSignOut({ commit }) {
-        userService
-            .signout()
+        return userService
+            .signOut()
             .then(() => commit(resetUserData));
     },
     getCurrentUserData({ commit }) {
-        userService
+        return userService
             .getCurrentUser()
             .then((userData) => {
                 commit(setUserData, userData);

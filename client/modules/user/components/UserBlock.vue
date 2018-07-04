@@ -21,7 +21,7 @@
                 class="dropdown-menu">
                 <button
                     class="sign-out-button"
-                    @click="submitSignOut">
+                    @click="signOut">
                     Sign out
                 </button>
             </div>
@@ -32,6 +32,8 @@
 <script>
 import { mapActions } from 'vuex';
 import clickOutside from 'common/directives/clickOutside';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 
 export default {
     directives: {
@@ -53,11 +55,19 @@ export default {
         };
     },
     mounted() {
-        this.getCurrentUserData();
+        this.loadUser();
     },
     methods: {
         ...mapActions('userData', ['getCurrentUserData', 'submitSignOut']),
 
+        loadUser() {
+            const promise = this.getCurrentUserData();
+            notificationHelper.showNotification(promise, configs.authorization);
+        },
+        signOut() {
+            const promise = this.submitSignOut();
+            notificationHelper.showNotification(promise, configs.signout);
+        },
         showDropdown() {
             this.isDropdownShown = true;
         },

@@ -43,7 +43,7 @@ export default {
             loginData: {
                 email: '',
                 password: ''
-            }``
+            }
         };
     },
     methods: {
