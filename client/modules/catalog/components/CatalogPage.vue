@@ -24,6 +24,8 @@ import { mapState, mapActions } from 'vuex';
 import GridList from 'common/components/lists/GridList';
 import Spinner from 'common/components/other/Spinner';
 import PageScroller from 'common/components/wrappers/PageScrollWrapper';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -65,7 +67,8 @@ export default {
 
         loadBeerPage() {
             const catalogParams = { ...this.pageParams, ...this.searchParams };
-            this.loadBeers(catalogParams);
+            const promise = this.loadBeers(catalogParams);
+            notificationHelper.showNotification(promise, configs.beersLoading);
         },
         loadNextPage() {
             this.incrementPage();
