@@ -3,7 +3,7 @@ import { setBeer, resetBeer, makeBeerFavorite, unmakeBeerFavorite } from '../mut
 
 export default {
     loadBeer({ commit }, beerId) {
-        beerDetailsService
+        return beerDetailsService
             .fetchBeer(beerId)
             .then((beer) => {
                 commit(setBeer, beer);
