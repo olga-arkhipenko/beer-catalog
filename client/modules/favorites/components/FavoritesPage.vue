@@ -21,6 +21,8 @@
 import { mapState, mapActions } from 'vuex';
 import Pagination from 'common/components/other/Pagination';
 import RowList from 'common/components/lists/RowList';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 import FavoritesCard from './FavoritesCard';
 
 export default {
@@ -44,7 +46,8 @@ export default {
         ...mapState('favorites', ['favoriteBeers', 'amountOfPages'])
     },
     mounted() {
-        this.loadFavoriteBeers(this.pageParams);
+        const promise = this.loadFavoriteBeers(this.pageParams);
+        notificationHelper.showNotification(promise, configs.beersLoading);
     },
     beforeDestroy() {
         this.resetFavorites();
@@ -54,15 +57,17 @@ export default {
 
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
-            this.loadFavoriteBeers(this.pageParams);
+            const promise = this.loadFavoriteBeers(this.pageParams);
+            notificationHelper.showNotification(promise, configs.beersLoading);
         },
         resetPage() {
             this.pageParams.pageNumber = 1;
         },
         deleteFavoriteBeer(favoriteBeerId) {
-            this.removeFavoriteBeerWithReload({
+            const promise = this.removeFavoriteBeerWithReload({
                 beerId: favoriteBeerId, requestParams: this.pageParams
             });
+            notificationHelper.showNotification(promise, configs.authorization);
         },
         resetFavorites() {
             this.resetBeers();

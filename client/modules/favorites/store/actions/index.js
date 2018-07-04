@@ -3,7 +3,7 @@ import { setFavoriteBeers, setAmountOfPages, resetBeers } from '../mutations/con
 
 export default {
     loadFavoriteBeers({ commit }, pageParams) {
-        favoritesService
+        return favoritesService
             .fetchFavoriteBeers(pageParams)
             .then((favoritesData) => {
                 commit(setFavoriteBeers, favoritesData.beers);
