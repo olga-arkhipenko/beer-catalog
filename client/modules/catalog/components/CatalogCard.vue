@@ -15,12 +15,12 @@
                 <a
                     v-if="beer.isFavorite"
                     class="link toggle-bar__button toggle-bar__button-remove"
-                    @click="removeFavoriteBeer(beer.id)"
+                    @click="submitRemoveFavoriteBeer(beer.id)"
                 >remove favorite</a>
                 <a
                     v-else
                     class="link toggle-bar__button toggle-bar__button-add"
-                    @click="addFavoriteBeer(beer.id)"
+                    @click="submitAddFavoriteBeer(beer.id)"
                 >add favorite</a>
             </div>
         </div>
@@ -29,6 +29,8 @@
 
 <script>
 import { mapActions } from 'vuex';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 
 export default {
     props: {
@@ -37,7 +39,18 @@ export default {
             required: true
         }
     },
-    methods: mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer'])
+    methods: {
+        ...mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer']),
+
+        submitAddFavoriteBeer(beerId) {
+            const promise = this.addFavoriteBeer(beerId);
+            notificationHelper.showNotification(promise, configs.authorization);
+        },
+        submitRemoveFavoriteBeer(beerId) {
+            const promise = this.removeFavoriteBeer(beerId);
+            notificationHelper.showNotification(promise, configs.authorization);
+        }
+    }
 };
 </script>
 
