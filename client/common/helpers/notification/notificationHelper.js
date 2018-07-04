@@ -1,9 +1,18 @@
-import { NotificationManager } from './NotificationManager';
+import notificationCreator from './notificationCreator';
 
 export default {
     showNotification(promise, config) {
-        const notificationManager = new NotificationManager(promise);
-        return notificationManager.createNotification(config);
+        return promise
+            .then(() => {
+                if (config.success) {
+                    notificationCreator.showSuccess(config.success);
+                }
+            })
+            .catch(() => {
+                if (config.error) {
+                    notificationCreator.showError(config.error);
+                }
+            });
     }
 };
 
