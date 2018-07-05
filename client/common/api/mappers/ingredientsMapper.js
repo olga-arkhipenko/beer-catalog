@@ -1,6 +1,6 @@
-import { Malt } from 'beerInfoModule/models/Malt';
-import { Hops } from 'beerInfoModule/models/Hops';
-import { Yeast } from 'beerInfoModule/models/Yeast';
+import { Malt } from 'beerInfoModule/models/malt';
+import { Hops } from 'beerInfoModule/models/hops';
+import { Yeast } from 'beerInfoModule/models/yeast';
 
 export default {
     mapMalt(malt) {

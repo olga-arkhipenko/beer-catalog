@@ -1,6 +1,6 @@
-import { Brewing } from 'beerInfoModule/models/Brewing';
-import { Ingredients } from 'beerInfoModule/models/Ingredients';
-import { Methods } from 'beerInfoModule/models/Methods';
+import { Brewing } from 'beerInfoModule/models/brewing';
+import { Ingredients } from 'beerInfoModule/models/ingredients';
+import { Methods } from 'beerInfoModule/models/methods';
 import ingredientsMapper from './ingredientsMapper';
 import methodsMapper from './methodsMapper';
 

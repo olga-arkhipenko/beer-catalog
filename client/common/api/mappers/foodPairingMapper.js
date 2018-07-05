@@ -1,4 +1,4 @@
-import { FoodPair } from 'beerInfoModule/models/FoodPair';
+import { FoodPair } from 'beerInfoModule/models/foodPair';
 
 export default {
     mapFoodPairing(foodPairing) {

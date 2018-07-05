@@ -1,6 +1,6 @@
-import { MashTemp } from 'beerInfoModule/models/MashTemp';
-import { Fermentation } from 'beerInfoModule/models/Fermentation';
-import { Twist } from 'beerInfoModule/models/Twist';
+import { MashTemp } from 'beerInfoModule/models/mashTemp';
+import { Fermentation } from 'beerInfoModule/models/fermentation';
+import { Twist } from 'beerInfoModule/models/twist';
 
 export default {
     mapMashTemp(mashTemp) {

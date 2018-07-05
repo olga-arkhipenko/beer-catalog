@@ -1,5 +1,5 @@
-import User from 'userModule/models/User';
-import UserDetails from 'userModule/models/UserDetails';
+import User from 'userModule/models/user';
+import UserDetails from 'userModule/models/userDetails';
 
 export default {
     mapToUser(userData) {

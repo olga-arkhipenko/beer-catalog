@@ -1,5 +1,5 @@
-import { Beer } from 'common/models/Beer';
-import { BeerDetails } from 'beerInfoModule/models/BeerDetails';
+import { Beer } from 'common/models/beer';
+import { BeerDetails } from 'beerInfoModule/models/beerDetails';
 import foodPairingMapper from './foodPairingMapper';
 import brewingMapper from './brewingMapper';
 
