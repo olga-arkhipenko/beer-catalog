@@ -1,11 +1,13 @@
+import mutationTypes from './constants';
+
 export default {
-    setFavoriteBeers(state, favoriteBeers) {
+    [mutationTypes.SET_FAVORITE_BEERS](state, favoriteBeers) {
         state.favoriteBeers = favoriteBeers;
     },
-    setAmountOfPages(state, amount) {
+    [mutationTypes.SET_AMOUNT_OF_PAGES](state, amount) {
         state.amountOfPages = amount;
     },
-    resetBeers(state) {
+    [mutationTypes.RESET_BEERS](state) {
         state.favoriteBeers = [];
     }
 };
