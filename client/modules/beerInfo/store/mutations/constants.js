@@ -1,7 +1,7 @@
-const SET_BEER = 'setBeer';
-const RESET_BEER = 'resetBeer';
-const MAKE_BEER_FAVORITE = 'makeBeerFavorite';
-const UNMAKE_BEER_FAVORITE = 'unmakeBeerFavorite';
+const SET_BEER = 'beerInfo/setBeer';
+const RESET_BEER = 'beerInfo/resetBeer';
+const MAKE_BEER_FAVORITE = 'beerInfo/makeBeerFavorite';
+const UNMAKE_BEER_FAVORITE = 'beerInfo/unmakeBeerFavorite';
 
 export default {
     SET_BEER,
