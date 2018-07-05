@@ -1,9 +1,11 @@
+import mutationTypes from './constants';
+
 export default {
-    setUserData(state, userData) {
+    [mutationTypes.SET_USER_DATA](state, userData) {
         state.name = userData.name;
         state.profilePictureUrl = userData.profilePictureUrl;
     },
-    resetUserData(state) {
+    [mutationTypes.RESET_USER_DATA](state) {
         state.name = '';
         state.profilePictureUrl = null;
     }

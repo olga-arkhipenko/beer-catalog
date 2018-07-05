@@ -1,5 +1,5 @@
 import userService from 'userModule/services/userService';
-import { setUserData, resetUserData } from '../mutations/constants';
+import mutationTypes from 'userModule/store/mutations/constants';
 
 export default {
     submitRegistration(_, registrationData) {
@@ -9,19 +9,19 @@ export default {
         return userService
             .login(loginData)
             .then((userData) => {
-                commit(setUserData, userData);
+                commit(mutationTypes.SET_USER_DATA, userData);
             });
     },
     submitSignOut({ commit }) {
         return userService
             .signOut()
-            .then(() => commit(resetUserData));
+            .then(() => commit(mutationTypes.RESET_USER_DATA));
     },
     getCurrentUserData({ commit }) {
         return userService
             .getCurrentUser()
             .then((userData) => {
-                commit(setUserData, userData);
+                commit(mutationTypes.SET_USER_DATA, userData);
             });
     }
 };
