@@ -58,7 +58,7 @@ export default {
         this.loadUser();
     },
     methods: {
-        ...mapActions('userData', ['getCurrentUserData', 'submitSignOut']),
+        ...mapActions(['getCurrentUserData', 'submitSignOut']),
 
         loadUser() {
             const promise = this.getCurrentUserData();

@@ -105,7 +105,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('userData', ['submitRegistration']),
+        ...mapActions(['submitRegistration']),
 
         uploadProfilePicture(e) {
             const files = e.target.files || e.dataTransfer.files;

@@ -46,9 +46,11 @@ export default {
             isMenuShown: false
         };
     },
-    computed: {
-        ...mapState('userData', ['name', 'profilePictureUrl'])
-    },
+    computed:
+    mapState({
+        name: state => state.userData.name,
+        profilePictureUrl: state => state.userData.profilePictureUrl
+    }),
     methods: {
         showMenu() {
             this.isMenuShown = true;

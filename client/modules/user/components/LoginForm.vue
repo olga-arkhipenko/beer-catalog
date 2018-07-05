@@ -47,7 +47,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions('userData', ['submitLogin']),
+        ...mapActions(['submitLogin']),
         submitForm() {
             const promise = this.submitLogin(this.loginData);
             notificationHelper.showNotification(promise, configs.login);
