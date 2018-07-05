@@ -1,23 +1,24 @@
 import beerDetailsService from 'beerInfoModule/services/beerDetailsService';
-import { setBeer, resetBeer, makeBeerFavorite, unmakeBeerFavorite } from '../mutations/constants';
+import mutationTypes from 'beerInfoModule/store/mutations/constants';
+import actionTypes from './constants';
 
 export default {
-    loadBeer({ commit }, beerId) {
+    [actionTypes.LOAD_BEER]({ commit }, beerId) {
         return beerDetailsService
             .fetchBeer(beerId)
             .then((beer) => {
-                commit(setBeer, beer);
+                commit(mutationTypes.SET_BEER, beer);
             });
     },
-    resetBeer({ commit }) {
-        commit(resetBeer);
+    [actionTypes.RESET_BEER]({ commit }) {
+        commit(mutationTypes.RESET_BEER);
     },
-    addFavoriteBeer({ commit, dispatch }, beerId) {
+    [actionTypes.ADD_FAVORITE_BEER]({ commit, dispatch }, beerId) {
         dispatch('favorites/addFavoriteBeer', beerId, { root: true })
-            .then(() => commit(makeBeerFavorite));
+            .then(() => commit(mutationTypes.MAKE_BEER_FAVORITE));
     },
-    removeFavoriteBeer({ commit, dispatch }, beerId) {
+    [actionTypes.REMOVE_FAVORITE_BEER]({ commit, dispatch }, beerId) {
         dispatch('favorites/removeFavoriteBeer', beerId, { root: true })
-            .then(() => commit(unmakeBeerFavorite));
+            .then(() => commit(mutationTypes.UNMAKE_BEER_FAVORITE));
     }
 };

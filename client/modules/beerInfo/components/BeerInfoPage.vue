@@ -38,6 +38,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import actionTypes from 'beerInfoModule/store/actions/constants';
+// import stateTypes from 'beerInfoModule/store/state/constants';
 import Spinner from 'common/components/other/Spinner';
 import Properties from './Properties';
 import FoodPairing from './FoodPairing';
@@ -45,7 +47,7 @@ import Brewing from './Brewing';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch('userData/getCurrentUserData'));
+        next(vm => vm.$store.dispatch('getCurrentUserData'));
     },
     components: {
         Properties,
@@ -60,7 +62,9 @@ export default {
         }
     },
     computed: {
-        ...mapState('beerInfo', ['beer']),
+        ...mapState({
+            beer: state => state.beerInfo.beer
+        }),
 
         isLoaded() {
             return Object.keys(this.beer).length;
@@ -72,7 +76,13 @@ export default {
     beforeDestroy() {
         this.resetBeer();
     },
-    methods: mapActions('beerInfo', ['loadBeer', 'resetBeer', 'addFavoriteBeer', 'removeFavoriteBeer'])
+    methods:
+    mapActions({
+        loadBeer: actionTypes.LOAD_BEER,
+        resetBeer: actionTypes.RESET_BEER,
+        addFavoriteBeer: actionTypes.ADD_FAVORITE_BEER,
+        removeFavoriteBeer: actionTypes.REMOVE_FAVORITE_BEER
+    })
 };
 </script>
 

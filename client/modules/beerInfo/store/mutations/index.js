@@ -1,14 +1,16 @@
+import mutationTypes from './constants';
+
 export default {
-    setBeer(state, beer) {
+    [mutationTypes.SET_BEER](state, beer) {
         state.beer = beer;
     },
-    resetBeer(state) {
+    [mutationTypes.RESET_BEER](state) {
         state.beer = {};
     },
-    makeBeerFavorite(state) {
+    [mutationTypes.MAKE_BEER_FAVORITE](state) {
         state.beer.isFavorite = true;
     },
-    unmakeBeerFavorite(state) {
+    [mutationTypes.UNMAKE_BEER_FAVORITE](state) {
         state.beer.isFavorite = false;
     }
 };
