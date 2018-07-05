@@ -1,11 +1,13 @@
+import mutationTypes from './constants';
+
 export default {
-    pushBeers(state, beers) {
+    [mutationTypes.PUSH_BEERS](state, beers) {
         state.beers.push(...beers);
     },
-    resetBeers(state) {
+    [mutationTypes.RESET_BEERS](state) {
         state.beers = [];
     },
-    makeBeerFavorite(state, beerId) {
+    [mutationTypes.MAKE_BEER_FAVORITE](state, beerId) {
         state.beers = state.beers.map((beer) => {
             if (beer.id === beerId) {
                 beer.isFavorite = true;
@@ -13,7 +15,7 @@ export default {
             return beer;
         });
     },
-    unmakeBeerFavorite(state, beerId) {
+    [mutationTypes.UNMAKE_BEER_FAVORITE](state, beerId) {
         state.beers = state.beers.map((beer) => {
             if (beer.id === beerId) {
                 beer.isFavorite = false;
