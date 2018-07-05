@@ -31,7 +31,7 @@ import CatalogCard from './CatalogCard';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch('userData/getCurrentUserData'));
+        next(vm => vm.$store.dispatch('getCurrentUserData'));
     },
     components: {
         SearchPanel,
