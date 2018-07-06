@@ -83,6 +83,7 @@
 import { mapActions } from 'vuex';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import actionTypes from 'userModule/store/actions/constants';
 
 export default {
     data() {
@@ -105,7 +106,9 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['submitRegistration']),
+        ...mapActions({
+            submitRegistration: actionTypes.SUBMIT_REGISTRATION
+        }),
 
         uploadProfilePicture(e) {
             const files = e.target.files || e.dataTransfer.files;

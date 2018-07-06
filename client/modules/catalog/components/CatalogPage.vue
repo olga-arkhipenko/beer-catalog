@@ -28,12 +28,13 @@ import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
 import actionTypes from 'catalogModule/store/actions/constants';
 import stateTypes from 'catalogModule/store/state/constants';
+import userDataActionTypes from 'userModule/store/actions/constants';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch('getCurrentUserData'));
+        next(vm => vm.$store.dispatch(userDataActionTypes.GET_CURRENT_USER_DATA));
     },
     components: {
         SearchPanel,

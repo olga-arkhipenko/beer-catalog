@@ -1,6 +1,6 @@
 import userService from 'userModule/services/userService';
 import mutationTypes from 'userModule/store/mutations/constants';
-import actionTypes from './contants';
+import actionTypes from './constants';
 
 export default {
     [actionTypes.SUBMIT_REGISTRATION](_, registrationData) {

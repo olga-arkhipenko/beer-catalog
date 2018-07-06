@@ -25,11 +25,12 @@ import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
 import actionTypes from 'favoritesModule/store/actions/constants';
 import stateTypes from 'favoritesModule/store/state/constants';
+import userDataActionTypes from 'userModule/store/actions/constants';
 import FavoritesCard from './FavoritesCard';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch('getCurrentUserData'));
+        next(vm => vm.$store.dispatch(userDataActionTypes.GET_CURRENT_USER_DATA));
     },
     components: {
         RowList,

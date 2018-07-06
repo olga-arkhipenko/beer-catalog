@@ -47,13 +47,14 @@ import stateTypes from 'beerInfoModule/store/state/constants';
 import Spinner from 'common/components/other/Spinner';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import userDataActionTypes from 'userModule/store/actions/constants';
 import Properties from './Properties';
 import FoodPairing from './FoodPairing';
 import Brewing from './Brewing';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch('getCurrentUserData'));
+        next(vm => vm.$store.dispatch(userDataActionTypes.GET_CURRENT_USER_DATA));
     },
     components: {
         Properties,

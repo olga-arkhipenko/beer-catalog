@@ -34,6 +34,7 @@ import { mapActions } from 'vuex';
 import clickOutside from 'common/directives/clickOutside';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import actionTypes from 'userModule/store/actions/constants';
 
 export default {
     directives: {
@@ -58,7 +59,10 @@ export default {
         this.loadUser();
     },
     methods: {
-        ...mapActions(['getCurrentUserData', 'submitSignOut']),
+        ...mapActions({
+            getCurrentUserData: actionTypes.GET_CURRENT_USER_DATA,
+            submitSignOut: actionTypes.SUBMIT_SIGN_OUT
+        }),
 
         loadUser() {
             const promise = this.getCurrentUserData();
