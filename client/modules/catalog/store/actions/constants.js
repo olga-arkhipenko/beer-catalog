@@ -1,7 +1,7 @@
-const LOAD_BEERS = 'loadBeers';
-const RESET_BEERS = 'resetBeers';
-const ADD_FAVORITE_BEER = 'addFavoriteBeer';
-const REMOVE_FAVORITE_BEER = 'removeFavoriteBeer';
+const LOAD_BEERS = 'catalog/loadBeers';
+const RESET_BEERS = 'catalog/resetBeers';
+const ADD_FAVORITE_BEER = 'catalog/addFavoriteBeer';
+const REMOVE_FAVORITE_BEER = 'catalog/removeFavoriteBeer';
 
 export default {
     LOAD_BEERS,

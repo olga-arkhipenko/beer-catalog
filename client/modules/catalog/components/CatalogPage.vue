@@ -27,6 +27,7 @@ import PageScroller from 'common/components/wrappers/PageScrollWrapper';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
 import actionTypes from 'catalogModule/store/actions/constants';
+import stateTypes from 'catalogModule/store/state/constants';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -52,7 +53,7 @@ export default {
     },
     computed: {
         ...mapState({
-            beers: state => state.catalog.beers
+            beers: state => state.catalog[stateTypes.BEERS]
         }),
 
         isSpinnerShown() {
