@@ -13,15 +13,15 @@ export default {
     [actionTypes.RESET_BEERS]({ commit }) {
         commit(mutationTypes.RESET_BEERS);
     },
-    [actionTypes.ADD_FAVORITE_BEER]({ commit, dispatch }, beerId) {
-        return dispatch('favorites/addFavoriteBeer', beerId, { root: true })
-            .then(favoriteBeerId => commit(mutationTypes.MAKE_FAVORITE_BEER, favoriteBeerId));
+    [actionTypes.ADD_FAVORITE_BEER]({ commit }, beerId) {
+        return beerService
+            .addFavoriteBeer(beerId)
+            .then(favoriteBeerId => commit(mutationTypes.MAKE_BEER_FAVORITE, favoriteBeerId));
     },
-    [actionTypes.REMOVE_FAVORITE_BEER]({ commit, dispatch }, beerId) {
-        return dispatch('favorites/removeFavoriteBeer', beerId, { root: true })
-            .then((unfavoriteBeerId) => {
-                commit(mutationTypes.UNMAKE_BEER_FAVORITE, unfavoriteBeerId);
-            });
+    [actionTypes.REMOVE_FAVORITE_BEER]({ commit }, beerId) {
+        return beerService
+            .removeFavoriteBeer(beerId)
+            .then(unfavoriteBeerId => commit(mutationTypes.UNMAKE_BEER_FAVORITE, unfavoriteBeerId));
     }
 };
 
