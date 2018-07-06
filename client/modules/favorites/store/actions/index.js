@@ -20,7 +20,7 @@ export default {
     [actionTypes.REMOVE_FAVORITE_BEER_WITH_RELOAD]({ dispatch }, payload) {
         return favoritesService
             .removeFavoriteBeer(payload.beerId)
-            .then(() => dispatch(actionTypes.REMOVE_FAVORITE_BEER, payload.requestParams));
+            .then(() => dispatch(actionTypes.LOAD_FAVORITE_BEERS, payload.requestParams));
     },
     [actionTypes.RESET_BEERS]({ commit }) {
         commit(mutationTypes.RESET_BEERS);
