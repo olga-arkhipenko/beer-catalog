@@ -23,6 +23,8 @@ import Pagination from 'common/components/other/Pagination';
 import RowList from 'common/components/lists/RowList';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import actionTypes from 'favoritesModule/store/actions/constants';
+import stateTypes from 'favoritesModule/store/state/constants';
 import FavoritesCard from './FavoritesCard';
 
 export default {
@@ -43,7 +45,10 @@ export default {
         };
     },
     computed: {
-        ...mapState('favorites', ['favoriteBeers', 'amountOfPages'])
+        ...mapState({
+            favoriteBeers: state => state.favorites[stateTypes.FAVORITE_BEERS],
+            amountOfPages: state => state.favorites[stateTypes.AMOUNT_OF_PAGES]
+        })
     },
     mounted() {
         const promise = this.loadFavoriteBeers(this.pageParams);
@@ -53,7 +58,11 @@ export default {
         this.resetFavorites();
     },
     methods: {
-        ...mapActions('favorites', ['loadFavoriteBeers', 'removeFavoriteBeerWithReload', 'resetBeers']),
+        ...mapActions({
+            loadFavoriteBeers: actionTypes.LOAD_FAVORITE_BEERS,
+            removeFavoriteBeerWithReload: actionTypes.REMOVE_FAVORITE_BEER_WITH_RELOAD,
+            resetBeers: actionTypes.RESET_BEERS
+        }),
 
         changePage(pageNumber) {
             this.pageParams.pageNumber = pageNumber;
