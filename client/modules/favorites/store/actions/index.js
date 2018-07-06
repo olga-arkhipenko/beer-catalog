@@ -1,8 +1,9 @@
 import favoritesService from 'favoritesModule/services/favoritesService';
 import mutationTypes from 'favoritesModule/store/mutations/constants';
+import actionTypes from './constants';
 
 export default {
-    loadFavoriteBeers({ commit }, pageParams) {
+    [actionTypes.LOAD_FAVORITE_BEERS]({ commit }, pageParams) {
         return favoritesService
             .fetchFavoriteBeers(pageParams)
             .then((favoritesData) => {
@@ -10,17 +11,17 @@ export default {
                 commit(mutationTypes.SET_AMOUNT_OF_PAGES, favoritesData.amountOfPages);
             });
     },
-    addFavoriteBeer(_, beerId) {
+    [actionTypes.ADD_FAVORITE_BEER](_, beerId) {
         return favoritesService.addFavoriteBeer(beerId);
     },
-    removeFavoriteBeer(_, beerId) {
+    [actionTypes.REMOVE_FAVORITE_BEER](_, beerId) {
         return favoritesService.removeFavoriteBeer(beerId);
     },
-    removeFavoriteBeerWithReload({ dispatch }, payload) {
+    [actionTypes.REMOVE_FAVORITE_BEER_WITH_RELOAD]({ dispatch }, payload) {
         return favoritesService.removeFavoriteBeer(payload.beerId)
-            .then(() => dispatch('loadFavoriteBeers', payload.requestParams));
+            .then(() => dispatch(actionTypes.REMOVE_FAVORITE_BEER, payload.requestParams));
     },
-    resetBeers({ commit }) {
+    [actionTypes.RESET_BEERS]({ commit }) {
         commit(mutationTypes.RESET_BEERS);
     }
 };
