@@ -26,6 +26,7 @@ import Spinner from 'common/components/other/Spinner';
 import PageScroller from 'common/components/wrappers/PageScrollWrapper';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import actionTypes from 'catalogModule/store/actions/constants';
 import SearchPanel from './SearchPanel';
 import CatalogCard from './CatalogCard';
 
@@ -50,7 +51,9 @@ export default {
         };
     },
     computed: {
-        ...mapState('catalog', ['beers']),
+        ...mapState({
+            beers: state => state.catalog.beers
+        }),
 
         isSpinnerShown() {
             return this.beers.length % this.pageParams.itemsPerPage === 0;
@@ -63,7 +66,10 @@ export default {
         this.resetCatalog();
     },
     methods: {
-        ...mapActions('catalog', ['loadBeers', 'resetBeers']),
+        ...mapActions({
+            loadBeers: actionTypes.LOAD_BEERS,
+            resetBeers: actionTypes.RESET_BEERS
+        }),
 
         loadBeerPage() {
             const catalogParams = { ...this.pageParams, ...this.searchParams };

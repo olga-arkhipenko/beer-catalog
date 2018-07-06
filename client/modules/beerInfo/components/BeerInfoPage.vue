@@ -39,7 +39,6 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import actionTypes from 'beerInfoModule/store/actions/constants';
-// import stateTypes from 'beerInfoModule/store/state/constants';
 import Spinner from 'common/components/other/Spinner';
 import Properties from './Properties';
 import FoodPairing from './FoodPairing';

@@ -31,6 +31,7 @@
 import { mapActions } from 'vuex';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';
+import actionTypes from 'catalogModule/store/actions/constants';
 
 export default {
     props: {
@@ -40,7 +41,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions('catalog', ['addFavoriteBeer', 'removeFavoriteBeer']),
+        ...mapActions({
+            addFavoriteBeer: actionTypes.ADD_FAVORITE_BEER,
+            removeFavoriteBeer: actionTypes.REMOVE_FAVORITE_BEER
+        }),
 
         submitAddFavoriteBeer(beerId) {
             const promise = this.addFavoriteBeer(beerId);
