@@ -8,20 +8,24 @@
             class="beer-info__image">
         <h1
             v-cloak
-            class="beer-info__heading">{{ beer.name }}</h1>
+            class="beer-info__heading">{{ beer.name }}
+        </h1>
         <p
             v-cloak
-            class="beer-info__tag">{{ beer.tagline }}</p>
+            class="beer-info__tag">{{ beer.tagline }}
+        </p>
         <button
             v-if="beer.isFavorite"
             class="beer-info__button action-button"
-            @click="removeFavoriteBeer(beer.id)">
-            remove favorite</button>
+            @click="submitRemoveFavoriteBeer(beer.id)">
+            remove favorite
+        </button>
         <button
             v-else
             class="beer-info__button action-button"
-            @click="addFavoriteBeer(beer.id)">
-            add favorite</button>
+            @click="submitAddFavoriteBeer(beer.id)">
+            add favorite
+        </button>
         <p class="beer-info__description">
             {{ beer.description }}
         </p>
@@ -41,6 +45,8 @@ import { mapState, mapActions } from 'vuex';
 import actionTypes from 'beerInfoModule/store/actions/constants';
 import stateTypes from 'beerInfoModule/store/state/constants';
 import Spinner from 'common/components/other/Spinner';
+import notificationHelper from 'common/helpers/notification/notificationHelper';
+import configs from 'common/helpers/notification/configs';
 import Properties from './Properties';
 import FoodPairing from './FoodPairing';
 import Brewing from './Brewing';
@@ -76,13 +82,23 @@ export default {
     beforeDestroy() {
         this.resetBeer();
     },
-    methods:
-    mapActions({
-        loadBeer: actionTypes.LOAD_BEER,
-        resetBeer: actionTypes.RESET_BEER,
-        addFavoriteBeer: actionTypes.ADD_FAVORITE_BEER,
-        removeFavoriteBeer: actionTypes.REMOVE_FAVORITE_BEER
-    })
+    methods: {
+        ...mapActions({
+            loadBeer: actionTypes.LOAD_BEER,
+            resetBeer: actionTypes.RESET_BEER,
+            addFavoriteBeer: actionTypes.ADD_FAVORITE_BEER,
+            removeFavoriteBeer: actionTypes.REMOVE_FAVORITE_BEER
+        }),
+
+        submitAddFavoriteBeer(beerId) {
+            const promise = this.addFavoriteBeer(beerId);
+            notificationHelper.showNotification(promise, configs.authorization);
+        },
+        submitRemoveFavoriteBeer(beerId) {
+            const promise = this.removeFavoriteBeer(beerId);
+            notificationHelper.showNotification(promise, configs.authorization);
+        }
+    }
 };
 </script>
 

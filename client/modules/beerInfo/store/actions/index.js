@@ -1,5 +1,6 @@
 import beerDetailsService from 'beerInfoModule/services/beerDetailsService';
 import mutationTypes from 'beerInfoModule/store/mutations/constants';
+import favoritesActionTypes from 'favoritesModule/store/actions/constants';
 import actionTypes from './constants';
 
 export default {
@@ -14,11 +15,11 @@ export default {
         commit(mutationTypes.RESET_BEER);
     },
     [actionTypes.ADD_FAVORITE_BEER]({ commit, dispatch }, beerId) {
-        dispatch('favorites/addFavoriteBeer', beerId, { root: true })
+        return dispatch(favoritesActionTypes.ADD_FAVORITE_BEER, beerId)
             .then(() => commit(mutationTypes.MAKE_BEER_FAVORITE));
     },
     [actionTypes.REMOVE_FAVORITE_BEER]({ commit, dispatch }, beerId) {
-        dispatch('favorites/removeFavoriteBeer', beerId, { root: true })
+        return dispatch(favoritesActionTypes.REMOVE_FAVORITE_BEER, beerId)
             .then(() => commit(mutationTypes.UNMAKE_BEER_FAVORITE));
     }
 };
