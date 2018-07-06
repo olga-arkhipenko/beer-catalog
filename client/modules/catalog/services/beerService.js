@@ -12,17 +12,5 @@ export default {
         return ajaxHelper
             .get(url)
             .then(beers => beers.map(beerMapper.mapToBeer));
-    },
-    addFavoriteBeer(beerId) {
-        const url = `${urls.favorites}/${beerId}`;
-        return ajaxHelper
-            .postJson(url, { beerId })
-            .then(beer => beer.beerId);
-    },
-    removeFavoriteBeer(beerId) {
-        const url = `${urls.favorites}/${beerId}`;
-        return ajaxHelper
-            .delete(url, { beerId })
-            .then(beer => beer.beerId);
     }
 };
