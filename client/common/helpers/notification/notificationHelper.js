@@ -4,12 +4,12 @@ export default {
     showNotification(promise, config) {
         return promise
             .then(() => {
-                if (config.success) {
+                if (config && config.success) {
                     notificationCreator.showSuccess(config.success);
                 }
             })
             .catch(() => {
-                if (config.error) {
+                if (config && config.error) {
                     notificationCreator.showError(config.error);
                 }
             });
