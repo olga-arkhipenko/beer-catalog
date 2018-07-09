@@ -53,7 +53,7 @@ export default {
         }),
 
         submitForm() {
-            const promise = this.submitLogin(this.loginData);
+            const promise = this.submitLogin(this.loginData).then(() => this.$router.push({ path: '/' }));
             notificationHelper.showNotification(promise, configs.login);
         }
     }

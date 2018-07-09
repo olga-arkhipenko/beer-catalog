@@ -116,7 +116,7 @@ export default {
         },
         submitForm() {
             if (this.isPasswordMatch) {
-                const promise = this.submitRegistration(this.registrationData);
+                const promise = this.submitRegistration(this.registrationData).then(() => this.$router.push({ path: '/login' }));
                 notificationHelper.showNotification(promise, configs.registration);
             }
         }
