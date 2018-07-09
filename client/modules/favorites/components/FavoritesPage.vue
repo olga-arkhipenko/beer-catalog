@@ -30,7 +30,10 @@ import FavoritesCard from './FavoritesCard';
 
 export default {
     beforeRouteEnter(to, from, next) {
-        next(vm => vm.$store.dispatch(userDataActionTypes.GET_CURRENT_USER_DATA));
+        next((vm) => {
+            const promise = vm.$store.dispatch(userDataActionTypes.GET_CURRENT_USER_DATA);
+            notificationHelper.showNotification(promise);
+        });
     },
     components: {
         RowList,
