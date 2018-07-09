@@ -2,7 +2,7 @@ import notificationCreator from './notificationCreator';
 
 export default {
     showNotification(promise, config) {
-        return promise
+        promise
             .then(() => {
                 if (config && config.success) {
                     notificationCreator.showSuccess(config.success);
