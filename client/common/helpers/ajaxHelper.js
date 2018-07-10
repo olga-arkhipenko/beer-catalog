@@ -1,42 +1,17 @@
-// import requestHelper from 'common/helpers/requstHelper';
+import requestHelper from './requestHelper';
+import responseHelper from './responseHelper';
 
 export default {
     get(url) {
-        // return requestHelper(url, 'get');
-        return fetch(url, {
-            method: 'get',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            });
+        const promise = requestHelper.sendRequest(url);
+        return responseHelper.getResponse(promise);
     },
     postJson(url, data) {
-        return fetch(url, {
-            method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: data ? JSON.stringify(data) : ''
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            });
+        const promise = requestHelper.sendRequest(url, 'post', data);
+        return responseHelper.getResponse(promise);
     },
     postImage(url, image) {
-        return fetch(url, {
+        const promise = fetch(url, {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -45,29 +20,11 @@ export default {
             },
             credentials: 'include',
             body: image || ''
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            });
+        });
+        return responseHelper.getResponse(promise);
     },
     delete(url, data) {
-        return fetch(url, {
-            method: 'delete',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: data ? JSON.stringify(data) : ''
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            });
+        const promise = requestHelper.sendRequest(url, 'delete', data);
+        return responseHelper.getResponse(promise);
     }
 };
