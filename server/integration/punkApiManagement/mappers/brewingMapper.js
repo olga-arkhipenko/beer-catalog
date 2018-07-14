@@ -1,6 +1,6 @@
-const Brewing = require('../../../web/models/Brewing');
-const Ingredients = require('../../../web/models/Ingredients');
-const Methods = require('../../../web/models/Methods');
+const Brewing = require('../../../web/models/brewing');
+const Ingredients = require('../../../web/models/ingredients');
+const Methods = require('../../../web/models/methods');
 const ingredientsMapper = require('./ingredientsMapper');
 const methodsMapper = require('./methodsMapper');
 
