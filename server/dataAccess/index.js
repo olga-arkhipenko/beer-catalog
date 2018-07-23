@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const databaseConnector = require('./databaseConnector');
-const user = require('./modelsConfigs/User');
-const favorite = require('./modelsConfigs/Favorite');
-const image = require('./modelsConfigs/Image');
+const user = require('./modelsConfigs/user');
+const favorite = require('./modelsConfigs/favorite');
+const image = require('./modelsConfigs/image');
 
 const databaseConnection = databaseConnector.connect();
 

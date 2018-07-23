@@ -21,8 +21,8 @@
         "url": "https://github.com/olga-arkhipenko/beer-catalog/issues"
     },
     "engines": {
-        "node": "8.9.3",
-        "npm": "5.5.1"
+        "node": "10.5.0",
+        "npm": "6.1.0"
     },
     "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
     "dependencies": {
