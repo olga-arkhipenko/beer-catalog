@@ -1,0 +1,5 @@
+{
+    "databaseConfig": {
+        "url": "DATABASE_URL"
+    }
+}

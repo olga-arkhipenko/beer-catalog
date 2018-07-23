@@ -1,0 +1,135 @@
+@import "/node_modules/noty/lib/noty.css";
+@import "/node_modules/noty/lib/themes/sunset.css";
+
+[v-cloak] {
+    display: none;
+}
+
+.page {
+    width: 1024px;
+    margin: 140px auto;
+
+    font-family: "Courier New", Courier, monospace;
+}
+
+.form {
+    width: 500px;
+    margin: 140px auto;
+    padding: 0 50px;
+
+    color: #328587;
+    border: 1px solid #c7d7e9;
+    box-shadow: 10px 10px 0 -4px #c7d7e9;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.4rem;
+}
+
+.form--login {
+    padding: 20px 50px 0;
+}
+
+.form__heading {
+    font-size: 2rem;
+}
+
+.form__input {
+    width: 100%;
+    padding: 4px 0;
+
+    border: none;
+    border-bottom: 1px solid #c8d8e9;
+}
+
+.form__input::placeholder {
+    color: #a9b6c5;
+}
+
+.form__field {
+    margin: 20px 0;
+
+    font-size: 1.6rem;
+}
+
+.form__button-wrapper {
+    margin: 40px 0;
+
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+
+    color: inherit;
+}
+
+.clearfix::after {
+    display: table;
+    clear: both;
+
+    content: "";
+}
+
+.action-button {
+    cursor: pointer;
+
+    border: none;
+    background: transparent;
+}
+
+.action-button:focus {
+    outline: none;
+}
+
+.close-sign {
+    padding: 5px;
+
+    color: #bf4a50;
+
+    font-size: 2rem;
+}
+
+.tooltip-sign {
+    position: relative;
+
+    display: inline-block;
+
+    cursor: pointer;
+    vertical-align: middle;
+
+    font-size: 1.3rem;
+}
+
+.tooltip-info {
+    position: absolute;
+
+    visibility: hidden;
+
+    width: 300px;
+    padding: 10px;
+
+    color: #ffffff;
+    background-color: #464c67;
+
+    font-size: 0.9rem;
+}
+
+.tooltip-sign:hover .tooltip-info {
+    visibility: visible;
+}
+
+.beer-info-list {
+    padding: 20px;
+
+    color: #31374c;
+    background-color: #eff8ff;
+}
+
+.beer-info-list__item {
+    display: flex;
+
+    font-size: 1.1rem;
+    line-height: 2rem;
+
+    justify-content: space-between;
+}

@@ -1,11 +1,15 @@
 {
     "name": "beer-catalog",
     "version": "1.0.0",
-    "description": "Beer catalog based on Vue.js",
+    "description": "Beer catalog implemented with Vue.js and Node.js",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack-dev-server --mode development --hot --open",
-        "build": "webpack --progress --hide-modules --mode production --env.production"
+        "start-dev-client": "webpack-dev-server --mode development",
+        "build-prod-client": "webpack --progress --hide-modules --mode production --env.production",
+        "start-server": "node server/app.js",
+        "start-dev": "node server/app.js & webpack-dev-server --mode development --open",
+        "start": "node server/app.js",
+        "heroku-postbuild": "webpack --progress --hide-modules --mode production --env.production"
     },
     "repository": {
         "type": "git",
@@ -16,10 +20,27 @@
     "bugs": {
         "url": "https://github.com/olga-arkhipenko/beer-catalog/issues"
     },
+    "engines": {
+        "node": "8.9.3",
+        "npm": "5.5.1"
+    },
     "homepage": "https://github.com/olga-arkhipenko/beer-catalog#readme",
     "dependencies": {
+        "body-parser": "^1.18.3",
+        "cloudinary": "^1.11.0",
+        "config": "^1.30.0",
+        "cookie-parser": "^1.4.3",
+        "dotenv": "^6.0.0",
+        "express": "^4.16.3",
+        "jsonwebtoken": "^8.2.1",
+        "morgan": "^1.9.0",
+        "node-fetch": "^2.1.2",
         "normalize.css": "^8.0.0",
-        "vue": "^2.5.13",
+        "noty": "^3.2.0-beta",
+        "pg": "^7.4.1",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.38.0",
+        "vue": "^2.5.16",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"
     },
@@ -41,8 +62,8 @@
         "vue-loader": "^14.1.1",
         "vue-style-loader": "^4.0.2",
         "vue-template-compiler": "^2.5.13",
-        "webpack": "^4.0.1",
+        "webpack": "^4.15.1",
         "webpack-cli": "^2.0.10",
-        "webpack-dev-server": "^3.1.0"
+        "webpack-dev-server": "^3.1.4"
     }
 }

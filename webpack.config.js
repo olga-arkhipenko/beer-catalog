@@ -5,7 +5,7 @@ module.exports = (env) => {
     const isProductionBuild = !!(env && env.production);
 
     const config = {
-        entry: './src/index.js',
+        entry: './client/index.js',
         output: {
             path: path.resolve(__dirname, './dist'),
             publicPath: '/dist/',
@@ -47,14 +47,13 @@ module.exports = (env) => {
         resolve: {
             alias: {
                 vue$: 'vue/dist/vue.esm.js',
-                common: path.resolve(__dirname, 'src/common'),
-                catalogModule: path.resolve(__dirname, 'src/modules/catalog'),
-                favoritesModule: path.resolve(__dirname, 'src/modules/favorites'),
-                beerInfoModule: path.resolve(__dirname, 'src/modules/beerInfo'),
-                features: path.resolve(__dirname, 'src/features'),
-                favoritesManagement: path.resolve(__dirname, 'src/features/favoritesManagement'),
-                router: path.resolve(__dirname, 'src/router'),
-                store: path.resolve(__dirname, 'src/store')
+                common: path.resolve(__dirname, 'client/common'),
+                catalogModule: path.resolve(__dirname, 'client/modules/catalog'),
+                favoritesModule: path.resolve(__dirname, 'client/modules/favorites'),
+                beerInfoModule: path.resolve(__dirname, 'client/modules/beerInfo'),
+                userModule: path.resolve(__dirname, 'client/modules/user'),
+                routing: path.resolve(__dirname, 'client/routing'),
+                store: path.resolve(__dirname, 'client/store')
             },
             extensions: ['*', '.js', '.vue', '.json']
         },
@@ -62,7 +61,10 @@ module.exports = (env) => {
             historyApiFallback: true,
             noInfo: true,
             overlay: true,
-            publicPath: '/dist/'
+            publicPath: '/dist/',
+            proxy: {
+                '/': 'http://localhost:3030'
+            }
         },
         performance: {
             hints: false
