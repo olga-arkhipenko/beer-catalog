@@ -19,7 +19,7 @@ export default {
     addFavoriteBeer(beerId) {
         const url = `${urls.favorites}/${beerId}`;
         return ajaxHelper
-            .postJson(url, { beerId })
+            .post(url, { beerId })
             .then(beer => beer.beerId);
     },
     removeFavoriteBeer(beerId) {
