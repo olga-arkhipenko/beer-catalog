@@ -1,22 +1,28 @@
 export default {
     sendRequest(url, method = 'get', data) {
-        return data ?
-            fetch(url, {
-                method,
-                headers: {
-                    Accept: 'application/json',
+        const options = {
+            method,
+            credentials: 'include'
+        };
+        const optionsHeaders = {
+            Accept: 'application/json'
+        };
+        if (data) {
+            if (data instanceof Blob) {
+                options.body = data;
+                options.headers = {
+                    ...optionsHeaders,
+                    'Content-Type': data.type
+                };
+            } else {
+                options.body = JSON.stringify(data);
+                options.headers = {
+                    ...optionsHeaders,
                     'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: data ? JSON.stringify(data) : ''
-            })
-            : fetch(url, {
-                method,
-                headers: {
-                    Accept: 'application/json'
-                },
-                credentials: 'include'
-            });
+                };
+            }
+        }
+        return fetch(url, options);
     }
 };
 
