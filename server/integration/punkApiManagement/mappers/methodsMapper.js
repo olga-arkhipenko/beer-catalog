@@ -1,6 +1,6 @@
-const MashTemp = require('../../../web/models/MashTemp');
-const Fermentation = require('../../../web/models/Fermentation');
-const Twist = require('../../../web/models/Twist');
+const MashTemp = require('../../../web/models/mashTemp');
+const Fermentation = require('../../../web/models/fermentation');
+const Twist = require('../../../web/models/twist');
 
 module.exports = {
     mapMashTemp(mashTemp) {

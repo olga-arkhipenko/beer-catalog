@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const UserDetails = require('../models/UserDetails');
+const User = require('../models/user');
+const UserDetails = require('../models/userDetails');
 const imageMapper = require('./imageMapper');
 
 const mapUser = function (databaseModel, TargetType) {

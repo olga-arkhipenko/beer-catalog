@@ -1,4 +1,4 @@
-const FoodPair = require('../../../web/models/FoodPair');
+const FoodPair = require('../../../web/models/foodPair');
 
 module.exports = {
     mapFoodPairing(foodPairing) {
