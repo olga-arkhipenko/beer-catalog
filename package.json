@@ -6,7 +6,6 @@
     "scripts": {
         "start-dev-client": "webpack-dev-server --mode development",
         "build-prod-client": "webpack --progress --hide-modules --mode production --env.production",
-        "start-server": "node server/app.js",
         "start-dev": "node server/app.js & webpack-dev-server --mode development --open",
         "start": "node server/app.js",
         "heroku-postbuild": "webpack --progress --hide-modules --mode production --env.production"
