@@ -6,21 +6,8 @@ export default {
         const promise = requestHelper.sendRequest(url);
         return responseHelper.getResponse(promise);
     },
-    postJson(url, data) {
+    post(url, data) {
         const promise = requestHelper.sendRequest(url, 'post', data);
-        return responseHelper.getResponse(promise);
-    },
-    postImage(url, image) {
-        const promise = fetch(url, {
-            method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': image.type,
-                'Content-Length': image.size
-            },
-            credentials: 'include',
-            body: image || ''
-        });
         return responseHelper.getResponse(promise);
     },
     delete(url, data) {
