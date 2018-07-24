@@ -8,6 +8,8 @@ Run:
 ```
 git clone https://github.com/olga-arkhipenko/beer-catalog.git
 
+cd beer-catalog
+
 npm install
 ```
 
