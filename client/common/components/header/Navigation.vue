@@ -94,7 +94,7 @@ export default {
     cursor: pointer;
 
     border: none;
-    background: url(../../assets/menu-burger.png);
+    background: url(../../../assets/menu-burger.png);
     background-size: contain;
 }
 </style>
