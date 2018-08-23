@@ -1,9 +1,12 @@
 export default {
-    beers: '/api/beers',
-    favorites: '/api/favorites',
-    imageUpload: '/api/user/uploadImage',
-    registration: '/api/user/registration',
-    login: '/api/user/login',
-    signout: '/api/user/signout',
-    user: '/api/user'
+    prefix: '/api',
+    beers: '/beers',
+    beer: '/beers/:beerId',
+    favorites: '/favorites',
+    favorite: '/favorites/:beerId',
+    imageUpload: '/user/uploadImage',
+    registration: '/user/registration',
+    login: '/user/login',
+    signOut: '/user/signout',
+    user: '/user'
 };
