@@ -30,9 +30,13 @@
                 value="Log in">
         </div>
     </form>
+    <!-- <vue-form>
+
+    </vue-form> -->
 </template>
 
 <script>
+// import VueForm from 'vue-form';
 import { mapActions } from 'vuex';
 import notificationHelper from 'common/helpers/notification/notificationHelper';
 import configs from 'common/helpers/notification/configs';

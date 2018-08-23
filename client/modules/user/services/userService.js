@@ -1,27 +1,33 @@
 import ajaxHelper from 'common/helpers/ajaxHelper';
+import urlCreator from 'common/utilities/urlCreator';
 import urls from 'common/api/constants/urls';
 import userMapper from 'common/api/mappers/userMapper';
 
 export default {
     register(registrationData) {
-        return ajaxHelper.post(urls.imageUpload, registrationData.profilePicture)
+        const imageUploadUrl = urlCreator.createUrl(urls.prefix, urls.imageUpload);
+        const registrationUrl = urlCreator.createUrl(urls.prefix, urls.registration);
+        return ajaxHelper.post(imageUploadUrl, registrationData.profilePicture)
             .then(profilePicture =>
-                ajaxHelper.post(urls.registration, { ...registrationData, profilePicture }))
+                ajaxHelper.post(registrationUrl, { ...registrationData, profilePicture }))
             .then(userData => userMapper.mapToUser(userData));
     },
     login(loginData) {
-        return ajaxHelper.post(urls.login, loginData)
+        const loginUrl = urlCreator.createUrl(urls.prefix, urls.login);
+        return ajaxHelper.post(loginUrl, loginData)
             .then((userData) => {
                 const mappedUser = userMapper.mapToUserDetails(userData);
                 return mappedUser;
             });
     },
     signOut() {
-        return ajaxHelper.post(urls.signout);
+        const signOutUrl = urlCreator.createUrl(urls.prefix, urls.signOut);
+        return ajaxHelper.post(signOutUrl);
     },
     getCurrentUser() {
+        const userUrl = urlCreator.createUrl(urls.prefix, urls.user);
         return ajaxHelper
-            .get(urls.user)
+            .get(userUrl)
             .then(userData => userMapper.mapToUserDetails(userData));
     }
 };

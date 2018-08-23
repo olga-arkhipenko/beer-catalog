@@ -8,7 +8,8 @@ import beerMapper from 'common/api/mappers/beerMapper';
 export default {
     fetchFavoriteBeers(pageParams) {
         const mappedParams = urlMapper.mapParams(queryParamsMap, pageParams);
-        const url = urlCreator.create(urls.favorites, mappedParams);
+        const url = urlCreator
+            .createUrl(urls.prefix, urls.favorites, null, mappedParams);
         return ajaxHelper
             .get(url)
             .then(favoritesData => ({
@@ -17,13 +18,13 @@ export default {
             }));
     },
     addFavoriteBeer(beerId) {
-        const url = `${urls.favorites}/${beerId}`;
+        const url = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
         return ajaxHelper
             .post(url, { beerId })
             .then(beer => beer.beerId);
     },
     removeFavoriteBeer(beerId) {
-        const url = `${urls.favorites}/${beerId}`;
+        const url = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
         return ajaxHelper
             .delete(url, { beerId })
             .then(beer => beer.beerId);
