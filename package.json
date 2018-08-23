@@ -39,7 +39,9 @@
         "pg": "^7.4.1",
         "pg-hstore": "^2.3.2",
         "sequelize": "^4.38.0",
+        "url-assembler": "^1.2.10",
         "vue": "^2.5.16",
+        "vue-form": "^4.9.0",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"
     },
