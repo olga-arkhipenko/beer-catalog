@@ -8,25 +8,25 @@ import beerMapper from 'common/api/mappers/beerMapper';
 export default {
     fetchFavoriteBeers(pageParams) {
         const mappedParams = urlMapper.mapParams(queryParamsMap, pageParams);
-        const url = urlCreator
+        const favoriteBeersUrl = urlCreator
             .createUrl(urls.prefix, urls.favorites, null, mappedParams);
         return ajaxHelper
-            .get(url)
+            .get(favoriteBeersUrl)
             .then(favoritesData => ({
                 beers: favoritesData.beers.map(beerMapper.mapToBeer),
                 amountOfPages: favoritesData.amountOfPages
             }));
     },
     addFavoriteBeer(beerId) {
-        const url = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
+        const favoriteBeerUrl = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
         return ajaxHelper
-            .post(url, { beerId })
+            .post(favoriteBeerUrl, { beerId })
             .then(beer => beer.beerId);
     },
     removeFavoriteBeer(beerId) {
-        const url = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
+        const favoriteBeerUrl = urlCreator.createUrl(urls.prefix, urls.favorite, { beerId });
         return ajaxHelper
-            .delete(url, { beerId })
+            .delete(favoriteBeerUrl, { beerId })
             .then(beer => beer.beerId);
     }
 };

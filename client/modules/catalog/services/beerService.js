@@ -8,10 +8,10 @@ import beerMapper from 'common/api/mappers/beerMapper';
 export default {
     fetchBeers(beerParams) {
         const mappedParams = urlMapper.mapParams(queryParamsMap, beerParams);
-        const url = urlCreator
+        const beersUrl = urlCreator
             .createUrl(urls.prefix, urls.beers, null, mappedParams);
         return ajaxHelper
-            .get(url)
+            .get(beersUrl)
             .then(beers => beers.map(beerMapper.mapToBeer));
     }
 };

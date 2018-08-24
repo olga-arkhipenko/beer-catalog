@@ -5,9 +5,9 @@ import urls from 'common/api/constants/urls';
 
 export default {
     fetchBeer(beerId) {
-        const url = urlCreator.createUrl(urls.prefix, urls.beer, { beerId });
+        const beerUrl = urlCreator.createUrl(urls.prefix, urls.beer, { beerId });
         return ajaxHelper
-            .get(url)
+            .get(beerUrl)
             .then(beer => beerMapper.mapToBeerDetails(beer));
     }
 };
