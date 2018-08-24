@@ -11,9 +11,9 @@ const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
     getBeer(req, res) {
-        const url = `${URL}/${req.params.id}`;
+        const beerUrl = urlCreator.createUrl(URL, req.params.id);
         requestHelper
-            .get(url)
+            .get(beerUrl)
             .then((beer) => {
                 const mappedBeer = beerMapper.mapToBeer(beer[0]);
                 responseHandler.sendResponse(res, 200, mappedBeer);
@@ -22,9 +22,9 @@ module.exports = {
     },
     getBeers(req, res) {
         const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, req.query);
-        const url = urlCreator.create(URL, mappedParams);
+        const beersUrl = urlCreator.createUrl(URL, null, mappedParams);
         requestHelper
-            .get(url)
+            .get(beersUrl)
             .then((beers) => {
                 const mappedBeers = beers.map(beerMapper.mapToBeer);
                 const token = req.cookies[cookieParams.name];

@@ -21,9 +21,9 @@ module.exports = {
             .then((favoritesIds) => {
                 const mappedParams =
                 paramsMapper.mapParams(QUERY_PARAMS_MAP, { beerIds: favoritesIds, ...pageParams });
-                const url = urlCreator.create(URL, mappedParams);
+                const favoriteBeersUrl = urlCreator.createUrl(URL, null, mappedParams);
                 return requestHelper
-                    .get(url)
+                    .get(favoriteBeersUrl)
                     .then((beers) => {
                         beers = beers.map(beerMapper.mapToBeer);
                         const amountOfPages = Math.ceil(favoritesIds.length / pageParams.amount);
