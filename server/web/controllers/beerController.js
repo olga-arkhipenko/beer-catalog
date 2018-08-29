@@ -10,15 +10,22 @@ const cookieParams = require('../configs/cookieParams');
 const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
-    getBeer(req, res) {
-        const beerUrl = urlCreator.createUrl(URL, req.params.id);
-        requestHelper
-            .get(beerUrl)
-            .then((beer) => {
-                const mappedBeer = beerMapper.mapToBeer(beer[0]);
-                responseHandler.sendResponse(res, 200, mappedBeer);
-            })
-            .catch(err => responseHandler.sendResponse(res, 500, err));
+    async getBeer(request, response) {
+        const beerUrl = urlCreator.createUrl(URL, request.params.id);
+        try {
+            const beers = await requestHelper.get(beerUrl);
+            const mappedBeer = beerMapper.mapToBeer(beers[0]);
+            responseHandler.sendResponse(response, 200, mappedBeer);
+        } catch (err) {
+            responseHandler.sendResponse(response, 500, err);
+        }
+        // requestHelper
+        //     .get(beerUrl)
+        //     .then((beer) => {
+        //         const mappedBeer = beerMapper.mapToBeer(beer[0]);
+        //         responseHandler.sendResponse(res, 200, mappedBeer);
+        //     })
+        //     .catch(err => responseHandler.sendResponse(res, 500, err));
     },
     getBeers(req, res) {
         const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, req.query);
