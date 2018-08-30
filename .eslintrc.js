@@ -22,6 +22,11 @@ module.exports = {
         'comma-dangle': ['error', 'never'],
         'func-names': 'off',
         'linebreak-style': 'off',
+        'max-len': ['warn', { 
+            'code': 150,
+            'tabWidth': 4,
+            'ignoreComments': true
+        }],
         'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': ['error', 'never', {
