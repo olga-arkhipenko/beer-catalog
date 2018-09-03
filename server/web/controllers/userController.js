@@ -50,18 +50,14 @@ module.exports = {
     },
     async getUser(request, response) {
         const token = request.cookies[cookieParams.name];
-        if (token) {
+        try {
             const decodedToken = await jwtHelper.verifyToken(token);
-            try {
-                const user = await userService
-                    .getUser(decodedToken.id)
-                    .then(data => userMapper.mapToUserDetails(data));
-                responseHandler.sendResponse(response, 200, user);
-            } catch (err) {
-                responseHandler.sendResponse(response, 401, err);
-            }
-        } else {
-            responseHandler.sendResponse(response, 401);
+            const user = await userService
+                .getUser(decodedToken.id)
+                .then(data => userMapper.mapToUserDetails(data));
+            responseHandler.sendResponse(response, 200, user);
+        } catch (err) {
+            responseHandler.sendResponse(response, 401, err);
         }
     }
 };
