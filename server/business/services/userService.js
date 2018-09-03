@@ -13,13 +13,10 @@ module.exports = {
         const userEntity = await userRepository.createUser(userData);
         return userMapper.mapToUser(userEntity);
     },
-    async uploadProfilePicture(image) {
-        const imageData = await cloudinaryManager.upload(image);
-        const imageEntity = await imageRepository.createImage({
-            url: imageData.url,
-            width: imageData.width,
-            height: imageData.height
-        });
+    async uploadProfilePicture(uploadedData) {
+        const uploadedImageData = await cloudinaryManager.upload(uploadedData);
+        const imageData = imageMapper.mapToImageData(uploadedImageData);
+        const imageEntity = await imageRepository.createImage(imageData);
         return imageMapper.mapToImage(imageEntity);
     },
     async login(loginData) {
