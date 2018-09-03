@@ -6,20 +6,15 @@ const cookieParams = require('../configs/cookieParams');
 const responseHandler = require('../handler/responseHandler');
 
 module.exports = {
-    register(req, res) {
-        userService
-            .register({
-                name: req.body.name,
-                email: req.body.email,
-                birthdate: req.body.birthdate,
-                password: req.body.password,
-                profilePicture: req.body.profilePicture
-            })
-            .then((user) => {
-                const mappedUser = userMapper.mapToUser(user);
-                responseHandler.sendResponse(res, 200, mappedUser);
-            })
-            .catch(err => responseHandler.sendResponse(res, 500, err));
+    async register(request, response) {
+        const registrationData = userMapper.mapToRegistrationData(request.body);
+        try {
+            const userData = await userService.register(registrationData);
+            const user = userMapper.mapToUser(userData);
+            responseHandler.sendResponse(response, 200, user);
+        } catch (err) {
+            responseHandler.sendResponse(response, 500, err);
+        }
     },
     uploadProfilePicture(req, res) {
         userService
