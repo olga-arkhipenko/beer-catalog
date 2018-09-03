@@ -6,17 +6,11 @@ const imageMapper = require('../mappers/imageMapper');
 const cloudinaryManager = require('../../integration/cloudinaryManagement/cloudinaryManager');
 
 module.exports = {
-    async register(userData) {
+    async register(registrationData) {
         const salt = passwordEncryptor.createSalt().toString();
-        const user = {
-            name: userData.name,
-            email: userData.email,
-            birthdate: userData.birthdate,
-            password: passwordEncryptor.encrypt(userData.password, salt),
-            salt,
-            profilePictureId: userData.profilePicture.id
-        };
-        const userEntity = await userRepository.createUser(user);
+        const encryptedPassword = passwordEncryptor.encrypt(registrationData.password, salt);
+        const userData = userMapper.mapToUserData(registrationData, salt, encryptedPassword);
+        const userEntity = await userRepository.createUser(userData);
         return userMapper.mapToUser(userEntity);
     },
     async uploadProfilePicture(image) {
