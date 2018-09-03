@@ -2,15 +2,15 @@ const database = require('../index');
 const userMapper = require('../mappers/userMapper');
 
 module.exports = {
-    createUser(user) {
+    createUser(userData) {
         return database.user
             .create({
-                name: user.name,
-                email: user.email,
-                birthdate: user.birthdate,
-                password: user.password,
-                salt: user.salt,
-                profilePictureId: user.profilePictureId
+                name: userData.name,
+                email: userData.email,
+                birthdate: userData.birthdate,
+                password: userData.password,
+                salt: userData.salt,
+                profilePictureId: userData.profilePictureId
             })
             .then(userModel => userMapper.mapToUser(userModel));
     },
