@@ -30,32 +30,21 @@ module.exports = {
             }))
             .then(imageEntity => imageMapper.mapToImage(imageEntity));
     },
-    login(loginData) {
-        return userRepository
-            .findUserByEmail(loginData.email)
-            .then((userEntity) => {
-                if (userEntity) {
-                    if (passwordEncryptor.isMatch(
-                        loginData.password,
-                        userEntity.salt,
-                        userEntity.password
-                    )) {
-                        return userMapper.mapToUserDetails(userEntity);
-                    }
-                    throw new Error('Login error. Wrong user password');
-                }
-                throw new Error('Login error. Wrong user email');
-            });
+    async login(loginData) {
+        const userEntity = await userRepository.findUserByEmail(loginData.email);
+        const isPasswordMatch = passwordEncryptor.isMatch(loginData.password, userEntity.salt, userEntity.password);
+        if (userEntity) {
+            if (isPasswordMatch) {
+                return userMapper.mapToUserDetails(userEntity);
+            } throw new Error('Login error. Wrong user password');
+        } throw new Error('Login error. Wrong user email');
     },
-    getUser(userId) {
-        return userRepository
-            .findUserById(userId)
-            .then((userEntity) => {
-                if (userEntity) {
-                    return userMapper.mapToUserDetails(userEntity);
-                }
-                throw new Error('User not found.');
-            });
+    async getUser(userId) {
+        const userEntity = await userRepository.findUserById(userId);
+        if (userEntity) {
+            return userMapper.mapToUserDetails(userEntity);
+        }
+        throw new Error('User not found.');
     }
 };
 
