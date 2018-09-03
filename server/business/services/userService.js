@@ -16,7 +16,7 @@ module.exports = {
             salt,
             profilePictureId: userData.profilePicture.id
         };
-        const userEntity = userRepository.createUser(user);
+        const userEntity = await userRepository.createUser(user);
         return userMapper.mapToUser(userEntity);
     },
     async uploadProfilePicture(image) {

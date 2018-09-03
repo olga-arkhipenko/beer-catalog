@@ -8,32 +8,22 @@ const requestHelper = require('../../helpers/requestHelper');
 
 module.exports = {
     addFavorite(beerId, userId) {
-        return favoritesRepository
-            .addFavorite(beerId, userId);
+        return favoritesRepository.addFavorite(beerId, userId);
     },
     removeFavorite(beerId, userId) {
-        return favoritesRepository
-            .removeFavorite(beerId, userId);
+        return favoritesRepository.removeFavorite(beerId, userId);
     },
-    getFavorites(userId, pageParams) {
-        return favoritesRepository
-            .findFavoriteIds(userId)
-            .then((favoritesIds) => {
-                const mappedParams =
-                paramsMapper.mapParams(QUERY_PARAMS_MAP, { beerIds: favoritesIds, ...pageParams });
-                const favoriteBeersUrl = urlCreator.createUrl(URL, null, mappedParams);
-                return requestHelper
-                    .get(favoriteBeersUrl)
-                    .then((beers) => {
-                        beers = beers.map(beerMapper.mapToBeer);
-                        const amountOfPages = Math.ceil(favoritesIds.length / pageParams.amount);
-                        return { amountOfPages, beers };
-                    });
-            });
+    async getFavorites(userId, pageParams) {
+        const favoritesIds = await favoritesRepository.findFavoriteIds(userId);
+        const mappedParams = paramsMapper.mapParams(QUERY_PARAMS_MAP, { beerIds: favoritesIds, ...pageParams });
+        const favoriteBeersUrl = urlCreator.createUrl(URL, null, mappedParams);
+        const beers = await requestHelper.get(favoriteBeersUrl)
+            .then(beersData => beersData.map(beerMapper.mapToBeer));
+        const amountOfPages = Math.ceil(favoritesIds.length / pageParams.amount);
+        return { amountOfPages, beers };
     },
     getFavoritesIds(userId) {
-        return favoritesRepository
-            .findFavoriteIds(userId);
+        return favoritesRepository.findFavoriteIds(userId);
     }
 };
 
