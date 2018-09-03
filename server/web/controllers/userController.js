@@ -27,44 +27,41 @@ module.exports = {
             responseHandler.sendResponse(response, 500, err);
         }
     },
-    login(req, res) {
-        userService
-            .login({
-                email: req.body.email,
-                password: req.body.password
-            })
-            .then((user) => {
-                const token = jwtHelper.createToken({ id: user.id });
-                const mappedUser = userMapper.mapToUserDetails(user);
-                res.cookie(cookieParams.name, token);
-                responseHandler.sendResponse(res, 200, mappedUser);
-            })
-            .catch(err => responseHandler.sendResponse(res, 500, err));
-    },
-    signout(req, res) {
-        const token = req.cookies[cookieParams.name];
-        if (token) {
-            res.clearCookie(cookieParams.name);
-            responseHandler.sendResponse(res, 200, {});
-        } else {
-            responseHandler.sendResponse(res, 401);
+    async login(request, response) {
+        const loginData = userMapper.mapToLoginData(request.body);
+        try {
+            const user = await userService.login(loginData);
+            const token = jwtHelper.createToken({ id: user.id });
+            const mappedUser = userMapper.mapToUserDetails(user);
+            response.cookie(cookieParams.name, token);
+            responseHandler.sendResponse(response, 200, mappedUser);
+        } catch (err) {
+            responseHandler.sendResponse(response, 500, err);
         }
     },
-    getUser(req, res) {
-        const token = req.cookies[cookieParams.name];
+    signout(request, response) {
+        const token = request.cookies[cookieParams.name];
         if (token) {
-            jwtHelper.verifyToken(token)
-                .then((decodedToken) => {
-                    userService
-                        .getUser(decodedToken.id)
-                        .then((user) => {
-                            const mappedUser = userMapper.mapToUserDetails(user);
-                            responseHandler.sendResponse(res, 200, mappedUser);
-                        });
-                })
-                .catch(err => responseHandler.sendResponse(res, 401, err));
+            response.clearCookie(cookieParams.name);
+            responseHandler.sendResponse(response, 200, {});
         } else {
-            responseHandler.sendResponse(res, 401);
+            responseHandler.sendResponse(response, 401);
+        }
+    },
+    async getUser(request, response) {
+        const token = request.cookies[cookieParams.name];
+        if (token) {
+            const decodedToken = await jwtHelper.verifyToken(token);
+            try {
+                const user = await userService
+                    .getUser(decodedToken.id)
+                    .then(data => userMapper.mapToUserDetails(data));
+                responseHandler.sendResponse(response, 200, user);
+            } catch (err) {
+                responseHandler.sendResponse(response, 401, err);
+            }
+        } else {
+            responseHandler.sendResponse(response, 401);
         }
     }
 };
