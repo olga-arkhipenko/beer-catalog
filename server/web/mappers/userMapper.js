@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const UserDetails = require('../models/userDetails');
 const RegistrationData = require('../models/registrationData');
+const LoginData = require('../models/loginData');
 
 module.exports = {
     mapToUser(data) {
@@ -25,6 +26,13 @@ module.exports = {
         registrationData.profilePicture = data.profilePicture;
 
         return registrationData;
+    },
+    mapToLoginData(data) {
+        const loginData = new LoginData();
+        loginData.email = data.email;
+        loginData.password = data.password;
+
+        return loginData;
     }
 };
 
