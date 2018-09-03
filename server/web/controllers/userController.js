@@ -39,7 +39,7 @@ module.exports = {
             responseHandler.sendResponse(response, 500, err);
         }
     },
-    signout(request, response) {
+    signOut(request, response) {
         const token = request.cookies[cookieParams.name];
         if (token) {
             response.clearCookie(cookieParams.name);
