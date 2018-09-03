@@ -3,16 +3,16 @@ const UserDetails = require('../models/userDetails');
 const RegistrationData = require('../models/registrationData');
 
 module.exports = {
-    mapToUser(userData) {
+    mapToUser(data) {
         const user = new User();
-        user.name = userData.name;
+        user.name = data.name;
 
         return user;
     },
-    mapToUserDetails(userData) {
+    mapToUserDetails(data) {
         const userDetails = new UserDetails();
-        userDetails.name = userData.name;
-        userDetails.profilePictureUrl = userData.profilePicture.url;
+        userDetails.name = data.name;
+        userDetails.profilePictureUrl = data.profilePicture.url;
 
         return userDetails;
     },
