@@ -1,4 +1,5 @@
 const Image = require('../models/image');
+const ImageData = require('../models/imageData');
 
 module.exports = {
     mapToImage(dataEntity) {
@@ -9,5 +10,13 @@ module.exports = {
         image.height = dataEntity.height;
 
         return image;
+    },
+    mapToImageData(data) {
+        const imageData = new ImageData();
+        imageData.url = data.url;
+        imageData.width = data.width;
+        imageData.height = data.height;
+
+        return imageData;
     }
 };
